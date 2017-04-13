@@ -1,0 +1,1644 @@
+{
+  "package": "ZendeskCore",
+  "tagline": "ZendeskCore API",
+  "description": "Capture, curate and manage asynchronous videos/playbacks.",
+  "image": "https://logo.clearbit.com/zendesk.com?s=128",
+  "repo": "https://github.com/RapidSoftwareSolutions/Marketplace-ZendeskCore-Package",
+  "keywords": [
+    "API",
+    "asynchronous",
+    "camera",
+    "upload",
+    "video",
+    "webcam"
+  ],
+  "accounts": {
+    "domain": "zendesk.com",
+    "credentials": [
+      "clientId",
+      "clientSecret"
+    ]
+  },
+  "blocks": [
+    {
+      "name": "getAccessToken",
+      "description": "Get AccessToken",
+      "args": [
+        {
+          "name": "clientId",
+          "type": "credentials",
+          "info": "Unique Identifier. You can find it at Admin->Channels->API->OAuth Clients",
+          "required": true
+        },
+        {
+          "name": "clientSecret",
+          "type": "credentials",
+          "info": "Secret value you received when you registered your application with Zendesk",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "code",
+          "type": "String",
+          "info": "Code you received from Zendesk after the user granted access",
+          "required": true
+        },
+        {
+          "name": "redirectUri",
+          "type": "String",
+          "info": "The same redirect URL as in received Code step.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getIncrementalTickets",
+      "description": "Returns the tickets that changed since the start time. The results include tickets that were updated by the system. The endpoint can return records where the updated_at time is earlier than the start_date time. The reason is that the updated_at value is updated only if the ticket update generates a ticket event. Otherwise, the timestamp of the previous update carries over.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "startTime",
+          "type": "Number",
+          "info": "Unix time. Example: 1491782400",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getIncrementalTicketsEvents",
+      "description": "Returns a stream of changes that occurred on tickets. Each event is tied to an update on a ticket and contains all the fields that were updated in that change. You can include comments in the event stream by using the comment_events sideload. See Sideloading below. If you don't specify the sideload, any comment present in the ticket update is described only by Boolean comment_present and comment_public object properties in the event's child_events array. The comment itself is not included.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "startTime",
+          "type": "Number",
+          "info": "Unix time. Example: 1491782400",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getIncrementalOrganizations",
+      "description": "",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "startTime",
+          "type": "Number",
+          "info": "Unix time. Example: 1491782400",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getIncrementalUsers",
+      "description": "",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "startTime",
+          "type": "Number",
+          "info": "Unix time. Example: 1491782400",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getJobStatuses",
+      "description": "This shows the current statuses for background jobs running.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleJobStatus",
+      "description": "Get Job bi ID",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "jobId",
+          "type": "String",
+          "info": "Job ID token",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getJobStatusesByIds",
+      "description": "Get many Job by IDs",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "jobIds",
+          "type": "Array",
+          "info": "List of job status ids.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTickets",
+      "description": "Tickets are ordered chronologically by created date, from oldest to newest. The first ticket listed may not be the absolute oldest ticket in your account due to ticket archiving. To get a list of all tickets in your account, use the Incremental Ticket Export endpoint.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "sortBy",
+          "type": "String",
+          "info": "Possible values are assignee, assignee.name, created_at, group, id, locale, requester, requester.name, status, subject, updated_at",
+          "required": false
+        },
+        {
+          "name": "sortOrder",
+          "type": "String",
+          "info": "One of asc, desc. Defaults to asc",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleTicket",
+      "description": "Returns a number of ticket properties, but not the ticket comments. To get the comments, use List Comments.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "String",
+          "info": "Ticket ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTicketsByIds",
+      "description": "Accepts a list of ticket ids to return. This endpoint will return up to 100 tickets records.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketIds",
+          "type": "Array",
+          "info": "Comma-separated list of ticket ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createSingleTicket",
+      "description": "Create ticket",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "comment",
+          "type": "String",
+          "info": "A comment object that describes the problem, incident, question, or task. todo JSON",
+          "required": true
+        },
+        {
+          "name": "subject",
+          "type": "String",
+          "info": "The subject of the ticket",
+          "required": false
+        },
+        {
+          "name": "requesterId",
+          "type": "Number",
+          "info": "The numeric ID of the user asking for support through the ticket",
+          "required": false
+        },
+        {
+          "name": "submitterId",
+          "type": "Number",
+          "info": "The numeric ID of the user submitting the ticket",
+          "required": false
+        },
+        {
+          "name": "assigneeId",
+          "type": "Number",
+          "info": "The numeric ID of the agent to assign the ticket to",
+          "required": false
+        },
+        {
+          "name": "groupId",
+          "type": "Number",
+          "info": "The numeric ID of the group to assign the ticket to",
+          "required": false
+        },
+        {
+          "name": "collaboratorIds",
+          "type": "Array",
+          "info": "An array of the numeric IDs of agents or end-users to CC on the ticket. An email notification is sent to them when the ticket is created",
+          "required": false
+        },
+        {
+          "name": "collaborators",
+          "type": "Array",
+          "info": "An array of numeric IDs, emails, or objects containing name and email properties. An email notification is sent to them when the ticket is created. Example: collaborators: [ 562, someone@example.com, { name: Someone Else, email: else@example.com } ]",
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "Allowed values are problem, incident, question, or task",
+          "required": false
+        },
+        {
+          "name": "priority",
+          "type": "String",
+          "info": "Allowed values are urgent, high, normal, or low",
+          "required": false
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "info": "Allowed values are new, open, pending, hold, solved or closed. Is set to new if status is not specified",
+          "required": false
+        },
+        {
+          "name": "tags",
+          "type": "Array",
+          "info": "Comma-separated of tags to add to the ticket",
+          "required": false
+        },
+        {
+          "name": "externalId",
+          "type": "Number",
+          "info": "An ID to link Zendesk Support tickets to local records",
+          "required": false
+        },
+        {
+          "name": "forumTopicId",
+          "type": "Number",
+          "info": "The numeric ID of the topic the ticket originated from, if any",
+          "required": false
+        },
+        {
+          "name": "problemId",
+          "type": "Number",
+          "info": "For tickets of type 'incident', the numeric ID of the problem the incident is linked to, if any",
+          "required": false
+        },
+        {
+          "name": "dueAt",
+          "type": "String",
+          "info": "For tickets of type 'task', the due date of the task. Accepts the ISO 8601 date format (yyyy-mm-dd)",
+          "required": false
+        },
+        {
+          "name": "ticketFormId",
+          "type": "Number",
+          "info": "(Enterprise only) The id of the ticket form to render for the ticket",
+          "required": false
+        },
+        {
+          "name": "customFields",
+          "type": "Array",
+          "info": "An array of the custom fields of the ticket. See below for details",
+          "required": false
+        },
+        {
+          "name": "viaFollowupSourceId",
+          "type": "String",
+          "info": "The id of a closed ticket for a follow-up ticket.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createTickets",
+      "description": "Create many tickets from JSON file",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "tickets",
+          "type": "File",
+          "info": "File contents array of tickets data. Example [{ticketData1}, {ticketData2}]. TicketData the same as when creating one ticket.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateSingleTicket",
+      "description": "Update ticket",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        },
+        {
+          "name": "comment",
+          "type": "String",
+          "info": "A comment object that describes the problem, incident, question, or task. todo json",
+          "required": false
+        },
+        {
+          "name": "subject",
+          "type": "String",
+          "info": "The subject of the ticket",
+          "required": false
+        },
+        {
+          "name": "requesterId",
+          "type": "Number",
+          "info": "The numeric ID of the user asking for support through the ticket",
+          "required": false
+        },
+        {
+          "name": "submitterId",
+          "type": "Number",
+          "info": "The numeric ID of the user submitting the ticket",
+          "required": false
+        },
+        {
+          "name": "assigneeId",
+          "type": "Number",
+          "info": "The numeric ID of the agent to assign the ticket to",
+          "required": false
+        },
+        {
+          "name": "groupId",
+          "type": "Number",
+          "info": "The numeric ID of the group to assign the ticket to",
+          "required": false
+        },
+        {
+          "name": "collaboratorIds",
+          "type": "Array",
+          "info": "An array of the numeric IDs of agents or end-users to CC on the ticket. An email notification is sent to them when the ticket is created",
+          "required": false
+        },
+        {
+          "name": "collaborators",
+          "type": "Array",
+          "info": "An array of numeric IDs, emails, or objects containing name and email properties. An email notification is sent to them when the ticket is created. Example: collaborators: [ 562, someone@example.com, { name: Someone Else, email: else@example.com } ]",
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "Allowed values are problem, incident, question, or task",
+          "required": false
+        },
+        {
+          "name": "priority",
+          "type": "String",
+          "info": "Allowed values are urgent, high, normal, or low",
+          "required": false
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "info": "Allowed values are new, open, pending, hold, solved or closed. Is set to new if status is not specified",
+          "required": false
+        },
+        {
+          "name": "tags",
+          "type": "Array",
+          "info": "Comma-separated of tags to add to the ticket",
+          "required": false
+        },
+        {
+          "name": "externalId",
+          "type": "Number",
+          "info": "An ID to link Zendesk Support tickets to local records",
+          "required": false
+        },
+        {
+          "name": "forumTopicId",
+          "type": "Number",
+          "info": "The numeric ID of the topic the ticket originated from, if any",
+          "required": false
+        },
+        {
+          "name": "problemId",
+          "type": "Number",
+          "info": "For tickets of type 'incident', the numeric ID of the problem the incident is linked to, if any",
+          "required": false
+        },
+        {
+          "name": "dueAt",
+          "type": "String",
+          "info": "For tickets of type 'task', the due date of the task. Accepts the ISO 8601 date format (yyyy-mm-dd)",
+          "required": false
+        },
+        {
+          "name": "ticketFormId",
+          "type": "Number",
+          "info": "(Enterprise only) The id of the ticket form to render for the ticket",
+          "required": false
+        },
+        {
+          "name": "customFields",
+          "type": "Array",
+          "info": "An array of the custom fields of the ticket. See below for details",
+          "required": false
+        },
+        {
+          "name": "viaFollowupSourceId",
+          "type": "String",
+          "info": "The id of a closed ticket for a follow-up ticket.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "markSingleTicketAsSpam",
+      "description": "Mark Ticket as Spam and Suspend Requester",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "markTicketsAsSpam",
+      "description": "Mark Tickets as Spam and Suspend Requester",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketIds",
+          "type": "Array",
+          "info": "List of Ticket IDs",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "mergeTickets",
+      "description": "Merges one or more tickets into the {id} target ticket.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        },
+        {
+          "name": "ids",
+          "type": "Array",
+          "info": "List of Ticket IDs",
+          "required": true
+        },
+        {
+          "name": "targetComment",
+          "type": "String",
+          "info": "Private comment to add to the target ticket",
+          "required": false
+        },
+        {
+          "name": "sourceComment",
+          "type": "String",
+          "info": "Private comment to add to the source ticket",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTicketRelatedInfo",
+      "description": "Get ticket related info",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteSingleTicket",
+      "description": "Delete ticket",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteTickets",
+      "description": "Delete tickets",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketIds",
+          "type": "Array",
+          "info": "List of ticket ids",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTicketCollaborators",
+      "description": "Get collaborators from ticket",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTicketIncidents",
+      "description": "Get ticket incidents",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTicketsProblems",
+      "description": "Get probles tickets",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "autocompleteTicketsProblems",
+      "description": "Returns tickets whose type is 'Problem' and whose subject contains the string specified in the text parameter.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "text",
+          "type": "String",
+          "info": "Search expression",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getAttachment",
+      "description": "Get attachment data by ID",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "attachmentId",
+          "type": "Number",
+          "info": "Attachment ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getComments",
+      "description": "Get all comments from ticket",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        },
+        {
+          "name": "sortOrder",
+          "type": "String",
+          "info": "One of asc, desc. Defaults to asc",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "removeCommentAttachment",
+      "description": "Redaction allows you to permanently remove attachments from an existing comment on a ticket. Once removed from a comment, the attachment is replaced with a placeholder 'redacted.txt' file. Note that redaction is permanent. It is not possible to undo redaction or see what was removed. Once a ticket is closed, redacting its attachments is no longer possible.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        },
+        {
+          "name": "commentId",
+          "type": "Number",
+          "info": "Comment ID",
+          "required": true
+        },
+        {
+          "name": "attachmentId",
+          "type": "Number",
+          "info": "Attachment ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteAttachment",
+      "description": "Remove attachment",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "attachmentId",
+          "type": "Number",
+          "info": "Attachment ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "uploadFiles",
+      "description": "Adding multiple attachments to the same upload is handled by splitting requests and passing the API token received from the first request to each subsequent request. The token is valid for 3 days. Note: Even if private attachments are enabled in the Zendesk Support instance, uploaded files are visible to any authenticated user at the content_URL specified in the JSON response until the upload token is consumed. Once an attachment is associated with a ticket or post, visibility is restricted to users with access to the ticket or post with the attachment.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "file",
+          "type": "File",
+          "info": "File",
+          "required": true
+        },
+        {
+          "name": "fileName",
+          "type": "String",
+          "info": "File name",
+          "required": true
+        },
+        {
+          "name": "uploadToken",
+          "type": "String",
+          "info": "Upload token. Use it when need to upload more then 1 file and associate with token",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteUpload",
+      "description": "Delete upload with all attachments",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "uploadToken",
+          "type": "String",
+          "info": "Upload token. Use it when need to upload more then 1 file and associate with token",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSatisfactionRatings",
+      "description": "List all received satisfaction rating requests ever issued for your account.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createSatisfactionRating",
+      "description": "Create a rating for solved tickets, or for tickets that were previously solved and then reopened.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        },
+        {
+          "name": "sortOrder",
+          "type": "String",
+          "info": "One of asc, desc. Defaults to asc",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSuspendedTickets",
+      "description": "Get all suspended tickets",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTicketAudits",
+      "description": "Lists the audits for a specified ticket.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTicketSingleAudits",
+      "description": "Get audit for a specified ticket by audit ID",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        },
+        {
+          "name": "auditId",
+          "type": "Number",
+          "info": "Audit ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "makeAuditPrivate",
+      "description": "Hide audit by ID",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        },
+        {
+          "name": "auditId",
+          "type": "Number",
+          "info": "Audit ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "removeWordFromTicketComment",
+      "description": "Permanently removes words or strings from a ticket comment. Specify the string to redact in an object with a text property. Example: {\"text\": \"credit-card-number\"}. The characters of the word or string are replaced by the ▇ symbol. Redaction is permanent. You can't undo the redaction or see what was removed. Once a ticket is closed, you can no longer redact strings from its comments.",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        },
+        {
+          "name": "commentId",
+          "type": "Number",
+          "info": "Comment ID",
+          "required": true
+        },
+        {
+          "name": "text",
+          "type": "String",
+          "info": "Text to search",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "makeCommentPrivate",
+      "description": "Make comment private",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        },
+        {
+          "name": "commentId",
+          "type": "Number",
+          "info": "Comment ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSkippedTickets",
+      "description": "Get all skipped tickets",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    }
+  ]
+}
