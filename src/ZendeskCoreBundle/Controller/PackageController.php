@@ -13,6 +13,8 @@ use Symfony\Component\Debug\Exception\ContextErrorException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use ZendeskCoreBundle\Exception\PackageException;
+use ZendeskCoreBundle\Exception\RequiredFieldException;
 use ZendeskCoreBundle\Service\DataValidator;
 
 class PackageController extends Controller
@@ -25,8 +27,14 @@ class PackageController extends Controller
      */
     public function getMetadataAction()
     {
-        $metaData = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/metadata.json', 'r');
-        return new JsonResponse(json_decode($metaData));
+        try {
+            $dataValidator = $this->get('data_validator');
+            $result = $dataValidator->getMetaData();
+        }
+        catch (PackageException $exception) {
+            $result = $this->createPackageExceptionResponse($exception);
+        }
+        return new JsonResponse($result);
     }
 
     /**
@@ -39,20 +47,18 @@ class PackageController extends Controller
      */
     public function getAccessToken(Request $request)
     {
-        // может быть сделать через __call все функции, кроме тех, которые пользуются особой логикой ?
-        // таким образом можно сократить число блоков до минимума. В сервисе проверять согласно метадате валидность и отправлять
-
-        /** @var DataValidator $dataValidator */
-        $dataValidator = $this->get("dataValidator");
-        $dataValidator->setData($request, __FUNCTION__);
-        if ($dataValidator->isValid()) {
+        try {
+            $dataValidator = $this->get('data_validator');
+            $dataValidator->setData($request, __FUNCTION__);
             $validData = $dataValidator->getValidData();
             $url = "https://" . $validData['domain'] . ".zendesk.com/oauth/tokens";
             unset($validData['domain']);
             $validData['grant_type'] = 'authorization_code';
             $result = $this->getVendorResult($url, 'post', $validData);
-        } else {
-            $result = $dataValidator->getRequiredErrors();
+        } catch (PackageException $exception) {
+            $result = $this->createPackageExceptionResponse($exception);
+        } catch (RequiredFieldException $exception) {
+            $result = $this->createRequiredFieldExceptionResponse($exception);
         }
 
         return new JsonResponse($result);
@@ -68,7 +74,7 @@ class PackageController extends Controller
      */
     public function createSingleTicket(Request $request)
     {
-        // todo переделать. присылают и файлы и параметры
+        // todo file
         $blockParamList = $this->getBlockParamList();
         if (empty($blockParamList['createSingleTicket'])) {
             throw new NotFoundHttpException();
@@ -77,7 +83,7 @@ class PackageController extends Controller
         $method = $blockParamList['createSingleTicket']['method'];
 
         /** @var DataValidator $dataValidator */
-        $dataValidator = $this->get("dataValidator");
+        $dataValidator = $this->get("data_validator");
         $dataValidator->setData($request, 'createSingleTicket');
         if ($dataValidator->isValid()) {
             $validData = $dataValidator->getValidData();
@@ -102,7 +108,7 @@ class PackageController extends Controller
      */
     public function createTickets(Request $request)
     {
-        // todo переделать. Присылают файл
+        // todo file
         $result = [];
         $blockParamList = $this->getBlockParamList();
         if (empty($blockParamList[__FUNCTION__])) {
@@ -112,7 +118,7 @@ class PackageController extends Controller
         $method = $blockParamList[__FUNCTION__]['method'];
 
         /** @var DataValidator $dataValidator */
-        $dataValidator = $this->get("dataValidator");
+        $dataValidator = $this->get("data_validator");
         $dataValidator->setData($request, __FUNCTION__);
         if ($dataValidator->isValid()) {
             $validData = $dataValidator->getValidData();
@@ -170,8 +176,7 @@ class PackageController extends Controller
                     "contents" => $fileContentStream
                 ];
                 $result = $this->getVendorResult($url, $method, $data, $headers, 'multipart');
-            }
-            catch (ContextErrorException $exception) {
+            } catch (ContextErrorException $exception) {
                 $result = $this->createApiError('Cant read file');
             }
         } else {
@@ -196,20 +201,19 @@ class PackageController extends Controller
         if (empty($blockParamList[$blockName])) {
             throw new NotFoundHttpException();
         }
-
         $method = $blockParamList[$blockName]['method'];
-
-        /** @var DataValidator $dataValidator */
-        $dataValidator = $this->get("dataValidator");
-        $dataValidator->setData($request, $blockName);
-        if ($dataValidator->isValid()) {
+        try {
+            $dataValidator = $this->get('data_validator');
+            $dataValidator->setData($request, $blockName);
             $validData = $dataValidator->getValidData();
             $url = $this->createUrl($blockParamList[$blockName]['url'], $validData);
             $headers['Authorization'] = 'Bearer ' . $validData['access_token'];
             unset($validData['access_token']);
             $result = $this->getVendorResult($url, $method, $validData, $headers);
-        } else {
-            $result = $dataValidator->getRequiredErrors();
+        } catch (PackageException $exception) {
+            $result = $this->createPackageExceptionResponse($exception);
+        } catch (RequiredFieldException $exception) {
+            $result = $this->createRequiredFieldExceptionResponse($exception);
         }
 
         return new JsonResponse($result);
@@ -222,7 +226,9 @@ class PackageController extends Controller
         $res = preg_replace_callback(
             '/{(\w+)}/',
             function ($match) use (&$data) {
-                // todo create exception
+                if (!isset($data[$match[1]])) {
+                    throw new PackageException('Cant find variables to URL parse: ' . $match[1]);
+                }
                 $result = $data[$match[1]];
                 unset($data[$match[1]]);
                 if (is_array($result)) {
@@ -436,10 +442,31 @@ class PackageController extends Controller
         return $result;
     }
 
-    private function createApiError($message) {
+    private function createApiError($message)
+    {
         $result['callback'] = 'error';
         $result['contextWrites']['to']['status_code'] = 'API_ERROR';
         $result['contextWrites']['to']['status_msg'] = $message;
+
+        return $result;
+    }
+
+    private function createPackageExceptionResponse(PackageException $exception)
+    {
+        $result['callback'] = 'error';
+        $result['contextWrites']['to']['status_code'] = 'INTERNAL_PACKAGE_ERROR';
+        $result['contextWrites']['to']['status_msg'] = $exception->getMessage();
+
+        return $result;
+    }
+
+    private function createRequiredFieldExceptionResponse(RequiredFieldException $exception)
+    {
+        $result['callback'] = 'error';
+        $result['contextWrites']['to']['status_code'] = "REQUIRED_FIELDS";
+        $result['contextWrites']['to']['status_msg'] = "Please, check and fill in required fields.";
+        $result['contextWrites']['to']['fields'] = explode(',', $exception->getMessage());
+
         return $result;
     }
 }

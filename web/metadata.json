@@ -1,16 +1,16 @@
 {
   "package": "ZendeskCore",
   "tagline": "ZendeskCore API",
-  "description": "Capture, curate and manage asynchronous videos/playbacks.",
+  "description": "Create, edit and manage customer support tickets.",
   "image": "https://logo.clearbit.com/zendesk.com?s=128",
   "repo": "https://github.com/RapidSoftwareSolutions/Marketplace-ZendeskCore-Package",
   "keywords": [
     "API",
-    "asynchronous",
-    "camera",
-    "upload",
-    "video",
-    "webcam"
+    "customer",
+    "marketing",
+    "service",
+    "support",
+    "ticket"
   ],
   "accounts": {
     "domain": "zendesk.com",
