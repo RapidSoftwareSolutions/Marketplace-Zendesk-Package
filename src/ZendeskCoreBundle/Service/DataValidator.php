@@ -158,14 +158,14 @@ class DataValidator
 //                $this->parsedValidData[$paramData['wrapName']] = [];
 //            }
             $wrapNameList = explode('.', $paramData['wrapName']);
-            $this->addDepthOfNesting($this->parsedValidData, $wrapNameList, $value, $vendorName);
+            $this->addDepthOfNesting($this->parsedValidData, $wrapNameList, $value, $vendorName, $paramData);
         }
         else {
             $this->parsedValidData[$vendorName] = $value;
         }
     }
 
-    private function addDepthOfNesting(array &$array, &$depthNameList, $value, $vendorName) {
+    private function addDepthOfNesting(array &$array, &$depthNameList, $value, $vendorName, $paramData) {
         $result = [];
         while (!empty($depthNameList)) {
             $deepName = array_shift($depthNameList);
@@ -173,12 +173,24 @@ class DataValidator
                 $array[$deepName] = [];
             }
             if (empty($depthNameList)) {
-                $array[$deepName][$vendorName] = $value;
+                if (!empty($paramData['complex']) && filter_var($paramData['complex'], FILTER_VALIDATE_BOOLEAN) == true) {
+                    $array[$deepName][] = $this->createComplexValue($paramData, $value, $vendorName);
+                }
+                else {
+                    $array[$deepName][$vendorName] = $value;
+                }
             }
-            $result = $this->addDepthOfNesting($array[$deepName], $depthNameList, $value, $vendorName);
+            $result = $this->addDepthOfNesting($array[$deepName], $depthNameList, $value, $vendorName, $paramData);
         }
 
         return $result;
+    }
+
+    private function createComplexValue($paramData, $value, $vendorName) {
+        return [
+            $paramData['keyName'] => $vendorName,
+            $paramData['keyValue'] => $value
+        ];
     }
 
 
