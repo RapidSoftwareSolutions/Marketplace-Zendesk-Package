@@ -106,47 +106,49 @@ class DataValidator
         $vendorName = $this->getParamVendorName($paramData);
         $type = mb_strtolower($paramData['type']);
         $value = $this->dataFromRequest['args'][$name];
-        switch ($type) {
-            case 'json':
-                $normalizeJson = $this->normalizeJson($value);
-                $data = json_decode($normalizeJson, true);
-                if (json_last_error()) {
-                    $this->parsedFieldError[] = $name;
-                } else {
+        if ($value !== null) {
+            switch ($type) {
+                case 'json':
+                    $normalizeJson = $this->normalizeJson($value);
+                    $data = json_decode($normalizeJson, true);
+                    if (json_last_error()) {
+                        $this->parsedFieldError[] = $name;
+                    } else {
 //                    $this->parsedValidData[$vendorName] = $data;
-                    $this->setSingleValidData($paramData, $data, $vendorName);
-                }
-                break;
-            case 'array':
-                if (mb_strtolower($this->blockMetadata['method']) == 'get') {
+                        $this->setSingleValidData($paramData, $data, $vendorName);
+                    }
+                    break;
+                case 'array':
+                    if (mb_strtolower($this->blockMetadata['method']) == 'get') {
 //                    $this->parsedValidData[$vendorName] = is_array($value) ? implode(',', $value) : $value;
-                    $data = is_array($value) ? implode(',', $value) : $value;
-                    $this->setSingleValidData($paramData, $data, $vendorName);
-                } else {
+                        $data = is_array($value) ? implode(',', $value) : $value;
+                        $this->setSingleValidData($paramData, $data, $vendorName);
+                    } else {
 //                    $this->parsedValidData[$vendorName] = is_array($value) ? $value : explode(',', $value);
-                    $data = is_array($value) ? $value : explode(',', $value);
-                    $this->setSingleValidData($paramData, $data, $vendorName);
-                }
-                break;
-            case 'boolean':
+                        $data = is_array($value) ? $value : explode(',', $value);
+                        $this->setSingleValidData($paramData, $data, $vendorName);
+                    }
+                    break;
+                case 'boolean':
 //                $this->parsedValidData[$vendorName] = filter_var($value, FILTER_VALIDATE_BOOLEAN);
-                $data = filter_var($value, FILTER_VALIDATE_BOOLEAN);
-                $this->setSingleValidData($paramData, $data, $vendorName);
-                break;
-            case 'number':
+                    $data = filter_var($value, FILTER_VALIDATE_BOOLEAN);
+                    $this->setSingleValidData($paramData, $data, $vendorName);
+                    break;
+                case 'number':
 //                $this->parsedValidData[$vendorName] = (int) $value;
-                $this->setSingleValidData($paramData, (int) $value, $vendorName);
-                break;
-            case 'file':
-                // todo check
+                    $this->setSingleValidData($paramData, (int) $value, $vendorName);
+                    break;
+                case 'file':
+                    // todo check
 //                $this->parsedValidData[$vendorName] = fopen($value, 'r');
-                $data = fopen($value, 'r');
-                $this->setSingleValidData($paramData, $data, $vendorName);
-                break;
-            default:
+                    $data = fopen($value, 'r');
+                    $this->setSingleValidData($paramData, $data, $vendorName);
+                    break;
+                default:
 //                $this->parsedValidData[$vendorName] = $value;
-                $this->setSingleValidData($paramData, $value, $vendorName);
-                break;
+                    $this->setSingleValidData($paramData, $value, $vendorName);
+                    break;
+            }
         }
     }
 
