@@ -3022,6 +3022,461 @@
           "info": "Success"
         }
       ]
+    },
+    {
+      "name": "getUsers",
+      "description": "Get list Users",
+      "method": "GET",
+      "url": "/api/v2/users.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getGroupUsers",
+      "description": "Get list Users of group",
+      "method": "GET",
+      "url": "/api/v2/groups/{group_id}/users.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "groupId",
+          "type": "Number",
+          "info": "Group ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getOrganizationUsers",
+      "description": "Get list Users of group",
+      "method": "GET",
+      "url": "/api/v2/organizations/{organization_id}/users.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "organizationId",
+          "type": "Number",
+          "info": "Organization ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUsersByIds",
+      "description": "Get Users by Id list",
+      "method": "GET",
+      "url": "/api/v2/users/show_many.json?ids={user_ids}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userIds",
+          "type": "Array",
+          "info": "Comma-separated list of user ids",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUsersByExternalIds",
+      "description": "Get Users by External Id list",
+      "method": "GET",
+      "url": "/api/v2/users/show_many.json?external_ids={external_ids}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "externalIds",
+          "type": "Array",
+          "info": "Comma-separated list of user's external ids",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUserRelatedInfo",
+      "description": "Get user related info",
+      "method": "GET",
+      "url": "/api/v2/users/{user_id}/related.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createUser",
+      "description": "Create a new user",
+      "method": "POST",
+      "url": "/api/v2/users.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "User name",
+          "required": true,
+          "wrapName": "user"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "User email",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "verified",
+          "type": "Boolean",
+          "info": "True - if you need to create users without sending out a verification email.",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "role",
+          "type": "String",
+          "info": "If you need to create agents with a specific role, the role parameter only accepts three possible values: \"end-user\", \"agent\", \"admin\".",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "customRoleId",
+          "type": "Number",
+          "info": "Therefore you will need to set role to \"agent\" as well as add a new parameter called \"custom_role_id\" and give it the actual desired role ID from your Zendesk Support account.",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "twitter",
+          "type": "String",
+          "info": "User's twitter",
+          "required": false,
+          "wrapName": "user.identities",
+          "complex": true,
+          "keyName": "type",
+          "keyValue": "value"
+        },
+        {
+          "name": "facebook",
+          "type": "String",
+          "info": "User's facebook",
+          "required": false,
+          "wrapName": "user.identities",
+          "complex": true,
+          "keyName": "type",
+          "keyValue": "value"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "mergeUsers",
+      "description": "Merge two users",
+      "method": "PUT",
+      "url": "/api/v2/users/{user_id}/merge.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "This user will be merged into the existing user provided in the target user id param. Any two arbitrary users can be merged.",
+          "required": true
+        },
+        {
+          "name": "targetUserId",
+          "type": "Number",
+          "info": "User ID to which will be merged",
+          "required": true,
+          "wrapName": "user",
+          "vendorName": "id"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteUsersByIds",
+      "description": "Delete users",
+      "method": "DELETE",
+      "url": "/api/v2/users/destroy_many.json?ids={user_ids}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userIds",
+          "type": "Array",
+          "info": "User id list",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "autocompleteUsers",
+      "description": "Returns an array of users whose name starts with the value specified in the name paramater. It only returns users with no foreign identities.",
+      "method": "GET",
+      "url": "/api/v2/users/autocomplete.json?name={name}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "The text from which the name begins",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "requestUserCreate",
+      "description": "Sends the owner a reminder email to update their subscription so more agents can be created.",
+      "method": "POST",
+      "url": "/api/v2/users/request_create.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "User name",
+          "required": true,
+          "wrapName": "user"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "User email",
+          "required": true,
+          "wrapName": "user"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
     }
   ]
 }
