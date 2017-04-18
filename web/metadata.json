@@ -23,6 +23,8 @@
     {
       "name": "getAccessToken",
       "description": "Get AccessToken",
+      "method": "POST",
+      "url": "/oauth/tokens",
       "args": [
         {
           "name": "clientId",
@@ -69,6 +71,8 @@
     {
       "name": "getIncrementalTickets",
       "description": "Returns the tickets that changed since the start time. The results include tickets that were updated by the system. The endpoint can return records where the updated_at time is earlier than the start_date time. The reason is that the updated_at value is updated only if the ticket update generates a ticket event. Otherwise, the timestamp of the previous update carries over.",
+      "method": "GET",
+      "url": "/api/v2/incremental/tickets.json",
       "args": [
         {
           "name": "accessToken",
@@ -103,6 +107,8 @@
     {
       "name": "getIncrementalTicketsEvents",
       "description": "Returns a stream of changes that occurred on tickets. Each event is tied to an update on a ticket and contains all the fields that were updated in that change. You can include comments in the event stream by using the comment_events sideload. See Sideloading below. If you don't specify the sideload, any comment present in the ticket update is described only by Boolean comment_present and comment_public object properties in the event's child_events array. The comment itself is not included.",
+      "method": "GET",
+      "url": "/api/v2/incremental/ticket_events.json",
       "args": [
         {
           "name": "accessToken",
@@ -137,6 +143,8 @@
     {
       "name": "getIncrementalOrganizations",
       "description": "",
+      "method": "GET",
+      "url": "/api/v2/incremental/organizations.json",
       "args": [
         {
           "name": "accessToken",
@@ -171,6 +179,8 @@
     {
       "name": "getIncrementalUsers",
       "description": "",
+      "method": "GET",
+      "url": "/api/v2/incremental/users.json",
       "args": [
         {
           "name": "accessToken",
@@ -205,6 +215,8 @@
     {
       "name": "getJobStatuses",
       "description": "This shows the current statuses for background jobs running.",
+      "method": "GET",
+      "url": "/api/v2/job_statuses.json",
       "args": [
         {
           "name": "accessToken",
@@ -233,6 +245,8 @@
     {
       "name": "getSingleJobStatus",
       "description": "Get Job bi ID",
+      "method": "GET",
+      "url": "/api/v2/job_statuses/{job_id}.json",
       "args": [
         {
           "name": "accessToken",
@@ -267,6 +281,8 @@
     {
       "name": "getJobStatusesByIds",
       "description": "Get many Job by IDs",
+      "method": "GET",
+      "url": "/api/v2/job_statuses/show_many.json?ids={job_ids}",
       "args": [
         {
           "name": "accessToken",
@@ -301,6 +317,8 @@
     {
       "name": "getTickets",
       "description": "Tickets are ordered chronologically by created date, from oldest to newest. The first ticket listed may not be the absolute oldest ticket in your account due to ticket archiving. To get a list of all tickets in your account, use the Incremental Ticket Export endpoint.",
+      "method": "GET",
+      "url": "/api/v2/tickets.json",
       "args": [
         {
           "name": "accessToken",
@@ -341,6 +359,8 @@
     {
       "name": "getSingleTicket",
       "description": "Returns a number of ticket properties, but not the ticket comments. To get the comments, use List Comments.",
+      "method": "GET",
+      "url": "/api/v2/tickets/{ticket_id}.json",
       "args": [
         {
           "name": "accessToken",
@@ -375,6 +395,8 @@
     {
       "name": "getTicketsByIds",
       "description": "Accepts a list of ticket ids to return. This endpoint will return up to 100 tickets records.",
+      "method": "GET",
+      "url": "/api/v2/tickets/show_many.json?ids={ticket_ids}",
       "args": [
         {
           "name": "accessToken",
@@ -409,6 +431,8 @@
     {
       "name": "createSingleTicket",
       "description": "Create ticket",
+      "method": "POST",
+      "url": "/api/v2/tickets.json",
       "args": [
         {
           "name": "accessToken",
@@ -426,115 +450,134 @@
           "name": "comment",
           "type": "String",
           "info": "A comment object that describes the problem, incident, question, or task. todo JSON",
-          "required": true
+          "required": true,
+          "wrapName": "ticket"
         },
         {
           "name": "subject",
           "type": "String",
           "info": "The subject of the ticket",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "requesterId",
           "type": "Number",
           "info": "The numeric ID of the user asking for support through the ticket",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "submitterId",
           "type": "Number",
           "info": "The numeric ID of the user submitting the ticket",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "assigneeId",
           "type": "Number",
           "info": "The numeric ID of the agent to assign the ticket to",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "groupId",
           "type": "Number",
           "info": "The numeric ID of the group to assign the ticket to",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "collaboratorIds",
           "type": "Array",
           "info": "An array of the numeric IDs of agents or end-users to CC on the ticket. An email notification is sent to them when the ticket is created",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "collaborators",
           "type": "Array",
           "info": "An array of numeric IDs, emails, or objects containing name and email properties. An email notification is sent to them when the ticket is created. Example: collaborators: [ 562, someone@example.com, { name: Someone Else, email: else@example.com } ]",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "type",
           "type": "String",
           "info": "Allowed values are problem, incident, question, or task",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "priority",
           "type": "String",
           "info": "Allowed values are urgent, high, normal, or low",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "status",
           "type": "String",
           "info": "Allowed values are new, open, pending, hold, solved or closed. Is set to new if status is not specified",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "tags",
           "type": "Array",
           "info": "Comma-separated of tags to add to the ticket",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "externalId",
           "type": "Number",
           "info": "An ID to link Zendesk Support tickets to local records",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "forumTopicId",
           "type": "Number",
           "info": "The numeric ID of the topic the ticket originated from, if any",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "problemId",
           "type": "Number",
           "info": "For tickets of type 'incident', the numeric ID of the problem the incident is linked to, if any",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "dueAt",
           "type": "String",
           "info": "For tickets of type 'task', the due date of the task. Accepts the ISO 8601 date format (yyyy-mm-dd)",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "ticketFormId",
           "type": "Number",
           "info": "(Enterprise only) The id of the ticket form to render for the ticket",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "customFields",
           "type": "Array",
           "info": "An array of the custom fields of the ticket. See below for details",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "viaFollowupSourceId",
           "type": "String",
           "info": "The id of a closed ticket for a follow-up ticket.",
-          "required": false
+          "required": false,
+          "wrapName": "ticket"
         }
       ],
       "callbacks": [
@@ -551,6 +594,8 @@
     {
       "name": "createTickets",
       "description": "Create many tickets from JSON file",
+      "method": "POST",
+      "url": "/api/v2/tickets/create_many.json",
       "args": [
         {
           "name": "accessToken",
@@ -567,8 +612,9 @@
         {
           "name": "tickets",
           "type": "File",
-          "info": "File contents array of tickets data. Example [{ticketData1}, {ticketData2}]. TicketData the same as when creating one ticket.",
-          "required": true
+          "info": "JSON file contents array of tickets data. Example [{ticketData1}, {ticketData2}]. TicketData the same as when creating one ticket.",
+          "required": true,
+          "wrapName": "tickets"
         }
       ],
       "callbacks": [
@@ -585,6 +631,8 @@
     {
       "name": "updateSingleTicket",
       "description": "Update ticket",
+      "method": "PUT",
+      "url": "/api/v2/tickets/{ticket_id}.json",
       "args": [
         {
           "name": "accessToken",
@@ -733,6 +781,8 @@
     {
       "name": "markSingleTicketAsSpam",
       "description": "Mark Ticket as Spam and Suspend Requester",
+      "method": "PUT",
+      "url": "/api/v2/tickets/{ticket_id}/mark_as_spam.json",
       "args": [
         {
           "name": "accessToken",
@@ -767,6 +817,8 @@
     {
       "name": "markTicketsAsSpam",
       "description": "Mark Tickets as Spam and Suspend Requester",
+      "method": "PUT",
+      "url": "/api/v2/tickets/mark_many_as_spam.json?ids={ticket_ids}",
       "args": [
         {
           "name": "accessToken",
@@ -801,6 +853,8 @@
     {
       "name": "mergeTickets",
       "description": "Merges one or more tickets into the {id} target ticket.",
+      "method": "POST",
+      "url": "/api/v2/tickets/{ticket_id}/merge.json",
       "args": [
         {
           "name": "accessToken",
@@ -853,6 +907,8 @@
     {
       "name": "getTicketRelatedInfo",
       "description": "Get ticket related info",
+      "method": "GET",
+      "url": "/api/v2/tickets/{ticket_id}/related.json",
       "args": [
         {
           "name": "accessToken",
@@ -887,6 +943,8 @@
     {
       "name": "deleteSingleTicket",
       "description": "Delete ticket",
+      "method": "DELETE",
+      "url": "/api/v2/tickets/{ticket_id}.json",
       "args": [
         {
           "name": "accessToken",
@@ -921,6 +979,8 @@
     {
       "name": "deleteTickets",
       "description": "Delete tickets",
+      "method": "DELETE",
+      "url": "/api/v2/tickets/destroy_many.json?ids={ticket_ids}",
       "args": [
         {
           "name": "accessToken",
@@ -955,6 +1015,8 @@
     {
       "name": "getTicketCollaborators",
       "description": "Get collaborators from ticket",
+      "method": "GET",
+      "url": "/api/v2/tickets/{ticket_id}/collaborators.json",
       "args": [
         {
           "name": "accessToken",
@@ -989,6 +1051,8 @@
     {
       "name": "getTicketIncidents",
       "description": "Get ticket incidents",
+      "method": "GET",
+      "url": "/api/v2/tickets/{ticket_Zenid}/incidents.json",
       "args": [
         {
           "name": "accessToken",
@@ -1023,6 +1087,8 @@
     {
       "name": "getTicketsProblems",
       "description": "Get probles tickets",
+      "method": "GET",
+      "url": "/api/v2/problems.json",
       "args": [
         {
           "name": "accessToken",
@@ -1051,6 +1117,8 @@
     {
       "name": "autocompleteTicketsProblems",
       "description": "Returns tickets whose type is 'Problem' and whose subject contains the string specified in the text parameter.",
+      "method": "POST",
+      "url": "/api/v2/problems/autocomplete.json?text={text}",
       "args": [
         {
           "name": "accessToken",
@@ -1085,6 +1153,8 @@
     {
       "name": "getAttachment",
       "description": "Get attachment data by ID",
+      "method": "GET",
+      "url": "/api/v2/attachments/{attachment_id}.json",
       "args": [
         {
           "name": "accessToken",
@@ -1119,6 +1189,8 @@
     {
       "name": "getComments",
       "description": "Get all comments from ticket",
+      "method": "GET",
+      "url": "/api/v2/tickets/{ticket_id}/comments.json",
       "args": [
         {
           "name": "accessToken",
@@ -1159,6 +1231,8 @@
     {
       "name": "removeCommentAttachment",
       "description": "Redaction allows you to permanently remove attachments from an existing comment on a ticket. Once removed from a comment, the attachment is replaced with a placeholder 'redacted.txt' file. Note that redaction is permanent. It is not possible to undo redaction or see what was removed. Once a ticket is closed, redacting its attachments is no longer possible.",
+      "method": "PUT",
+      "url": "/api/v2/tickets/{ticket_id}/comments/{comment_id}/attachments/{attachment_id}/redact.json",
       "args": [
         {
           "name": "accessToken",
@@ -1205,6 +1279,8 @@
     {
       "name": "deleteAttachment",
       "description": "Remove attachment",
+      "method": "DELETE",
+      "url": "/api/v2/attachments/{attachment_id}.json",
       "args": [
         {
           "name": "accessToken",
@@ -1239,6 +1315,9 @@
     {
       "name": "uploadFiles",
       "description": "Adding multiple attachments to the same upload is handled by splitting requests and passing the API token received from the first request to each subsequent request. The token is valid for 3 days. Note: Even if private attachments are enabled in the Zendesk Support instance, uploaded files are visible to any authenticated user at the content_URL specified in the JSON response until the upload token is consumed. Once an attachment is associated with a ticket or post, visibility is restricted to users with access to the ticket or post with the attachment.",
+      "method": "POST",
+      "url": "/api/v2/uploads.json?filename={file_name}&token={upload_token}",
+      "type": "multipart",
       "args": [
         {
           "name": "accessToken",
@@ -1285,6 +1364,8 @@
     {
       "name": "deleteUpload",
       "description": "Delete upload with all attachments",
+      "method": "DELETE",
+      "url": "/api/v2/uploads/{upload_token}.json",
       "args": [
         {
           "name": "accessToken",
@@ -1319,6 +1400,8 @@
     {
       "name": "getSatisfactionRatings",
       "description": "List all received satisfaction rating requests ever issued for your account.",
+      "method": "GET",
+      "url": "/api/v2/satisfaction_ratings.json",
       "args": [
         {
           "name": "accessToken",
@@ -1347,6 +1430,8 @@
     {
       "name": "createSatisfactionRating",
       "description": "Create a rating for solved tickets, or for tickets that were previously solved and then reopened.",
+      "method": "POST",
+      "url": "/api/v2/tickets/{ticket_id}/satisfaction_rating.json",
       "args": [
         {
           "name": "accessToken",
@@ -1387,6 +1472,8 @@
     {
       "name": "getSuspendedTickets",
       "description": "Get all suspended tickets",
+      "method": "GET",
+      "url": "/api/v2/suspended_tickets.json",
       "args": [
         {
           "name": "accessToken",
@@ -1415,6 +1502,8 @@
     {
       "name": "getTicketAudits",
       "description": "Lists the audits for a specified ticket.",
+      "method": "GET",
+      "url": "/api/v2/tickets/{ticket_id}/audits.json",
       "args": [
         {
           "name": "accessToken",
@@ -1449,6 +1538,8 @@
     {
       "name": "getTicketSingleAudits",
       "description": "Get audit for a specified ticket by audit ID",
+      "method": "GET",
+      "url": "/api/v2/tickets/{ticket_id}/audits/{audit_id}.json",
       "args": [
         {
           "name": "accessToken",
@@ -1489,6 +1580,8 @@
     {
       "name": "makeAuditPrivate",
       "description": "Hide audit by ID",
+      "method": "PUT",
+      "url": "/api/v2/tickets/{ticket_id}/audits/{audit_id}/make_private.json",
       "args": [
         {
           "name": "accessToken",
@@ -1529,6 +1622,8 @@
     {
       "name": "removeWordFromTicketComment",
       "description": "Permanently removes words or strings from a ticket comment. Specify the string to redact in an object with a text property. Example: {\"text\": \"credit-card-number\"}. The characters of the word or string are replaced by the ▇ symbol. Redaction is permanent. You can't undo the redaction or see what was removed. Once a ticket is closed, you can no longer redact strings from its comments.",
+      "method": "PUT",
+      "url": "/api/v2/tickets/{ticket_id}/comments/{comment_id}/redact.json",
       "args": [
         {
           "name": "accessToken",
@@ -1575,6 +1670,8 @@
     {
       "name": "makeCommentPrivate",
       "description": "Make comment private",
+      "method": "PUT",
+      "url": "/api/v2/tickets/{ticket_id}/comments/{comment_id}/make_private.json",
       "args": [
         {
           "name": "accessToken",
@@ -1615,6 +1712,8 @@
     {
       "name": "getSkippedTickets",
       "description": "Get all skipped tickets",
+      "method": "GET",
+      "url": "/api/v2/skips.json",
       "args": [
         {
           "name": "accessToken",
@@ -1626,6 +1725,1290 @@
           "name": "domain",
           "type": "String",
           "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "skipTicket",
+      "description": "Record a new skip for the current user",
+      "method": "POST",
+      "url": "/api/v2/skips.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true,
+          "wrapName": "skip"
+        },
+        {
+          "name": "reason",
+          "type": "String",
+          "info": "Reason to skip",
+          "required": false,
+          "wrapName": "skip"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTicketMetrics",
+      "description": "Listing Ticket Metrics",
+      "method": "GET",
+      "url": "/api/v2/ticket_metrics.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleMetric",
+      "description": "Get ticket metric by metric ID",
+      "method": "GET",
+      "url": "/api/v2/ticket_metrics/{ticket_metric_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketMetricId",
+          "type": "Number",
+          "info": "Ticket metric ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleTicketMetric",
+      "description": "Get ticket metric by ticket ID",
+      "method": "GET",
+      "url": "/api/v2/tickets/{ticket_id}/metrics.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTicketMetricEvents",
+      "description": "List ticket metric events",
+      "method": "GET",
+      "url": "/api/v2/incremental/ticket_metric_events.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "startTime",
+          "type": "String",
+          "info": "Unix time",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getAllRequests",
+      "description": "Get list of requests",
+      "method": "GET",
+      "url": "/api/v2/requests.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "sortBy",
+          "type": "String",
+          "info": "Possible values are updated_at, created_at",
+          "required": false
+        },
+        {
+          "name": "sortOrder",
+          "type": "String",
+          "info": "One of asc, desc. Defaults to asc",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getRequestListByStatus",
+      "description": "Get list of requests by status",
+      "method": "GET",
+      "url": "/api/v2/requests.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "status",
+          "type": "Array",
+          "info": "Comma-separated list of request's statuses",
+          "required": true
+        },
+        {
+          "name": "sortBy",
+          "type": "String",
+          "info": "Possible values are updated_at, created_at",
+          "required": false
+        },
+        {
+          "name": "sortOrder",
+          "type": "String",
+          "info": "One of asc, desc. Defaults to asc",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getOpenedRequestList",
+      "description": "Get list of opened request",
+      "method": "GET",
+      "url": "/api/v2/requests/open.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "sortBy",
+          "type": "String",
+          "info": "Possible values are updated_at, created_at",
+          "required": false
+        },
+        {
+          "name": "sortOrder",
+          "type": "String",
+          "info": "One of asc, desc. Defaults to asc",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSolvedRequestList",
+      "description": "Get list of solved request",
+      "method": "GET",
+      "url": "/api/v2/requests/solved.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "sortBy",
+          "type": "String",
+          "info": "Possible values are updated_at, created_at",
+          "required": false
+        },
+        {
+          "name": "sortOrder",
+          "type": "String",
+          "info": "One of asc, desc. Defaults to asc",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getCcdRequestList",
+      "description": "",
+      "method": "GET",
+      "url": "/api/v2/requests/ccd.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "sortBy",
+          "type": "String",
+          "info": "Possible values are updated_at, created_at",
+          "required": false
+        },
+        {
+          "name": "sortOrder",
+          "type": "String",
+          "info": "One of asc, desc. Defaults to asc",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getRequestListByUser",
+      "description": "Get request by user ID",
+      "method": "GET",
+      "url": "/api/v2/users/{user_id}/requests.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "sortBy",
+          "type": "String",
+          "info": "Possible values are updated_at, created_at",
+          "required": false
+        },
+        {
+          "name": "sortOrder",
+          "type": "String",
+          "info": "One of asc, desc. Defaults to asc",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getRequestListByOrganization",
+      "description": "Get request by organization ID",
+      "method": "GET",
+      "url": "/api/v2/organizations/{organization_id}/requests.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "organizationId",
+          "type": "Number",
+          "info": "Organization ID",
+          "required": true
+        },
+        {
+          "name": "sortBy",
+          "type": "String",
+          "info": "Possible values are updated_at, created_at",
+          "required": false
+        },
+        {
+          "name": "sortOrder",
+          "type": "String",
+          "info": "One of asc, desc. Defaults to asc",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleRequest",
+      "description": "Get request by ID",
+      "method": "GET",
+      "url": "/api/v2/requests/{request_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "requestId",
+          "type": "Number",
+          "info": "Request ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getRequestComments",
+      "description": "Get comments from request",
+      "method": "GET",
+      "url": "/api/v2/requests/{request_id}/comments.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "requestId",
+          "type": "Number",
+          "info": "Request ID",
+          "required": true
+        },
+        {
+          "name": "sortBy",
+          "type": "String",
+          "info": "Possible values are updated_at, created_at",
+          "required": false
+        },
+        {
+          "name": "sortOrder",
+          "type": "String",
+          "info": "One of asc, desc. Defaults to asc",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getRequestSingleComment",
+      "description": "Get single comment from request",
+      "method": "GET",
+      "url": "/api/v2/requests/{request_id}/comments/{comment_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "requestId",
+          "type": "Number",
+          "info": "Request ID",
+          "required": true
+        },
+        {
+          "name": "commentId",
+          "type": "Number",
+          "info": "Comment ID",
+          "required": true
+        },
+        {
+          "name": "sortBy",
+          "type": "String",
+          "info": "Possible values are updated_at, created_at",
+          "required": false
+        },
+        {
+          "name": "sortOrder",
+          "type": "String",
+          "info": "One of asc, desc. Defaults to asc",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createGroup",
+      "description": "Create group",
+      "method": "POST",
+      "url": "/api/v2/groups.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "Group name",
+          "required": true,
+          "wrapName": "group"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getGroups",
+      "description": "Get list of groups",
+      "method": "GET",
+      "url": "/api/v2/groups.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUserGroups",
+      "description": "Get User's list groups",
+      "method": "GET",
+      "url": "/api/v2/users/{user_id}/groups.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleGroup",
+      "description": "Get single group by ID",
+      "method": "GET",
+      "url": "/api/v2/groups/{group_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "groupId",
+          "type": "Number",
+          "info": "Group ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getAssignableGroups",
+      "description": "Get assignable groups",
+      "method": "GET",
+      "url": "/api/v2/groups/assignable.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateGroup",
+      "description": "Update group",
+      "method": "PUT",
+      "url": "/api/v2/groups/{group_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "groupId",
+          "type": "Number",
+          "info": "Group ID",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "New name of group",
+          "required": true,
+          "wrapName": "group"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteGroup",
+      "description": "Delete group",
+      "method": "DELETE",
+      "url": "/api/v2/groups/{group_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "groupId",
+          "type": "Number",
+          "info": "Group ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getMemberships",
+      "description": "Get list of memberships",
+      "method": "GET",
+      "url": "/api/v2/group_memberships.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUserMemberships",
+      "description": "Get list of user memberships",
+      "method": "GET",
+      "url": "/api/v2/users/{user_id}/group_memberships.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getGroupMemberships",
+      "description": "Get group list of memberships",
+      "method": "GET",
+      "url": "/api/v2/groups/{group_id}/memberships.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "groupId",
+          "type": "Number",
+          "info": "Group ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getAssignableMemberships",
+      "description": "",
+      "method": "GET",
+      "url": "/api/v2/group_memberships/assignable.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getGroupAssignableMemberships",
+      "description": "",
+      "method": "GET",
+      "url": "/api/v2/groups/{group_id}/memberships/assignable.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "groupId",
+          "type": "Number",
+          "info": "Group ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUserSingleMembership",
+      "description": "Get user single membership",
+      "method": "GET",
+      "url": "/api/v2/users/{user_id}/group_memberships/{group_membership_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "groupMembershipId",
+          "type": "Number",
+          "info": "Group membership ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleMembership",
+      "description": "Get single membership",
+      "method": "GET",
+      "url": "/api/v2/group_memberships/{group_membership_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "groupMembershipId",
+          "type": "Number",
+          "info": "Group membership ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createMembership",
+      "description": "Create group membership",
+      "method": "POST",
+      "url": "/api/v2/group_memberships.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true,
+          "wrapName": "group_membership"
+        },
+        {
+          "name": "groupId",
+          "type": "Number",
+          "info": "Group ID",
+          "required": true,
+          "wrapName": "group_membership"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteMembership",
+      "description": "Immediately removes a user from a group and schedules a job to unassign all working tickets that are assigned to the given user and group combination.",
+      "method": "DELETE",
+      "url": "/api/v2/group_memberships/{group_membership_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "groupMembershipId",
+          "type": "Number",
+          "info": "Group membership ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteMemberships",
+      "description": "Immediately removes users from groups and schedules a job to unassign all working tickets that are assigned to the given user and group combinations.",
+      "method": "DELETE",
+      "url": "/api/v2/group_memberships/destroy_many.json?ids={group_membership_ids}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "groupMembershipIds",
+          "type": "Array",
+          "info": "Comma-separated list of group membership ids",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "setMembershipAsDefault",
+      "description": "Set Membership as Default",
+      "method": "PUT",
+      "url": "/api/v2/users/{user_id}/group_memberships/{group_membership_id}/make_default.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "groupMembershipId",
+          "type": "Number",
+          "info": "Group membership ID",
           "required": true
         }
       ],
