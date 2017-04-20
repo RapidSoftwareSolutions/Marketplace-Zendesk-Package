@@ -56,6 +56,39 @@ class PackageController extends Controller
     }
 
     /**
+     * @Route("/api/ZendeskCore/{blockName}", requirements={"blockName": "createIdentity|createSelfIdentity"})
+     * @Method("POST")
+     *
+     * @param $blockName
+     *
+     * @return JsonResponse
+     */
+    public function createIdentity(string $blockName)
+    {
+        try {
+            $manager = $this->get('manager');
+            $manager->setBlockName($blockName);
+
+            $validData = $manager->getValidData();
+            $url = $manager->createFullUrl($validData);
+            $headers = $manager->createHeaders($validData);
+
+            $data['identity'] = [
+                "type" => $validData["type"],
+                "value" => $validData["value"]
+            ];
+
+            $result = $manager->send($url, $data, $headers);
+        } catch (PackageException $exception) {
+            $result = $this->createPackageExceptionResponse($exception);
+        } catch (RequiredFieldException $exception) {
+            $result = $this->createRequiredFieldExceptionResponse($exception);
+        }
+
+        return new JsonResponse($result);
+    }
+
+    /**
      * @Route("/api/ZendeskCore/{blockName}", requirements={"blockName" = "\w+"})
      * @Method("POST")
      *
