@@ -15,7 +15,8 @@ use Psr\Http\Message\ResponseInterface;
 
 class Sender
 {
-    public function send($url, $method, $data, $headers, $type) {
+    public function send($url, $method, $data, $headers, $type)
+    {
         try {
             $client = new Client();
             /** @var ResponseInterface $vendorResponse */
@@ -44,7 +45,12 @@ class Sender
             if (empty(trim($exceptionResponseContent))) {
                 $result['contextWrites']['to']['status_msg'] = $exception->getResponse()->getReasonPhrase();
             } else {
-                $result['contextWrites']['to']['status_msg'] = json_decode($exceptionResponseContent, true);
+                $answerDecoded = json_decode($exceptionResponseContent, true);
+                if (json_last_error()) {
+                    $result['contextWrites']['to']['status_msg'] = $exceptionResponseContent;
+                } else {
+                    $result['contextWrites']['to']['status_msg'] = $answerDecoded;
+                }
             }
         }
 
@@ -57,7 +63,8 @@ class Sender
      * @param string $type
      * @return array
      */
-    private function prepareData(array $data, string $type):array {
+    private function prepareData(array $data, string $type): array
+    {
         if (mb_strtolower($type) == 'multipart') {
             $result = [];
             foreach ($data as $key => $value) {
