@@ -109,63 +109,39 @@ class DataValidator
         if ($value !== null) {
             switch ($type) {
                 case 'json':
-                    $normalizeJson = $this->normalizeJson($value);
-                    $data = json_decode($normalizeJson, true);
-                    if (json_last_error()) {
-                        $this->parsedFieldError[] = $name;
-                    } else {
-//                    $this->parsedValidData[$vendorName] = $data;
-                        $this->setSingleValidData($paramData, $data, $vendorName);
-                    }
+                    $this->setJSONValue($paramData, $value, $vendorName);
                     break;
                 case 'array':
-                    if (mb_strtolower($this->blockMetadata['method']) == 'get') {
-//                    $this->parsedValidData[$vendorName] = is_array($value) ? implode(',', $value) : $value;
-                        $data = is_array($value) ? implode(',', $value) : $value;
-                        $this->setSingleValidData($paramData, $data, $vendorName);
-                    } else {
-//                    $this->parsedValidData[$vendorName] = is_array($value) ? $value : explode(',', $value);
-                        $data = is_array($value) ? $value : explode(',', $value);
-                        $this->setSingleValidData($paramData, $data, $vendorName);
-                    }
+                    $this->setArrayValue($paramData, $value, $vendorName);
                     break;
                 case 'boolean':
-//                $this->parsedValidData[$vendorName] = filter_var($value, FILTER_VALIDATE_BOOLEAN);
-                    $data = filter_var($value, FILTER_VALIDATE_BOOLEAN);
-                    $this->setSingleValidData($paramData, $data, $vendorName);
+                    $this->setBooleanValue($paramData, $value, $vendorName);
                     break;
                 case 'number':
-//                $this->parsedValidData[$vendorName] = (int) $value;
-                    $this->setSingleValidData($paramData, (int) $value, $vendorName);
+                    $this->setIntValue($paramData, $value, $vendorName);
                     break;
                 case 'file':
-                    // todo check
-//                $this->parsedValidData[$vendorName] = fopen($value, 'r');
-                    $data = fopen($value, 'r');
-                    $this->setSingleValidData($paramData, $data, $vendorName);
+                    $this->setFileValue($paramData, $value, $vendorName);
                     break;
                 default:
-//                $this->parsedValidData[$vendorName] = $value;
                     $this->setSingleValidData($paramData, $value, $vendorName);
                     break;
             }
         }
     }
 
-    private function setSingleValidData($paramData, $value, $vendorName) {
+    private function setSingleValidData($paramData, $value, $vendorName)
+    {
         if (!empty($paramData['wrapName'])) {
-//            if (!isset($this->parsedValidData[$paramData['wrapName']])) {
-//                $this->parsedValidData[$paramData['wrapName']] = [];
-//            }
             $wrapNameList = explode('.', $paramData['wrapName']);
             $this->addDepthOfNesting($this->parsedValidData, $wrapNameList, $value, $vendorName, $paramData);
-        }
-        else {
+        } else {
             $this->parsedValidData[$vendorName] = $value;
         }
     }
 
-    private function addDepthOfNesting(array &$array, &$depthNameList, $value, $vendorName, $paramData) {
+    private function addDepthOfNesting(array &$array, &$depthNameList, $value, $vendorName, $paramData)
+    {
         $result = [];
         while (!empty($depthNameList)) {
             $deepName = array_shift($depthNameList);
@@ -175,8 +151,7 @@ class DataValidator
             if (empty($depthNameList)) {
                 if (!empty($paramData['complex']) && filter_var($paramData['complex'], FILTER_VALIDATE_BOOLEAN) == true) {
                     $array[$deepName][] = $this->createComplexValue($paramData, $value, $vendorName);
-                }
-                else {
+                } else {
                     $array[$deepName][$vendorName] = $value;
                 }
             }
@@ -186,51 +161,27 @@ class DataValidator
         return $result;
     }
 
-    private function createComplexValue($paramData, $value, $vendorName) {
+    private function createComplexValue($paramData, $value, $vendorName)
+    {
         return [
             $paramData['keyName'] => $vendorName,
             $paramData['keyValue'] => $value
         ];
     }
 
-
     /**
      * Return param Vendor name or change CamelCase to snake_case
      * @param array $paramData
      * @return string
      */
-    private function getParamVendorName(array $paramData):string {
+    private function getParamVendorName(array $paramData): string
+    {
         if (!empty($paramData['vendorName'])) {
             return $paramData['vendorName'];
-        }
-        else {
+        } else {
             return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $paramData['name']));
         }
     }
-
-//    /**
-//     * @param $argsData
-//     * @return array|int|string|bool
-//     */
-//    private function getSingleValidDataByType($argsData)
-//    {
-//        $type = mb_strtolower($argsData['type']);
-//        $paramFromRequest = $this->dataFromRequest['args'][$argsData['name']];
-//        if ($type == 'boolean') {
-//            $result = filter_var($paramFromRequest, FILTER_VALIDATE_BOOLEAN);
-//        } elseif ($type == 'number') {
-//            $result = (int) $paramFromRequest;
-//        } elseif ($type == 'array') {
-//            if (mb_strtoupper($this->blockMetadata['method']) == 'GET') {
-//                $result = is_array($paramFromRequest) ? str_replace(" ", "", implode(',', $paramFromRequest)) : $paramFromRequest;
-//            } else {
-//                $result = is_array($paramFromRequest) ? $paramFromRequest : explode(',', $paramFromRequest);
-//            }
-//        } else {
-//            $result = $paramFromRequest;
-//        }
-//        return $result;
-//    }
 
     /**
      * @throws PackageException
@@ -248,31 +199,58 @@ class DataValidator
         }
     }
 
+    private function setJSONValue($paramData, $value, $vendorName)
+    {
+        $normalizeJson = $this->normalizeJson($value);
+        $data = json_decode($normalizeJson, true);
+        if (json_last_error()) {
+            $this->parsedFieldError[] = $paramData['name'];
+        } else {
+            $this->setSingleValidData($paramData, $data, $vendorName);
+        }
+    }
 
-//    private function checkRequiredParam($param)
-//    {
-//        // todo fix if array (strlen of array - false!!!
-//        if ($param['required'] == true && (!isset($this->dataFromRequest['args'][$param['name']]) || strlen(trim($this->dataFromRequest['args'][$param['name']])) == 0)) {
-//            $this->requiredFieldError[] = $param['name'];
-//        } else {
-//            $name = strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $param['name']));
-//            $this->parsedValidData[$name] = $this->getSingleValidDataByType($param);
-//        }
-//    }
+    private function setFileValue($paramData, $value, $vendorName)
+    {
+        if (!empty($paramData['jsonParse']) && filter_var($paramData['jsonParse'], FILTER_VALIDATE_BOOLEAN) == true) {
+            $content = file_get_contents($value);
+            $this->setJSONValue($paramData, $content, $vendorName);
+        } else {
+            if (!empty($paramData['base64encode']) && filter_var($paramData['base64encode'], FILTER_VALIDATE_BOOLEAN) == false) {
+                $content = file_get_contents($value);
+                $content = base64_encode($content);
+            } else {
+                $content = fread($value, 'r');
+            }
+            $this->setSingleValidData($paramData, $content, $vendorName);
+        }
+    }
 
-//    private function checkRequiredParamByType($type, $param)
-//    {
-//        $type = mb_strtolower($type);
-//        if ($type == 'string' && strlen(trim($param)) > 0) {
-//            return true;
-//        } elseif ($type == 'array') {
-//            if (is_array($param) && !empty($param)) {
-//                return true;
-//            } elseif (str_replace(" ", "", strlen($param)) > 0) {
-//                return true;
-//            }
-//        }
-//    }
+    private function setArrayValue($paramData, $value, $vendorName)
+    {
+        if (mb_strtolower($this->blockMetadata['method']) == 'get') {
+            $data = is_array($value) ? implode(',', $value) : $value;
+            $this->setSingleValidData($paramData, $data, $vendorName);
+        } else {
+            $data = is_array($value) ? $value : explode(',', $value);
+            $this->setSingleValidData($paramData, $data, $vendorName);
+        }
+    }
+
+    private function setBooleanValue($paramData, $value, $vendorName)
+    {
+        $data = filter_var($value, FILTER_VALIDATE_BOOLEAN);
+        if (!empty($paramData['toInt']) && filter_var($paramData['toInt'], FILTER_VALIDATE_BOOLEAN) == true) {
+            $data = (int) $data;
+        }
+        $this->setSingleValidData($paramData, $data, $vendorName);
+    }
+
+    private function setIntValue($paramData, $value, $vendorName)
+    {
+        $data = (int) $value;
+        $this->setSingleValidData($paramData, $data, $vendorName);
+    }
 
     private function checkBlockMetadata()
     {

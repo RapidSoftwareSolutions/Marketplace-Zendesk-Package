@@ -41,7 +41,15 @@ class Metadata
         foreach ($result['blocks'] as &$block) {
             unset($block['method'], $block['url'], $block['type']);
             foreach ($block['args'] as &$param) {
-                unset($param['wrapName'], $param['complex'], $param['keyName'], $param['keyValue']);
+                unset(
+                    $param['wrapName'],
+                    $param['complex'],
+                    $param['keyName'],
+                    $param['keyValue'],
+                    $param['jsonParse'],
+                    $param['base64encode'],
+                    $param['toInt']
+                );
             }
         }
 
