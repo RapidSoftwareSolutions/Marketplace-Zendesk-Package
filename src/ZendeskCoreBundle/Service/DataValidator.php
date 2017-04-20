@@ -106,7 +106,7 @@ class DataValidator
         $vendorName = $this->getParamVendorName($paramData);
         $type = mb_strtolower($paramData['type']);
         $value = $this->dataFromRequest['args'][$name];
-        if ($value !== null) {
+        if (!empty($value)) {
             switch ($type) {
                 case 'json':
                     $this->setJSONValue($paramData, $value, $vendorName);
