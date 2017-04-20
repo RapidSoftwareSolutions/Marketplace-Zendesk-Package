@@ -3350,6 +3350,18 @@
           "type": "String",
           "info": "Your domain in Zendesk system.",
           "required": true
+        },
+        {
+          "name": "role",
+          "type": "Array",
+          "info": "Users role. Example: [\"end-user\", \"admin\"]",
+          "required": false
+        },
+        {
+          "name": "permissionSet",
+          "type": "Number",
+          "info": "For custom roles in the Enterprise plan. You can only filter by one role id per request",
+          "required": false
         }
       ],
       "callbacks": [
@@ -3615,6 +3627,132 @@
           "complex": true,
           "keyName": "type",
           "keyValue": "value"
+        },
+        {
+          "name": "alias",
+          "type": "String",
+          "info": "An alias displayed to end users",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "details",
+          "type": "String",
+          "info": "Any details you want to store about the user, such as an address",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "externalId",
+          "type": "String",
+          "info": "A unique id you can specify for the user",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "localeId",
+          "type": "Number",
+          "info": "The user's language identifier",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "moderator",
+          "type": "Boolean",
+          "info": "Designates whether the user has forum moderation capabilities",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "notes",
+          "type": "String",
+          "info": "Any notes you want to store about the user",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "onlyPrivateComments",
+          "type": "Boolean",
+          "info": "True if the user can only create private comments",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "organizationId",
+          "type": "Number",
+          "info": "The id of the organization the user is associated with",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "defaultGroupId",
+          "type": "Number",
+          "info": "The id of the user's default group. *Can only be set on create, not on update",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "info": "The user's primary phone number. See Phone Number below",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "photo",
+          "type": "Array",
+          "info": "The user's profile picture represented as an Attachment object",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "restrictedAgent",
+          "type": "Boolean",
+          "info": "If the agent has any restrictions; false for admins and unrestricted agents, true for other agents",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "signature",
+          "type": "String",
+          "info": "The user's signature. Only agents and admins can have signatures",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "suspended",
+          "type": "Boolean",
+          "info": "If the agent is suspended. Tickets from suspended users are also suspended, and these users cannot sign in to the end user portal",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "tags",
+          "type": "Array",
+          "info": "The user's tags. Only present if your account has user tagging enabled",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "ticketRestriction",
+          "type": "String",
+          "info": "Specifies which tickets the user has access to. Possible values are: \"organization\", \"groups\", \"assigned\", \"requested\", null",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "timeZone",
+          "type": "String",
+          "info": "The user's time zone. See Time Zone below",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "userFields",
+          "type": "Array",
+          "info": "Custom fields for the user",
+          "required": false,
+          "wrapName": "user"
         }
       ],
       "callbacks": [
@@ -4492,6 +4630,173 @@
           "name": "name",
           "type": "String",
           "info": "New user name",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "User email",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "verified",
+          "type": "Boolean",
+          "info": "True - if you need to create users without sending out a verification email.",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "role",
+          "type": "String",
+          "info": "If you need to create agents with a specific role, the role parameter only accepts three possible values: \"end-user\", \"agent\", \"admin\".",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "customRoleId",
+          "type": "Number",
+          "info": "Therefore you will need to set role to \"agent\" as well as add a new parameter called \"custom_role_id\" and give it the actual desired role ID from your Zendesk Support account.",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "twitter",
+          "type": "String",
+          "info": "User's twitter",
+          "required": false,
+          "wrapName": "user.identities",
+          "complex": true,
+          "keyName": "type",
+          "keyValue": "value"
+        },
+        {
+          "name": "facebook",
+          "type": "String",
+          "info": "User's facebook",
+          "required": false,
+          "wrapName": "user.identities",
+          "complex": true,
+          "keyName": "type",
+          "keyValue": "value"
+        },
+        {
+          "name": "alias",
+          "type": "String",
+          "info": "An alias displayed to end users",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "details",
+          "type": "String",
+          "info": "Any details you want to store about the user, such as an address",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "externalId",
+          "type": "String",
+          "info": "A unique id you can specify for the user",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "localeId",
+          "type": "Number",
+          "info": "The user's language identifier",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "moderator",
+          "type": "Boolean",
+          "info": "Designates whether the user has forum moderation capabilities",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "notes",
+          "type": "String",
+          "info": "Any notes you want to store about the user",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "onlyPrivateComments",
+          "type": "Boolean",
+          "info": "True if the user can only create private comments",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "organizationId",
+          "type": "Number",
+          "info": "The id of the organization the user is associated with",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "phone",
+          "type": "String",
+          "info": "The user's primary phone number. See Phone Number below",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "photo",
+          "type": "Array",
+          "info": "The user's profile picture represented as an Attachment object",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "restrictedAgent",
+          "type": "Boolean",
+          "info": "If the agent has any restrictions; false for admins and unrestricted agents, true for other agents",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "signature",
+          "type": "String",
+          "info": "The user's signature. Only agents and admins can have signatures",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "suspended",
+          "type": "Boolean",
+          "info": "If the agent is suspended. Tickets from suspended users are also suspended, and these users cannot sign in to the end user portal",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "tags",
+          "type": "Array",
+          "info": "The user's tags. Only present if your account has user tagging enabled",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "ticketRestriction",
+          "type": "String",
+          "info": "Specifies which tickets the user has access to. Possible values are: \"organization\", \"groups\", \"assigned\", \"requested\", null",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "timeZone",
+          "type": "String",
+          "info": "The user's time zone. See Time Zone below",
+          "required": false,
+          "wrapName": "user"
+        },
+        {
+          "name": "userFields",
+          "type": "Array",
+          "info": "Custom fields for the user",
           "required": false,
           "wrapName": "user"
         }

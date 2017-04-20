@@ -89,6 +89,39 @@ class PackageController extends Controller
     }
 
     /**
+     * @Route("/api/ZendeskCore/getUsers")
+     * @Method("POST")
+     *
+     * @return JsonResponse
+     */
+    public function getUsers() {
+        try {
+            $manager = $this->get('manager');
+            $manager->setBlockName(__FUNCTION__);
+
+            $validData = $manager->getValidData();
+            $url = $manager->createFullUrl($validData);
+            if (!empty($validData['role'])) {
+                $roleArray = [];
+                foreach (explode(',',$validData['role']) as $role) {
+                    $roleArray[] = "role[]=".$role;
+                }
+                unset($validData['role']);
+                $url .= "?" . implode('&', $roleArray);
+            }
+            $headers = $manager->createHeaders($validData);
+
+            $result = $manager->send($url, $validData, $headers);
+        } catch (PackageException $exception) {
+            $result = $this->createPackageExceptionResponse($exception);
+        } catch (RequiredFieldException $exception) {
+            $result = $this->createRequiredFieldExceptionResponse($exception);
+        }
+
+        return new JsonResponse($result);
+    }
+
+    /**
      * @Route("/api/ZendeskCore/{blockName}", requirements={"blockName" = "\w+"})
      * @Method("POST")
      *
