@@ -107,6 +107,7 @@ class DataValidator
         $type = mb_strtolower($paramData['type']);
         $value = $this->dataFromRequest['args'][$name];
         if (!empty($value)) {
+            // todo add new metadata param "nullable" => true (default false) to send "" or "0" param
             switch ($type) {
                 case 'json':
                     $this->setJSONValue($paramData, $value, $vendorName);

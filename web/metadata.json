@@ -4921,6 +4921,69 @@
           "info": "New organization name",
           "required": true,
           "wrapName": "organization"
+        },
+        {
+          "name": "externalId",
+          "type": "String",
+          "info": "A unique external id to associate organizations to an external record",
+          "required": false,
+          "wrapName": "organization"
+        },
+        {
+          "name": "domainNames",
+          "type": "Array",
+          "info": "An array of domain names associated with this organization",
+          "required": false,
+          "wrapName": "organization"
+        },
+        {
+          "name": "details",
+          "type": "String",
+          "info": "Any details obout the organization, such as the address",
+          "required": false,
+          "wrapName": "organization"
+        },
+        {
+          "name": "notes",
+          "type": "String",
+          "info": "Any notes you have about the organization",
+          "required": false,
+          "wrapName": "organization"
+        },
+        {
+          "name": "groupId",
+          "type": "Number",
+          "info": "New tickets from users in this organization are automatically put in this group",
+          "required": false,
+          "wrapName": "organization"
+        },
+        {
+          "name": "sharedTickets",
+          "type": "Boolean",
+          "info": "End users in this organization are able to see each other's tickets",
+          "required": false,
+          "wrapName": "organization"
+        },
+        {
+          "name": "sharedComments",
+          "type": "Boolean",
+          "info": "End users in this organization are able to see each other's comments on tickets",
+          "required": false,
+          "wrapName": "organization"
+        },
+        {
+          "name": "tags",
+          "type": "Array",
+          "info": "The tags of the organization",
+          "required": false,
+          "wrapName": "organization"
+        },
+        {
+          "name": "organizationFields",
+          "type": "JSON",
+          "info": "Custom fields for this organization. Example: [\"org_dropdown\": \"option_1\", \"org_decimal\": 5.2]",
+          "required": false,
+          "wrapName": "organization"
         }
       ],
       "callbacks": [
