@@ -614,7 +614,8 @@
           "type": "File",
           "info": "JSON file contents array of tickets data. Example [{ticketData1}, {ticketData2}]. TicketData the same as when creating one ticket.",
           "required": true,
-          "wrapName": "tickets"
+          "wrapName": "tickets",
+          "jsonParse": true
         }
       ],
       "callbacks": [
@@ -630,7 +631,7 @@
     },
     {
       "name": "updateSingleTicket",
-      "description": "Update ticket",
+      "description": "Update single ticket",
       "method": "PUT",
       "url": "/api/v2/tickets/{ticket_id}.json",
       "args": [
@@ -653,118 +654,427 @@
           "required": true
         },
         {
-          "name": "comment",
+          "name": "commentBody",
           "type": "String",
-          "info": "A comment object that describes the problem, incident, question, or task. todo json",
-          "required": false
+          "info": "Comment",
+          "required": false,
+          "vendorName": "body",
+          "wrapName": "ticket.comment"
         },
         {
-          "name": "subject",
+          "name": "commentHtmlBody",
           "type": "String",
-          "info": "The subject of the ticket",
-          "required": false
+          "info": "HTML code of comment",
+          "required": false,
+          "vendorName": "html_body",
+          "wrapName": "ticket.comment"
         },
         {
-          "name": "requesterId",
+          "name": "commentAuthorId",
           "type": "Number",
-          "info": "The numeric ID of the user asking for support through the ticket",
-          "required": false
+          "info": "Author ID of comment",
+          "required": false,
+          "vendorName": "author_id",
+          "wrapName": "ticket.comment"
         },
         {
-          "name": "submitterId",
-          "type": "Number",
-          "info": "The numeric ID of the user submitting the ticket",
-          "required": false
+          "name": "commentShow",
+          "type": "Boolean",
+          "info": "False - make comment private",
+          "required": false,
+          "vendorName": "public",
+          "wrapName": "ticket.comment"
         },
         {
-          "name": "assigneeId",
-          "type": "Number",
-          "info": "The numeric ID of the agent to assign the ticket to",
-          "required": false
-        },
-        {
-          "name": "groupId",
-          "type": "Number",
-          "info": "The numeric ID of the group to assign the ticket to",
-          "required": false
-        },
-        {
-          "name": "collaboratorIds",
-          "type": "Array",
-          "info": "An array of the numeric IDs of agents or end-users to CC on the ticket. An email notification is sent to them when the ticket is created",
-          "required": false
-        },
-        {
-          "name": "collaborators",
-          "type": "Array",
-          "info": "An array of numeric IDs, emails, or objects containing name and email properties. An email notification is sent to them when the ticket is created. Example: collaborators: [ 562, someone@example.com, { name: Someone Else, email: else@example.com } ]",
-          "required": false
+          "name": "externalId",
+          "type": "String",
+          "info": "An id you can use to link Zendesk Support tickets to local records",
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "type",
           "type": "String",
-          "info": "Allowed values are problem, incident, question, or task",
-          "required": false
+          "info": "The type of this ticket, i.e. \"problem\", \"incident\", \"question\" or \"task\"",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "subject",
+          "type": "String",
+          "info": "The value of the subject field for this ticket",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "rawSubject",
+          "type": "String",
+          "info": "The dynamic content placeholder, if present, or the \"subject\" value, if not. See Dynamic Content",
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "priority",
           "type": "String",
-          "info": "Allowed values are urgent, high, normal, or low",
-          "required": false
+          "info": "Priority, defines the urgency with which the ticket should be addressed: \"urgent\", \"high\", \"normal\", \"low\"",
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "status",
           "type": "String",
-          "info": "Allowed values are new, open, pending, hold, solved or closed. Is set to new if status is not specified",
-          "required": false
+          "info": "The state of the ticket, \"new\", \"open\", \"pending\", \"hold\", \"solved\", \"closed\"",
+          "required": false,
+          "wrapName": "ticket"
         },
         {
-          "name": "tags",
-          "type": "Array",
-          "info": "Comma-separated of tags to add to the ticket",
-          "required": false
+          "name": "recipient",
+          "type": "String",
+          "info": "The original recipient e-mail address of the ticket",
+          "required": false,
+          "wrapName": "ticket"
         },
         {
-          "name": "externalId",
+          "name": "requesterId",
           "type": "Number",
-          "info": "An ID to link Zendesk Support tickets to local records",
-          "required": false
+          "info": "The user who requested this ticket",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "submitterId",
+          "type": "Number",
+          "info": "The user who submitted the ticket; The submitter always becomes the author of the first comment on the ticket.",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "assigneeId",
+          "type": "Number",
+          "info": "What agent is currently assigned to the ticket",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "organizationId",
+          "type": "Number",
+          "info": "The organization of the requester. You can only specify the ID of an organization associated with the requester. See Organization Memberships",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "groupId",
+          "type": "Number",
+          "info": "The group this ticket is assigned to",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "collaboratorIds",
+          "type": "Array",
+          "info": "Who are currently CC'ed on the ticket",
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "forumTopicId",
           "type": "Number",
-          "info": "The numeric ID of the topic the ticket originated from, if any",
-          "required": false
+          "info": "The topic this ticket originated from, if any",
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "problemId",
           "type": "Number",
-          "info": "For tickets of type 'incident', the numeric ID of the problem the incident is linked to, if any",
-          "required": false
+          "info": "The problem this incident is linked to, if any",
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "dueAt",
           "type": "String",
-          "info": "For tickets of type 'task', the due date of the task. Accepts the ISO 8601 date format (yyyy-mm-dd)",
-          "required": false
+          "info": "If this is a ticket of type \"task\" it has a due date. Due date format uses ISO 8601 format.",
+          "required": false,
+          "wrapName": "ticket"
         },
         {
-          "name": "ticketFormId",
-          "type": "Number",
-          "info": "(Enterprise only) The id of the ticket form to render for the ticket",
-          "required": false
+          "name": "tags",
+          "type": "Array",
+          "info": "The array of tags applied to this ticket",
+          "required": false,
+          "wrapName": "ticket"
         },
         {
           "name": "customFields",
           "type": "Array",
-          "info": "An array of the custom fields of the ticket. See below for details",
-          "required": false
+          "info": "The custom fields of the ticket",
+          "required": false,
+          "wrapName": "ticket"
         },
         {
-          "name": "viaFollowupSourceId",
+          "name": "ticketFormId",
+          "type": "Number",
+          "info": "The id of the ticket form to render for this ticket - only applicable for enterprise accounts",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "brandId",
+          "type": "Number",
+          "info": "The id of the brand this ticket is associated with - only applicable for enterprise accounts",
+          "required": false,
+          "wrapName": "ticket"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateTickets",
+      "description": "Update tickets by its id (in each obj in list)",
+      "method": "PUT",
+      "url": "/api/v2/tickets/update_many.json",
+      "args": [
+        {
+          "name": "accessToken",
           "type": "String",
-          "info": "The id of a closed ticket for a follow-up ticket.",
-          "required": false
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        },
+        {
+          "name": "params",
+          "type": "JSON",
+          "info": "Json file with params to update. Example [param1, param2]. Each param is object like params in updateSingleTicket",
+          "required": true,
+          "wrapName": "tickets"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateTicketsByIds",
+      "description": "Update many tickets with the same information",
+      "method": "PUT",
+      "url": "/api/v2/tickets/update_many.json?ids={ticket_ids}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketIds",
+          "type": "Array",
+          "info": "List of ticket ids",
+          "required": true
+        },
+        {
+          "name": "commentBody",
+          "type": "String",
+          "info": "Comment",
+          "required": false,
+          "vendorName": "body",
+          "wrapName": "ticket.comment"
+        },
+        {
+          "name": "commentHtmlBody",
+          "type": "String",
+          "info": "HTML code of comment",
+          "required": false,
+          "vendorName": "html_body",
+          "wrapName": "ticket.comment"
+        },
+        {
+          "name": "commentAuthorId",
+          "type": "Number",
+          "info": "Author ID of comment",
+          "required": false,
+          "vendorName": "author_id",
+          "wrapName": "ticket.comment"
+        },
+        {
+          "name": "commentShow",
+          "type": "Boolean",
+          "info": "False - make comment private",
+          "required": false,
+          "vendorName": "public",
+          "wrapName": "ticket.comment"
+        },
+        {
+          "name": "externalId",
+          "type": "String",
+          "info": "An id you can use to link Zendesk Support tickets to local records",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "The type of this ticket, i.e. \"problem\", \"incident\", \"question\" or \"task\"",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "subject",
+          "type": "String",
+          "info": "The value of the subject field for this ticket",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "rawSubject",
+          "type": "String",
+          "info": "The dynamic content placeholder, if present, or the \"subject\" value, if not. See Dynamic Content",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "priority",
+          "type": "String",
+          "info": "Priority, defines the urgency with which the ticket should be addressed: \"urgent\", \"high\", \"normal\", \"low\"",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "info": "The state of the ticket, \"new\", \"open\", \"pending\", \"hold\", \"solved\", \"closed\"",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "recipient",
+          "type": "String",
+          "info": "The original recipient e-mail address of the ticket",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "requesterId",
+          "type": "Number",
+          "info": "The user who requested this ticket",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "submitterId",
+          "type": "Number",
+          "info": "The user who submitted the ticket; The submitter always becomes the author of the first comment on the ticket.",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "assigneeId",
+          "type": "Number",
+          "info": "What agent is currently assigned to the ticket",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "organizationId",
+          "type": "Number",
+          "info": "The organization of the requester. You can only specify the ID of an organization associated with the requester. See Organization Memberships",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "groupId",
+          "type": "Number",
+          "info": "The group this ticket is assigned to",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "collaboratorIds",
+          "type": "Array",
+          "info": "Who are currently CC'ed on the ticket",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "forumTopicId",
+          "type": "Number",
+          "info": "The topic this ticket originated from, if any",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "problemId",
+          "type": "Number",
+          "info": "The problem this incident is linked to, if any",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "dueAt",
+          "type": "String",
+          "info": "If this is a ticket of type \"task\" it has a due date. Due date format uses ISO 8601 format.",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "tags",
+          "type": "Array",
+          "info": "The array of tags applied to this ticket",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "customFields",
+          "type": "Array",
+          "info": "The custom fields of the ticket",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "ticketFormId",
+          "type": "Number",
+          "info": "The id of the ticket form to render for this ticket - only applicable for enterprise accounts",
+          "required": false,
+          "wrapName": "ticket"
+        },
+        {
+          "name": "brandId",
+          "type": "Number",
+          "info": "The id of the brand this ticket is associated with - only applicable for enterprise accounts",
+          "required": false,
+          "wrapName": "ticket"
         }
       ],
       "callbacks": [
@@ -2830,8 +3140,8 @@
       ]
     },
     {
-      "name": "getSingleMembership",
-      "description": "Get single membership",
+      "name": "getSingleGroupMembership",
+      "description": "Get single group membership",
       "method": "GET",
       "url": "/api/v2/group_memberships/{group_membership_id}.json",
       "args": [
@@ -2982,8 +3292,8 @@
       ]
     },
     {
-      "name": "setMembershipAsDefault",
-      "description": "Set Membership as Default",
+      "name": "setGroupMembershipAsDefault",
+      "description": "Set group membership as Default",
       "method": "PUT",
       "url": "/api/v2/users/{user_id}/group_memberships/{group_membership_id}/make_default.json",
       "args": [
@@ -3465,6 +3775,2127 @@
           "info": "User email",
           "required": true,
           "wrapName": "user"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getMe",
+      "description": "Show the Currently Authenticated User",
+      "method": "GET",
+      "url": "/api/v2/users/me.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "setUserPassword",
+      "description": "An admin can set a user's password only if the setting is enabled under Settings > Security > Global. The setting is off by default. Only the account owner can access and change this setting in Zendesk Support.",
+      "method": "POST",
+      "url": "/api/v2/users/{user_id}/password.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "info": "New password",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updatePassword",
+      "description": "You can only change your own password. Nobody can change the password of another user because it requires knowing the user's existing password. However, an admin can set a new password for another user without knowing the existing password. See \"Set a User's Password\" above.",
+      "method": "POST",
+      "url": "/api/v2/users/{user_id}/password.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "Your User ID",
+          "required": true
+        },
+        {
+          "name": "password",
+          "type": "String",
+          "info": "New password",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getPasswordRequirements",
+      "description": "Get a list of password requirements",
+      "method": "GET",
+      "url": "/api/v2/users/{user_id}/password/requirements.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "Your User ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getIdentities",
+      "description": "Returns all user identities for a given user id.",
+      "method": "GET",
+      "url": "/api/v2/users/{user_id}/identities.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "Your User ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleIdentity",
+      "description": "Shows the identity with the given id.",
+      "method": "GET",
+      "url": "/api/v2/users/{user_id}/identities/{identity_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "Your User ID",
+          "required": true
+        },
+        {
+          "name": "identityId",
+          "type": "Number",
+          "info": "User identity ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createIdentity",
+      "description": "Adds a new identity to a user's profile. An agent can add an identity to any user profile.",
+      "method": "POST",
+      "url": "/api/v2/users/{user_id}/identities.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "New identity: email, twitter, facebook or google",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "info": "Value of new identity",
+          "required": false
+        },
+        {
+          "name": "primary",
+          "type": "Boolean",
+          "info": "Set identity primary or not",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createSelfIdentity",
+      "description": "Add an identity to their own user profile",
+      "method": "POST",
+      "url": "/api/v2/end_users/{user_id}/identities.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "New identity: email, twitter, facebook or google",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "info": "Value of new identity",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateIdentity",
+      "description": "This endpoint allows you to set the specified identity as verified (but you cannot unverify a verified identity and update the value of the specified identity",
+      "method": "PUT",
+      "url": "/api/v2/users/{user_id}/identities/{identity_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "identityId",
+          "type": "Number",
+          "info": "Identity ID",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "Identity name. Example: email, twitter, verified etc. You cant change primary identity value. For more details look at getIdentities",
+          "required": false,
+          "wrapName": "identity"
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "info": "Value of identity",
+          "required": false,
+          "wrapName": "identity"
+        },
+        {
+          "name": "verified",
+          "type": "Boolean",
+          "info": "Change verified status",
+          "required": false,
+          "wrapName": "identity"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "type of identity",
+          "required": false,
+          "wrapName": "identity"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "makeIdentityPrimary",
+      "description": "Sets the specified identity as primary. Only fort Agents",
+      "method": "PUT",
+      "url": "/api/v2/users/{user_id}/identities/{identity_id}/make_primary",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "identityId",
+          "type": "Number",
+          "info": "Identity ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "makeMyIdentityPrimary",
+      "description": "Sets the own identity as primary. For verified end users",
+      "method": "PUT",
+      "url": "/api/v2/end_users/{user_id}/identities/{identity_id}/make_primary",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "Your user ID",
+          "required": true
+        },
+        {
+          "name": "identityId",
+          "type": "Number",
+          "info": "Your identity ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "verifyIdentity",
+      "description": "Sets the specified identity as verified.",
+      "method": "PUT",
+      "url": "/api/v2/users/{user_id}/identities/{identity_id}/verify",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "identityId",
+          "type": "Number",
+          "info": "Identity ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "requestUserVerification",
+      "description": "Sends the user a verification email with a link to verify ownership of the email address.",
+      "method": "PUT",
+      "url": "/api/v2/users/{user_id}/identities/{identity_id}/request_verification.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "identityId",
+          "type": "Number",
+          "info": "Identity ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteIdentity",
+      "description": "Deletes the identity for a given user.",
+      "method": "DELETE",
+      "url": "/api/v2/users/{user_id}/identities/{identity_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "identityId",
+          "type": "Number",
+          "info": "Identity ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getCustomRoles",
+      "description": "Get custom roles. Available only in Enterprise plan and Professional plan with the Light Agents add-on",
+      "method": "GET",
+      "url": "/api/v2/custom_roles.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getEndUser",
+      "description": "Get end-user by ID",
+      "method": "GET",
+      "url": "/api/v2/end_users/{user_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateUser",
+      "description": "Update end-users",
+      "method": "PUT",
+      "url": "/api/v2/end_users/{user_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "New user name",
+          "required": false,
+          "wrapName": "user"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSessions",
+      "description": "Get list of sessions",
+      "method": "GET",
+      "url": "/api/v2/sessions.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUsersSessions",
+      "description": "Get user's list of sessions",
+      "method": "GET",
+      "url": "/api/v2/users/{user_id}/sessions.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleSession",
+      "description": "Get session by ID",
+      "method": "GET",
+      "url": "/api/v2/users/{user_id}/sessions/{session_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "sessionId",
+          "type": "Number",
+          "info": "Session ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteSession",
+      "description": "Delete single session",
+      "method": "DELETE",
+      "url": "/api/v2/users/{user_id}/sessions/{session_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "sessionId",
+          "type": "Number",
+          "info": "Session ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteAllSessions",
+      "description": "Delete all session for current user",
+      "method": "DELETE",
+      "url": "/api/v2/users/{user_id}/sessions.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "logout",
+      "description": "Deletes the current session. In practice, this only works when using session auth for requests, such as client-side requests made from a Zendesk app. When using OAuth or basic authentication, you don't have a current session so this endpoint has no effect.",
+      "method": "DELETE",
+      "url": "/api/v2/users/me/logout.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getOrganizations",
+      "description": "Return list of organization",
+      "method": "GET",
+      "url": "/api/v2/organizations.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUserOrganizations",
+      "description": "Return list of users's organization",
+      "method": "GET",
+      "url": "/api/v2/users/{user_id}/organizations.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "autocompleteOrganizations",
+      "description": "Returns an array of organizations whose name starts with the value specified in the name parameter.",
+      "method": "GET",
+      "url": "/api/v2/organizations/autocomplete.json?name={organization_name}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "organizationName",
+          "type": "String",
+          "info": "Part of organization name",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getOrganizationRelatedInfo",
+      "description": "Get organization info by ID",
+      "method": "GET",
+      "url": "/api/v2/organizations/{organization_id}/related.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "organizationId",
+          "type": "Number",
+          "info": "Organization ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getOrganizationsByIds",
+      "description": "Get organizations by IDs",
+      "method": "GET",
+      "url": "/api/v2/organizations/show_many.json?ids={organization_ids}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "organizationIds",
+          "type": "Array",
+          "info": "Comma-separated list of organization ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createOrganization",
+      "description": "Create new organization",
+      "method": "POST",
+      "url": "/api/v2/organizations.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "New organization name",
+          "required": true,
+          "wrapName": "organization"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "searchOrganizations",
+      "description": "Search organization by external_id",
+      "method": "GET",
+      "url": "/api/v2/organizations/search.json?external_id={external_id}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "externalId",
+          "type": "Number",
+          "info": "External ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createOrganizationSubscription",
+      "description": "Create organization subscription. End users can only subscribe to shared organizations in which they're members.",
+      "method": "POST",
+      "url": "/api/v2/organization_subscriptions.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "organizationId",
+          "type": "Number",
+          "info": "Organization subscription ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getListOrganizationSubscriptions",
+      "description": "Get list of all organizations and subscriptions",
+      "method": "GET",
+      "url": "/api/v2/organization_subscriptions.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleOrganizationSubscriptions",
+      "description": "Get list of all single organization subscriptions",
+      "method": "GET",
+      "url": "/api/v2/organizations/{organization_id}/subscriptions.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "organizationId",
+          "type": "Number",
+          "info": "Organization subscription ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUserOrganizationSubscriptions",
+      "description": "Get list of all user organization subscriptions",
+      "method": "GET",
+      "url": "/api/v2/users/{user_id}/organization_subscriptions.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleOrganizationSubscription",
+      "description": "Get organization subscription",
+      "method": "GET",
+      "url": "/api/v2/organization_subscriptions/{id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "id",
+          "type": "Number",
+          "info": "Organization subscription ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getListOrganizationMemberships",
+      "description": "Get list of all organization memberships",
+      "method": "GET",
+      "url": "/api/v2/organization_memberships.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUserOrganizationMemberships",
+      "description": "Get list of single user memberships",
+      "method": "GET",
+      "url": "/api/v2/users/{user_id}/organization_memberships.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "String",
+          "info": "User ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleOrganizationMemberships",
+      "description": "Get list of single organization memberships",
+      "method": "GET",
+      "url": "/api/v2/organizations/{organization_id}/organization_memberships.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "organizationId",
+          "type": "String",
+          "info": "Organization ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleMembership",
+      "description": "Get single organization membership",
+      "method": "GET",
+      "url": "/api/v2/users/{user_id}/organization_memberships/{membership_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "membershipId",
+          "type": "String",
+          "info": "Organization membership ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createOrganizationMembership",
+      "description": "Create new organization membership",
+      "method": "POST",
+      "url": "/api/v2/users/{user_id}/organization_memberships.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "organizationId",
+          "type": "String",
+          "info": "Organization ID",
+          "required": true,
+          "wrapName": "organization_membership"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "setOrganizationMembershipAsDefault",
+      "description": "Set organization membership as default",
+      "method": "PUT",
+      "url": "/api/v2/users/{user_id}/organization_memberships/{membership_id}/make_default.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "membershipId",
+          "type": "Number",
+          "info": "Organization membership ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteOrganizationMembershipsByIds",
+      "description": "Immediately removes a user from a organization and schedules a job to unassign all working tickets that are assigned to the given user and organization combination",
+      "method": "DELETE",
+      "url": "/api/v2/organization_memberships/destroy_many.json?ids={membership_ids}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "membershipIds",
+          "type": "Number",
+          "info": "Comma-separated list of organization membership IDs",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "searchUsersByQuery",
+      "description": "Specify a partial or full name or email address as the value of the query attribute. Example: query=\"Gerry\". Specify an id number as the value of the external_id attribute. For more advanced searches of users, use the Search API.",
+      "method": "GET",
+      "url": "/api/v2/users/search.json?query={query}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "query",
+          "type": "String",
+          "info": "Query string to search",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "searchUsersByIds",
+      "description": "Search users by IDs",
+      "method": "GET",
+      "url": "/api/v2/users/search.json?external_id={external_id}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "externalId",
+          "type": "String",
+          "info": "External ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateUsersByIds",
+      "description": "Update users with the same data",
+      "method": "PUT",
+      "url": "/api/v2/users/update_many.json?ids={user_ids}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userIds",
+          "type": "Array",
+          "info": "List of user IDs to update same data",
+          "required": true
+        },
+        {
+          "name": "params",
+          "type": "JSON",
+          "info": "Param to be updated to all users, which ids send. Example: {\"organization_id\": 1}",
+          "required": true,
+          "wrapName": "user"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateUsersByExternalIds",
+      "description": "Update users with the same data",
+      "method": "PUT",
+      "url": "/api/v2/users/update_many.json?external_ids={external_ids}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "externalIds",
+          "type": "Array",
+          "info": "List of user external IDs to update same data",
+          "required": true
+        },
+        {
+          "name": "params",
+          "type": "JSON",
+          "info": "Param to be updated to all users, which ids send. Example: {\"organization_id\": 1}",
+          "required": true,
+          "wrapName": "user"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateUsers",
+      "description": "Update users with the different data by id or externalId",
+      "method": "PUT",
+      "url": "/api/v2/users/update_many.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "params",
+          "type": "JSON",
+          "info": "Param to be updated to all users, which ids send. Example:  [{ \"id\": 10071, \"name\": \"New Name\", \"organization_id\": 1 },{ \"external_id\": \"123\", \"verified\": true }]. In each element in array required id or externalId.",
+          "required": true,
+          "wrapName": "users"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateOrganizationsByIds",
+      "description": "Update organization with the same data by id",
+      "method": "PUT",
+      "url": "/api/v2/organizations/update_many.json?ids={organization_ids}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "organizationId",
+          "type": "Array",
+          "info": "List of organization ID",
+          "required": true
+        },
+        {
+          "name": "params",
+          "type": "JSON",
+          "info": "Param to be updated to all users, which ids send. Example: {\"notes\": \"Something interesting\"}. In each element in array required id or externalId.",
+          "required": true,
+          "wrapName": "organization"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateOrganizationsByExternalIds",
+      "description": "Update organization with the same data by external id",
+      "method": "PUT",
+      "url": "/api/v2/organizations/update_many.json?ids={organization_external_ids}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "organizationExternalId",
+          "type": "Array",
+          "info": "List of organization external ID",
+          "required": true
+        },
+        {
+          "name": "params",
+          "type": "JSON",
+          "info": "Param to be updated to all users, which ids send. Example: {\"notes\": \"Something interesting\"}. In each element in array required id or externalId.",
+          "required": true,
+          "wrapName": "organization"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateOrganizations",
+      "description": "Update organization with the different data by id or external id",
+      "method": "PUT",
+      "url": "/api/v2/organizations/update_many.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "params",
+          "type": "JSON",
+          "info": "Param to be updated to all users, which ids send. Example: [{\"id\": 1, \"notes\": \"Something interesting\" },{ \"external_id\": \"2\", \"notes\": \"Something even more interesting\"}]. In each element in array required id or externalId.",
+          "required": true,
+          "wrapName": "organizations"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteOrganizationSubscription",
+      "description": "Delete organization subscription",
+      "method": "DELETE",
+      "url": "/api/v2/organization_subscriptions/{organization_subscription_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "organizationSubscriptionId",
+          "type": "Number",
+          "info": "Organization subscription ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteOrganizationsByIds",
+      "description": "Delete organizations by ids",
+      "method": "DELETE",
+      "url": "/api/v2/organizations/destroy_many.json?ids={organization_ids}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "organizationIds",
+          "type": "Array",
+          "info": "List of organization ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createSearchQuery",
+      "description": "The search API is a unified search API that returns tickets, users, and organizations. You can define filters to narrow your search results according to resource type, dates, and object properties, such as ticket requester or tag.",
+      "method": "GET",
+      "url": "/api/v2/search.json?query={query}",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "query",
+          "type": "String",
+          "info": "Params to search",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createTicketComment",
+      "description": "Create ticket comment",
+      "method": "PUT",
+      "url": "/api/v2/tickets/{ticket_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        },
+        {
+          "name": "commentBody",
+          "type": "String",
+          "info": "Comment",
+          "required": false,
+          "vendorName": "body",
+          "wrapName": "ticket.comment"
+        },
+        {
+          "name": "commentHtmlBody",
+          "type": "String",
+          "info": "HTML code of comment",
+          "required": false,
+          "vendorName": "html_body",
+          "wrapName": "ticket.comment"
+        },
+        {
+          "name": "commentAuthorId",
+          "type": "Number",
+          "info": "Author ID of comment. If not set, system use owner of accessToken",
+          "required": false,
+          "vendorName": "author_id",
+          "wrapName": "ticket.comment"
+        },
+        {
+          "name": "commentShow",
+          "type": "Boolean",
+          "info": "False - make comment private",
+          "required": false,
+          "vendorName": "public",
+          "wrapName": "ticket.comment"
         }
       ],
       "callbacks": [
