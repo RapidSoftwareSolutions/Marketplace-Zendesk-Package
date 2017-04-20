@@ -1362,7 +1362,7 @@
       "name": "getTicketIncidents",
       "description": "Get ticket incidents",
       "method": "GET",
-      "url": "/api/v2/tickets/{ticket_Zenid}/incidents.json",
+      "url": "/api/v2/tickets/{ticket_id}/incidents.json",
       "args": [
         {
           "name": "accessToken",
