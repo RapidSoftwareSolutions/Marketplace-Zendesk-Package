@@ -4309,6 +4309,24 @@
           "type": "Boolean",
           "info": "Set identity primary or not",
           "required": false
+        },
+        {
+          "name": "verified",
+          "type": "Boolean",
+          "info": "If the identity has been verified",
+          "required": false
+        },
+        {
+          "name": "undeliverableCount",
+          "type": "Number",
+          "info": "The number of times a non-delivery response was received at that address (maximum 50)",
+          "required": false
+        },
+        {
+          "name": "deliverableState",
+          "type": "String",
+          "info": "One of \"deliverable\" or \"ticket_sharing_partner\"",
+          "required": false
         }
       ],
       "callbacks": [
@@ -4356,6 +4374,30 @@
           "name": "value",
           "type": "String",
           "info": "Value of new identity",
+          "required": false
+        },
+        {
+          "name": "primary",
+          "type": "Boolean",
+          "info": "If the identity is the primary identity. *Writable only when creating, not when updating. Use the makeIdentifyPrimary endpoint instead",
+          "required": false
+        },
+        {
+          "name": "verified",
+          "type": "Boolean",
+          "info": "If the identity has been verified",
+          "required": false
+        },
+        {
+          "name": "undeliverableCount",
+          "type": "Number",
+          "info": "The number of times a non-delivery response was received at that address (maximum 50)",
+          "required": false
+        },
+        {
+          "name": "deliverableState",
+          "type": "String",
+          "info": "One of \"deliverable\" or \"ticket_sharing_partner\"",
           "required": false
         }
       ],
@@ -4427,6 +4469,18 @@
           "info": "type of identity",
           "required": false,
           "wrapName": "identity"
+        },
+        {
+          "name": "undeliverableCount",
+          "type": "Number",
+          "info": "The number of times a non-delivery response was received at that address (maximum 50)",
+          "required": false
+        },
+        {
+          "name": "deliverableState",
+          "type": "String",
+          "info": "One of \"deliverable\" or \"ticket_sharing_partner\"",
+          "required": false
         }
       ],
       "callbacks": [
