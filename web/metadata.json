@@ -1867,19 +1867,22 @@
           "name": "score",
           "type": "String",
           "info": "The rating: \"offered\", \"unoffered\", \"good\" or \"bad\"",
-          "required": true
+          "required": true,
+          "wrapName": "satisfaction_rating"
         },
         {
           "name": "comment",
           "type": "String",
           "info": "Text to satisfaction rating message",
-          "required": false
+          "required": false,
+          "wrapName": "satisfaction_rating"
         },
         {
           "name": "requesterId",
           "type": "Number",
           "info": "The id of ticket requester submitting the rating. Default owner of accessToken",
-          "required": false
+          "required": false,
+          "wrapName": "satisfaction_rating"
         }
       ],
       "callbacks": [
