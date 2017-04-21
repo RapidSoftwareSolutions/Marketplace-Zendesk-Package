@@ -122,6 +122,35 @@ class PackageController extends Controller
     }
 
     /**
+     * @Route("/api/ZendeskCore/uploadFiles")
+     * @Method("POST")
+     *
+     * @return JsonResponse
+     */
+    public function uploadFiles() {
+        try {
+            $manager = $this->get('manager');
+            $manager->setBlockName(__FUNCTION__);
+
+            $validData = $manager->getValidData();
+            $url = $manager->createFullUrl($validData);
+            if (!empty($validData['upload_token'])) {
+                $url .= "&token=" . $validData['upload_token'];
+                unset($validData['upload_token']);
+            }
+            $headers = $manager->createHeaders($validData);
+
+            $result = $manager->send($url, $validData, $headers);
+        } catch (PackageException $exception) {
+            $result = $this->createPackageExceptionResponse($exception);
+        } catch (RequiredFieldException $exception) {
+            $result = $this->createRequiredFieldExceptionResponse($exception);
+        }
+
+        return new JsonResponse($result);
+    }
+
+    /**
      * @Route("/api/ZendeskCore/{blockName}", requirements={"blockName" = "\w+"})
      * @Method("POST")
      *

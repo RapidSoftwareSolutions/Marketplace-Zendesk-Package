@@ -1626,7 +1626,7 @@
       "name": "uploadFiles",
       "description": "Adding multiple attachments to the same upload is handled by splitting requests and passing the API token received from the first request to each subsequent request. The token is valid for 3 days. Note: Even if private attachments are enabled in the Zendesk Support instance, uploaded files are visible to any authenticated user at the content_URL specified in the JSON response until the upload token is consumed. Once an attachment is associated with a ticket or post, visibility is restricted to users with access to the ticket or post with the attachment.",
       "method": "POST",
-      "url": "/api/v2/uploads.json?filename={file_name}&token={upload_token}",
+      "url": "/api/v2/uploads.json?filename={file_name}",
       "type": "multipart",
       "args": [
         {
