@@ -5792,7 +5792,7 @@
       "name": "getSingleMembership",
       "description": "Get single organization membership",
       "method": "GET",
-      "url": "/api/v2/users/{user_id}/organization_memberships/{membership_id}.json",
+      "url": "/api/v2/users/{user_id}/organization_memberships/{organization_membership_id}.json",
       "args": [
         {
           "name": "accessToken",
@@ -5813,7 +5813,7 @@
           "required": true
         },
         {
-          "name": "membershipId",
+          "name": "organizationMembershipId",
           "type": "Number",
           "info": "Organization membership ID",
           "required": true
