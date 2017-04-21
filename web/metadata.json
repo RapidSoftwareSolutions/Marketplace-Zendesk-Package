@@ -5597,7 +5597,7 @@
           "required": true
         },
         {
-          "name": "organizationId",
+          "name": "organizationSubscriptionId",
           "type": "Number",
           "info": "Organization subscription ID",
           "required": true
@@ -5669,7 +5669,7 @@
           "required": true
         },
         {
-          "name": "id",
+          "name": "organizationSubscriptionId",
           "type": "Number",
           "info": "Organization subscription ID",
           "required": true
