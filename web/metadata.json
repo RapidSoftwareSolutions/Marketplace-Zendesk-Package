@@ -5657,7 +5657,7 @@
       "name": "getSingleOrganizationSubscription",
       "description": "Get organization subscription",
       "method": "GET",
-      "url": "/api/v2/organization_subscriptions/{id}.json",
+      "url": "/api/v2/organization_subscriptions/{organization_subscription_id}.json",
       "args": [
         {
           "name": "accessToken",
