@@ -6677,14 +6677,14 @@
           "name": "subject",
           "type": "String",
           "info": "Ticket title",
-          "required": true,
+          "required": false,
           "wrapName": "request"
         },
         {
           "name": "comment",
           "type": "String",
           "info": "Comment body",
-          "required": true,
+          "required": false,
           "wrapName": "request"
         },
         {
