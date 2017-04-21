@@ -3,6 +3,7 @@
 
 namespace ZendeskCoreBundle\Controller;
 
+use GuzzleHttp\Exception\ConnectException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -145,6 +146,14 @@ class PackageController extends Controller
             $result = $this->createPackageExceptionResponse($exception);
         } catch (RequiredFieldException $exception) {
             $result = $this->createRequiredFieldExceptionResponse($exception);
+        } catch (ConnectException $exception) {
+            $result['callback'] = 'error';
+            $result['contextWrites']['to']['status_code'] = "INTERNAL_PACKAGE_ERROR";
+            $result['contextWrites']['to']['status_msg'] = $exception->getMessage();
+        } catch (\Exception $exception) {
+            $result['callback'] = 'error';
+            $result['contextWrites']['to']['status_code'] = "INTERNAL_PACKAGE_ERROR2";
+            $result['contextWrites']['to']['status_msg'] = $exception->getMessage();
         }
 
         return new JsonResponse($result);
