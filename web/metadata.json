@@ -6679,7 +6679,8 @@
           "type": "String",
           "info": "Comment body",
           "required": false,
-          "wrapName": "request"
+          "wrapName": "request.comment",
+          "vendorName": "body"
         },
         {
           "name": "status",
