@@ -1738,6 +1738,108 @@
       ]
     },
     {
+      "name": "getSingleSatisfactionRating",
+      "description": "Get single ticket satisfaction rating",
+      "method": "GET",
+      "url": "/api/v2/satisfaction_ratings/{satisfaction_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "satisfactionId",
+          "type": "Number",
+          "info": "Ticket satisfaction rating ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSatisfactionRatingReasons",
+      "description": "Return list all reasons for an account",
+      "method": "GET",
+      "url": "/api/v2/satisfaction_reasons.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSatisfactionRatingReason",
+      "description": "Return list all reasons for an account",
+      "method": "GET",
+      "url": "/api/v2/satisfaction_reasons/{reason_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "reasonId",
+          "type": "Number",
+          "info": "Ticket satisfaction rating ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
       "name": "createSatisfactionRating",
       "description": "Create a rating for solved tickets, or for tickets that were previously solved and then reopened.",
       "method": "POST",
@@ -1762,9 +1864,21 @@
           "required": true
         },
         {
-          "name": "sortOrder",
+          "name": "score",
           "type": "String",
-          "info": "One of asc, desc. Defaults to asc",
+          "info": "The rating: \"offered\", \"unoffered\", \"good\" or \"bad\"",
+          "required": true
+        },
+        {
+          "name": "comment",
+          "type": "String",
+          "info": "Text to satisfaction rating message",
+          "required": false
+        },
+        {
+          "name": "requesterId",
+          "type": "Number",
+          "info": "The id of ticket requester submitting the rating. Default owner of accessToken",
           "required": false
         }
       ],
@@ -6264,6 +6378,308 @@
           "required": false,
           "vendorName": "public",
           "wrapName": "ticket.comment"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "searchRequests",
+      "description": "Search requests by params",
+      "method": "GET",
+      "url": "/api/v2/requests/search.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "query",
+          "type": "String",
+          "info": "Expression to find",
+          "required": true
+        },
+        {
+          "name": "organizationId",
+          "type": "Number",
+          "info": "Organization ID",
+          "required": false
+        },
+        {
+          "name": "ccId",
+          "type": "Boolean",
+          "info": "",
+          "required": false
+        },
+        {
+          "name": "status",
+          "type": "Array",
+          "info": "Ticket status: open, solved",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createRequest",
+      "description": "Create single request",
+      "method": "POST",
+      "url": "/api/v2/requests.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "subject",
+          "type": "String",
+          "info": "Ticket title",
+          "required": true,
+          "wrapName": "request"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "info": "Ticket body",
+          "required": true,
+          "wrapName": "request"
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "info": "The state of the request, \"new\", \"open\", \"pending\", \"hold\", \"solved\", \"closed\"",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "priority",
+          "type": "String",
+          "info": "The priority of the request, \"low\", \"normal\", \"high\", \"urgent\"",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "The type of the request, \"question\", \"incident\", \"problem\", \"task\"",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "customFields",
+          "type": "JSON",
+          "info": "The fields and entries for this request",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "organizationId",
+          "type": "Number",
+          "info": "The organization of the requester",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "requesterId",
+          "type": "Number",
+          "info": "The id of the requester",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "assigneeId",
+          "type": "Number",
+          "info": "The id of the assignee if the field is visible to end users",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "groupId",
+          "type": "Number",
+          "info": "The id of the assigned group if the field is visible to end users",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "collaboratorIds",
+          "type": "Array",
+          "info": "Who are currently CC'ed on the ticket",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "isPublic",
+          "type": "Boolean",
+          "info": "Is true if any comments are public, false otherwise",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "canBeSolvedByMe",
+          "type": "Boolean",
+          "info": "If true, end user can mark request as solved.",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "solved",
+          "type": "Boolean",
+          "info": "Whether or not request is solved (an end user can set this if \"can_be_solved_by_me\", above, is true for that user)",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "ticketFormId",
+          "type": "Number",
+          "info": "The numeric id of the ticket form associated with this request if the form is visible to end users - only applicable for enterprise accounts",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "recipient",
+          "type": "String",
+          "info": "The original recipient e-mail address of the request",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "followupSourceId",
+          "type": "Number",
+          "info": "The id of the original ticket if this request is a follow-up ticket",
+          "required": false,
+          "wrapName": "request"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateRequest",
+      "description": "Update single request",
+      "method": "PUT",
+      "url": "/api/v2/requests/{request_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "requestId",
+          "type": "Number",
+          "info": "Request ID",
+          "required": true
+        },
+        {
+          "name": "subject",
+          "type": "String",
+          "info": "Ticket title",
+          "required": true,
+          "wrapName": "request"
+        },
+        {
+          "name": "comment",
+          "type": "String",
+          "info": "Comment body",
+          "required": true,
+          "wrapName": "request"
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "info": "The state of the request, \"new\", \"open\", \"pending\", \"hold\", \"solved\", \"closed\"",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "priority",
+          "type": "String",
+          "info": "The priority of the request, \"low\", \"normal\", \"high\", \"urgent\"",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "The type of the request, \"question\", \"incident\", \"problem\", \"task\"",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "customFields",
+          "type": "JSON",
+          "info": "The fields and entries for this request",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "solved",
+          "type": "Boolean",
+          "info": "Whether or not request is solved (an end user can set this if \"can_be_solved_by_me\", above, is true for that user)",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "ticketFormId",
+          "type": "Number",
+          "info": "The numeric id of the ticket form associated with this request if the form is visible to end users - only applicable for enterprise accounts",
+          "required": false,
+          "wrapName": "request"
+        },
+        {
+          "name": "recipient",
+          "type": "String",
+          "info": "The original recipient e-mail address of the request",
+          "required": false,
+          "wrapName": "request"
         }
       ],
       "callbacks": [
