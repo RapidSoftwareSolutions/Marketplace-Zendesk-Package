@@ -5877,7 +5877,7 @@
       "name": "setOrganizationMembershipAsDefault",
       "description": "Set organization membership as default",
       "method": "PUT",
-      "url": "/api/v2/users/{user_id}/organization_memberships/{membership_id}/make_default.json",
+      "url": "/api/v2/users/{user_id}/organization_memberships/{organization_membership_id}/make_default.json",
       "args": [
         {
           "name": "accessToken",
@@ -5898,7 +5898,7 @@
           "required": true
         },
         {
-          "name": "membershipId",
+          "name": "organizationMembershipId",
           "type": "Number",
           "info": "Organization membership ID",
           "required": true
@@ -5919,7 +5919,7 @@
       "name": "deleteOrganizationMembershipsByIds",
       "description": "Immediately removes a user from a organization and schedules a job to unassign all working tickets that are assigned to the given user and organization combination",
       "method": "DELETE",
-      "url": "/api/v2/organization_memberships/destroy_many.json?ids={membership_ids}",
+      "url": "/api/v2/organization_memberships/destroy_many.json?ids={organization_membership_ids}",
       "args": [
         {
           "name": "accessToken",
@@ -5934,8 +5934,8 @@
           "required": true
         },
         {
-          "name": "membershipIds",
-          "type": "Number",
+          "name": "organizationMembershipIds",
+          "type": "Array",
           "info": "Comma-separated list of organization membership IDs",
           "required": true
         }
@@ -6529,7 +6529,8 @@
           "type": "String",
           "info": "Ticket body",
           "required": true,
-          "wrapName": "request"
+          "wrapName": "request.comment",
+          "vendorName": "body"
         },
         {
           "name": "status",
