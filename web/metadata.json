@@ -5597,9 +5597,9 @@
           "required": true
         },
         {
-          "name": "organizationSubscriptionId",
+          "name": "organizationId",
           "type": "Number",
-          "info": "Organization subscription ID",
+          "info": "Organization ID",
           "required": true
         }
       ],
@@ -6473,12 +6473,6 @@
           "name": "organizationId",
           "type": "Number",
           "info": "Organization ID",
-          "required": false
-        },
-        {
-          "name": "ccId",
-          "type": "Boolean",
-          "info": "",
           "required": false
         },
         {
