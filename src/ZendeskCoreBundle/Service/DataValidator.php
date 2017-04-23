@@ -221,7 +221,7 @@ class DataValidator
                 $content = file_get_contents($value);
                 $content = base64_encode($content);
             } else {
-                $content = fread($value, 'r');
+                $content = fopen($value, 'r');
             }
             $this->setSingleValidData($paramData, $content, $vendorName);
         }
