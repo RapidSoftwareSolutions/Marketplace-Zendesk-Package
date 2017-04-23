@@ -87,7 +87,7 @@ class DataValidator
     {
         $name = $paramData['name'];
         $type = mb_strtolower($paramData['type']);
-        $value = $this->dataFromRequest['args'][$name];
+        $value = $this->getValueFromRequestData($name);
         if ($type == 'array') {
             if (!empty($value)) {
                 return true;
@@ -105,7 +105,7 @@ class DataValidator
         $name = $paramData['name'];
         $vendorName = $this->getParamVendorName($paramData);
         $type = mb_strtolower($paramData['type']);
-        $value = $this->dataFromRequest['args'][$name];
+        $value = $this->getValueFromRequestData($name);
         if (!empty($value)) {
             // todo add new metadata param "nullable" => true (default false) to send "" or "0" param
             switch ($type) {
@@ -270,5 +270,12 @@ class DataValidator
         }, $jsonString);
 
         return str_replace('\"', '"', $data);
+    }
+
+    private function getValueFromRequestData($paramName) {
+        if (isset($this->dataFromRequest['args'][$paramName])) {
+            return $this->dataFromRequest['args'][$paramName];
+        }
+        return null;
     }
 }
