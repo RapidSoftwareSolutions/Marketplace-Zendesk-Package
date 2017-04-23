@@ -1,12 +1,15 @@
 services:
   data_validator:
     class: ZendeskCoreBundle\Service\DataValidator
+    arguments: []
 
   sender:
     class: ZendeskCoreBundle\Service\Sender
+    arguments: []
 
   metadata:
     class: ZendeskCoreBundle\Service\Metadata
+    arguments: []
 
   manager:
     class: ZendeskCoreBundle\Service\Manager

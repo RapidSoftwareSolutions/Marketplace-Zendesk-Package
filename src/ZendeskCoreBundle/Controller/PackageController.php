@@ -154,6 +154,10 @@ class PackageController extends Controller
             $result['callback'] = 'error';
             $result['contextWrites']['to']['status_code'] = "INTERNAL_PACKAGE_ERROR2";
             $result['contextWrites']['to']['status_msg'] = $exception->getMessage();
+        } catch (\Throwable $exception) {
+            $result['callback'] = 'error';
+            $result['contextWrites']['to']['status_code'] = "INTERNAL_PACKAGE_ERROR3";
+            $result['contextWrites']['to']['status_msg'] = $exception->getMessage();
         }
 
         return new JsonResponse($result);
