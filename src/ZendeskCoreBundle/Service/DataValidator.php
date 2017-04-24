@@ -213,18 +213,29 @@ class DataValidator
 
     private function setFileValue($paramData, $value, $vendorName)
     {
-        if (!empty($paramData['jsonParse']) && filter_var($paramData['jsonParse'], FILTER_VALIDATE_BOOLEAN) == true) {
+        if (isset($paramData['jsonParse']) && filter_var($paramData['jsonParse'], FILTER_VALIDATE_BOOLEAN) == true) {
             $content = file_get_contents($value);
             $this->setJSONValue($paramData, $content, $vendorName);
         } else {
-            if (!empty($paramData['base64encode']) && filter_var($paramData['base64encode'], FILTER_VALIDATE_BOOLEAN) == false) {
-                $content = file_get_contents($value);
-                $content = base64_encode($content);
-            } else {
+            if (isset($this->blockMetadata['type']) && $this->blockMetadata['type'] == 'multipart') {
                 $content = fopen($value, 'r');
             }
-            $this->setSingleValidData($paramData, $content, $vendorName);
+            else {
+                $content = file_get_contents($value);
+                if (isset($paramData['base64encode']) && filter_var($paramData['base64encode'], FILTER_VALIDATE_BOOLEAN) == true) {
+                    $content = base64_encode($content);
+                }
+//                $handle = fopen($value, 'rb');
+//                $content = '';
+//
+//                while (!feof($handle)) {
+//                    $content .= fread($handle, 8192);
+//                }
+//                fclose($handle);
+//                $test = file_get_contents($value);
+            }
         }
+        $this->setSingleValidData($paramData, $content, $vendorName);
     }
 
     private function setArrayValue($paramData, $value, $vendorName)
@@ -272,7 +283,8 @@ class DataValidator
         return str_replace('\"', '"', $data);
     }
 
-    private function getValueFromRequestData($paramName) {
+    private function getValueFromRequestData($paramName)
+    {
         if (isset($this->dataFromRequest['args'][$paramName])) {
             return $this->dataFromRequest['args'][$paramName];
         }

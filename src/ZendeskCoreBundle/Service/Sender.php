@@ -22,7 +22,7 @@ class Sender
             /** @var ResponseInterface $vendorResponse */
             $vendorResponse = $client->$method($url, [
                 'headers' => $headers,
-                $type => $this->prepareData($data, $type)
+                $this->getType($type) => $this->getFormattedData($data, $type)
             ]);
             if (in_array($vendorResponse->getStatusCode(), range(200, 204))) {
                 $result['callback'] = 'success';
@@ -57,25 +57,39 @@ class Sender
         return $result;
     }
 
-    /**
-     * Return data formated to type (multipart fix)
-     * @param array  $data
-     * @param string $type
-     * @return array
-     */
-    private function prepareData(array $data, string $type): array
+    private function getFormattedData(array $data, string $type)
     {
-        if (mb_strtolower($type) == 'multipart') {
-            $result = [];
-            foreach ($data as $key => $value) {
-                $result[] = [
-                    "name" => $key,
-                    "contents" => $value
-                ];
-            }
-            return $result;
+        $type = mb_strtolower($type);
+        if ($type == 'binary') {
+            return $this->getBinaryData($data);
+        } elseif ($type == 'multipart') {
+            return $this->getMultipartData($data);
+        } else {
+            return $data;
+        }
+    }
+
+    private function getMultipartData($data)
+    {
+        $result = [];
+        foreach ($data as $key => $value) {
+            $result[] = [
+                "name" => $key,
+                "contents" => $value
+            ];
         }
 
-        return $data;
+        return $result;
+    }
+
+    private function getBinaryData($data) {
+        return array_pop($data);
+    }
+
+    private function getType($type) {
+        if ($type == 'binary') {
+            return 'body';
+        }
+        return $type;
     }
 }
