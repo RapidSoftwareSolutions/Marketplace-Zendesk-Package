@@ -95,7 +95,8 @@ class PackageController extends Controller
      *
      * @return JsonResponse
      */
-    public function getUsers() {
+    public function getUsers()
+    {
         try {
             $manager = $this->get('manager');
             $manager->setBlockName(__FUNCTION__);
@@ -104,8 +105,8 @@ class PackageController extends Controller
             $url = $manager->createFullUrl($validData);
             if (!empty($validData['role'])) {
                 $roleArray = [];
-                foreach (explode(',',$validData['role']) as $role) {
-                    $roleArray[] = "role[]=".$role;
+                foreach (explode(',', $validData['role']) as $role) {
+                    $roleArray[] = "role[]=" . $role;
                 }
                 unset($validData['role']);
                 $url .= "?" . implode('&', $roleArray);
@@ -128,7 +129,8 @@ class PackageController extends Controller
      *
      * @return JsonResponse
      */
-    public function uploadFiles() {
+    public function uploadFiles()
+    {
         try {
             $manager = $this->get('manager');
             $manager->setBlockName(__FUNCTION__);
@@ -186,6 +188,18 @@ class PackageController extends Controller
             $result = $this->createPackageExceptionResponse($exception);
         } catch (RequiredFieldException $exception) {
             $result = $this->createRequiredFieldExceptionResponse($exception);
+        } catch (ConnectException $exception) {
+            $result['callback'] = 'error';
+            $result['contextWrites']['to']['status_code'] = "INTERNAL_PACKAGE_ERROR";
+            $result['contextWrites']['to']['status_msg'] = $exception->getMessage();
+        } catch (\Exception $exception) {
+            $result['callback'] = 'error';
+            $result['contextWrites']['to']['status_code'] = "INTERNAL_PACKAGE_ERROR2";
+            $result['contextWrites']['to']['status_msg'] = $exception->getMessage();
+        } catch (\Throwable $exception) {
+            $result['callback'] = 'error';
+            $result['contextWrites']['to']['status_code'] = "INTERNAL_PACKAGE_ERROR3";
+            $result['contextWrites']['to']['status_msg'] = $exception->getMessage();
         }
 
         return new JsonResponse($result);
