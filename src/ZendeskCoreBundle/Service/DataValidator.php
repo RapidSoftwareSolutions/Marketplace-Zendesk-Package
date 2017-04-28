@@ -88,11 +88,12 @@ class DataValidator
         $name = $paramData['name'];
         $type = mb_strtolower($paramData['type']);
         $value = $this->getValueFromRequestData($name);
-        if ($type == 'array') {
+        if ($type == 'array' || $type == 'json') {
             if (!empty($value)) {
                 return true;
             }
-        } else {
+        }
+        else {
             if (strlen(trim($value)) > 0) {
                 return true;
             }
@@ -202,12 +203,17 @@ class DataValidator
 
     private function setJSONValue($paramData, $value, $vendorName)
     {
-        $normalizeJson = $this->normalizeJson($value);
-        $data = json_decode($normalizeJson, true);
-        if (json_last_error()) {
-            $this->parsedFieldError[] = $paramData['name'];
-        } else {
-            $this->setSingleValidData($paramData, $data, $vendorName);
+        if (!is_array($value)) {
+            $normalizeJson = $this->normalizeJson($value);
+            $data = json_decode($normalizeJson, true);
+            if (json_last_error()) {
+                $this->parsedFieldError[] = $paramData['name'];
+            } else {
+                $this->setSingleValidData($paramData, $data['args'][$paramData['name']], $vendorName);
+            }
+        }
+        else {
+            $this->setSingleValidData($paramData, $value, $vendorName);
         }
     }
 
