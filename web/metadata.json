@@ -8535,7 +8535,7 @@
     {
       "name": "updateView",
       "description": "Update view",
-      "method": "POST",
+      "method": "PUT",
       "url": "/api/v2/views/{view_id}.json",
       "args": [
         {
