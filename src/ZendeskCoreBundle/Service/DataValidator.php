@@ -94,7 +94,7 @@ class DataValidator
             }
         }
         else {
-            if (strlen(trim($value)) > 0) {
+            if (strlen(trim($value)) > 0 && $value) {
                 return true;
             }
         }
