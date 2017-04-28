@@ -7982,7 +7982,7 @@
       "name": "deleteTarget",
       "description": "Delete target",
       "method": "DELETE",
-      "url": "/api/v2/targets/{id}.json",
+      "url": "/api/v2/targets/{target_id}.json",
       "args": [
         {
           "name": "accessToken",
