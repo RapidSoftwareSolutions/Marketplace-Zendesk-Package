@@ -8162,7 +8162,8 @@
           "name": "triggerData",
           "type": "JSON",
           "info": "Trigger params",
-          "required": true
+          "required": true,
+          "vendorName": "trigger"
         }
       ],
       "callbacks": [
