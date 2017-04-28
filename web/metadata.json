@@ -8558,7 +8558,7 @@
         },
         {
           "name": "viewData",
-          "type": "Number",
+          "type": "JSON",
           "info": "A view consists of one or more conditions that define a collection of tickets to display.",
           "required": true,
           "vendorName": "view"
