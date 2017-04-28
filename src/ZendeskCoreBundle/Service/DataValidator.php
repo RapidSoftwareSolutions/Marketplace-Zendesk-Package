@@ -225,14 +225,6 @@ class DataValidator
                 if (isset($paramData['base64encode']) && filter_var($paramData['base64encode'], FILTER_VALIDATE_BOOLEAN) == true) {
                     $content = base64_encode($content);
                 }
-//                $handle = fopen($value, 'rb');
-//                $content = '';
-//
-//                while (!feof($handle)) {
-//                    $content .= fread($handle, 8192);
-//                }
-//                fclose($handle);
-//                $test = file_get_contents($value);
             }
         }
         $this->setSingleValidData($paramData, $content, $vendorName);
