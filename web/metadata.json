@@ -7115,10 +7115,10 @@
       ]
     },
     {
-      "name": "getSingleMacros",
-      "description": "Get single Macros by ID",
+      "name": "getSingleMacro",
+      "description": "Get single Macro by ID",
       "method": "GET",
-      "url": "/api/v2/macros/{macros_id}.json",
+      "url": "/api/v2/macros/{macro_id}.json",
       "args": [
         {
           "name": "accessToken",
@@ -7133,9 +7133,9 @@
           "required": true
         },
         {
-          "name": "macrosId",
+          "name": "macroId",
           "type": "Number",
-          "info": "Macros ID",
+          "info": "Macro ID",
           "required": true
         }
       ],
