@@ -6913,7 +6913,7 @@
       "name": "updateAutomation",
       "description": "Update automation",
       "method": "PUT",
-      "url": "/api/v2/automations/{automationid}.json",
+      "url": "/api/v2/automations/{automation_id}.json",
       "args": [
         {
           "name": "accessToken",
