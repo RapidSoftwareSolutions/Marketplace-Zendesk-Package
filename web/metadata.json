@@ -8066,7 +8066,7 @@
       "name": "getSingleTrigger",
       "description": "Get single trigger by ID",
       "method": "GET",
-      "url": "/api/v2/triggers/{id}.json",
+      "url": "/api/v2/triggers/{trigger_id}.json",
       "args": [
         {
           "name": "accessToken",
