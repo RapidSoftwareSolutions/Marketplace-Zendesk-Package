@@ -10404,6 +10404,4538 @@
           "info": "Success"
         }
       ]
+    },
+    {
+      "name": "createSharingAgreement",
+      "description": "Create sharing agreement",
+      "method": "POST",
+      "url": "/api/v2/sharing_agreements.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "Name of this sharing agreement",
+          "required": false,
+          "wrapName": "sharing_agreement"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "Can be one of the following: 'inbound', 'outbound'",
+          "required": false,
+          "wrapName": "sharing_agreement"
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "info": "Can be one of the following: 'accepted', 'declined', 'pending', 'inactive'",
+          "required": false,
+          "wrapName": "sharing_agreement"
+        },
+        {
+          "name": "partnerName",
+          "type": "String",
+          "info": "Can be one of the following: 'jira', null",
+          "required": false,
+          "wrapName": "sharing_agreement"
+        },
+        {
+          "name": "remoteSubdomain",
+          "type": "String",
+          "info": "Subdomain of the remote account or null if not associated with an account",
+          "required": false,
+          "wrapName": "sharing_agreement"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateSharingAgreement",
+      "description": "Update sharing agreement",
+      "method": "PUT",
+      "url": "/api/v2/sharing_agreements/{sharing_agreement_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "sharingAgreementId",
+          "type": "Number",
+          "info": "Scharing agreement ID",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "Name of this sharing agreement",
+          "required": false,
+          "wrapName": "sharing_agreement"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "Can be one of the following: 'inbound', 'outbound'",
+          "required": false,
+          "wrapName": "sharing_agreement"
+        },
+        {
+          "name": "status",
+          "type": "String",
+          "info": "Can be one of the following: 'accepted', 'declined', 'pending', 'inactive'",
+          "required": false,
+          "wrapName": "sharing_agreement"
+        },
+        {
+          "name": "partnerName",
+          "type": "String",
+          "info": "Can be one of the following: 'jira', null",
+          "required": false,
+          "wrapName": "sharing_agreement"
+        },
+        {
+          "name": "remoteSubdomain",
+          "type": "String",
+          "info": "Subdomain of the remote account or null if not associated with an account",
+          "required": false,
+          "wrapName": "sharing_agreement"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleSharingAgreement",
+      "description": "Get single sharing agreement by ID",
+      "method": "GET",
+      "url": "/api/v2/sharing_agreements/{sharing_agreement_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "sharingAgreementId",
+          "type": "Number",
+          "info": "Scharing agreement ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSharingAgreements",
+      "description": "Get list of sharing agreements",
+      "method": "GET",
+      "url": "/api/v2/sharing_agreements.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteSharingAgreement",
+      "description": "Delete sharing agreement by ID",
+      "method": "DELETE",
+      "url": "/api/v2/sharing_agreements/{sharing_agreement_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "sharingAgreementId",
+          "type": "Number",
+          "info": "Scharing agreement ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createSupportAddress",
+      "description": "Adds a Zendesk or external support address to your account.To add a Zendesk address, use the following syntax: {local-part}@{accountname}.zendesk.com. Example: 'sales-team@omniwear.zendesk.com'. The local-part can be anything you like. To add an external email address such as help@omniwearshop.com, the email must already exist and you must set up forwarding on your email server. The exact steps depend on your mail server. See Forwarding incoming email to Zendesk Support. After setting up forwarding, run the Verify Support Address Forwarding endpoint. The address won't work in Zendesk Support until it's been verified.",
+      "method": "POST",
+      "url": "/api/v2/recipient_addresses.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "The email address (not updateable)",
+          "required": true,
+          "wrapName": "recipient_address"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "The name for the address",
+          "required": false,
+          "wrapName": "recipient_address"
+        },
+        {
+          "name": "default",
+          "type": "Boolean",
+          "info": "Whether the address is the account's default support address",
+          "required": false,
+          "wrapName": "recipient_address"
+        },
+        {
+          "name": "brandId",
+          "type": "Number",
+          "info": "Brand ID",
+          "required": false,
+          "wrapName": "recipient_address"
+        },
+        {
+          "name": "forwardingStatus",
+          "type": "String",
+          "info": "Possible values: \"unknown\", \"waiting\", \"verified\", or \"failed\"",
+          "required": false,
+          "wrapName": "recipient_address"
+        },
+        {
+          "name": "spfStatus",
+          "type": "String",
+          "info": "Possible values: \"unknown\", \"verified\", \"failed\"",
+          "required": false,
+          "wrapName": "recipient_address"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSupportAddresses",
+      "description": "Lists all the support addresses for the account",
+      "method": "GET",
+      "url": "/api/v2/recipient_addresses.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleSupportAddress",
+      "description": "Get single support address by ID",
+      "method": "GET",
+      "url": "/api/v2/recipient_addresses/{support_address_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "supportAddressId",
+          "type": "Number",
+          "info": "Support adress ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateSupportAddress",
+      "description": "Update support address",
+      "method": "PUT",
+      "url": "/api/v2/recipient_addresses/{support_address_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "supportAddressId",
+          "type": "Number",
+          "info": "Support adress ID",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "The name for the address",
+          "required": false,
+          "wrapName": "recipient_address"
+        },
+        {
+          "name": "default",
+          "type": "Boolean",
+          "info": "Whether the address is the account's default support address",
+          "required": false,
+          "wrapName": "recipient_address"
+        },
+        {
+          "name": "brandId",
+          "type": "Number",
+          "info": "Brand ID",
+          "required": false,
+          "wrapName": "recipient_address"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "verifySupportAddressForwarding",
+      "description": "Sends a test email to the specified support address to verify that email forwarding for the address works. An external support address won't work in Zendesk Support until it's verified. Note: You don't need to verify Zendesk support addresses.",
+      "method": "PUT",
+      "url": "/api/v2/recipient_addresses/{support_address_id}/verify.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "supportAddressId",
+          "type": "Number",
+          "info": "Support adress ID",
+          "required": true
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "The endpoint takes only this parametr: \"forwarding\"",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteRecipientAddress",
+      "description": "Delete recipient adress",
+      "method": "DELETE",
+      "url": "/api/v2/recipient_addresses/{support_address_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "supportAddressId",
+          "type": "Number",
+          "info": "Support adress ID",
+          "required": true
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "The endpoint takes only this parametr: \"forwarding\"",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTicketForms",
+      "description": "Returns a list of all ticket forms for your account if accessed as an admin or agent. End users will only see the list of ticket forms that are marked 'end_user_visible'.",
+      "method": "GET",
+      "url": "/api/v2/ticket_forms.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "active",
+          "type": "Boolean",
+          "info": "Only active ticket forms if true, inactive ticket forms if false. Active and inactive ticket forms if not present.",
+          "required": false
+        },
+        {
+          "name": "endUserVisible",
+          "type": "Boolean",
+          "info": "Only ticket forms marked 'end_user_visible' if true, ticket forms marked non 'end_user_visible' if false. End user and non end user visible if not present.",
+          "required": false
+        },
+        {
+          "name": "fallbackToDefault",
+          "type": "Boolean",
+          "info": "If true, returns default ticket form when the criteria defined by the parameters results in a set without active and end user visible ticket forms.",
+          "required": false
+        },
+        {
+          "name": "associatedToBrand",
+          "type": "Boolean",
+          "info": "Only ticket forms of current brand (defined by url) if true",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createTicketForms",
+      "description": "Create tickets forms",
+      "method": "POST",
+      "url": "/api/v2/ticket_forms.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "rawName",
+          "type": "String",
+          "info": "The dynamic content placeholder, if present, or the \"name\" value, if not. See Dynamic Content",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "display_name",
+          "type": "String",
+          "info": "The name of the form that is displayed to an end user",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "rawDisplayName",
+          "type": "String",
+          "info": "The dynamic content placeholder, if present, or the \"display_name\" value, if not. See Dynamic Content",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "position",
+          "type": "Number",
+          "info": "The position of this form among other forms in the account, i.e. dropdown",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "active",
+          "type": "Boolean",
+          "info": "If the form is set as active",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "endUserVisible",
+          "type": "Boolean",
+          "info": "Is the form visible to the end user",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "default",
+          "type": "Boolean",
+          "info": "Is the form the default form for this account",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "ticketFieldIds",
+          "type": "Array",
+          "info": "List ids of all ticket fields which are in this ticket form",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "inAllBrands",
+          "type": "Boolean",
+          "info": "Is the form available for use in all brands on this account",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "restrictedBrandIds",
+          "type": "Array",
+          "info": "List ids of all brands that this ticket form is restricted to",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "inAllOrganizations",
+          "type": "Boolean",
+          "info": "Is the form available for use in all organizations on this account",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "restrictedOrganizationIds",
+          "type": "Array",
+          "info": "List ids of all organizations that this ticket form is restricted to",
+          "required": false,
+          "wrapName": "ticket_form"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleTicketForm",
+      "description": "Get single tickets form",
+      "method": "GET",
+      "url": "/api/v2/ticket_forms/{ticket_form_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketFormId",
+          "type": "Number",
+          "info": "Ticket form ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateTicketForms",
+      "description": "Update tickets forms",
+      "method": "PUT",
+      "url": "/api/v2/ticket_forms/{ticket_form_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketFormId",
+          "type ": "Number",
+          "info": "ticket form ID",
+          "required": true
+        },
+        {
+          "name": "rawName",
+          "type": "String",
+          "info": "The dynamic content placeholder, if present, or the \"name\" value, if not. See Dynamic Content",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "display_name",
+          "type": "String",
+          "info": "The name of the form that is displayed to an end user",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "rawDisplayName",
+          "type": "String",
+          "info": "The dynamic content placeholder, if present, or the \"display_name\" value, if not. See Dynamic Content",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "position",
+          "type": "Number",
+          "info": "The position of this form among other forms in the account, i.e. dropdown",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "active",
+          "type": "Boolean",
+          "info": "If the form is set as active",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "endUserVisible",
+          "type": "Boolean",
+          "info": "Is the form visible to the end user",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "default",
+          "type": "Boolean",
+          "info": "Is the form the default form for this account",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "ticketFieldIds",
+          "type": "Array",
+          "info": "List ids of all ticket fields which are in this ticket form",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "inAllBrands",
+          "type": "Boolean",
+          "info": "Is the form available for use in all brands on this account",
+          "required": false,
+          "wrapName": "ticket_form"
+        },
+        {
+          "name": "inAllOrganizations",
+          "type": "Boolean",
+          "info": "Is the form available for use in all organizations on this account",
+          "required": false,
+          "wrapName": "ticket_form"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "reorderTicketForms",
+      "description": "Reorder tickets forms",
+      "method": "PUT",
+      "url": "/api/v2/ticket_forms/reorder.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketFormIds",
+          "type ": "Array",
+          "info": "List of ticket form IDs",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "cloneTicketForm",
+      "description": "Clone ticket form",
+      "method": "POST",
+      "url": "/api/v2/ticket_forms/{ticket_form_id}/clone.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketFormId",
+          "type ": "Number",
+          "info": "Ticket form ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteTicketForm",
+      "description": "Delete ticket form",
+      "method": "DELETE",
+      "url": "/api/v2/ticket_forms/{ticket_form_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketFormId",
+          "type ": "Number",
+          "info": "Ticket form ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createTicketField",
+      "description": "Create ticket field",
+      "method": "POST",
+      "url": "/api/v2/ticket_fields.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "The type of the ticket field: \"checkbox\", \"date\", \"decimal\", \"integer\", \"regexp\", \"tagger\", \"text\", or \"textarea\".",
+          "required": true,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "info": "The title of the ticket field",
+          "required": true,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "rawTitle",
+          "type": "String",
+          "info": "The dynamic content placeholder, if present, or the \"title\" value, if not. See Dynamic Content",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "info": "The description of the purpose of this ticket field, shown to users",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "rawDescription",
+          "type": "String",
+          "info": "The dynamic content placeholder, if present, or the \"description\" value, if not. See Dynamic Content",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "position",
+          "type": "Number",
+          "info": "A relative position for the ticket fields that determines the order of ticket fields on a ticket. Note that positions 0 to 7 are reserved for system fields",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "active",
+          "type": "Boolean",
+          "info": "Whether this field is available",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "required",
+          "type": "Boolean",
+          "info": "If it's required for this field to have a value when updated by agents",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "collapsedForAgents",
+          "type": "Boolean",
+          "info": "If this field should be shown to agents by default or be hidden alongside infrequently used fields. Classic interface only",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "regexpForValidation",
+          "type": "String",
+          "info": "Regular expression field only. The validation pattern for a field value to be deemed valid.",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "titleInPortal",
+          "type": "String",
+          "info": "The title of the ticket field when shown to end users",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "rawTitleInPortal",
+          "type": "String",
+          "info": "The dynamic content placeholder, if present, or the \"title_in_portal\" value, if not. See Dynamic Content",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "visibleInPortal",
+          "type": "Boolean",
+          "info": "	Whether this field is available to end users",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "editableInPortal",
+          "type": "Boolean",
+          "info": "Whether this field is editable by end users",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "requiredInPortal",
+          "type": "Boolean",
+          "info": "If it's required for this field to have a value when updated by end users",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "tag",
+          "type": "String",
+          "info": "A tag value to set for checkbox fields when checked",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "customFieldOptions",
+          "type": "Array",
+          "info": "Required and presented for a ticket field of type \"tagger\". Example: [\"name\": \"Pineapples\", \"value\": 3 }, {...}]",
+          "required": false,
+          "wrapName": "ticket_field"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTicketFields",
+      "description": "Returns a list of all ticket fields in your account. Fields are returned in the order that you specify in your Ticket Fields configuration in Zendesk Support. Clients should cache this resource for the duration of their API usage and map the id for each ticket field to the values returned under the fields attributes on the Ticket resource.",
+      "method": "GET",
+      "url": "/api/v2/ticket_fields.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleTicketField",
+      "description": "Get single ticket filed by ID",
+      "method": "GET",
+      "url": "/api/v2/ticket_fields/{ticket_field_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketFieldId",
+          "type": "Number",
+          "info": "Ticket field ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateTicketField",
+      "description": "Update ticket filed",
+      "method": "PUT",
+      "url": "/api/v2/ticket_fields/{ticket_field_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketFieldId",
+          "type": "Number",
+          "info": "Ticket field ID",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "info": "The title of the ticket field",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "rawTitle",
+          "type": "String",
+          "info": "The dynamic content placeholder, if present, or the \"title\" value, if not. See Dynamic Content",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "info": "The description of the purpose of this ticket field, shown to users",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "rawDescription",
+          "type": "String",
+          "info": "The dynamic content placeholder, if present, or the \"description\" value, if not. See Dynamic Content",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "position",
+          "type": "Number",
+          "info": "A relative position for the ticket fields that determines the order of ticket fields on a ticket. Note that positions 0 to 7 are reserved for system fields",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "active",
+          "type": "Boolean",
+          "info": "Whether this field is available",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "required",
+          "type": "Boolean",
+          "info": "If it's required for this field to have a value when updated by agents",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "collapsedForAgents",
+          "type": "Boolean",
+          "info": "If this field should be shown to agents by default or be hidden alongside infrequently used fields. Classic interface only",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "regexpForValidation",
+          "type": "String",
+          "info": "Regular expression field only. The validation pattern for a field value to be deemed valid.",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "titleInPortal",
+          "type": "String",
+          "info": "The title of the ticket field when shown to end users",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "rawTitleInPortal",
+          "type": "String",
+          "info": "The dynamic content placeholder, if present, or the \"title_in_portal\" value, if not. See Dynamic Content",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "visibleInPortal",
+          "type": "Boolean",
+          "info": "Whether this field is available to end users",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "editableInPortal",
+          "type": "Boolean",
+          "info": "Whether this field is editable by end users",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "requiredInPortal",
+          "type": "Boolean",
+          "info": "If it's required for this field to have a value when updated by end users",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "tag",
+          "type": "String",
+          "info": "A tag value to set for checkbox fields when checked",
+          "required": false,
+          "wrapName": "ticket_field"
+        },
+        {
+          "name": "customFieldOptions",
+          "type": "JSON",
+          "info": "Required and presented for a ticket field of type \"tagger\". Example: {\"custom_field_option\": {\"id\": 10002, \"name\": \"Pineapples\", ... }",
+          "required": false,
+          "wrapName": "ticket_field"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteTicketField",
+      "description": "Delete ticket filed",
+      "method": "DELETE",
+      "url": "/api/v2/ticket_fields/{ticket_field_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketFieldId",
+          "type": "Number",
+          "info": "Ticket field ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createTicketFieldOption",
+      "description": "Create ticket filed option (if ticket field type is tagger)",
+      "method": "POST",
+      "url": "/api/v2/ticket_fields/{ticket_field_id}/options.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketFieldId",
+          "type": "Number",
+          "info": "Ticket field ID",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "Name of option",
+          "required": true,
+          "wrapName": "custom_field_option"
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "info": "Value of option",
+          "required": true,
+          "wrapName": "custom_field_option"
+        },
+        {
+          "name": "position",
+          "type": "Number",
+          "info": "Position of option",
+          "required": true,
+          "wrapName": "custom_field_option"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateTicketFieldOption",
+      "description": "Update ticket filed option (if ticket field type is tagger)",
+      "method": "POST",
+      "url": "/api/v2/ticket_fields/{ticket_field_id}/options.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketFieldId",
+          "type": "Number",
+          "info": "Ticket field ID",
+          "required": true
+        },
+        {
+          "name": "ticketFieldOptionId",
+          "type": "Number",
+          "info": "Ticket field option ID",
+          "required": true,
+          "vendorName": "id",
+          "wrapName": "custom_field_option"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "Name of option",
+          "required": false,
+          "wrapName": "custom_field_option"
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "info": "Value of option",
+          "required": false,
+          "wrapName": "custom_field_option"
+        },
+        {
+          "name": "position",
+          "type": "Number",
+          "info": "Position of option",
+          "required": false,
+          "wrapName": "custom_field_option"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTicketFieldOptions",
+      "description": "Returns a list of all custom Ticket Field Options for the given dropdown Ticket Field.",
+      "method": "GET",
+      "url": "/api/v2/ticket_fields/{ticket_field_id}/options.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketFieldId",
+          "type": "Number",
+          "info": "Ticket field ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTicketFieldSingleOption",
+      "description": "Get single option from ticket field (it type is tagget)",
+      "method": "GET",
+      "url": "/api/v2/ticket_fields/{ticket_field_id}/options/{ticket_field_option_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketFieldId",
+          "type": "Number",
+          "info": "Ticket field ID",
+          "required": true
+        },
+        {
+          "name": "ticketFieldOptionId",
+          "type": "Number",
+          "info": "Ticket field option ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteTicketFieldOption",
+      "description": "Delete ticket filed option (if ticket field type is tagger)",
+      "method": "DELETE",
+      "url": "/api/v2/ticket_fields/{ticket_field_id}/options/{ticket_field_option_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketFieldId",
+          "type": "Number",
+          "info": "Ticket field ID",
+          "required": true
+        },
+        {
+          "name": "ticketFieldOptionId",
+          "type": "Number",
+          "info": "Ticket field option ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUserFields",
+      "description": "Returns a list of all custom User Fields in your account. Fields are returned in the order that you specify in your User Fields configuration in Zendesk Support. Clients should cache this resource for the duration of their API usage and map the key for each User Field to the values returned under the user_fields attribute on the User resource.",
+      "method": "GET",
+      "url": "/api/v2/user_fields.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createUserField",
+      "description": "Create new user field",
+      "method": "POST",
+      "url": "/api/v2/user_fields.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "key",
+          "type": "String",
+          "info": "A unique key that identifies this custom field. This is used for updating the field and referencing in placeholders.",
+          "required": true,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "Type of the custom field: \"checkbox\", \"date\", \"decimal\", \"dropdown\", \"integer\", \"regexp\", \"text\", or \"textarea\"",
+          "required": true,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "info": "The title of the custom field",
+          "required": true,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "rawTitle",
+          "type": "String",
+          "info": "The dynamic content placeholder, if present, or the \"title\" value, if not. See Dynamic Content",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "info": "User-defined description of this field's purpose",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "rawDescription",
+          "type": "String",
+          "info": "The dynamic content placeholder, if present, or the \"description\" value, if not. See Dynamic Content",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "position",
+          "type": "Number",
+          "info": "Ordering of the field relative to other fields",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "active",
+          "type": "Boolean",
+          "info": "If true, this field is available for use",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "system",
+          "type": "Boolean",
+          "info": "If true, only active and position values of this field can be changed",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "regexpForValidation",
+          "type": "String",
+          "info": "Regular expression field only. The validation pattern for a field value to be deemed valid.",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "tag",
+          "type": "String",
+          "info": "Optional for custom field of type \"checkbox\"; not presented otherwise.",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "customFieldOptions",
+          "type": "JSON",
+          "info": "Required and presented for a custom field of type \"dropdown\".",
+          "required": false,
+          "wrapName": "user_field"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateUserField",
+      "description": "Update user field",
+      "method": "PUT",
+      "url": "/api/v2/user_fields/{user_field_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userFieldId",
+          "type": "Number",
+          "info": "User field ID",
+          "required": true
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "Type of the custom field: \"checkbox\", \"date\", \"decimal\", \"dropdown\", \"integer\", \"regexp\", \"text\", or \"textarea\"",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "title",
+          "type": "String",
+          "info": "The title of the custom field",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "rawTitle",
+          "type": "String",
+          "info": "The dynamic content placeholder, if present, or the \"title\" value, if not. See Dynamic Content",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "info": "User-defined description of this field's purpose",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "rawDescription",
+          "type": "String",
+          "info": "The dynamic content placeholder, if present, or the \"description\" value, if not. See Dynamic Content",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "position",
+          "type": "Number",
+          "info": "Ordering of the field relative to other fields",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "active",
+          "type": "Boolean",
+          "info": "If true, this field is available for use",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "regexpForValidation",
+          "type": "String",
+          "info": "Regular expression field only. The validation pattern for a field value to be deemed valid.",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "tag",
+          "type": "String",
+          "info": "Optional for custom field of type \"checkbox\"; not presented otherwise.",
+          "required": false,
+          "wrapName": "user_field"
+        },
+        {
+          "name": "customFieldOptions",
+          "type": "JSON",
+          "info": "Required and presented for a custom field of type \"dropdown\".",
+          "required": false,
+          "wrapName": "user_field"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleUserField",
+      "description": "Get single user field",
+      "method": "GET",
+      "url": "/api/v2/user_fields/{user_field_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userFieldId",
+          "type": "Number",
+          "info": "User field ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "reorderUserField",
+      "description": "Reorder user fields",
+      "method": "PUT",
+      "url": "/api/v2/user_fields/reorder.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userFieldIds",
+          "type": "Array",
+          "info": "List of user field IDs",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createUserFieldOption",
+      "description": "Create user field option",
+      "method": "POST",
+      "url": "/api/v2/user_fields/{user_field_id}/options.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userFieldId",
+          "type": "Number",
+          "info": "User field ID",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "Option name",
+          "required": true,
+          "wrapName": "custom_field_option"
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "info": "Option value",
+          "required": true,
+          "wrapName": "custom_field_option"
+        },
+        {
+          "name": "position",
+          "type": "Number",
+          "info": "Option position",
+          "required": true,
+          "wrapName": "custom_field_option"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateUserFieldOption",
+      "description": "Update user field option",
+      "method": "POST",
+      "url": "/api/v2/user_fields/{user_field_id}/options.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userFieldId",
+          "type": "Number",
+          "info": "User field ID",
+          "required": true
+        },
+        {
+          "name": "userFieldOptionId",
+          "type": "Number",
+          "info": "User field option ID",
+          "required": true,
+          "vendorName": "id",
+          "wrapName": "custom_field_option"
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "Option name",
+          "required": false,
+          "wrapName": "custom_field_option"
+        },
+        {
+          "name": "value",
+          "type": "String",
+          "info": "Option value",
+          "required": false,
+          "wrapName": "custom_field_option"
+        },
+        {
+          "name": "position",
+          "type": "Number",
+          "info": "Option position",
+          "required": false,
+          "wrapName": "custom_field_option"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUserFieldOptions",
+      "description": "Get list of user field options",
+      "method": "GET",
+      "url": "/api/v2/user_fields/{user_field_id}/options.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userFieldId",
+          "type": "Number",
+          "info": "User field ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUserFieldOption",
+      "description": "Get single user field option",
+      "method": "GET",
+      "url": "/api/v2/user_fields/{user_field_id}/options/{user_field_option_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userFieldId",
+          "type": "Number",
+          "info": "User field ID",
+          "required": true
+        },
+        {
+          "name": "userFieldOptionId",
+          "type": "Number",
+          "info": "User field option ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteUserFieldOption",
+      "description": "Delete user field option",
+      "method": "DELETE",
+      "url": "/api/v2/user_fields/{user_field_id}/options/{user_field_option_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userFieldId",
+          "type": "Number",
+          "info": "User field ID",
+          "required": true
+        },
+        {
+          "name": "userFieldOptionId",
+          "type": "Number",
+          "info": "User field option ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteUserField",
+      "description": "Delete user field",
+      "method": "DELETE",
+      "url": "/api/v2/user_fields/{user_field_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userFieldId",
+          "type": "Number",
+          "info": "User field ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "uploadAppPackage",
+      "description": "Uploads a new app package to Zendesk Support.",
+      "method": "POST",
+      "url": "/api/v2/apps/uploads.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "uploadedData",
+          "type": "File",
+          "info": "Zip file",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getJobStatus",
+      "description": "Gets the application build job status. You must provide the job id returned when the job was created.",
+      "method": "GET",
+      "url": "/api/v2/apps/job_statuses/{job_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "jobId",
+          "type": "Number",
+          "info": "Job ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createApp",
+      "description": "Adds a build of a new app to the job queue.",
+      "method": "POST",
+      "url": "/api/v2/apps.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "Name of new app",
+          "required": true
+        },
+        {
+          "name": "shortDescription",
+          "type": "String",
+          "info": "Description",
+          "required": true
+        },
+        {
+          "name": "uploadId",
+          "type": "Number",
+          "info": "Upload package ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateApp",
+      "description": "Adds a build of a new app to the job queue.",
+      "method": "PUT",
+      "url": "/api/v2/apps/{app_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "appId",
+          "type": "Number",
+          "info": "App ID",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "Name of new app",
+          "required": false
+        },
+        {
+          "name": "shortDescription",
+          "type": "String",
+          "info": "Description",
+          "required": false
+        },
+        {
+          "name": "uploadId",
+          "type": "Number",
+          "info": "Upload package ID",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getAppInfo",
+      "description": "Retrieves information about the specified app accessible to the current user and account.",
+      "method": "GET",
+      "url": "/api/v2/apps/{app_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "appId",
+          "type": "Number",
+          "info": "App ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getAppPublicKey",
+      "description": "Reveals the app's public key in PEM format. You can use it to verify that certain requests from the app are legitimate.",
+      "method": "GET",
+      "url": "/api/v2/apps/{app_id}/public_key.pem",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "appId",
+          "type": "Number",
+          "info": "App ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getOwnedApps",
+      "description": "Lists apps owned by the current account.",
+      "method": "GET",
+      "url": "/api/v2/apps/owned.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getAllApps",
+      "description": "Lists all private and public apps, including Marketplace apps.",
+      "method": "GET",
+      "url": "/api/v2/apps.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "sendNotificationToApp",
+      "description": "Sends messages to currently open instances of an app. The messages cause a notification event to fire in the app. See Notification events in the ZAF v1 docs. For example, you could send a message to all signed-in agents telling them to take the day off. Note: When developing with the Zendesk App Tools, you can send messages to your unpublished app by setting the app_id parameter to 0.",
+      "method": "POST",
+      "url": "/api/v2/apps/notify.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "appId",
+          "type": "Number",
+          "info": "The id of the app you want to send the message to",
+          "required": true
+        },
+        {
+          "name": "event",
+          "type": "String",
+          "info": "The name of the event you want to fire in your app",
+          "required": true
+        },
+        {
+          "name": "body",
+          "type": "String",
+          "info": "If it's valid JSON, it's passed to your app as a JavaScript object.",
+          "required": false
+        },
+        {
+          "name": "agentId",
+          "type": "Number",
+          "info": "Send the notification to only one agent",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteApp",
+      "description": "Deletes the specified app and removes it from the Manage pages in Zendesk Support.",
+      "method": "DELETE",
+      "url": "/api/v2/apps/{app_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "appId",
+          "type": "Number",
+          "info": "The id of the app you want to send the message to",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getAppInstallations",
+      "description": "Lists all app installations in the account. The enabled property indicates whether or not the installed app is active in the product.",
+      "method": "GET",
+      "url": "/api/v2/apps/installations.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "include",
+          "type": "String",
+          "info": "You can pass app as a parameter to side-load the app object associated with each installation.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "installApp",
+      "description": "Installs an app in the account.",
+      "method": "POST",
+      "url": "/api/v2/apps/installations.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "appId",
+          "type": "Number",
+          "info": "App ID",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "App name",
+          "required": true
+        },
+        {
+          "name": "apiToken",
+          "type": "String",
+          "info": "Api token",
+          "required": true
+        },
+        {
+          "name": "useSsl",
+          "type": "Boolean",
+          "info": "Use SSL",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "showAppInstallation",
+      "description": "Retrieves information about the specified app installation, including the installation settings.",
+      "method": "GET",
+      "url": "/api/v2/apps/installations/{app_installation_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "appInstallationId",
+          "type": "Number",
+          "info": "App installation ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateAppInstallation",
+      "description": "Updates the specified installation.",
+      "method": "PUT",
+      "url": "/api/v2/apps/installations/{app_installation_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "appInstallationId",
+          "type": "Number",
+          "info": "App installation ID",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "App name",
+          "required": false
+        },
+        {
+          "name": "apiToken",
+          "type": "String",
+          "info": "Api token",
+          "required": false
+        },
+        {
+          "name": "useSsl",
+          "type": "Boolean",
+          "info": "Use SSL",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "removeAppInstallation",
+      "description": "Removes an installed app.",
+      "method": "DELETE",
+      "url": "/api/v2/apps/installations/{app_installation_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "appInstallationId",
+          "type": "Number",
+          "info": "App installation ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getRequirementsInstallStatus",
+      "description": "If a job has kicked off to install an app and the app has requirements, this endpoint returns the status of the requirements installation. The job id is supplied in the response to the app installation request.",
+      "method": "GET",
+      "url": "/api/v2/apps/installations/job_statuses/{job_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "jobId",
+          "type": "Number",
+          "info": "Job ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getRequirements",
+      "description": "Lists all app requirements for an installation.",
+      "method": "GET",
+      "url": "/api/v2/apps/installations/{id}/requirements.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "id",
+          "type": "Number",
+          "info": "ID ??",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getLocationInstallations",
+      "description": "List Location Installations",
+      "method": "GET",
+      "url": "/api/v2/apps/location_installations.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "reorderAppInstallations",
+      "description": "Creates or updates the relevant location installation with a specified installation order. When implementing this API in response to a user reordering installations, ensure you throttle your API calls to a reasonable limit.",
+      "method": "POST",
+      "url": "/api/v2/apps/location_installations/reorder.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "installations",
+          "type": "Array",
+          "info": "List of app installation ids",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getLocations",
+      "description": "Returns a list of available locations for Zendesk apps.",
+      "method": "GET",
+      "url": "/api/v2/apps/locations.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleLocation",
+      "description": "Get single location",
+      "method": "GET",
+      "url": "/api/v2/apps/locations/{location_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "locationId",
+          "type": "Number",
+          "info": "Location ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getOauthClients",
+      "description": "List clients",
+      "method": "GET",
+      "url": "/api/v2/oauth/clients.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleOauthClient",
+      "description": "Get single OAuth client",
+      "method": "GET",
+      "url": "/api/v2/oauth/clients/{oauth_client_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "oauthClientId",
+          "type": "Number",
+          "info": "OAuth client ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createOauthClient",
+      "description": "Create oauth client",
+      "method": "POST",
+      "url": "/api/v2/oauth/clients.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "The name of this client",
+          "required": true,
+          "wrapName": "client"
+        },
+        {
+          "name": "identifier",
+          "type": "String",
+          "info": "The unique identifier for this client",
+          "required": true,
+          "wrapName": "client"
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "The id of the admin who created the client",
+          "required": false,
+          "wrapName": "client"
+        },
+        {
+          "name": "company",
+          "type": "String",
+          "info": "Choose a company name to display when users are asked to approve access to your application. The name will help users understand who they are granting access to.",
+          "required": false,
+          "wrapName": "client"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "info": "A short description of your client that is displayed to users when they are considering approving access to your application.",
+          "required": false,
+          "wrapName": "client"
+        },
+        {
+          "name": "redirectUri",
+          "type": "Array",
+          "info": "An array of the valid redirect URIs for this client",
+          "required": false,
+          "wrapName": "client"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createOauthClient",
+      "description": "Create oauth client",
+      "method": "PUT",
+      "url": "/api/v2/oauth/clients/{oauth_clint_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "oauthClientId",
+          "type": "Number",
+          "info": "OAuth client ID",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "String",
+          "info": "The name of this client",
+          "required": false,
+          "wrapName": "client"
+        },
+        {
+          "name": "identifier",
+          "type": "String",
+          "info": "The unique identifier for this client",
+          "required": false,
+          "wrapName": "client"
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "The id of the admin who created the client",
+          "required": false,
+          "wrapName": "client"
+        },
+        {
+          "name": "company",
+          "type": "String",
+          "info": "Choose a company name to display when users are asked to approve access to your application. The name will help users understand who they are granting access to.",
+          "required": false,
+          "wrapName": "client"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "info": "A short description of your client that is displayed to users when they are considering approving access to your application.",
+          "required": false,
+          "wrapName": "client"
+        },
+        {
+          "name": "redirectUri",
+          "type": "Array",
+          "info": "An array of the valid redirect URIs for this client",
+          "required": false,
+          "wrapName": "client"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "generateOauthClientSecret",
+      "description": "Generate OAuth client secret",
+      "method": "PUT",
+      "url": "/api/v2/oauth/clients/{oauth_clint_id}/generate_secret.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "oauthClientId",
+          "type": "Number",
+          "info": "OAuth client ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteOauthClient",
+      "description": "Delete OAuth client",
+      "method": "DELETE",
+      "url": "/api/v2/oauth/clients/{oauth_clint_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "oauthClientId",
+          "type": "Number",
+          "info": "OAuth client ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteOauthClient",
+      "description": "Delete OAuth client",
+      "method": "DELETE",
+      "url": "/api/v2/oauth/clients/{oauth_clint_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "oauthClientId",
+          "type": "Number",
+          "info": "OAuth client ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getOAuthTokens",
+      "description": "Get list of OAuth tokens",
+      "method": "GET",
+      "url": "/api/v2/oauth/tokens.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "showOauthToken",
+      "description": "Show single OAuth token",
+      "method": "GET",
+      "url": "/api/v2/oauth/tokens/{oauth_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "oauthId",
+          "type": "Number",
+          "info": "OAuth ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createOauthToken",
+      "description": "Create OAuth token",
+      "method": "POST",
+      "url": "/api/v2/oauth/tokens.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "clientId",
+          "type": "Number",
+          "info": "The numeric ID of the client this token belongs to",
+          "required": true,
+          "wrapName": "token"
+        },
+        {
+          "name": "scopes",
+          "type": "Array",
+          "info": "List of scopes. users, auditlogs (read only), organizations, hc, apps, triggers, automations, targets, macros, requests, satisfaction_ratings, dynamic_content, any_channel (write only), web_widget (write only). Example: read, write, users:write, tickets:read etc.",
+          "required": true,
+          "wrapName": "token"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "revokeOauthToken",
+      "description": "Revoke OAuth token",
+      "method": "POST",
+      "url": "/api/v2/oauth/tokens/{token_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "tokenId",
+          "type": "Number",
+          "info": "Token ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getAuthorizedGlobalClients",
+      "description": "This returns all the global clients that users on your account have authorized.",
+      "method": "GET",
+      "url": "/api/v2/oauth/global_clients.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getStreamActivities",
+      "description": "Lists activities pertaining to the user performing the request.",
+      "method": "GET",
+      "url": "/api/v2/activities.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "since",
+          "type": "String",
+          "info": "ISO 8601 datetime param. Example: 2013-04-30T16:02:46Z",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleStreamActivity",
+      "description": "Get single stream activity",
+      "method": "GET",
+      "url": "/api/v2/activities/{stream_activity_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "streamActivityId",
+          "type": "Number",
+          "info": "Stream activity ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getBookmarks",
+      "description": "Get list of bookmarks",
+      "method": "GET",
+      "url": "/api/v2/bookmarks.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "createBookmark",
+      "description": "Create a new bookmark",
+      "method": "POST",
+      "url": "/api/v2/bookmarks.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": false,
+          "wrapName": "bookmark"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteBookmark",
+      "description": "Delete bookmark",
+      "method": "DELETE",
+      "url": "/api/v2/bookmarks/{bookmark_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "bookmarkId",
+          "type": "Number",
+          "info": "Bookmark ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "unregisterPushNotificationDevices",
+      "description": "Unregisters the mobile devices that are receiving push notifications. Specify the devices as an array of mobile device tokens.",
+      "method": "POST",
+      "url": "/api/v2/push_notification_devices/destroy_many.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "pushNotificationDevices",
+          "type": "Array",
+          "info": "List of tokens",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getResourceCollections",
+      "description": "Lists all resource collections that have been created.",
+      "method": "GET",
+      "url": "/api/v2/resource_collections.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "pushNotificationDevices",
+          "type": "Array",
+          "info": "List of tokens",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getSingleResourceCollection",
+      "description": "Retrieves details of a specified resource collection.",
+      "method": "GET",
+      "url": "/api/v2/resource_collections/{resource_collection_id}.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "resourceCollectionId",
+          "type": "Number",
+          "info": "Resource collection ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getPopularTags",
+      "description": "Lists the most popular recent tags in decreasing popularity",
+      "method": "GET",
+      "url": "/api/v2/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTicketTags",
+      "description": "Get ticket's tags",
+      "method": "GET",
+      "url": "/api/v2/tickets/{ticket_id}/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTopicTags",
+      "description": "Get topic's tags",
+      "method": "GET",
+      "url": "/api/v2/topics/{topic_id}/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "topicId",
+          "type": "Number",
+          "info": "Topic ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getOrganizationTags",
+      "description": "Get organization's tags",
+      "method": "GET",
+      "url": "/api/v2/organizations/{organization_id}/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "organizationId",
+          "type": "Number",
+          "info": "Organization ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getUserTags",
+      "description": "Get user's tags",
+      "method": "GET",
+      "url": "/api/v2/users/{user_id}/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "autocompleteTags",
+      "description": "Returns an array of registered and recent tag names that start with the specified name. The name must be at least 2 characters in length.",
+      "method": "GET",
+      "url": "/api/v2/autocomplete/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "query",
+          "type": "String",
+          "info": "Query to find",
+          "required": true,
+          "vendorName": "name"
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "setTicketTags",
+      "description": "Set ticket's tags",
+      "method": "POST",
+      "url": "/api/v2/tickets/{ticket_id}/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        },
+        {
+          "name": "tags",
+          "type": "Array",
+          "info": "List of tags",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "setTopicTags",
+      "description": "Set topic's tags",
+      "method": "POST",
+      "url": "/api/v2/topics/{topic_id}/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "topicId",
+          "type": "Number",
+          "info": "Topic ID",
+          "required": true
+        },
+        {
+          "name": "tags",
+          "type": "Array",
+          "info": "List of tags",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "setOrganizationTags",
+      "description": "Set organization's tags",
+      "method": "POST",
+      "url": "/api/v2/organizations/{organization_id}/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "organizationId",
+          "type": "Number",
+          "info": "Organization ID",
+          "required": true
+        },
+        {
+          "name": "tags",
+          "type": "Array",
+          "info": "List of tags",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "setUserTags",
+      "description": "Set user's tags",
+      "method": "POST",
+      "url": "/api/v2/users/{user_id}/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "tags",
+          "type": "Array",
+          "info": "List of tags",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "addTicketTags",
+      "description": "Add ticket's tags",
+      "method": "POST",
+      "url": "/api/v2/tickets/{ticket_id}/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        },
+        {
+          "name": "tags",
+          "type": "Array",
+          "info": "List of tags",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "addTopicTags",
+      "description": "Add topic's tags",
+      "method": "POST",
+      "url": "/api/v2/topics/{topic_id}/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "topicId",
+          "type": "Number",
+          "info": "Topic ID",
+          "required": true
+        },
+        {
+          "name": "tags",
+          "type": "Array",
+          "info": "List of tags",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "addOrganizationTags",
+      "description": "Add organization's tags",
+      "method": "POST",
+      "url": "/api/v2/organizations/{organization_id}/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "organizationId",
+          "type": "Number",
+          "info": "Organization ID",
+          "required": true
+        },
+        {
+          "name": "tags",
+          "type": "Array",
+          "info": "List of tags",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "addUserTags",
+      "description": "Add user's tags",
+      "method": "POST",
+      "url": "/api/v2/users/{user_id}/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        },
+        {
+          "name": "tags",
+          "type": "Array",
+          "info": "List of tags",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteTicketTags",
+      "description": "Delete ticket's tags",
+      "method": "DELETE",
+      "url": "/api/v2/tickets/{ticket_id}/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "ticketId",
+          "type": "Number",
+          "info": "Ticket ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteTopicTags",
+      "description": "Delete topic's tags",
+      "method": "DELETE",
+      "url": "/api/v2/topics/{topic_id}/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "topicId",
+          "type": "Number",
+          "info": "Topic ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteOrganizationTags",
+      "description": "Delete organization's tags",
+      "method": "DELETE",
+      "url": "/api/v2/organizations/{organization_id}/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "organizationId",
+          "type": "Number",
+          "info": "Organization ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteUserTags",
+      "description": "Delete user's tags",
+      "method": "DELETE",
+      "url": "/api/v2/users/{user_id}/tags.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "User ID",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getMonitoredTwitterHandles",
+      "description": "Listing Monitored Twitter Handles",
+      "method": "GET",
+      "url": "/api/v2/channels/twitter/monitored_twitter_handles.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getTwicketStatus",
+      "description": "Get single Monitored Twitter Handle",
+      "method": "GET",
+      "url": "/api/v2/channels/twitter/tickets/{id}/statuses.json",
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "commentId",
+          "type": "Number",
+          "info": "Zendesk Support comment id",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
     }
   ]
 }
