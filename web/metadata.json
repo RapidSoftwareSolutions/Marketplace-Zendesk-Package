@@ -11146,7 +11146,7 @@
         },
         {
           "name": "ticketFormId",
-          "type ": "Number",
+          "type": "Number",
           "info": "ticket form ID",
           "required": true
         },
@@ -11252,7 +11252,7 @@
         },
         {
           "name": "ticketFormIds",
-          "type ": "Array",
+          "type": "Array",
           "info": "List of ticket form IDs",
           "required": true
         }
@@ -11288,7 +11288,7 @@
         },
         {
           "name": "ticketFormId",
-          "type ": "Number",
+          "type": "Number",
           "info": "Ticket form ID",
           "required": true
         }
@@ -11324,7 +11324,7 @@
         },
         {
           "name": "ticketFormId",
-          "type ": "Number",
+          "type": "Number",
           "info": "Ticket form ID",
           "required": true
         }
@@ -11445,7 +11445,7 @@
         {
           "name": "visibleInPortal",
           "type": "Boolean",
-          "info": "	Whether this field is available to end users",
+          "info": "Whether this field is available to end users",
           "required": false,
           "wrapName": "ticket_field"
         },
