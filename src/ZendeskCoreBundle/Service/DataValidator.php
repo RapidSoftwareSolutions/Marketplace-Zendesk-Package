@@ -209,7 +209,7 @@ class DataValidator
             if (json_last_error()) {
                 $this->parsedFieldError[] = $paramData['name'];
             } else {
-                $this->setSingleValidData($paramData, $data['args'][$paramData['name']], $vendorName);
+                $this->setSingleValidData($paramData, $data, $vendorName);
             }
         }
         else {

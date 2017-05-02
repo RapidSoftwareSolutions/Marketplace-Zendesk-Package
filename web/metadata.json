@@ -10455,7 +10455,7 @@
           "name": "remoteSubdomain",
           "type": "String",
           "info": "Subdomain of the remote account or null if not associated with an account",
-          "required": false,
+          "required": true,
           "wrapName": "sharing_agreement"
         }
       ],
@@ -10903,12 +10903,6 @@
           "type": "Number",
           "info": "Support adress ID",
           "required": true
-        },
-        {
-          "name": "type",
-          "type": "String",
-          "info": "The endpoint takes only this parametr: \"forwarding\"",
-          "required": false
         }
       ],
       "callbacks": [
@@ -11472,7 +11466,7 @@
         },
         {
           "name": "customFieldOptions",
-          "type": "Array",
+          "type": "JSON",
           "info": "Required and presented for a ticket field of type \"tagger\". Example: [\"name\": \"Pineapples\", \"value\": 3 }, {...}]",
           "required": false,
           "wrapName": "ticket_field"
@@ -11781,7 +11775,7 @@
           "name": "position",
           "type": "Number",
           "info": "Position of option",
-          "required": true,
+          "required": false,
           "wrapName": "custom_field_option"
         }
       ],
@@ -12345,7 +12339,7 @@
           "name": "position",
           "type": "Number",
           "info": "Option position",
-          "required": true,
+          "required": false,
           "wrapName": "custom_field_option"
         }
       ],
