@@ -417,9 +417,7 @@
           "required": true,
           "structure": [
             {
-              "name": "queryString",
-              "type": "String",
-              "info": "The query string"
+              "type": "String"
             }
           ]
         }
