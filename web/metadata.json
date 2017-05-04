@@ -414,7 +414,14 @@
           "name": "ticketIds",
           "type": "Array",
           "info": "Comma-separated list of ticket ID",
-          "required": true
+          "required": true,
+          "structure": [
+            {
+              "name": "queryString",
+              "type": "String",
+              "info": "The query string"
+            }
+          ]
         }
       ],
       "callbacks": [
