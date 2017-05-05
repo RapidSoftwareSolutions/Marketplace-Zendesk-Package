@@ -14525,7 +14525,7 @@
     {
       "name": "addTicketTags",
       "description": "Add ticket's tags",
-      "method": "POST",
+      "method": "PUT",
       "url": "/api/v2/tickets/{ticket_id}/tags.json",
       "args": [
         {
@@ -14567,7 +14567,7 @@
     {
       "name": "addTopicTags",
       "description": "Add topic's tags",
-      "method": "POST",
+      "method": "PUT",
       "url": "/api/v2/topics/{topic_id}/tags.json",
       "args": [
         {
@@ -14609,7 +14609,7 @@
     {
       "name": "addOrganizationTags",
       "description": "Add organization's tags",
-      "method": "POST",
+      "method": "PUT",
       "url": "/api/v2/organizations/{organization_id}/tags.json",
       "args": [
         {
@@ -14651,7 +14651,7 @@
     {
       "name": "addUserTags",
       "description": "Add user's tags",
-      "method": "POST",
+      "method": "PUT",
       "url": "/api/v2/users/{user_id}/tags.json",
       "args": [
         {
