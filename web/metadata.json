@@ -861,17 +861,11 @@
           "required": true
         },
         {
-          "name": "ticketId",
-          "type": "Number",
-          "info": "Ticket ID",
-          "required": true
-        },
-        {
           "name": "params",
           "type": "JSON",
           "info": "Json file with params to update. Example [param1, param2]. Each param is object like params in updateSingleTicket",
           "required": true,
-          "wrapName": "tickets"
+          "vendorName": "tickets"
         }
       ],
       "callbacks": [
