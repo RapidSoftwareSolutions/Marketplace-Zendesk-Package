@@ -13535,10 +13535,10 @@
       ]
     },
     {
-      "name": "createOauthClient",
-      "description": "Create oauth client",
+      "name": "updateOauthClient",
+      "description": "Update oauth client",
       "method": "PUT",
-      "url": "/api/v2/oauth/clients/{oauth_clint_id}.json",
+      "url": "/api/v2/oauth/clients/{oauth_client_id}.json",
       "args": [
         {
           "name": "accessToken",
@@ -13616,7 +13616,7 @@
       "name": "generateOauthClientSecret",
       "description": "Generate OAuth client secret",
       "method": "PUT",
-      "url": "/api/v2/oauth/clients/{oauth_clint_id}/generate_secret.json",
+      "url": "/api/v2/oauth/clients/{oauth_client_id}/generate_secret.json",
       "args": [
         {
           "name": "accessToken",
@@ -13652,43 +13652,7 @@
       "name": "deleteOauthClient",
       "description": "Delete OAuth client",
       "method": "DELETE",
-      "url": "/api/v2/oauth/clients/{oauth_clint_id}.json",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "String",
-          "info": "Access Token",
-          "required": true
-        },
-        {
-          "name": "domain",
-          "type": "String",
-          "info": "Your domain in Zendesk system.",
-          "required": true
-        },
-        {
-          "name": "oauthClientId",
-          "type": "Number",
-          "info": "OAuth client ID",
-          "required": true
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "deleteOauthClient",
-      "description": "Delete OAuth client",
-      "method": "DELETE",
-      "url": "/api/v2/oauth/clients/{oauth_clint_id}.json",
+      "url": "/api/v2/oauth/clients/{oauth_client_id}.json",
       "args": [
         {
           "name": "accessToken",
