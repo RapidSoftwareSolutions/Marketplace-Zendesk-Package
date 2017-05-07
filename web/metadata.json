@@ -6167,7 +6167,7 @@
           "required": true
         },
         {
-          "name": "organizationId",
+          "name": "organizationIds",
           "type": "Array",
           "info": "List of organization ID",
           "required": true
@@ -6210,7 +6210,7 @@
           "required": true
         },
         {
-          "name": "organizationExternalId",
+          "name": "organizationExternalIds",
           "type": "Array",
           "info": "List of organization external ID",
           "required": true
