@@ -6134,7 +6134,7 @@
           "type": "JSON",
           "info": "Param to be updated to all users, which ids send. Example:  [{ \"id\": 10071, \"name\": \"New Name\", \"organization_id\": 1 },{ \"external_id\": \"123\", \"verified\": true }]. In each element in array required id or externalId.",
           "required": true,
-          "wrapName": "users"
+          "vendorName": "users"
         }
       ],
       "callbacks": [
