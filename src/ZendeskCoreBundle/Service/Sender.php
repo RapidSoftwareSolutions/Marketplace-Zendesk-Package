@@ -18,7 +18,9 @@ class Sender
     public function send($url, $method, $data, $headers, $type)
     {
         try {
-            $client = new Client(['verify' => false]);
+            $client = new Client(['defaults' => [
+                'verify' => false
+            ]]);
             /** @var ResponseInterface $vendorResponse */
             $vendorResponse = $client->$method($url, [
                 'headers' => $headers,
