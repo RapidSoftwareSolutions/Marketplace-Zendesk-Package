@@ -39,7 +39,7 @@ Returns a stream of changes that occurred on tickets. Each event is tied to an u
 | startTime  | Number| Unix time. Example: 1491782400
 
 ## ZendeskCore.getIncrementalOrganizations
-Method description
+Returns the organizations that changed since the start time.
 
 | Field      | Type  | Description
 |------------|-------|----------
@@ -48,7 +48,7 @@ Method description
 | startTime  | Number| Unix time. Example: 1491782400
 
 ## ZendeskCore.getIncrementalUsers
-Method description
+Returns the users that changed since the start time.
 
 | Field      | Type  | Description
 |------------|-------|----------
@@ -572,7 +572,7 @@ Get list of solved request
 | sortOrder  | String| One of asc, desc. Defaults to asc
 
 ## ZendeskCore.getCcdRequestList
-Method description
+Get request list
 
 | Field      | Type  | Description
 |------------|-------|----------
@@ -724,7 +724,7 @@ Get group list of memberships
 | groupId    | Number| Group ID
 
 ## ZendeskCore.getAssignableMemberships
-Method description
+List Assignable Memberships
 
 | Field      | Type  | Description
 |------------|-------|----------
@@ -732,7 +732,7 @@ Method description
 | domain     | String| Your domain in Zendesk system.
 
 ## ZendeskCore.getGroupAssignableMemberships
-Method description
+List Assignable Memberships
 
 | Field      | Type  | Description
 |------------|-------|----------
@@ -3004,7 +3004,7 @@ Lists all app requirements for an installation.
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| id         | Number| ID ??
+| id         | Number| ID
 
 ## ZendeskCore.getLocationInstallations
 List Location Installations

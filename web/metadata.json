@@ -142,7 +142,7 @@
     },
     {
       "name": "getIncrementalOrganizations",
-      "description": "",
+      "description": "Returns the organizations that changed since the start time.",
       "method": "GET",
       "url": "/api/v2/incremental/organizations.json",
       "args": [
@@ -178,7 +178,7 @@
     },
     {
       "name": "getIncrementalUsers",
-      "description": "",
+      "description": "Returns the users that changed since the start time.",
       "method": "GET",
       "url": "/api/v2/incremental/users.json",
       "args": [
@@ -2523,7 +2523,7 @@
     },
     {
       "name": "getCcdRequestList",
-      "description": "",
+      "description": "Get request list",
       "method": "GET",
       "url": "/api/v2/requests/ccd.json",
       "args": [
@@ -3149,7 +3149,7 @@
     },
     {
       "name": "getAssignableMemberships",
-      "description": "",
+      "description": "List Assignable Memberships",
       "method": "GET",
       "url": "/api/v2/group_memberships/assignable.json",
       "args": [
@@ -3179,7 +3179,7 @@
     },
     {
       "name": "getGroupAssignableMemberships",
-      "description": "",
+      "description": "List Assignable Memberships",
       "method": "GET",
       "url": "/api/v2/groups/{group_id}/memberships/assignable.json",
       "args": [
@@ -13243,7 +13243,7 @@
         {
           "name": "id",
           "type": "Number",
-          "info": "ID ??",
+          "info": "ID",
           "required": true
         }
       ],
