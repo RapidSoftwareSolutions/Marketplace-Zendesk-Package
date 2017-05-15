@@ -6134,7 +6134,7 @@
           "type": "JSON",
           "info": "Param to be updated to all users, which ids send. Example:  [{ \"id\": 10071, \"name\": \"New Name\", \"organization_id\": 1 },{ \"external_id\": \"123\", \"verified\": true }]. In each element in array required id or externalId.",
           "required": true,
-          "wrapName": "users"
+          "vendorName": "users"
         }
       ],
       "callbacks": [
@@ -6167,7 +6167,7 @@
           "required": true
         },
         {
-          "name": "organizationId",
+          "name": "organizationIds",
           "type": "Array",
           "info": "List of organization ID",
           "required": true
@@ -6210,7 +6210,7 @@
           "required": true
         },
         {
-          "name": "organizationExternalId",
+          "name": "organizationExternalIds",
           "type": "Array",
           "info": "List of organization external ID",
           "required": true
@@ -6257,7 +6257,7 @@
           "type": "JSON",
           "info": "Param to be updated to all users, which ids send. Example: [{\"id\": 1, \"notes\": \"Something interesting\" },{ \"external_id\": \"2\", \"notes\": \"Something even more interesting\"}]. In each element in array required id or externalId.",
           "required": true,
-          "wrapName": "organizations"
+          "vendorName": "organizations"
         }
       ],
       "callbacks": [

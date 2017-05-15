@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: rapidapi
- * Date: 14.04.17
- * Time: 13:56
- */
 
 namespace ZendeskCoreBundle\Service;
 
@@ -18,9 +12,7 @@ class Sender
     public function send($url, $method, $data, $headers, $type)
     {
         try {
-            $client = new Client(['defaults' => [
-                'verify' => false
-            ]]);
+            $client = new Client(['verify' => false]);
             /** @var ResponseInterface $vendorResponse */
             $vendorResponse = $client->$method($url, [
                 'headers' => $headers,
