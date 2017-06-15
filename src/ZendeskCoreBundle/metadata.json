@@ -23,8 +23,10 @@
     {
       "name": "getAccessToken",
       "description": "Get AccessToken",
-      "method": "POST",
-      "url": "/oauth/tokens",
+      "custom": {
+        "method": "POST",
+        "url": "/oauth/tokens"
+      },
       "args": [
         {
           "name": "clientId",
@@ -71,8 +73,10 @@
     {
       "name": "getIncrementalTickets",
       "description": "Returns the tickets that changed since the start time. The results include tickets that were updated by the system. The endpoint can return records where the updated_at time is earlier than the start_date time. The reason is that the updated_at value is updated only if the ticket update generates a ticket event. Otherwise, the timestamp of the previous update carries over.",
-      "method": "GET",
-      "url": "/api/v2/incremental/tickets.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/incremental/tickets.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -107,8 +111,10 @@
     {
       "name": "getIncrementalTicketsEvents",
       "description": "Returns a stream of changes that occurred on tickets. Each event is tied to an update on a ticket and contains all the fields that were updated in that change. You can include comments in the event stream by using the comment_events sideload. See Sideloading below. If you don't specify the sideload, any comment present in the ticket update is described only by Boolean comment_present and comment_public object properties in the event's child_events array. The comment itself is not included.",
-      "method": "GET",
-      "url": "/api/v2/incremental/ticket_events.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/incremental/ticket_events.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -124,9 +130,18 @@
         },
         {
           "name": "startTime",
-          "type": "Number",
+          "type": "DatePicker",
           "info": "Unix time. Example: 1491782400",
-          "required": true
+          "required": true,
+          "custom": {
+            "dateTime": {
+              "fromFormat": [
+                "unixtime",
+                "Y-m-d H:i:s"
+              ],
+              "toFormat": "unixtime"
+            }
+          }
         }
       ],
       "callbacks": [
@@ -143,8 +158,10 @@
     {
       "name": "getIncrementalOrganizations",
       "description": "Returns the organizations that changed since the start time.",
-      "method": "GET",
-      "url": "/api/v2/incremental/organizations.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/incremental/organizations.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -160,9 +177,18 @@
         },
         {
           "name": "startTime",
-          "type": "Number",
+          "type": "DatePicker",
           "info": "Unix time. Example: 1491782400",
-          "required": true
+          "required": true,
+          "custom": {
+            "dateTime": {
+              "fromFormat": [
+                "unixtime",
+                "Y-m-d H:i:s"
+              ],
+              "toFormat": "unixtime"
+            }
+          }
         }
       ],
       "callbacks": [
@@ -179,8 +205,10 @@
     {
       "name": "getIncrementalUsers",
       "description": "Returns the users that changed since the start time.",
-      "method": "GET",
-      "url": "/api/v2/incremental/users.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/incremental/users.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -196,9 +224,18 @@
         },
         {
           "name": "startTime",
-          "type": "Number",
+          "type": "DatePicker",
           "info": "Unix time. Example: 1491782400",
-          "required": true
+          "required": true,
+          "custom": {
+            "dateTime": {
+              "fromFormat": [
+                "unixtime",
+                "Y-m-d H:i:s"
+              ],
+              "toFormat": "unixtime"
+            }
+          }
         }
       ],
       "callbacks": [
@@ -215,8 +252,10 @@
     {
       "name": "getJobStatuses",
       "description": "This shows the current statuses for background jobs running.",
-      "method": "GET",
-      "url": "/api/v2/job_statuses.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/job_statuses.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -245,8 +284,10 @@
     {
       "name": "getSingleJobStatus",
       "description": "Get Job bi ID",
-      "method": "GET",
-      "url": "/api/v2/job_statuses/{job_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/job_statuses/{job_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -281,8 +322,10 @@
     {
       "name": "getJobStatusesByIds",
       "description": "Get many Job by IDs",
-      "method": "GET",
-      "url": "/api/v2/job_statuses/show_many.json?ids={job_ids}",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/job_statuses/show_many.json?ids={job_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -298,9 +341,18 @@
         },
         {
           "name": "jobIds",
-          "type": "Array",
+          "type": "List",
           "info": "List of job status ids.",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "jobId",
+            "type": "String",
+            "info": "Job ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         }
       ],
       "callbacks": [
@@ -317,8 +369,10 @@
     {
       "name": "getTickets",
       "description": "Tickets are ordered chronologically by created date, from oldest to newest. The first ticket listed may not be the absolute oldest ticket in your account due to ticket archiving. To get a list of all tickets in your account, use the Incremental Ticket Export endpoint.",
-      "method": "GET",
-      "url": "/api/v2/tickets.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/tickets.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -334,13 +388,30 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "assignee",
+            "assignee.name",
+            "created_at",
+            "group",
+            "id",
+            "locale",
+            "requester",
+            "requester.name",
+            "status",
+            "subject",
+            "updated_at"
+          ],
           "info": "Possible values are assignee, assignee.name, created_at, group, id, locale, requester, requester.name, status, subject, updated_at",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc, desc. Defaults to asc",
           "required": false
         }
@@ -359,8 +430,10 @@
     {
       "name": "getSingleTicket",
       "description": "Returns a number of ticket properties, but not the ticket comments. To get the comments, use List Comments.",
-      "method": "GET",
-      "url": "/api/v2/tickets/{ticket_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/tickets/{ticket_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -395,8 +468,10 @@
     {
       "name": "getTicketsByIds",
       "description": "Accepts a list of ticket ids to return. This endpoint will return up to 100 tickets records.",
-      "method": "GET",
-      "url": "/api/v2/tickets/show_many.json?ids={ticket_ids}",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/tickets/show_many.json?ids={ticket_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -412,14 +487,18 @@
         },
         {
           "name": "ticketIds",
-          "type": "Array",
-          "info": "Comma-separated list of ticket ID",
+          "type": "List",
+          "info": "List of ticket ID",
           "required": true,
-          "structure": [
-            {
-              "type": "String"
-            }
-          ]
+          "structure": {
+            "name": "ticketId",
+            "type": "String",
+            "info": "Ticket ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         }
       ],
       "callbacks": [
@@ -436,8 +515,10 @@
     {
       "name": "createSingleTicket",
       "description": "Create ticket",
-      "method": "POST",
-      "url": "/api/v2/tickets.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/tickets.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -456,133 +537,198 @@
           "type": "String",
           "info": "A comment object that describes the problem, incident, question, or task. todo JSON",
           "required": true,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "subject",
           "type": "String",
           "info": "The subject of the ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "requesterId",
           "type": "Number",
           "info": "The numeric ID of the user asking for support through the ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "submitterId",
           "type": "Number",
           "info": "The numeric ID of the user submitting the ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "assigneeId",
           "type": "Number",
           "info": "The numeric ID of the agent to assign the ticket to",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "groupId",
           "type": "Number",
           "info": "The numeric ID of the group to assign the ticket to",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "collaboratorIds",
           "type": "Array",
           "info": "An array of the numeric IDs of agents or end-users to CC on the ticket. An email notification is sent to them when the ticket is created",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "collaborators",
-          "type": "Array",
+          "type": "JSON",
           "info": "An array of numeric IDs, emails, or objects containing name and email properties. An email notification is sent to them when the ticket is created. Example: collaborators: [ 562, someone@example.com, { name: Someone Else, email: else@example.com } ]",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "problem",
+            "incident",
+            "question",
+            "task"
+          ],
           "info": "Allowed values are problem, incident, question, or task",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "priority",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "urgent",
+            "high",
+            "normal",
+            "low"
+          ],
           "info": "Allowed values are urgent, high, normal, or low",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "status",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "new",
+            "open",
+            "pending",
+            "hold",
+            "solved",
+            "closed"
+          ],
           "info": "Allowed values are new, open, pending, hold, solved or closed. Is set to new if status is not specified",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "tags",
-          "type": "Array",
-          "info": "Comma-separated of tags to add to the ticket",
+          "type": "List",
+          "info": "List of tags to add to the ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "externalId",
           "type": "Number",
           "info": "An ID to link Zendesk Support tickets to local records",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "forumTopicId",
           "type": "Number",
           "info": "The numeric ID of the topic the ticket originated from, if any",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "problemId",
           "type": "Number",
           "info": "For tickets of type 'incident', the numeric ID of the problem the incident is linked to, if any",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "dueAt",
           "type": "String",
           "info": "For tickets of type 'task', the due date of the task. Accepts the ISO 8601 date format (yyyy-mm-dd)",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket",
+            "dateTime": {
+              "fromFormat": [
+                "Y-m-d",
+                "Y-m-d H:i:s"
+              ],
+              "toFormat": "Y-m-d"
+            }
+          }
         },
         {
           "name": "ticketFormId",
           "type": "Number",
           "info": "(Enterprise only) The id of the ticket form to render for the ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "customFields",
-          "type": "Array",
+          "type": "JSON",
           "info": "An array of the custom fields of the ticket. See below for details",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "viaFollowupSourceId",
           "type": "String",
           "info": "The id of a closed ticket for a follow-up ticket.",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         }
       ],
       "callbacks": [
@@ -599,8 +745,10 @@
     {
       "name": "createTickets",
       "description": "Create many tickets from JSON file",
-      "method": "POST",
-      "url": "/api/v2/tickets/create_many.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/tickets/create_many.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -616,11 +764,18 @@
         },
         {
           "name": "tickets",
-          "type": "File",
-          "info": "JSON file contents array of tickets data. Example [{ticketData1}, {ticketData2}]. TicketData the same as when creating one ticket.",
+          "type": "List",
+          "info": "JSON contents array of tickets data. Example [{ticketData1}, {ticketData2}]. TicketData the same as when creating one ticket.",
           "required": true,
-          "wrapName": "tickets",
-          "jsonParse": true
+          "structure": {
+            "name": "ticketData",
+            "type": "JSON",
+            "info": "Ticket Data",
+            "required": true
+          },
+          "custom": {
+            "wrapName": "tickets"
+          }
         }
       ],
       "callbacks": [
@@ -637,8 +792,10 @@
     {
       "name": "updateSingleTicket",
       "description": "Update single ticket",
-      "method": "PUT",
-      "url": "/api/v2/tickets/{ticket_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/tickets/{ticket_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -663,172 +820,252 @@
           "type": "String",
           "info": "Comment",
           "required": false,
-          "vendorName": "body",
-          "wrapName": "ticket.comment"
+          "custom": {
+            "vendorName": "body",
+            "wrapName": "ticket.comment"
+          }
         },
         {
           "name": "commentHtmlBody",
           "type": "String",
           "info": "HTML code of comment",
           "required": false,
-          "vendorName": "html_body",
-          "wrapName": "ticket.comment"
+          "custom": {
+            "vendorName": "html_body",
+            "wrapName": "ticket.comment"
+          }
         },
         {
           "name": "commentAuthorId",
           "type": "Number",
           "info": "Author ID of comment",
           "required": false,
-          "vendorName": "author_id",
-          "wrapName": "ticket.comment"
+          "custom": {
+            "vendorName": "author_id",
+            "wrapName": "ticket.comment"
+          }
         },
         {
           "name": "commentShow",
           "type": "Boolean",
           "info": "False - make comment private",
           "required": false,
-          "vendorName": "public",
-          "wrapName": "ticket.comment"
+          "custom": {
+            "vendorName": "public",
+            "wrapName": "ticket.comment"
+          }
         },
         {
           "name": "externalId",
           "type": "String",
           "info": "An id you can use to link Zendesk Support tickets to local records",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "problem",
+            "incident",
+            "question",
+            "task"
+          ],
           "info": "The type of this ticket, i.e. \"problem\", \"incident\", \"question\" or \"task\"",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "subject",
           "type": "String",
           "info": "The value of the subject field for this ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "rawSubject",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"subject\" value, if not. See Dynamic Content",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "priority",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "urgent",
+            "high",
+            "normal",
+            "low"
+          ],
           "info": "Priority, defines the urgency with which the ticket should be addressed: \"urgent\", \"high\", \"normal\", \"low\"",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "status",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "new",
+            "open",
+            "pending",
+            "hold",
+            "solved",
+            "closed"
+          ],
           "info": "The state of the ticket, \"new\", \"open\", \"pending\", \"hold\", \"solved\", \"closed\"",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "recipient",
           "type": "String",
           "info": "The original recipient e-mail address of the ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "requesterId",
           "type": "Number",
           "info": "The user who requested this ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "submitterId",
           "type": "Number",
           "info": "The user who submitted the ticket; The submitter always becomes the author of the first comment on the ticket.",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "assigneeId",
           "type": "Number",
           "info": "What agent is currently assigned to the ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "organizationId",
           "type": "Number",
           "info": "The organization of the requester. You can only specify the ID of an organization associated with the requester. See Organization Memberships",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "groupId",
           "type": "Number",
           "info": "The group this ticket is assigned to",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "collaboratorIds",
-          "type": "Array",
+          "type": "JSON",
           "info": "Who are currently CC'ed on the ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "forumTopicId",
           "type": "Number",
           "info": "The topic this ticket originated from, if any",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "problemId",
           "type": "Number",
           "info": "The problem this incident is linked to, if any",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "dueAt",
-          "type": "String",
+          "type": "DatePicker",
           "info": "If this is a ticket of type \"task\" it has a due date. Due date format uses ISO 8601 format.",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket",
+            "dateTime": {
+              "fromFormat": [
+                "Y-m-d H:i:s"
+              ],
+              "toFormat": "DATE_ISO8601"
+            }
+          }
         },
         {
           "name": "tags",
-          "type": "Array",
+          "type": "List",
           "info": "The array of tags applied to this ticket",
           "required": false,
-          "wrapName": "ticket"
+          "structure": {
+            "name": "tag",
+            "type": "String",
+            "info": "Tag",
+            "required": false
+          },
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "customFields",
-          "type": "Array",
+          "type": "JSON",
           "info": "The custom fields of the ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "ticketFormId",
           "type": "Number",
           "info": "The id of the ticket form to render for this ticket - only applicable for enterprise accounts",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "brandId",
           "type": "Number",
           "info": "The id of the brand this ticket is associated with - only applicable for enterprise accounts",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         }
       ],
       "callbacks": [
@@ -845,8 +1082,10 @@
     {
       "name": "updateTickets",
       "description": "Update tickets by its id (in each obj in list)",
-      "method": "PUT",
-      "url": "/api/v2/tickets/update_many.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/tickets/update_many.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -862,10 +1101,18 @@
         },
         {
           "name": "params",
-          "type": "JSON",
+          "type": "List",
           "info": "Json file with params to update. Example [param1, param2]. Each param is object like params in updateSingleTicket",
           "required": true,
-          "vendorName": "tickets"
+          "structure": {
+            "name": "param",
+            "type": "JSON",
+            "info": "Param",
+            "required": true
+          },
+          "custom": {
+            "vendorName": "tickets"
+          }
         }
       ],
       "callbacks": [
@@ -882,8 +1129,10 @@
     {
       "name": "updateTicketsByIds",
       "description": "Update many tickets with the same information",
-      "method": "PUT",
-      "url": "/api/v2/tickets/update_many.json?ids={ticket_ids}",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/tickets/update_many.json?ids={ticket_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -899,181 +1148,269 @@
         },
         {
           "name": "ticketIds",
-          "type": "Array",
+          "type": "List",
           "info": "List of ticket ids",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "ticketId",
+            "type": "String",
+            "info": "Ticket ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         },
         {
           "name": "commentBody",
           "type": "String",
           "info": "Comment",
           "required": false,
-          "vendorName": "body",
-          "wrapName": "ticket.comment"
+          "custom": {
+            "vendorName": "body",
+            "wrapName": "ticket.comment"
+          }
         },
         {
           "name": "commentHtmlBody",
           "type": "String",
           "info": "HTML code of comment",
           "required": false,
-          "vendorName": "html_body",
-          "wrapName": "ticket.comment"
+          "custom": {
+            "vendorName": "html_body",
+            "wrapName": "ticket.comment"
+          }
         },
         {
           "name": "commentAuthorId",
           "type": "Number",
           "info": "Author ID of comment",
           "required": false,
-          "vendorName": "author_id",
-          "wrapName": "ticket.comment"
+          "custom": {
+            "vendorName": "author_id",
+            "wrapName": "ticket.comment"
+          }
         },
         {
           "name": "commentShow",
           "type": "Boolean",
           "info": "False - make comment private",
           "required": false,
-          "vendorName": "public",
-          "wrapName": "ticket.comment"
+          "custom": {
+            "vendorName": "public",
+            "wrapName": "ticket.comment"
+          }
         },
         {
           "name": "externalId",
           "type": "String",
           "info": "An id you can use to link Zendesk Support tickets to local records",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "problem",
+            "incident",
+            "question",
+            "task"
+          ],
           "info": "The type of this ticket, i.e. \"problem\", \"incident\", \"question\" or \"task\"",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "subject",
           "type": "String",
           "info": "The value of the subject field for this ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "rawSubject",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"subject\" value, if not. See Dynamic Content",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "priority",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "urgent",
+            "high",
+            "normal",
+            "low"
+          ],
           "info": "Priority, defines the urgency with which the ticket should be addressed: \"urgent\", \"high\", \"normal\", \"low\"",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "status",
-          "type": "String",
-          "info": "The state of the ticket, \"new\", \"open\", \"pending\", \"hold\", \"solved\", \"closed\"",
+          "type": "Select",
+          "options": [
+            "urgent",
+            "high",
+            "normal",
+            "low"
+          ],
+          "info": "The state of the ticket, c",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "recipient",
           "type": "String",
           "info": "The original recipient e-mail address of the ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "requesterId",
           "type": "Number",
           "info": "The user who requested this ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "submitterId",
           "type": "Number",
           "info": "The user who submitted the ticket; The submitter always becomes the author of the first comment on the ticket.",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "assigneeId",
           "type": "Number",
           "info": "What agent is currently assigned to the ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "organizationId",
           "type": "Number",
           "info": "The organization of the requester. You can only specify the ID of an organization associated with the requester. See Organization Memberships",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "groupId",
           "type": "Number",
           "info": "The group this ticket is assigned to",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "collaboratorIds",
-          "type": "Array",
+          "type": "JSON",
           "info": "Who are currently CC'ed on the ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "forumTopicId",
           "type": "Number",
           "info": "The topic this ticket originated from, if any",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "problemId",
           "type": "Number",
           "info": "The problem this incident is linked to, if any",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "dueAt",
-          "type": "String",
+          "type": "DatePicker",
           "info": "If this is a ticket of type \"task\" it has a due date. Due date format uses ISO 8601 format.",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket",
+            "dateTime": {
+              "fromFormat": [
+                "Y-m-d",
+                "Y-m-d H:i:s"
+              ],
+              "toFormat": "DATE_ISO8601"
+            }
+          }
         },
         {
           "name": "tags",
-          "type": "Array",
+          "type": "List",
           "info": "The array of tags applied to this ticket",
           "required": false,
-          "wrapName": "ticket"
+          "structure": {
+            "name": "tag",
+            "type": "String",
+            "info": "Tag",
+            "required": false
+          },
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "customFields",
-          "type": "Array",
+          "type": "JSON",
           "info": "The custom fields of the ticket",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "ticketFormId",
           "type": "Number",
           "info": "The id of the ticket form to render for this ticket - only applicable for enterprise accounts",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         },
         {
           "name": "brandId",
           "type": "Number",
           "info": "The id of the brand this ticket is associated with - only applicable for enterprise accounts",
           "required": false,
-          "wrapName": "ticket"
+          "custom": {
+            "wrapName": "ticket"
+          }
         }
       ],
       "callbacks": [
@@ -1090,8 +1427,10 @@
     {
       "name": "markSingleTicketAsSpam",
       "description": "Mark Ticket as Spam and Suspend Requester",
-      "method": "PUT",
-      "url": "/api/v2/tickets/{ticket_id}/mark_as_spam.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/tickets/{ticket_id}/mark_as_spam.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1126,8 +1465,10 @@
     {
       "name": "markTicketsAsSpam",
       "description": "Mark Tickets as Spam and Suspend Requester",
-      "method": "PUT",
-      "url": "/api/v2/tickets/mark_many_as_spam.json?ids={ticket_ids}",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/tickets/mark_many_as_spam.json?ids={ticket_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1143,9 +1484,18 @@
         },
         {
           "name": "ticketIds",
-          "type": "Array",
+          "type": "List",
           "info": "List of Ticket IDs",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "ticketId",
+            "type": "String",
+            "info": "Ticket ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         }
       ],
       "callbacks": [
@@ -1162,8 +1512,10 @@
     {
       "name": "mergeTickets",
       "description": "Merges one or more tickets into the {id} target ticket.",
-      "method": "POST",
-      "url": "/api/v2/tickets/{ticket_id}/merge.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/tickets/{ticket_id}/merge.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1185,9 +1537,15 @@
         },
         {
           "name": "ids",
-          "type": "Array",
+          "type": "List",
           "info": "List of Ticket IDs",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "id",
+            "type": "String",
+            "info": "ID",
+            "required": true
+          }
         },
         {
           "name": "targetComment",
@@ -1216,8 +1574,10 @@
     {
       "name": "getTicketRelatedInfo",
       "description": "Get ticket related info",
-      "method": "GET",
-      "url": "/api/v2/tickets/{ticket_id}/related.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/tickets/{ticket_id}/related.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1252,8 +1612,10 @@
     {
       "name": "deleteSingleTicket",
       "description": "Delete ticket",
-      "method": "DELETE",
-      "url": "/api/v2/tickets/{ticket_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/tickets/{ticket_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1288,8 +1650,10 @@
     {
       "name": "deleteTickets",
       "description": "Delete tickets",
-      "method": "DELETE",
-      "url": "/api/v2/tickets/destroy_many.json?ids={ticket_ids}",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/tickets/destroy_many.json?ids={ticket_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1305,9 +1669,18 @@
         },
         {
           "name": "ticketIds",
-          "type": "Array",
+          "type": "List",
           "info": "List of ticket ids",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "ticketId",
+            "type": "String",
+            "info": "Ticket ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         }
       ],
       "callbacks": [
@@ -1324,8 +1697,10 @@
     {
       "name": "getTicketCollaborators",
       "description": "Get collaborators from ticket",
-      "method": "GET",
-      "url": "/api/v2/tickets/{ticket_id}/collaborators.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/tickets/{ticket_id}/collaborators.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1360,8 +1735,10 @@
     {
       "name": "getTicketIncidents",
       "description": "Get ticket incidents",
-      "method": "GET",
-      "url": "/api/v2/tickets/{ticket_id}/incidents.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/tickets/{ticket_id}/incidents.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1396,8 +1773,10 @@
     {
       "name": "getTicketsProblems",
       "description": "Get probles tickets",
-      "method": "GET",
-      "url": "/api/v2/problems.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/problems.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1426,8 +1805,10 @@
     {
       "name": "autocompleteTicketsProblems",
       "description": "Returns tickets whose type is 'Problem' and whose subject contains the string specified in the text parameter.",
-      "method": "POST",
-      "url": "/api/v2/problems/autocomplete.json?text={text}",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/problems/autocomplete.json?text={text}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1462,8 +1843,10 @@
     {
       "name": "getAttachment",
       "description": "Get attachment data by ID",
-      "method": "GET",
-      "url": "/api/v2/attachments/{attachment_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/attachments/{attachment_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1498,8 +1881,10 @@
     {
       "name": "getComments",
       "description": "Get all comments from ticket",
-      "method": "GET",
-      "url": "/api/v2/tickets/{ticket_id}/comments.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/tickets/{ticket_id}/comments.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1521,7 +1906,11 @@
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc, desc. Defaults to asc",
           "required": false
         }
@@ -1540,8 +1929,10 @@
     {
       "name": "removeCommentAttachment",
       "description": "Redaction allows you to permanently remove attachments from an existing comment on a ticket. Once removed from a comment, the attachment is replaced with a placeholder 'redacted.txt' file. Note that redaction is permanent. It is not possible to undo redaction or see what was removed. Once a ticket is closed, redacting its attachments is no longer possible.",
-      "method": "PUT",
-      "url": "/api/v2/tickets/{ticket_id}/comments/{comment_id}/attachments/{attachment_id}/redact.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/tickets/{ticket_id}/comments/{comment_id}/attachments/{attachment_id}/redact.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1588,8 +1979,10 @@
     {
       "name": "deleteAttachment",
       "description": "Remove attachment",
-      "method": "DELETE",
-      "url": "/api/v2/attachments/{attachment_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/attachments/{attachment_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1624,9 +2017,11 @@
     {
       "name": "uploadFiles",
       "description": "Adding multiple attachments to the same upload is handled by splitting requests and passing the API token received from the first request to each subsequent request. The token is valid for 3 days. Note: Even if private attachments are enabled in the Zendesk Support instance, uploaded files are visible to any authenticated user at the content_URL specified in the JSON response until the upload token is consumed. Once an attachment is associated with a ticket or post, visibility is restricted to users with access to the ticket or post with the attachment.",
-      "method": "POST",
-      "url": "/api/v2/uploads.json?filename={file_name}",
-      "type": "binary",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/uploads.json?filename={file_name}",
+        "type": "binary"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1673,8 +2068,10 @@
     {
       "name": "deleteUpload",
       "description": "Delete upload with all attachments",
-      "method": "DELETE",
-      "url": "/api/v2/uploads/{upload_token}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/uploads/{upload_token}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1709,8 +2106,10 @@
     {
       "name": "getSatisfactionRatings",
       "description": "List all received satisfaction rating requests ever issued for your account.",
-      "method": "GET",
-      "url": "/api/v2/satisfaction_ratings.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/satisfaction_ratings.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1739,8 +2138,10 @@
     {
       "name": "getSingleSatisfactionRating",
       "description": "Get single ticket satisfaction rating",
-      "method": "GET",
-      "url": "/api/v2/satisfaction_ratings/{satisfaction_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/satisfaction_ratings/{satisfaction_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1775,8 +2176,10 @@
     {
       "name": "getSatisfactionRatingReasons",
       "description": "Return list all reasons for an account",
-      "method": "GET",
-      "url": "/api/v2/satisfaction_reasons.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/satisfaction_reasons.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1805,8 +2208,10 @@
     {
       "name": "getSatisfactionRatingReason",
       "description": "Return list all reasons for an account",
-      "method": "GET",
-      "url": "/api/v2/satisfaction_reasons/{reason_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/satisfaction_reasons/{reason_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1841,8 +2246,10 @@
     {
       "name": "createSatisfactionRating",
       "description": "Create a rating for solved tickets, or for tickets that were previously solved and then reopened.",
-      "method": "POST",
-      "url": "/api/v2/tickets/{ticket_id}/satisfaction_rating.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/tickets/{ticket_id}/satisfaction_rating.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1864,24 +2271,36 @@
         },
         {
           "name": "score",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "offered",
+            "unoffered",
+            "good",
+            "bad"
+          ],
           "info": "The rating: \"offered\", \"unoffered\", \"good\" or \"bad\"",
           "required": true,
-          "wrapName": "satisfaction_rating"
+          "custom": {
+            "wrapName": "satisfaction_rating"
+          }
         },
         {
           "name": "comment",
           "type": "String",
           "info": "Text to satisfaction rating message",
           "required": false,
-          "wrapName": "satisfaction_rating"
+          "custom": {
+            "wrapName": "satisfaction_rating"
+          }
         },
         {
           "name": "requesterId",
           "type": "Number",
           "info": "The id of ticket requester submitting the rating. Default owner of accessToken",
           "required": false,
-          "wrapName": "satisfaction_rating"
+          "custom": {
+            "wrapName": "satisfaction_rating"
+          }
         }
       ],
       "callbacks": [
@@ -1898,8 +2317,10 @@
     {
       "name": "getSuspendedTickets",
       "description": "Get all suspended tickets",
-      "method": "GET",
-      "url": "/api/v2/suspended_tickets.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/suspended_tickets.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1928,8 +2349,10 @@
     {
       "name": "getTicketAudits",
       "description": "Lists the audits for a specified ticket.",
-      "method": "GET",
-      "url": "/api/v2/tickets/{ticket_id}/audits.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/tickets/{ticket_id}/audits.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -1964,8 +2387,10 @@
     {
       "name": "getTicketSingleAudits",
       "description": "Get audit for a specified ticket by audit ID",
-      "method": "GET",
-      "url": "/api/v2/tickets/{ticket_id}/audits/{audit_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/tickets/{ticket_id}/audits/{audit_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2006,8 +2431,10 @@
     {
       "name": "makeAuditPrivate",
       "description": "Hide audit by ID",
-      "method": "PUT",
-      "url": "/api/v2/tickets/{ticket_id}/audits/{audit_id}/make_private.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/tickets/{ticket_id}/audits/{audit_id}/make_private.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2048,8 +2475,10 @@
     {
       "name": "removeWordFromTicketComment",
       "description": "Permanently removes words or strings from a ticket comment. Specify the string to redact in an object with a text property. Example: {\"text\": \"credit-card-number\"}. The characters of the word or string are replaced by the ▇ symbol. Redaction is permanent. You can't undo the redaction or see what was removed. Once a ticket is closed, you can no longer redact strings from its comments.",
-      "method": "PUT",
-      "url": "/api/v2/tickets/{ticket_id}/comments/{comment_id}/redact.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/tickets/{ticket_id}/comments/{comment_id}/redact.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2096,8 +2525,10 @@
     {
       "name": "makeCommentPrivate",
       "description": "Make comment private",
-      "method": "PUT",
-      "url": "/api/v2/tickets/{ticket_id}/comments/{comment_id}/make_private.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/tickets/{ticket_id}/comments/{comment_id}/make_private.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2138,8 +2569,10 @@
     {
       "name": "getSkippedTickets",
       "description": "Get all skipped tickets",
-      "method": "GET",
-      "url": "/api/v2/skips.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/skips.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2168,8 +2601,10 @@
     {
       "name": "skipTicket",
       "description": "Record a new skip for the current user",
-      "method": "POST",
-      "url": "/api/v2/skips.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/skips.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2188,14 +2623,18 @@
           "type": "Number",
           "info": "Ticket ID",
           "required": true,
-          "wrapName": "skip"
+          "custom": {
+            "wrapName": "skip"
+          }
         },
         {
           "name": "reason",
           "type": "String",
           "info": "Reason to skip",
           "required": false,
-          "wrapName": "skip"
+          "custom": {
+            "wrapName": "skip"
+          }
         }
       ],
       "callbacks": [
@@ -2212,8 +2651,10 @@
     {
       "name": "getTicketMetrics",
       "description": "Listing Ticket Metrics",
-      "method": "GET",
-      "url": "/api/v2/ticket_metrics.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/ticket_metrics.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2242,8 +2683,10 @@
     {
       "name": "getSingleMetric",
       "description": "Get ticket metric by metric ID",
-      "method": "GET",
-      "url": "/api/v2/ticket_metrics/{ticket_metric_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/ticket_metrics/{ticket_metric_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2278,8 +2721,10 @@
     {
       "name": "getSingleTicketMetric",
       "description": "Get ticket metric by ticket ID",
-      "method": "GET",
-      "url": "/api/v2/tickets/{ticket_id}/metrics.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/tickets/{ticket_id}/metrics.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2314,8 +2759,10 @@
     {
       "name": "getTicketMetricEvents",
       "description": "List ticket metric events",
-      "method": "GET",
-      "url": "/api/v2/incremental/ticket_metric_events.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/incremental/ticket_metric_events.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2331,9 +2778,18 @@
         },
         {
           "name": "startTime",
-          "type": "String",
+          "type": "DatePicker",
           "info": "Unix time",
-          "required": true
+          "required": true,
+          "custom": {
+            "dateTime": {
+              "fromFormat": [
+                "unixtime",
+                "Y-m-d H:i:s"
+              ],
+              "toFormat": "unixtime"
+            }
+          }
         }
       ],
       "callbacks": [
@@ -2350,8 +2806,10 @@
     {
       "name": "getAllRequests",
       "description": "Get list of requests",
-      "method": "GET",
-      "url": "/api/v2/requests.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/requests.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2367,13 +2825,21 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "updated_at",
+            "created_at"
+          ],
           "info": "Possible values are updated_at, created_at",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc, desc. Defaults to asc",
           "required": false
         }
@@ -2392,8 +2858,10 @@
     {
       "name": "getRequestListByStatus",
       "description": "Get list of requests by status",
-      "method": "GET",
-      "url": "/api/v2/requests.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/requests.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2409,19 +2877,36 @@
         },
         {
           "name": "status",
-          "type": "Array",
-          "info": "Comma-separated list of request's statuses",
-          "required": true
+          "type": "List",
+          "info": "List of request's statuses",
+          "required": true,
+          "structure": {
+            "name": "requestStatus",
+            "type": "String",
+            "info": "Request status",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "updated_at",
+            "created_at"
+          ],
           "info": "Possible values are updated_at, created_at",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc, desc. Defaults to asc",
           "required": false
         }
@@ -2440,8 +2925,10 @@
     {
       "name": "getOpenedRequestList",
       "description": "Get list of opened request",
-      "method": "GET",
-      "url": "/api/v2/requests/open.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/requests/open.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2457,13 +2944,21 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "updated_at",
+            "created_at"
+          ],
           "info": "Possible values are updated_at, created_at",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc, desc. Defaults to asc",
           "required": false
         }
@@ -2482,8 +2977,10 @@
     {
       "name": "getSolvedRequestList",
       "description": "Get list of solved request",
-      "method": "GET",
-      "url": "/api/v2/requests/solved.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/requests/solved.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2499,13 +2996,21 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "updated_at",
+            "created_at"
+          ],
           "info": "Possible values are updated_at, created_at",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc, desc. Defaults to asc",
           "required": false
         }
@@ -2524,8 +3029,10 @@
     {
       "name": "getCcdRequestList",
       "description": "Get request list",
-      "method": "GET",
-      "url": "/api/v2/requests/ccd.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/requests/ccd.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2541,13 +3048,21 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "updated_at",
+            "created_at"
+          ],
           "info": "Possible values are updated_at, created_at",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc, desc. Defaults to asc",
           "required": false
         }
@@ -2566,8 +3081,10 @@
     {
       "name": "getRequestListByUser",
       "description": "Get request by user ID",
-      "method": "GET",
-      "url": "/api/v2/users/{user_id}/requests.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/{user_id}/requests.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2589,13 +3106,21 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "updated_at",
+            "created_at"
+          ],
           "info": "Possible values are updated_at, created_at",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc, desc. Defaults to asc",
           "required": false
         }
@@ -2614,8 +3139,10 @@
     {
       "name": "getRequestListByOrganization",
       "description": "Get request by organization ID",
-      "method": "GET",
-      "url": "/api/v2/organizations/{organization_id}/requests.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/organizations/{organization_id}/requests.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2637,13 +3164,21 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "updated_at",
+            "created_at"
+          ],
           "info": "Possible values are updated_at, created_at",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc, desc. Defaults to asc",
           "required": false
         }
@@ -2662,8 +3197,10 @@
     {
       "name": "getSingleRequest",
       "description": "Get request by ID",
-      "method": "GET",
-      "url": "/api/v2/requests/{request_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/requests/{request_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2698,8 +3235,10 @@
     {
       "name": "getRequestComments",
       "description": "Get comments from request",
-      "method": "GET",
-      "url": "/api/v2/requests/{request_id}/comments.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/requests/{request_id}/comments.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2721,13 +3260,21 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "updated_at",
+            "created_at"
+          ],
           "info": "Possible values are updated_at, created_at",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc, desc. Defaults to asc",
           "required": false
         }
@@ -2746,8 +3293,10 @@
     {
       "name": "getRequestSingleComment",
       "description": "Get single comment from request",
-      "method": "GET",
-      "url": "/api/v2/requests/{request_id}/comments/{comment_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/requests/{request_id}/comments/{comment_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2775,13 +3324,21 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "updated_at",
+            "created_at"
+          ],
           "info": "Possible values are updated_at, created_at",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc, desc. Defaults to asc",
           "required": false
         }
@@ -2800,8 +3357,10 @@
     {
       "name": "createGroup",
       "description": "Create group",
-      "method": "POST",
-      "url": "/api/v2/groups.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/groups.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2820,7 +3379,9 @@
           "type": "String",
           "info": "Group name",
           "required": true,
-          "wrapName": "group"
+          "custom": {
+            "wrapName": "group"
+          }
         }
       ],
       "callbacks": [
@@ -2837,8 +3398,10 @@
     {
       "name": "getGroups",
       "description": "Get list of groups",
-      "method": "GET",
-      "url": "/api/v2/groups.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/groups.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2867,8 +3430,10 @@
     {
       "name": "getUserGroups",
       "description": "Get User's list groups",
-      "method": "GET",
-      "url": "/api/v2/users/{user_id}/groups.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/{user_id}/groups.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2903,8 +3468,10 @@
     {
       "name": "getSingleGroup",
       "description": "Get single group by ID",
-      "method": "GET",
-      "url": "/api/v2/groups/{group_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/groups/{group_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2939,8 +3506,10 @@
     {
       "name": "getAssignableGroups",
       "description": "Get assignable groups",
-      "method": "GET",
-      "url": "/api/v2/groups/assignable.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/groups/assignable.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2969,8 +3538,10 @@
     {
       "name": "updateGroup",
       "description": "Update group",
-      "method": "PUT",
-      "url": "/api/v2/groups/{group_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/groups/{group_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -2995,7 +3566,9 @@
           "type": "String",
           "info": "New name of group",
           "required": true,
-          "wrapName": "group"
+          "custom": {
+            "wrapName": "group"
+          }
         }
       ],
       "callbacks": [
@@ -3012,8 +3585,10 @@
     {
       "name": "deleteGroup",
       "description": "Delete group",
-      "method": "DELETE",
-      "url": "/api/v2/groups/{group_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/groups/{group_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3048,8 +3623,10 @@
     {
       "name": "getMemberships",
       "description": "Get list of memberships",
-      "method": "GET",
-      "url": "/api/v2/group_memberships.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/group_memberships.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3078,8 +3655,10 @@
     {
       "name": "getUserMemberships",
       "description": "Get list of user memberships",
-      "method": "GET",
-      "url": "/api/v2/users/{user_id}/group_memberships.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/{user_id}/group_memberships.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3114,8 +3693,10 @@
     {
       "name": "getGroupMemberships",
       "description": "Get group list of memberships",
-      "method": "GET",
-      "url": "/api/v2/groups/{group_id}/memberships.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/groups/{group_id}/memberships.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3150,8 +3731,10 @@
     {
       "name": "getAssignableMemberships",
       "description": "List Assignable Memberships",
-      "method": "GET",
-      "url": "/api/v2/group_memberships/assignable.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/group_memberships/assignable.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3180,8 +3763,10 @@
     {
       "name": "getGroupAssignableMemberships",
       "description": "List Assignable Memberships",
-      "method": "GET",
-      "url": "/api/v2/groups/{group_id}/memberships/assignable.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/groups/{group_id}/memberships/assignable.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3216,8 +3801,10 @@
     {
       "name": "getUserSingleMembership",
       "description": "Get user single membership",
-      "method": "GET",
-      "url": "/api/v2/users/{user_id}/group_memberships/{group_membership_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/{user_id}/group_memberships/{group_membership_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3258,8 +3845,10 @@
     {
       "name": "getSingleGroupMembership",
       "description": "Get single group membership",
-      "method": "GET",
-      "url": "/api/v2/group_memberships/{group_membership_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/group_memberships/{group_membership_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3294,8 +3883,10 @@
     {
       "name": "createMembership",
       "description": "Create group membership",
-      "method": "POST",
-      "url": "/api/v2/group_memberships.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/group_memberships.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3314,14 +3905,18 @@
           "type": "Number",
           "info": "User ID",
           "required": true,
-          "wrapName": "group_membership"
+          "custom": {
+            "wrapName": "group_membership"
+          }
         },
         {
           "name": "groupId",
           "type": "Number",
           "info": "Group ID",
           "required": true,
-          "wrapName": "group_membership"
+          "custom": {
+            "wrapName": "group_membership"
+          }
         }
       ],
       "callbacks": [
@@ -3338,8 +3933,10 @@
     {
       "name": "deleteMembership",
       "description": "Immediately removes a user from a group and schedules a job to unassign all working tickets that are assigned to the given user and group combination.",
-      "method": "DELETE",
-      "url": "/api/v2/group_memberships/{group_membership_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/group_memberships/{group_membership_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3374,8 +3971,10 @@
     {
       "name": "deleteMemberships",
       "description": "Immediately removes users from groups and schedules a job to unassign all working tickets that are assigned to the given user and group combinations.",
-      "method": "DELETE",
-      "url": "/api/v2/group_memberships/destroy_many.json?ids={group_membership_ids}",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/group_memberships/destroy_many.json?ids={group_membership_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3391,9 +3990,18 @@
         },
         {
           "name": "groupMembershipIds",
-          "type": "Array",
-          "info": "Comma-separated list of group membership ids",
-          "required": true
+          "type": "List",
+          "info": "List of group membership ids",
+          "required": true,
+          "structure": {
+            "name": "groupMembershipId",
+            "type": "String",
+            "info": "Group membership ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         }
       ],
       "callbacks": [
@@ -3410,8 +4018,10 @@
     {
       "name": "setGroupMembershipAsDefault",
       "description": "Set group membership as Default",
-      "method": "PUT",
-      "url": "/api/v2/users/{user_id}/group_memberships/{group_membership_id}/make_default.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/users/{user_id}/group_memberships/{group_membership_id}/make_default.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3452,8 +4062,10 @@
     {
       "name": "getUsers",
       "description": "Get list Users",
-      "method": "GET",
-      "url": "/api/v2/users.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3469,9 +4081,15 @@
         },
         {
           "name": "role",
-          "type": "Array",
+          "type": "List",
           "info": "Users role. Example: [\"end-user\", \"admin\"]",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "role",
+            "type": "String",
+            "info": "Example end-user, admin",
+            "required": false
+          }
         },
         {
           "name": "permissionSet",
@@ -3494,8 +4112,10 @@
     {
       "name": "getGroupUsers",
       "description": "Get list Users of group",
-      "method": "GET",
-      "url": "/api/v2/groups/{group_id}/users.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/groups/{group_id}/users.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3530,8 +4150,10 @@
     {
       "name": "getOrganizationUsers",
       "description": "Get list Users of group",
-      "method": "GET",
-      "url": "/api/v2/organizations/{organization_id}/users.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/organizations/{organization_id}/users.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3566,8 +4188,10 @@
     {
       "name": "getUsersByIds",
       "description": "Get Users by Id list",
-      "method": "GET",
-      "url": "/api/v2/users/show_many.json?ids={user_ids}",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/show_many.json?ids={user_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3583,9 +4207,18 @@
         },
         {
           "name": "userIds",
-          "type": "Array",
-          "info": "Comma-separated list of user ids",
-          "required": true
+          "type": "List",
+          "info": "List of user ids",
+          "required": true,
+          "structure": {
+            "name": "userId",
+            "type": "String",
+            "info": "User ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         }
       ],
       "callbacks": [
@@ -3602,8 +4235,10 @@
     {
       "name": "getUsersByExternalIds",
       "description": "Get Users by External Id list",
-      "method": "GET",
-      "url": "/api/v2/users/show_many.json?external_ids={external_ids}",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/show_many.json?external_ids={external_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3619,9 +4254,18 @@
         },
         {
           "name": "externalIds",
-          "type": "Array",
-          "info": "Comma-separated list of user's external ids",
-          "required": true
+          "type": "List",
+          "info": "List of user's external ids",
+          "required": true,
+          "structure": {
+            "name": "externalId",
+            "type": "String",
+            "info": "External ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         }
       ],
       "callbacks": [
@@ -3638,8 +4282,10 @@
     {
       "name": "getUserRelatedInfo",
       "description": "Get user related info",
-      "method": "GET",
-      "url": "/api/v2/users/{user_id}/related.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/{user_id}/related.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3674,8 +4320,10 @@
     {
       "name": "createUser",
       "description": "Create a new user",
-      "method": "POST",
-      "url": "/api/v2/users.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/users.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3694,160 +4342,206 @@
           "type": "String",
           "info": "User name",
           "required": true,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "email",
           "type": "String",
           "info": "User email",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "verified",
           "type": "Boolean",
           "info": "True - if you need to create users without sending out a verification email.",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "role",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "end-user",
+            "agent",
+            "admin"
+          ],
           "info": "If you need to create agents with a specific role, the role parameter only accepts three possible values: \"end-user\", \"agent\", \"admin\".",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "customRoleId",
           "type": "Number",
           "info": "Therefore you will need to set role to \"agent\" as well as add a new parameter called \"custom_role_id\" and give it the actual desired role ID from your Zendesk Support account.",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "twitter",
           "type": "String",
           "info": "User's twitter",
           "required": false,
-          "wrapName": "user.identities",
-          "complex": true,
-          "keyName": "type",
-          "keyValue": "value"
+          "custom": {
+            "wrapName": "user.identities",
+            "complex": true,
+            "keyName": "type",
+            "keyValue": "value"
+          }
         },
         {
           "name": "facebook",
           "type": "String",
           "info": "User's facebook",
           "required": false,
-          "wrapName": "user.identities",
-          "complex": true,
-          "keyName": "type",
-          "keyValue": "value"
+          "custom": {
+            "wrapName": "user.identities",
+            "complex": true,
+            "keyName": "type",
+            "keyValue": "value"
+          }
         },
         {
           "name": "alias",
           "type": "String",
           "info": "An alias displayed to end users",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "details",
           "type": "String",
           "info": "Any details you want to store about the user, such as an address",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "externalId",
           "type": "String",
           "info": "A unique id you can specify for the user",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "localeId",
           "type": "Number",
           "info": "The user's language identifier",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "moderator",
           "type": "Boolean",
           "info": "Designates whether the user has forum moderation capabilities",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "notes",
           "type": "String",
           "info": "Any notes you want to store about the user",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "onlyPrivateComments",
           "type": "Boolean",
           "info": "True if the user can only create private comments",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "organizationId",
           "type": "Number",
           "info": "The id of the organization the user is associated with",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "defaultGroupId",
           "type": "Number",
           "info": "The id of the user's default group. *Can only be set on create, not on update",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "phone",
           "type": "String",
           "info": "The user's primary phone number. See Phone Number below",
           "required": false,
-          "wrapName": "user"
-        },
-        {
-          "name": "photo",
-          "type": "Array",
-          "info": "The user's profile picture represented as an Attachment object",
-          "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "restrictedAgent",
           "type": "Boolean",
           "info": "If the agent has any restrictions; false for admins and unrestricted agents, true for other agents",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "signature",
           "type": "String",
           "info": "The user's signature. Only agents and admins can have signatures",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "suspended",
           "type": "Boolean",
           "info": "If the agent is suspended. Tickets from suspended users are also suspended, and these users cannot sign in to the end user portal",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "tags",
-          "type": "Array",
+          "type": "List",
           "info": "The user's tags. Only present if your account has user tagging enabled",
           "required": false,
-          "wrapName": "user"
+          "structure": {
+            "name": "tag",
+            "type": "String",
+            "info": "Tag",
+            "required": false
+          },
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "ticketRestriction",
@@ -3883,10 +4577,109 @@
       ]
     },
     {
+      "name": "updateUserProfileImage",
+      "description": "Update user's avatar",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/users/{user_id}.json",
+        "type": "multipart"
+      },
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "This user will be merged into the existing user provided in the target user id param. Any two arbitrary users can be merged.",
+          "required": true
+        },
+        {
+          "name": "image",
+          "type": "File",
+          "info": "File to upload and set as avatar",
+          "required": true,
+          "custom": {
+            "wrapName": "user.photo",
+            "vendorName": "uploaded_data"
+          }
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateUserProfileImageByUrl",
+      "description": "Update user's avatar",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/users/{user_id}.json"
+      },
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "userId",
+          "type": "Number",
+          "info": "This user will be merged into the existing user provided in the target user id param. Any two arbitrary users can be merged.",
+          "required": true
+        },
+        {
+          "name": "url",
+          "type": "String",
+          "info": "URL to File ",
+          "required": true,
+          "custom": {
+            "wrapName": "user",
+            "vendorName": "remote_photo_url"
+          }
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
       "name": "mergeUsers",
       "description": "Merge two users",
-      "method": "PUT",
-      "url": "/api/v2/users/{user_id}/merge.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/users/{user_id}/merge.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3911,8 +4704,10 @@
           "type": "Number",
           "info": "User ID to which will be merged",
           "required": true,
-          "wrapName": "user",
-          "vendorName": "id"
+          "custom": {
+            "wrapName": "user",
+            "vendorName": "id"
+          }
         }
       ],
       "callbacks": [
@@ -3929,8 +4724,10 @@
     {
       "name": "deleteUsersByIds",
       "description": "Delete users",
-      "method": "DELETE",
-      "url": "/api/v2/users/destroy_many.json?ids={user_ids}",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/users/destroy_many.json?ids={user_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -3946,9 +4743,18 @@
         },
         {
           "name": "userIds",
-          "type": "Array",
+          "type": "List",
           "info": "User id list",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "userId",
+            "type": "Number",
+            "info": "User ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         }
       ],
       "callbacks": [
@@ -3965,8 +4771,10 @@
     {
       "name": "autocompleteUsers",
       "description": "Returns an array of users whose name starts with the value specified in the name paramater. It only returns users with no foreign identities.",
-      "method": "GET",
-      "url": "/api/v2/users/autocomplete.json?name={name}",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/autocomplete.json?name={name}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4001,8 +4809,10 @@
     {
       "name": "requestUserCreate",
       "description": "Sends the owner a reminder email to update their subscription so more agents can be created.",
-      "method": "POST",
-      "url": "/api/v2/users/request_create.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/users/request_create.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4021,14 +4831,18 @@
           "type": "String",
           "info": "User name",
           "required": true,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "email",
           "type": "String",
           "info": "User email",
           "required": true,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         }
       ],
       "callbacks": [
@@ -4045,8 +4859,10 @@
     {
       "name": "getMe",
       "description": "Show the Currently Authenticated User",
-      "method": "GET",
-      "url": "/api/v2/users/me.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/me.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4075,8 +4891,10 @@
     {
       "name": "setUserPassword",
       "description": "An admin can set a user's password only if the setting is enabled under Settings > Security > Global. The setting is off by default. Only the account owner can access and change this setting in Zendesk Support.",
-      "method": "POST",
-      "url": "/api/v2/users/{user_id}/password.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/users/{user_id}/password.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4117,8 +4935,10 @@
     {
       "name": "updatePassword",
       "description": "You can only change your own password. Nobody can change the password of another user because it requires knowing the user's existing password. However, an admin can set a new password for another user without knowing the existing password. See \"Set a User's Password\" above.",
-      "method": "POST",
-      "url": "/api/v2/users/{user_id}/password.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/users/{user_id}/password.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4159,8 +4979,10 @@
     {
       "name": "getPasswordRequirements",
       "description": "Get a list of password requirements",
-      "method": "GET",
-      "url": "/api/v2/users/{user_id}/password/requirements.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/{user_id}/password/requirements.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4195,8 +5017,10 @@
     {
       "name": "getIdentities",
       "description": "Returns all user identities for a given user id.",
-      "method": "GET",
-      "url": "/api/v2/users/{user_id}/identities.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/{user_id}/identities.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4231,8 +5055,10 @@
     {
       "name": "getSingleIdentity",
       "description": "Shows the identity with the given id.",
-      "method": "GET",
-      "url": "/api/v2/users/{user_id}/identities/{identity_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/{user_id}/identities/{identity_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4273,8 +5099,10 @@
     {
       "name": "createIdentity",
       "description": "Adds a new identity to a user's profile. An agent can add an identity to any user profile.",
-      "method": "POST",
-      "url": "/api/v2/users/{user_id}/identities.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/users/{user_id}/identities.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4296,7 +5124,13 @@
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "email",
+            "twitter",
+            "facebook",
+            "google"
+          ],
           "info": "New identity: email, twitter, facebook or google",
           "required": false
         },
@@ -4326,7 +5160,11 @@
         },
         {
           "name": "deliverableState",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "deliverable",
+            "ticket_sharing_partner"
+          ],
           "info": "One of \"deliverable\" or \"ticket_sharing_partner\"",
           "required": false
         }
@@ -4345,8 +5183,10 @@
     {
       "name": "createSelfIdentity",
       "description": "Add an identity to their own user profile",
-      "method": "POST",
-      "url": "/api/v2/end_users/{user_id}/identities.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/end_users/{user_id}/identities.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4368,7 +5208,13 @@
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "email",
+            "twitter",
+            "facebook",
+            "google"
+          ],
           "info": "New identity: email, twitter, facebook or google",
           "required": false
         },
@@ -4398,7 +5244,11 @@
         },
         {
           "name": "deliverableState",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "deliverable",
+            "ticket_sharing_partner"
+          ],
           "info": "One of \"deliverable\" or \"ticket_sharing_partner\"",
           "required": false
         }
@@ -4417,8 +5267,10 @@
     {
       "name": "updateIdentity",
       "description": "This endpoint allows you to set the specified identity as verified (but you cannot unverify a verified identity and update the value of the specified identity",
-      "method": "PUT",
-      "url": "/api/v2/users/{user_id}/identities/{identity_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/users/{user_id}/identities/{identity_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4449,28 +5301,36 @@
           "type": "String",
           "info": "Identity name. Example: email, twitter, verified etc. You cant change primary identity value. For more details look at getIdentities",
           "required": false,
-          "wrapName": "identity"
+          "custom": {
+            "wrapName": "identity"
+          }
         },
         {
           "name": "value",
           "type": "String",
           "info": "Value of identity",
           "required": false,
-          "wrapName": "identity"
+          "custom": {
+            "wrapName": "identity"
+          }
         },
         {
           "name": "verified",
           "type": "Boolean",
           "info": "Change verified status",
           "required": false,
-          "wrapName": "identity"
+          "custom": {
+            "wrapName": "identity"
+          }
         },
         {
           "name": "type",
           "type": "String",
           "info": "type of identity",
           "required": false,
-          "wrapName": "identity"
+          "custom": {
+            "wrapName": "identity"
+          }
         },
         {
           "name": "undeliverableCount",
@@ -4480,7 +5340,11 @@
         },
         {
           "name": "deliverableState",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "deliverable",
+            "ticket_sharing_partner"
+          ],
           "info": "One of \"deliverable\" or \"ticket_sharing_partner\"",
           "required": false
         }
@@ -4499,8 +5363,10 @@
     {
       "name": "makeIdentityPrimary",
       "description": "Sets the specified identity as primary. Only fort Agents",
-      "method": "PUT",
-      "url": "/api/v2/users/{user_id}/identities/{identity_id}/make_primary",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/users/{user_id}/identities/{identity_id}/make_primary"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4541,8 +5407,10 @@
     {
       "name": "makeMyIdentityPrimary",
       "description": "Sets the own identity as primary. For verified end users",
-      "method": "PUT",
-      "url": "/api/v2/end_users/{user_id}/identities/{identity_id}/make_primary",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/end_users/{user_id}/identities/{identity_id}/make_primary"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4583,8 +5451,10 @@
     {
       "name": "verifyIdentity",
       "description": "Sets the specified identity as verified.",
-      "method": "PUT",
-      "url": "/api/v2/users/{user_id}/identities/{identity_id}/verify",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/users/{user_id}/identities/{identity_id}/verify"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4625,8 +5495,10 @@
     {
       "name": "requestUserVerification",
       "description": "Sends the user a verification email with a link to verify ownership of the email address.",
-      "method": "PUT",
-      "url": "/api/v2/users/{user_id}/identities/{identity_id}/request_verification.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/users/{user_id}/identities/{identity_id}/request_verification.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4667,8 +5539,10 @@
     {
       "name": "deleteIdentity",
       "description": "Deletes the identity for a given user.",
-      "method": "DELETE",
-      "url": "/api/v2/users/{user_id}/identities/{identity_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/users/{user_id}/identities/{identity_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4709,8 +5583,10 @@
     {
       "name": "getCustomRoles",
       "description": "Get custom roles. Available only in Enterprise plan and Professional plan with the Light Agents add-on",
-      "method": "GET",
-      "url": "/api/v2/custom_roles.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/custom_roles.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4739,8 +5615,10 @@
     {
       "name": "getEndUser",
       "description": "Get end-user by ID",
-      "method": "GET",
-      "url": "/api/v2/end_users/{user_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/end_users/{user_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4775,8 +5653,10 @@
     {
       "name": "updateUser",
       "description": "Update end-users",
-      "method": "PUT",
-      "url": "/api/v2/end_users/{user_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/end_users/{user_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -4801,174 +5681,225 @@
           "type": "String",
           "info": "New user name",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "email",
           "type": "String",
           "info": "User email",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "verified",
           "type": "Boolean",
           "info": "True - if you need to create users without sending out a verification email.",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "role",
           "type": "String",
           "info": "If you need to create agents with a specific role, the role parameter only accepts three possible values: \"end-user\", \"agent\", \"admin\".",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "customRoleId",
           "type": "Number",
           "info": "Therefore you will need to set role to \"agent\" as well as add a new parameter called \"custom_role_id\" and give it the actual desired role ID from your Zendesk Support account.",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "twitter",
           "type": "String",
           "info": "User's twitter",
           "required": false,
-          "wrapName": "user.identities",
-          "complex": true,
-          "keyName": "type",
-          "keyValue": "value"
+          "custom": {
+            "wrapName": "user.identities",
+            "complex": true,
+            "keyName": "type",
+            "keyValue": "value"
+          }
         },
         {
           "name": "facebook",
           "type": "String",
           "info": "User's facebook",
           "required": false,
-          "wrapName": "user.identities",
-          "complex": true,
-          "keyName": "type",
-          "keyValue": "value"
+          "custom": {
+            "wrapName": "user.identities",
+            "complex": true,
+            "keyName": "type",
+            "keyValue": "value"
+          }
         },
         {
           "name": "alias",
           "type": "String",
           "info": "An alias displayed to end users",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "details",
           "type": "String",
           "info": "Any details you want to store about the user, such as an address",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "externalId",
           "type": "String",
           "info": "A unique id you can specify for the user",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "localeId",
           "type": "Number",
           "info": "The user's language identifier",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "moderator",
           "type": "Boolean",
           "info": "Designates whether the user has forum moderation capabilities",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "notes",
           "type": "String",
           "info": "Any notes you want to store about the user",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "onlyPrivateComments",
           "type": "Boolean",
           "info": "True if the user can only create private comments",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "organizationId",
           "type": "Number",
           "info": "The id of the organization the user is associated with",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "phone",
           "type": "String",
           "info": "The user's primary phone number. See Phone Number below",
           "required": false,
-          "wrapName": "user"
-        },
-        {
-          "name": "photo",
-          "type": "Array",
-          "info": "The user's profile picture represented as an Attachment object",
-          "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "restrictedAgent",
           "type": "Boolean",
           "info": "If the agent has any restrictions; false for admins and unrestricted agents, true for other agents",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "signature",
           "type": "String",
           "info": "The user's signature. Only agents and admins can have signatures",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "suspended",
           "type": "Boolean",
           "info": "If the agent is suspended. Tickets from suspended users are also suspended, and these users cannot sign in to the end user portal",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "tags",
-          "type": "Array",
-          "info": "The user's tags. Only present if your account has user tagging enabled",
+          "type": "List",
+          "info": "The user's tags list. Only present if your account has user tagging enabled",
           "required": false,
-          "wrapName": "user"
+          "structure": {
+            "name": "tag",
+            "type": "String",
+            "info": "Tag",
+            "required": false
+          },
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "ticketRestriction",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "organization",
+            "groups",
+            "assigned",
+            "requested"
+          ],
           "info": "Specifies which tickets the user has access to. Possible values are: \"organization\", \"groups\", \"assigned\", \"requested\", null",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "timeZone",
           "type": "String",
           "info": "The user's time zone. See Time Zone below",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "userFields",
-          "type": "Array",
+          "type": "JSON",
           "info": "Custom fields for the user",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         }
       ],
       "callbacks": [
@@ -4985,8 +5916,10 @@
     {
       "name": "getSessions",
       "description": "Get list of sessions",
-      "method": "GET",
-      "url": "/api/v2/sessions.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/sessions.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5015,8 +5948,10 @@
     {
       "name": "getUsersSessions",
       "description": "Get user's list of sessions",
-      "method": "GET",
-      "url": "/api/v2/users/{user_id}/sessions.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/{user_id}/sessions.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5051,8 +5986,10 @@
     {
       "name": "getSingleSession",
       "description": "Get session by ID",
-      "method": "GET",
-      "url": "/api/v2/users/{user_id}/sessions/{session_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/{user_id}/sessions/{session_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5093,8 +6030,10 @@
     {
       "name": "deleteSession",
       "description": "Delete single session",
-      "method": "DELETE",
-      "url": "/api/v2/users/{user_id}/sessions/{session_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/users/{user_id}/sessions/{session_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5135,8 +6074,10 @@
     {
       "name": "deleteAllSessions",
       "description": "Delete all session for current user",
-      "method": "DELETE",
-      "url": "/api/v2/users/{user_id}/sessions.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/users/{user_id}/sessions.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5171,8 +6112,10 @@
     {
       "name": "logout",
       "description": "Deletes the current session. In practice, this only works when using session auth for requests, such as client-side requests made from a Zendesk app. When using OAuth or basic authentication, you don't have a current session so this endpoint has no effect.",
-      "method": "DELETE",
-      "url": "/api/v2/users/me/logout.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/users/me/logout.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5201,8 +6144,10 @@
     {
       "name": "getOrganizations",
       "description": "Return list of organization",
-      "method": "GET",
-      "url": "/api/v2/organizations.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/organizations.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5231,8 +6176,10 @@
     {
       "name": "getUserOrganizations",
       "description": "Return list of users's organization",
-      "method": "GET",
-      "url": "/api/v2/users/{user_id}/organizations.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/{user_id}/organizations.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5267,8 +6214,10 @@
     {
       "name": "autocompleteOrganizations",
       "description": "Returns an array of organizations whose name starts with the value specified in the name parameter.",
-      "method": "GET",
-      "url": "/api/v2/organizations/autocomplete.json?name={organization_name}",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/organizations/autocomplete.json?name={organization_name}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5303,8 +6252,10 @@
     {
       "name": "getOrganizationRelatedInfo",
       "description": "Get organization info by ID",
-      "method": "GET",
-      "url": "/api/v2/organizations/{organization_id}/related.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/organizations/{organization_id}/related.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5339,8 +6290,10 @@
     {
       "name": "getOrganizationsByIds",
       "description": "Get organizations by IDs",
-      "method": "GET",
-      "url": "/api/v2/organizations/show_many.json?ids={organization_ids}",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/organizations/show_many.json?ids={organization_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5356,9 +6309,18 @@
         },
         {
           "name": "organizationIds",
-          "type": "Array",
-          "info": "Comma-separated list of organization ID",
-          "required": true
+          "type": "List",
+          "info": "List of organization ID",
+          "required": true,
+          "structure": {
+            "name": "organizationId",
+            "type": "Number",
+            "info": "Organization ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         }
       ],
       "callbacks": [
@@ -5375,8 +6337,10 @@
     {
       "name": "createOrganization",
       "description": "Create new organization",
-      "method": "POST",
-      "url": "/api/v2/organizations.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/organizations.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5395,63 +6359,93 @@
           "type": "String",
           "info": "New organization name",
           "required": true,
-          "wrapName": "organization"
+          "custom": {
+            "wrapName": "organization"
+          }
         },
         {
           "name": "externalId",
           "type": "String",
           "info": "A unique external id to associate organizations to an external record",
           "required": false,
-          "wrapName": "organization"
+          "custom": {
+            "wrapName": "organization"
+          }
         },
         {
           "name": "domainNames",
-          "type": "Array",
-          "info": "An array of domain names associated with this organization",
+          "type": "List",
+          "info": "List of domain names associated with this organization",
           "required": false,
-          "wrapName": "organization"
+          "structure": {
+            "name": "domain",
+            "type": "String",
+            "info": "Domain",
+            "required": false
+          },
+          "custom": {
+            "wrapName": "organization"
+          }
         },
         {
           "name": "details",
           "type": "String",
           "info": "Any details obout the organization, such as the address",
           "required": false,
-          "wrapName": "organization"
+          "custom": {
+            "wrapName": "organization"
+          }
         },
         {
           "name": "notes",
           "type": "String",
           "info": "Any notes you have about the organization",
           "required": false,
-          "wrapName": "organization"
+          "custom": {
+            "wrapName": "organization"
+          }
         },
         {
           "name": "groupId",
           "type": "Number",
           "info": "New tickets from users in this organization are automatically put in this group",
           "required": false,
-          "wrapName": "organization"
+          "custom": {
+            "wrapName": "organization"
+          }
         },
         {
           "name": "sharedTickets",
           "type": "Boolean",
           "info": "End users in this organization are able to see each other's tickets",
           "required": false,
-          "wrapName": "organization"
+          "custom": {
+            "wrapName": "organization"
+          }
         },
         {
           "name": "sharedComments",
           "type": "Boolean",
           "info": "End users in this organization are able to see each other's comments on tickets",
           "required": false,
-          "wrapName": "organization"
+          "custom": {
+            "wrapName": "organization"
+          }
         },
         {
           "name": "tags",
-          "type": "Array",
+          "type": "List",
           "info": "The tags of the organization",
           "required": false,
-          "wrapName": "organization"
+          "structure": {
+            "name": "tag",
+            "type": "String",
+            "info": "Tag",
+            "required": false
+          },
+          "custom": {
+            "wrapName": "organization"
+          }
         },
         {
           "name": "organizationFields",
@@ -5475,8 +6469,10 @@
     {
       "name": "searchOrganizations",
       "description": "Search organization by external_id",
-      "method": "GET",
-      "url": "/api/v2/organizations/search.json?external_id={external_id}",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/organizations/search.json?external_id={external_id}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5511,8 +6507,10 @@
     {
       "name": "createOrganizationSubscription",
       "description": "Create organization subscription. End users can only subscribe to shared organizations in which they're members.",
-      "method": "POST",
-      "url": "/api/v2/organization_subscriptions.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/organization_subscriptions.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5553,8 +6551,10 @@
     {
       "name": "getListOrganizationSubscriptions",
       "description": "Get list of all organizations and subscriptions",
-      "method": "GET",
-      "url": "/api/v2/organization_subscriptions.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/organization_subscriptions.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5583,8 +6583,10 @@
     {
       "name": "getSingleOrganizationSubscriptions",
       "description": "Get list of all single organization subscriptions",
-      "method": "GET",
-      "url": "/api/v2/organizations/{organization_id}/subscriptions.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/organizations/{organization_id}/subscriptions.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5619,8 +6621,10 @@
     {
       "name": "getUserOrganizationSubscriptions",
       "description": "Get list of all user organization subscriptions",
-      "method": "GET",
-      "url": "/api/v2/users/{user_id}/organization_subscriptions.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/{user_id}/organization_subscriptions.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5655,8 +6659,10 @@
     {
       "name": "getSingleOrganizationSubscription",
       "description": "Get organization subscription",
-      "method": "GET",
-      "url": "/api/v2/organization_subscriptions/{organization_subscription_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/organization_subscriptions/{organization_subscription_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5691,8 +6697,10 @@
     {
       "name": "getListOrganizationMemberships",
       "description": "Get list of all organization memberships",
-      "method": "GET",
-      "url": "/api/v2/organization_memberships.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/organization_memberships.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5721,8 +6729,10 @@
     {
       "name": "getUserOrganizationMemberships",
       "description": "Get list of single user memberships",
-      "method": "GET",
-      "url": "/api/v2/users/{user_id}/organization_memberships.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/{user_id}/organization_memberships.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5757,8 +6767,10 @@
     {
       "name": "getSingleOrganizationMemberships",
       "description": "Get list of single organization memberships",
-      "method": "GET",
-      "url": "/api/v2/organizations/{organization_id}/organization_memberships.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/organizations/{organization_id}/organization_memberships.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5793,8 +6805,10 @@
     {
       "name": "getSingleMembership",
       "description": "Get single organization membership",
-      "method": "GET",
-      "url": "/api/v2/users/{user_id}/organization_memberships/{organization_membership_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/{user_id}/organization_memberships/{organization_membership_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5835,8 +6849,10 @@
     {
       "name": "createOrganizationMembership",
       "description": "Create new organization membership",
-      "method": "POST",
-      "url": "/api/v2/users/{user_id}/organization_memberships.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/users/{user_id}/organization_memberships.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5861,7 +6877,9 @@
           "type": "String",
           "info": "Organization ID",
           "required": true,
-          "wrapName": "organization_membership"
+          "custom": {
+            "wrapName": "organization_membership"
+          }
         }
       ],
       "callbacks": [
@@ -5878,8 +6896,10 @@
     {
       "name": "setOrganizationMembershipAsDefault",
       "description": "Set organization membership as default",
-      "method": "PUT",
-      "url": "/api/v2/users/{user_id}/organization_memberships/{organization_membership_id}/make_default.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/users/{user_id}/organization_memberships/{organization_membership_id}/make_default.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5920,8 +6940,10 @@
     {
       "name": "deleteOrganizationMembershipsByIds",
       "description": "Immediately removes a user from a organization and schedules a job to unassign all working tickets that are assigned to the given user and organization combination",
-      "method": "DELETE",
-      "url": "/api/v2/organization_memberships/destroy_many.json?ids={organization_membership_ids}",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/organization_memberships/destroy_many.json?ids={organization_membership_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5937,9 +6959,18 @@
         },
         {
           "name": "organizationMembershipIds",
-          "type": "Array",
-          "info": "Comma-separated list of organization membership IDs",
-          "required": true
+          "type": "List",
+          "info": "List of organization membership IDs",
+          "required": true,
+          "structure": {
+            "name": "organizationMembershipId",
+            "type": "String",
+            "info": "Organization Membership ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         }
       ],
       "callbacks": [
@@ -5956,8 +6987,10 @@
     {
       "name": "searchUsersByQuery",
       "description": "Specify a partial or full name or email address as the value of the query attribute. Example: query=\"Gerry\". Specify an id number as the value of the external_id attribute. For more advanced searches of users, use the Search API.",
-      "method": "GET",
-      "url": "/api/v2/users/search.json?query={query}",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/search.json?query={query}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -5992,8 +7025,10 @@
     {
       "name": "searchUsersByIds",
       "description": "Search users by IDs",
-      "method": "GET",
-      "url": "/api/v2/users/search.json?external_id={external_id}",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/search.json?external_id={external_id}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6028,8 +7063,10 @@
     {
       "name": "updateUsersByIds",
       "description": "Update users with the same data",
-      "method": "PUT",
-      "url": "/api/v2/users/update_many.json?ids={user_ids}",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/users/update_many.json?ids={user_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6045,16 +7082,27 @@
         },
         {
           "name": "userIds",
-          "type": "Array",
+          "type": "List",
           "info": "List of user IDs to update same data",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "userId",
+            "type": "Number",
+            "info": "User ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         },
         {
           "name": "params",
           "type": "JSON",
           "info": "Param to be updated to all users, which ids send. Example: {\"organization_id\": 1}",
           "required": true,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         }
       ],
       "callbacks": [
@@ -6071,8 +7119,10 @@
     {
       "name": "updateUsersByExternalIds",
       "description": "Update users with the same data",
-      "method": "PUT",
-      "url": "/api/v2/users/update_many.json?external_ids={external_ids}",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/users/update_many.json?external_ids={external_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6088,16 +7138,27 @@
         },
         {
           "name": "externalIds",
-          "type": "Array",
+          "type": "List",
           "info": "List of user external IDs to update same data",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "externalId",
+            "type": "String",
+            "info": "External ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         },
         {
           "name": "params",
           "type": "JSON",
           "info": "Param to be updated to all users, which ids send. Example: {\"organization_id\": 1}",
           "required": true,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         }
       ],
       "callbacks": [
@@ -6114,8 +7175,10 @@
     {
       "name": "updateUsers",
       "description": "Update users with the different data by id or externalId",
-      "method": "PUT",
-      "url": "/api/v2/users/update_many.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/users/update_many.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6134,7 +7197,9 @@
           "type": "JSON",
           "info": "Param to be updated to all users, which ids send. Example:  [{ \"id\": 10071, \"name\": \"New Name\", \"organization_id\": 1 },{ \"external_id\": \"123\", \"verified\": true }]. In each element in array required id or externalId.",
           "required": true,
-          "vendorName": "users"
+          "custom": {
+            "vendorName": "users"
+          }
         }
       ],
       "callbacks": [
@@ -6151,8 +7216,10 @@
     {
       "name": "updateOrganizationsByIds",
       "description": "Update organization with the same data by id",
-      "method": "PUT",
-      "url": "/api/v2/organizations/update_many.json?ids={organization_ids}",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/organizations/update_many.json?ids={organization_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6168,16 +7235,27 @@
         },
         {
           "name": "organizationIds",
-          "type": "Array",
+          "type": "List",
           "info": "List of organization ID",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "organizationId",
+            "type": "Number",
+            "info": "Organization ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         },
         {
           "name": "params",
           "type": "JSON",
           "info": "Param to be updated to all users, which ids send. Example: {\"notes\": \"Something interesting\"}. In each element in array required id or externalId.",
           "required": true,
-          "wrapName": "organization"
+          "custom": {
+            "wrapName": "organization"
+          }
         }
       ],
       "callbacks": [
@@ -6194,8 +7272,10 @@
     {
       "name": "updateOrganizationsByExternalIds",
       "description": "Update organization with the same data by external id",
-      "method": "PUT",
-      "url": "/api/v2/organizations/update_many.json?ids={organization_external_ids}",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/organizations/update_many.json?ids={organization_external_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6211,16 +7291,27 @@
         },
         {
           "name": "organizationExternalIds",
-          "type": "Array",
+          "type": "List",
           "info": "List of organization external ID",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "organizationExternalId",
+            "type": "String",
+            "info": "Organization external ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         },
         {
           "name": "params",
           "type": "JSON",
           "info": "Param to be updated to all users, which ids send. Example: {\"notes\": \"Something interesting\"}. In each element in array required id or externalId.",
           "required": true,
-          "wrapName": "organization"
+          "custom": {
+            "wrapName": "organization"
+          }
         }
       ],
       "callbacks": [
@@ -6237,8 +7328,10 @@
     {
       "name": "updateOrganizations",
       "description": "Update organization with the different data by id or external id",
-      "method": "PUT",
-      "url": "/api/v2/organizations/update_many.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/organizations/update_many.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6257,7 +7350,9 @@
           "type": "JSON",
           "info": "Param to be updated to all users, which ids send. Example: [{\"id\": 1, \"notes\": \"Something interesting\" },{ \"external_id\": \"2\", \"notes\": \"Something even more interesting\"}]. In each element in array required id or externalId.",
           "required": true,
-          "vendorName": "organizations"
+          "custom": {
+            "vendorName": "organizations"
+          }
         }
       ],
       "callbacks": [
@@ -6274,8 +7369,10 @@
     {
       "name": "deleteOrganizationSubscription",
       "description": "Delete organization subscription",
-      "method": "DELETE",
-      "url": "/api/v2/organization_subscriptions/{organization_subscription_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/organization_subscriptions/{organization_subscription_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6310,8 +7407,10 @@
     {
       "name": "deleteOrganizationsByIds",
       "description": "Delete organizations by ids",
-      "method": "DELETE",
-      "url": "/api/v2/organizations/destroy_many.json?ids={organization_ids}",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/organizations/destroy_many.json?ids={organization_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6327,9 +7426,18 @@
         },
         {
           "name": "organizationIds",
-          "type": "Array",
+          "type": "List",
           "info": "List of organization ID",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "organizationId",
+            "type": "Number",
+            "info": "Organization ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         }
       ],
       "callbacks": [
@@ -6346,8 +7454,10 @@
     {
       "name": "createSearchQuery",
       "description": "The search API is a unified search API that returns tickets, users, and organizations. You can define filters to narrow your search results according to resource type, dates, and object properties, such as ticket requester or tag.",
-      "method": "GET",
-      "url": "/api/v2/search.json?query={query}",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/search.json?query={query}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6382,8 +7492,10 @@
     {
       "name": "createTicketComment",
       "description": "Create ticket comment",
-      "method": "PUT",
-      "url": "/api/v2/tickets/{ticket_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/tickets/{ticket_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6408,32 +7520,40 @@
           "type": "String",
           "info": "Comment",
           "required": false,
-          "vendorName": "body",
-          "wrapName": "ticket.comment"
+          "custom": {
+            "vendorName": "body",
+            "wrapName": "ticket.comment"
+          }
         },
         {
           "name": "commentHtmlBody",
           "type": "String",
           "info": "HTML code of comment",
           "required": false,
-          "vendorName": "html_body",
-          "wrapName": "ticket.comment"
+          "custom": {
+            "vendorName": "html_body",
+            "wrapName": "ticket.comment"
+          }
         },
         {
           "name": "commentAuthorId",
           "type": "Number",
           "info": "Author ID of comment. If not set, system use owner of accessToken",
           "required": false,
-          "vendorName": "author_id",
-          "wrapName": "ticket.comment"
+          "custom": {
+            "vendorName": "author_id",
+            "wrapName": "ticket.comment"
+          }
         },
         {
           "name": "commentShow",
           "type": "Boolean",
           "info": "False - make comment private",
           "required": false,
-          "vendorName": "public",
-          "wrapName": "ticket.comment"
+          "custom": {
+            "vendorName": "public",
+            "wrapName": "ticket.comment"
+          }
         }
       ],
       "callbacks": [
@@ -6450,8 +7570,10 @@
     {
       "name": "searchRequests",
       "description": "Search requests by params",
-      "method": "GET",
-      "url": "/api/v2/requests/search.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/requests/search.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6479,9 +7601,21 @@
         },
         {
           "name": "status",
-          "type": "Array",
+          "type": "List",
           "info": "Ticket status: open, solved",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "stat",
+            "type": "Select",
+            "options": [
+              "open",
+              "solved"
+            ],
+            "required": false
+          },
+          "custom": {
+            "toString": true
+          }
         }
       ],
       "callbacks": [
@@ -6498,8 +7632,10 @@
     {
       "name": "createRequest",
       "description": "Create single request",
-      "method": "POST",
-      "url": "/api/v2/requests.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/requests.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6518,33 +7654,61 @@
           "type": "String",
           "info": "Ticket title",
           "required": true,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "description",
           "type": "String",
           "info": "Ticket body",
           "required": true,
-          "wrapName": "request.comment",
-          "vendorName": "body"
+          "custom": {
+            "wrapName": "request.comment",
+            "vendorName": "body"
+          }
         },
         {
           "name": "status",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "new",
+            "open",
+            "pending",
+            "hold",
+            "solved",
+            "closed"
+          ],
           "info": "The state of the request, \"new\", \"open\", \"pending\", \"hold\", \"solved\", \"closed\"",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "priority",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "low",
+            "normal",
+            "high",
+            "urgent"
+          ],
           "info": "The priority of the request, \"low\", \"normal\", \"high\", \"urgent\"",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "question",
+            "incident",
+            "problem",
+            "task"
+          ],
           "info": "The type of the request, \"question\", \"incident\", \"problem\", \"task\"",
           "required": false,
           "wrapName": "request"
@@ -6554,84 +7718,114 @@
           "type": "JSON",
           "info": "The fields and entries for this request",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "organizationId",
           "type": "Number",
           "info": "The organization of the requester",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "requesterId",
           "type": "Number",
           "info": "The id of the requester",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "assigneeId",
           "type": "Number",
           "info": "The id of the assignee if the field is visible to end users",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "groupId",
           "type": "Number",
           "info": "The id of the assigned group if the field is visible to end users",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "collaboratorIds",
-          "type": "Array",
+          "type": "List",
           "info": "Who are currently CC'ed on the ticket",
           "required": false,
-          "wrapName": "request"
+          "structure": {
+            "name": "collaboratorId",
+            "type": "String",
+            "info": "Collaborator ID",
+            "required": false
+          },
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "isPublic",
           "type": "Boolean",
           "info": "Is true if any comments are public, false otherwise",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "canBeSolvedByMe",
           "type": "Boolean",
           "info": "If true, end user can mark request as solved.",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "solved",
           "type": "Boolean",
           "info": "Whether or not request is solved (an end user can set this if \"can_be_solved_by_me\", above, is true for that user)",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "ticketFormId",
           "type": "Number",
           "info": "The numeric id of the ticket form associated with this request if the form is visible to end users - only applicable for enterprise accounts",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "recipient",
           "type": "String",
           "info": "The original recipient e-mail address of the request",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "followupSourceId",
           "type": "Number",
           "info": "The id of the original ticket if this request is a follow-up ticket",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         }
       ],
       "callbacks": [
@@ -6648,8 +7842,10 @@
     {
       "name": "updateRequest",
       "description": "Update single request",
-      "method": "PUT",
-      "url": "/api/v2/requests/{request_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/requests/{request_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6674,64 +7870,102 @@
           "type": "String",
           "info": "Ticket title",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "comment",
           "type": "String",
           "info": "Comment body",
           "required": false,
-          "wrapName": "request.comment",
-          "vendorName": "body"
+          "custom": {
+            "wrapName": "request.comment",
+            "vendorName": "body"
+          }
         },
         {
           "name": "status",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "new",
+            "open",
+            "pending",
+            "hold",
+            "solved",
+            "closed"
+          ],
           "info": "The state of the request, \"new\", \"open\", \"pending\", \"hold\", \"solved\", \"closed\"",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "priority",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "low",
+            "normal",
+            "high",
+            "urgent"
+          ],
           "info": "The priority of the request, \"low\", \"normal\", \"high\", \"urgent\"",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "question",
+            "incident",
+            "problem",
+            "task"
+          ],
           "info": "The type of the request, \"question\", \"incident\", \"problem\", \"task\"",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "customFields",
           "type": "JSON",
           "info": "The fields and entries for this request",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "solved",
           "type": "Boolean",
           "info": "Whether or not request is solved (an end user can set this if \"can_be_solved_by_me\", above, is true for that user)",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "ticketFormId",
           "type": "Number",
           "info": "The numeric id of the ticket form associated with this request if the form is visible to end users - only applicable for enterprise accounts",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "recipient",
           "type": "String",
           "info": "The original recipient e-mail address of the request",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         }
       ],
       "callbacks": [
@@ -6748,8 +7982,10 @@
     {
       "name": "getActions",
       "description": "Lists all automations for the current account",
-      "method": "GET",
-      "url": "/api/v2/automations.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/automations.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6771,13 +8007,25 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "alphabetical",
+            "created_at",
+            "updated_at",
+            "usage_1h",
+            "usage_24h",
+            "usage_7d"
+          ],
           "info": "Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to position",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others",
           "required": false
         }
@@ -6796,8 +8044,10 @@
     {
       "name": "getSingleAutomation",
       "description": "Get single automation by ID",
-      "method": "GET",
-      "url": "/api/v2/automations/{automation_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/automations/{automation_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6832,8 +8082,10 @@
     {
       "name": "getActiveAutomations",
       "description": "Lists all active automations",
-      "method": "GET",
-      "url": "/api/v2/automations/active.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/automations/active.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6849,13 +8101,25 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "alphabetical",
+            "created_at",
+            "updated_at",
+            "usage_1h",
+            "usage_24h",
+            "usage_7d"
+          ],
           "info": "Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to position",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others",
           "required": false
         }
@@ -6874,8 +8138,10 @@
     {
       "name": "createAutomation",
       "description": "Create automation",
-      "method": "POST",
-      "url": "/api/v2/automations.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/automations.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6894,7 +8160,9 @@
           "type": "JSON",
           "info": "Params of new automation https://developer.zendesk.com/rest_api/docs/core/automations#create-automation",
           "required": true,
-          "vendorName": "automation"
+          "custom": {
+            "vendorName": "automation"
+          }
         }
       ],
       "callbacks": [
@@ -6911,8 +8179,10 @@
     {
       "name": "updateAutomation",
       "description": "Update automation",
-      "method": "PUT",
-      "url": "/api/v2/automations/{automation_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/automations/{automation_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6937,7 +8207,9 @@
           "type": "JSON",
           "info": "Params of new automation https://developer.zendesk.com/rest_api/docs/core/automations#create-automation",
           "required": true,
-          "vendorName": "automation"
+          "custom": {
+            "vendorName": "automation"
+          }
         }
       ],
       "callbacks": [
@@ -6954,8 +8226,10 @@
     {
       "name": "deleteAutomation",
       "description": "Delete automation",
-      "method": "DELETE",
-      "url": "/api/v2/automations/{automation_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/automations/{automation_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -6990,8 +8264,10 @@
     {
       "name": "searchAutomations",
       "description": "Search automation with params",
-      "method": "GET",
-      "url": "/api/v2/automations/search.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/automations/search.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7019,13 +8295,23 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "alphabetical",
+            "created_at",
+            "updated_at",
+            "position"
+          ],
           "info": "Possible values are alphabetical, created_at, updated_at, and position. If unspecified, the automations are sorted by relevance",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others",
           "required": false
         }
@@ -7044,8 +8330,10 @@
     {
       "name": "getMacrosList",
       "description": "Lists all shared and personal macros available to the current user.",
-      "method": "GET",
-      "url": "/api/v2/macros.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/macros.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7061,7 +8349,12 @@
         },
         {
           "name": "access",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "personal",
+            "shared",
+            "account"
+          ],
           "info": "Only macros with given access. Possible values are personal, shared, or account",
           "required": false
         },
@@ -7091,13 +8384,25 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "alphabetical",
+            "created_at",
+            "updated_at",
+            "usage_1h",
+            "usage_24h",
+            "usage_7d"
+          ],
           "info": "Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to alphabetical",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others",
           "required": false
         }
@@ -7116,8 +8421,10 @@
     {
       "name": "getSingleMacro",
       "description": "Get single Macro by ID",
-      "method": "GET",
-      "url": "/api/v2/macros/{macro_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/macros/{macro_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7152,8 +8459,10 @@
     {
       "name": "getActiveMacros",
       "description": "Lists all active shared and personal macros available to the current user.",
-      "method": "GET",
-      "url": "/api/v2/macros/active.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/macros/active.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7169,7 +8478,12 @@
         },
         {
           "name": "access",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "personal",
+            "shared",
+            "account"
+          ],
           "info": "Only macros with given access. Possible values are personal, shared, or account",
           "required": false
         },
@@ -7187,13 +8501,25 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "alphabetical",
+            "created_at",
+            "updated_at",
+            "usage_1h",
+            "usage_24h",
+            "usage_7d"
+          ],
           "info": "Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to alphabetical",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others",
           "required": false
         }
@@ -7212,8 +8538,10 @@
     {
       "name": "createMacro",
       "description": "Create macro",
-      "method": "POST",
-      "url": "/api/v2/macros.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/macros.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7228,11 +8556,96 @@
           "required": true
         },
         {
-          "name": "macroParams",
-          "type": "JSON",
-          "info": "Macro params",
-          "required": true,
-          "vendorName": "macro"
+          "name": "title",
+          "type": "String",
+          "info": "The title of the macro",
+          "required": false,
+          "custom": {
+            "wrapName": "macro"
+          }
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "info": "The description of the macro",
+          "required": false,
+          "custom": {
+            "wrapName": "macro"
+          }
+        },
+        {
+          "name": "position",
+          "type": "Number",
+          "info": "The position of the macro",
+          "required": false,
+          "custom": {
+            "wrapName": "macro"
+          }
+        },
+        {
+          "name": "active",
+          "type": "Boolean",
+          "info": "Useful for determining if the macro should be displayed",
+          "required": false,
+          "custom": {
+            "wrapName": "macro"
+          }
+        },
+        {
+          "name": "actions",
+          "type": "Array",
+          "info": "An object describing what the macro will do. Example: { \"field\": \"status\", \"value\": \"solved\" }",
+          "required": false,
+          "structure": [
+            {
+              "name": "field",
+              "type": "String",
+              "info": "The name of a ticket field to modify",
+              "required": true
+            },
+            {
+              "name": "value",
+              "type": "String",
+              "info": "The new value of the field",
+              "required": true
+            }
+          ],
+          "custom": {
+            "wrapName": "macro"
+          }
+        },
+        {
+          "name": "restriction",
+          "type": "Array",
+          "info": "Who may access this macro. Will be null when everyone in the account can access it",
+          "required": false,
+          "structure": [
+            {
+              "name": "type",
+              "type": "Select",
+              "options": [
+                "Group",
+                "User"
+              ],
+              "info": "Allowed values are Group or User",
+              "required": true
+            },
+            {
+              "name": "id",
+              "type": "Number",
+              "info": "The numeric ID of the group or user",
+              "required": false
+            },
+            {
+              "name": "ids",
+              "type": "String",
+              "info": "The numeric IDs of the groups (comma or list ?)",
+              "required": false
+            }
+          ],
+          "custom": {
+            "wrapName": "macro"
+          }
         }
       ],
       "callbacks": [
@@ -7249,8 +8662,10 @@
     {
       "name": "updateMacro",
       "description": "Update macro",
-      "method": "PUT",
-      "url": "/api/v2/macros/{macro_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/macros/{macro_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7271,11 +8686,96 @@
           "required": true
         },
         {
-          "name": "macroParams",
-          "type": "JSON",
-          "info": "Macro params",
-          "required": true,
-          "vendorName": "macro"
+          "name": "title",
+          "type": "String",
+          "info": "The title of the macro",
+          "required": false,
+          "custom": {
+            "wrapName": "macro"
+          }
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "info": "The description of the macro",
+          "required": false,
+          "custom": {
+            "wrapName": "macro"
+          }
+        },
+        {
+          "name": "position",
+          "type": "Number",
+          "info": "The position of the macro",
+          "required": false,
+          "custom": {
+            "wrapName": "macro"
+          }
+        },
+        {
+          "name": "active",
+          "type": "Boolean",
+          "info": "Useful for determining if the macro should be displayed",
+          "required": false,
+          "custom": {
+            "wrapName": "macro"
+          }
+        },
+        {
+          "name": "actions",
+          "type": "Array",
+          "info": "An object describing what the macro will do. Example: { \"field\": \"status\", \"value\": \"solved\" }",
+          "required": false,
+          "structure": [
+            {
+              "name": "field",
+              "type": "String",
+              "info": "The name of a ticket field to modify",
+              "required": true
+            },
+            {
+              "name": "value",
+              "type": "String",
+              "info": "The new value of the field",
+              "required": true
+            }
+          ],
+          "custom": {
+            "wrapName": "macro"
+          }
+        },
+        {
+          "name": "restriction",
+          "type": "Array",
+          "info": "Who may access this macro. Will be null when everyone in the account can access it",
+          "required": false,
+          "structure": [
+            {
+              "name": "type",
+              "type": "Select",
+              "options": [
+                "Group",
+                "User"
+              ],
+              "info": "Allowed values are Group or User",
+              "required": true
+            },
+            {
+              "name": "id",
+              "type": "Number",
+              "info": "The numeric ID of the group or user",
+              "required": false
+            },
+            {
+              "name": "ids",
+              "type": "String",
+              "info": "The numeric IDs of the groups (comma or list ?)",
+              "required": false
+            }
+          ],
+          "custom": {
+            "wrapName": "macro"
+          }
         }
       ],
       "callbacks": [
@@ -7292,8 +8792,10 @@
     {
       "name": "deleteMacro",
       "description": "Delete macro",
-      "method": "DELETE",
-      "url": "/api/v2/macros/{macro_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/macros/{macro_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7328,8 +8830,10 @@
     {
       "name": "showChangesToTicket",
       "description": "Returns the changes the macro would make to a ticket. It doesn't actually change a ticket. You can use the response data in a subsequent API call to the Tickets endpoint to update the ticket. The response includes only the ticket fields that would be changed by the macro. To get the full ticket object after the macro is applied, see Show Ticket After Changes below.",
-      "method": "GET",
-      "url": "/api/v2/macros/{macro_id}/apply.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/macros/{macro_id}/apply.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7364,8 +8868,10 @@
     {
       "name": "showTicketAfterChanges",
       "description": "Returns the full ticket object as it would be after applying the macro to the ticket. It doesn't actually change the ticket. You can use the response data in a subsequent API call to the Tickets endpoint to update the ticket. To get only the ticket fields that would be changed by the macro, see Show Changes to Ticket.",
-      "method": "GET",
-      "url": "/api/v2/tickets/{ticket_id}/macros/{macro_id}/apply.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/tickets/{ticket_id}/macros/{macro_id}/apply.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7406,8 +8912,10 @@
     {
       "name": "getMacroCategories",
       "description": "Lists all macro categories available to the current user.",
-      "method": "GET",
-      "url": "/api/v2/macros/categories.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/macros/categories.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7436,8 +8944,10 @@
     {
       "name": "searchMacros",
       "description": "Search macros by title",
-      "method": "GET",
-      "url": "/api/v2/macros/search.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/macros/search.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7489,13 +8999,23 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "alphabetical",
+            "created_at",
+            "updated_at",
+            "position"
+          ],
           "info": "Possible values are alphabetical, created_at, updated_at, and position. If unspecified, the macros are sorted by relevance",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others",
           "required": false
         }
@@ -7514,8 +9034,10 @@
     {
       "name": "getSupportedActionsForMacros",
       "description": "List supported actions for macros",
-      "method": "GET",
-      "url": "/api/v2/macros/actions.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/macros/actions.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7544,8 +9066,10 @@
     {
       "name": "showMacroReplica",
       "description": "Returns an unpersisted macro representation derived from a ticket or macro.",
-      "method": "GET",
-      "url": "/api/v2/macros/new.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/macros/new.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7586,8 +9110,10 @@
     {
       "name": "getSLAPolicies",
       "description": "Get Service Level Agreements. Accounts on the Professional and Enterprise plans",
-      "method": "GET",
-      "url": "/api/v2/slas/policies",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/slas/policies"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7616,8 +9142,10 @@
     {
       "name": "getSingleSLAPolicy",
       "description": "Get single SLA Policy",
-      "method": "GET",
-      "url": "/api/v2/slas/policies/{sla_policy_id}",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/slas/policies/{sla_policy_id}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7652,8 +9180,10 @@
     {
       "name": "createSLAPolicy",
       "description": "Create SLA Policy",
-      "method": "POST",
-      "url": "/api/v2/slas/policies",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/slas/policies"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7689,8 +9219,10 @@
     {
       "name": "updateSLAPolicy",
       "description": "Create SLA Policy",
-      "method": "POST",
-      "url": "/api/v2/slas/policies/{sla_policy_id}",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/slas/policies/{sla_policy_id}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7732,8 +9264,10 @@
     {
       "name": "deleteSLAPolicy",
       "description": "Delete SLA Policy",
-      "method": "DELETE",
-      "url": "/api/v2/slas/policies/{sla_policy_id}",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/slas/policies/{sla_policy_id}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7768,8 +9302,10 @@
     {
       "name": "reorderSLAPolicies",
       "description": "Reorder SLA Policies",
-      "method": "PUT",
-      "url": "/api/v2/slas/policies/reorder.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/slas/policies/reorder.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7804,8 +9340,10 @@
     {
       "name": "getSupportedFilterDefinitionItems",
       "description": "Retrieve supported filter definition items. Accounts on the Professional and Enterprise plans only",
-      "method": "GET",
-      "url": "/api/v2/slas/policies/definitions.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/slas/policies/definitions.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7834,8 +9372,10 @@
     {
       "name": "getTargets",
       "description": "Targets are pointers to cloud-based applications and services such as Twitter and Twilio, as well as to HTTP and email addresses. You can use targets with triggers and automations to send a notification to the target when a ticket is created or updated.",
-      "method": "GET",
-      "url": "/api/v2/targets.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/targets.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7864,8 +9404,10 @@
     {
       "name": "getSingleTarget",
       "description": "Get single target",
-      "method": "GET",
-      "url": "/api/v2/targets/{target_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/targets/{target_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7900,8 +9442,10 @@
     {
       "name": "createTarget",
       "description": "Create target",
-      "method": "POST",
-      "url": "/api/v2/targets.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/targets.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -7920,7 +9464,9 @@
           "type": "JSON",
           "info": "Target data",
           "required": true,
-          "vendorName": "target"
+          "custom": {
+            "vendorName": "target"
+          }
         }
       ],
       "callbacks": [
@@ -7937,8 +9483,10 @@
     {
       "name": "updateTarget",
       "description": "Update target",
-      "method": "PUT",
-      "url": "/api/v2/targets/{target_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/targets/{target_id}.json"
+      }<
       "args": [
         {
           "name": "accessToken",
@@ -7963,7 +9511,9 @@
           "type": "JSON",
           "info": "Target data",
           "required": true,
-          "vendorName": "target"
+          "custom": {
+            "vendorName": "target"
+          }
         }
       ],
       "callbacks": [
@@ -7980,8 +9530,10 @@
     {
       "name": "deleteTarget",
       "description": "Delete target",
-      "method": "DELETE",
-      "url": "/api/v2/targets/{target_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/targets/{target_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -8016,8 +9568,10 @@
     {
       "name": "getTriggers",
       "description": "Lists all triggers for the current account",
-      "method": "GET",
-      "url": "/api/v2/triggers.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/triggers.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -8039,13 +9593,15 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": ["alphabetical", "created_at", "updated_at", "usage_1h", "usage_24h", "usage_7d"],
           "info": "Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to position",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": ["asc", "desc"],
           "info": "One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others",
           "required": false
         }
@@ -8064,8 +9620,10 @@
     {
       "name": "getSingleTrigger",
       "description": "Get single trigger by ID",
-      "method": "GET",
-      "url": "/api/v2/triggers/{trigger_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/triggers/{trigger_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -8100,8 +9658,10 @@
     {
       "name": "getActiveTriggers",
       "description": "Lists all active triggers",
-      "method": "GET",
-      "url": "/api/v2/triggers/active.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/triggers/active.json"
+      }
       "args": [
         {
           "name": "accessToken",
@@ -8117,13 +9677,15 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": ["alphabetical", "created_at", "updated_at", "usage_1h", "usage_24h", "usage_7d"],
           "info": "Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to position",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": ["asc", "desc"],
           "info": "One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others",
           "required": false
         }
@@ -8142,8 +9704,10 @@
     {
       "name": "createTrigger",
       "description": "Create trigger",
-      "method": "POST",
-      "url": "/api/v2/triggers.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/triggers.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -8162,7 +9726,9 @@
           "type": "JSON",
           "info": "Trigger params",
           "required": true,
-          "vendorName": "trigger"
+          "custom": {
+            "vendorName": "trigger"
+          }
         }
       ],
       "callbacks": [

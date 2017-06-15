@@ -8,8 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use ZendeskCoreBundle\Exception\PackageException;
-use ZendeskCoreBundle\Exception\RequiredFieldException;
+use RapidAPI\Exception\PackageException;
+use RapidAPI\Exception\RequiredFieldException;
+use Symfony\Component\HttpFoundation\Request;
 
 class PackageController extends Controller
 {
@@ -22,8 +23,10 @@ class PackageController extends Controller
     public function getMetadataAction()
     {
         try {
-            $metadata = $this->get('metadata');
-            $result = $metadata->getClearMetadata();
+            $metadataService = $this->get('metadata');
+            $file = realpath(__DIR__ . '/..') . DIRECTORY_SEPARATOR . 'metadata.json';
+            $metadataService->set($file);
+            $result = $metadataService->getClearMetadata();
         } catch (PackageException $exception) {
             $result = $this->createPackageExceptionResponse($exception);
         }
@@ -36,7 +39,7 @@ class PackageController extends Controller
      *
      * @return JsonResponse
      */
-    public function getAccessToken()
+    public function getAccessToken(Request $request)
     {
         try {
             $manager = $this->get('manager');
