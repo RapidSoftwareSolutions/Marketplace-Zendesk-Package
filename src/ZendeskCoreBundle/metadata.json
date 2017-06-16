@@ -9486,7 +9486,7 @@
       "custom": {
         "method": "PUT",
         "url": "/api/v2/targets/{target_id}.json"
-      }<
+      },
       "args": [
         {
           "name": "accessToken",
@@ -9594,14 +9594,24 @@
         {
           "name": "sortBy",
           "type": "Select",
-          "options": ["alphabetical", "created_at", "updated_at", "usage_1h", "usage_24h", "usage_7d"],
+          "options": [
+            "alphabetical",
+            "created_at",
+            "updated_at",
+            "usage_1h",
+            "usage_24h",
+            "usage_7d"
+          ],
           "info": "Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to position",
           "required": false
         },
         {
           "name": "sortOrder",
           "type": "Select",
-          "options": ["asc", "desc"],
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others",
           "required": false
         }
@@ -9661,7 +9671,7 @@
       "custom": {
         "method": "GET",
         "url": "/api/v2/triggers/active.json"
-      }
+      },
       "args": [
         {
           "name": "accessToken",
@@ -9678,14 +9688,24 @@
         {
           "name": "sortBy",
           "type": "Select",
-          "options": ["alphabetical", "created_at", "updated_at", "usage_1h", "usage_24h", "usage_7d"],
+          "options": [
+            "alphabetical",
+            "created_at",
+            "updated_at",
+            "usage_1h",
+            "usage_24h",
+            "usage_7d"
+          ],
           "info": "Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to position",
           "required": false
         },
         {
           "name": "sortOrder",
           "type": "Select",
-          "options": ["asc", "desc"],
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others",
           "required": false
         }
@@ -9745,8 +9765,10 @@
     {
       "name": "updateTrigger",
       "description": "Create trigger",
-      "method": "PUT",
-      "url": "/api/v2/triggers/{trigger_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/triggers/{trigger_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -9787,8 +9809,10 @@
     {
       "name": "deleteTrigger",
       "description": "Delete trigger",
-      "method": "DELETE",
-      "url": "/api/v2/triggers/{trigger_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/triggers/{trigger_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -9823,8 +9847,10 @@
     {
       "name": "reorderTriggers",
       "description": "Reorder triggers",
-      "method": "PUT",
-      "url": "/api/v2/triggers/reorder.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/triggers/reorder.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -9840,9 +9866,15 @@
         },
         {
           "name": "triggerIds",
-          "type": "Array",
+          "type": "List",
           "info": "List of trigger IDs",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "triggerId",
+            "type": "Number",
+            "info": "Trigger ID",
+            "required": false
+          }
         }
       ],
       "callbacks": [
@@ -9859,8 +9891,10 @@
     {
       "name": "searchTriggers",
       "description": "Search triggers by query in title",
-      "method": "GET",
-      "url": "/api/v2/triggers/search.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/triggers/search.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -9888,13 +9922,23 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "alphabetical",
+            "created_at",
+            "updated_at",
+            "position"
+          ],
           "info": "Possible values are alphabetical, created_at, updated_at, and position. If unspecified, the triggers are sorted by relevance",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others",
           "required": false
         }
@@ -9913,8 +9957,10 @@
     {
       "name": "getViews",
       "description": "Lists shared and personal Views available to the current user",
-      "method": "GET",
-      "url": "/api/v2/views.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/views.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -9948,13 +9994,22 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "alphabetical",
+            "created_at",
+            "updated_at"
+          ],
           "info": "Possible values are alphabetical, created_at, or updated_at. Defaults to position",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others",
           "required": false
         }
@@ -9973,8 +10028,10 @@
     {
       "name": "getActiveViews",
       "description": "Lists active shared and personal Views available to the current user",
-      "method": "GET",
-      "url": "/api/v2/views/active.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/views/active.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10002,13 +10059,22 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "alphabetical",
+            "created_at",
+            "updated_at"
+          ],
           "info": "Possible values are alphabetical, created_at, or updated_at. Defaults to position",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others",
           "required": false
         }
@@ -10027,8 +10093,10 @@
     {
       "name": "getSingleView",
       "description": "Get single view by ID",
-      "method": "GET",
-      "url": "/api/v2/views/{view_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/views/{view_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10063,8 +10131,10 @@
     {
       "name": "createView",
       "description": "Create view",
-      "method": "POST",
-      "url": "/api/v2/views.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/views.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10083,7 +10153,9 @@
           "type": "JSON",
           "info": "A view consists of one or more conditions that define a collection of tickets to display.",
           "required": true,
-          "vendorName": "view"
+          "custom": {
+            "vendorName": "view"
+          }
         }
       ],
       "callbacks": [
@@ -10100,8 +10172,10 @@
     {
       "name": "updateView",
       "description": "Update view",
-      "method": "PUT",
-      "url": "/api/v2/views/{view_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/views/{view_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10126,7 +10200,9 @@
           "type": "JSON",
           "info": "A view consists of one or more conditions that define a collection of tickets to display.",
           "required": true,
-          "vendorName": "view"
+          "custom": {
+            "vendorName": "view"
+          }
         }
       ],
       "callbacks": [
@@ -10143,8 +10219,10 @@
     {
       "name": "deleteView",
       "description": "Delete view",
-      "method": "DELETE",
-      "url": "/api/v2/views/{view_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/views/{view_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10179,8 +10257,10 @@
     {
       "name": "executeView",
       "description": "You execute a view in order to get the tickets that fulfill the conditions of the view.",
-      "method": "GET",
-      "url": "/api/v2/views/{view_id}/execute.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/views/{view_id}/execute.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10215,8 +10295,10 @@
     {
       "name": "getTicketsFromView",
       "description": "Get tickets from a view",
-      "method": "GET",
-      "url": "/api/v2/views/{view_id}/tickets.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/views/{view_id}/tickets.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10251,8 +10333,10 @@
     {
       "name": "getViewsCounts",
       "description": "Calculates the size of the view in terms of number of tickets the view will return. Only returns values for personal and shared views accessible to the user performing the request.",
-      "method": "GET",
-      "url": "/api/v2/views/count_many.json?ids={view_ids}",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/views/count_many.json?ids={view_ids}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10268,9 +10352,18 @@
         },
         {
           "name": "viewIds",
-          "type": "Array",
+          "type": "List",
           "info": "List of view IDs",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "viewId",
+            "type": "Number",
+            "info": "View ID",
+            "required": true
+          },
+          "custom": {
+            "toString": true
+          }
         }
       ],
       "callbacks": [
@@ -10287,8 +10380,10 @@
     {
       "name": "getSingleViewCount",
       "description": "Returns the ticket count for a single view.",
-      "method": "GET",
-      "url": "/api/v2/views/{view_id}/count.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/views/{view_id}/count.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10323,8 +10418,10 @@
     {
       "name": "exportViews",
       "description": "Returns the csv attachment of the current view if possible. Enqueues job to produce the csv if necessary",
-      "method": "GET",
-      "url": "/api/v2/views/{view_id}/export.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/views/{view_id}/export.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10359,8 +10456,10 @@
     {
       "name": "searchViews",
       "description": "Search views",
-      "method": "GET",
-      "url": "/api/v2/views/search.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/views/search.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10400,13 +10499,23 @@
         },
         {
           "name": "sortBy",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "alphabetical",
+            "created_at",
+            "updated_at",
+            "position"
+          ],
           "info": "Possible values are alphabetical, created_at, updated_at, and position. If unspecified, the views are sorted by relevance",
           "required": false
         },
         {
           "name": "sortOrder",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "asc",
+            "desc"
+          ],
           "info": "One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all other",
           "required": false
         }
@@ -10425,8 +10534,10 @@
     {
       "name": "getAccountSettings",
       "description": "Shows the settings that are available for the account.",
-      "method": "GET",
-      "url": "/api/v2/account/settings.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/account/settings.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10455,8 +10566,10 @@
     {
       "name": "updateAccountSettings",
       "description": "Updates settings for the account. See JSON Format from getAccountSettings for the settings you can update.",
-      "method": "GET",
-      "url": "/api/v2/account/settings.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/account/settings.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10491,8 +10604,10 @@
     {
       "name": "getAuditLogs",
       "description": "Listing Audit Logs",
-      "method": "GET",
-      "url": "/api/v2/audit_logs.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/audit_logs.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10521,8 +10636,10 @@
     {
       "name": "getSingleAuditLog",
       "description": "Get single audit log",
-      "method": "GET",
-      "url": "/api/v2/audit_logs/{audit_log_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/audit_logs/{audit_log_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10557,8 +10674,10 @@
     {
       "name": "getBrands",
       "description": "Returns a list of all brands for your account sorted by name.",
-      "method": "GET",
-      "url": "/api/v2/brands.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/brands.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10587,8 +10706,10 @@
     {
       "name": "getSingleBrand",
       "description": "Get single brand",
-      "method": "GET",
-      "url": "/api/v2/brands/{brand_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/brands/{brand_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10623,8 +10744,10 @@
     {
       "name": "createBrand",
       "description": "Create a brand",
-      "method": "POST",
-      "url": "/api/v2/brands.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/brands.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10643,77 +10766,72 @@
           "type": "String",
           "info": "The name of the brand",
           "required": true,
-          "wrapName": "brand"
+          "custom": {
+            "wrapName": "brand"
+          }
         },
         {
           "name": "brandUrl",
           "type": "String",
           "info": "The url of the brand",
           "required": false,
-          "wrapName": "brand"
+          "custom": {
+            "wrapName": "brand"
+          }
         },
         {
           "name": "hasHelpCenter",
           "type": "Boolean",
           "info": "If the brand has a Help Center",
           "required": false,
-          "wrapName": "brand"
-        },
-        {
-          "name": "helpCenterState",
-          "type": "String",
-          "info": "The state of the Help Center: enabled, disabled, or restricted",
-          "required": false,
-          "wrapName": "Brand"
+          "custom": {
+            "wrapName": "brand"
+          }
         },
         {
           "name": "active",
           "type": "Boolean",
           "info": "If the brand is set as active",
           "required": false,
-          "wrapName": "brand"
+          "custom": {
+            "wrapName": "brand"
+          }
         },
         {
           "name": "default",
           "type": "Boolean",
           "info": "Is the brand the default brand for this account",
           "required": false,
-          "wrapName": "brand"
-        },
-        {
-          "name": "logo",
-          "type": "String",
-          "info": "?",
-          "required": false,
-          "wrapName": "brand"
-        },
-        {
-          "name": "ticketFormIds",
-          "type": "Array",
-          "info": "List of ticket IDs forms that are available for use by a brand",
-          "required": false,
-          "wrapName": "brand"
+          "custom": {
+            "wrapName": "brand"
+          }
         },
         {
           "name": "subdomain",
           "type": "String",
           "info": "The subdomain of the brand (only admins view this key)",
           "required": true,
-          "wrapName": "brand"
+          "custom": {
+            "wrapName": "brand"
+          }
         },
         {
           "name": "hostMapping",
           "type": "String",
           "info": "The hostmapping to this brand, if any (only admins view this key)",
           "required": false,
-          "wrapName": "brand"
+          "custom": {
+            "wrapName": "brand"
+          }
         },
         {
           "name": "signatureTemplate",
           "type": "String",
           "info": "The signature template for a brand",
           "required": false,
-          "wrapName": "brand"
+          "custom": {
+            "wrapName": "brand"
+          }
         }
       ],
       "callbacks": [
@@ -10730,8 +10848,10 @@
     {
       "name": "updateBrand",
       "description": "Returns an updated brand.",
-      "method": "PUT",
-      "url": "/api/v2/brands/{brand_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/brands/{brand_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10756,63 +10876,121 @@
           "type": "String",
           "info": "The name of the brand",
           "required": true,
-          "wrapName": "brand"
+          "custom": {
+            "wrapName": "brand"
+          }
         },
         {
           "name": "brandUrl",
           "type": "String",
           "info": "The url of the brand",
           "required": false,
-          "wrapName": "brand"
+          "custom": {
+            "wrapName": "brand"
+          }
         },
         {
           "name": "hasHelpCenter",
           "type": "Boolean",
           "info": "If the brand has a Help Center",
           "required": false,
-          "wrapName": "brand"
+          "custom": {
+            "wrapName": "brand"
+          }
         },
         {
           "name": "active",
           "type": "Boolean",
           "info": "If the brand is set as active",
           "required": false,
-          "wrapName": "brand"
+          "custom": {
+            "wrapName": "brand"
+          }
         },
         {
           "name": "default",
           "type": "Boolean",
           "info": "Is the brand the default brand for this account",
           "required": false,
-          "wrapName": "brand"
-        },
-        {
-          "name": "logo",
-          "type": "String",
-          "info": "?",
-          "required": false,
-          "wrapName": "brand"
+          "custom": {
+            "wrapName": "brand"
+          }
         },
         {
           "name": "subdomain",
           "type": "String",
           "info": "The subdomain of the brand (only admins view this key)",
           "required": true,
-          "wrapName": "brand"
+          "custom": {
+            "wrapName": "brand"
+          }
         },
         {
           "name": "hostMapping",
           "type": "String",
           "info": "The hostmapping to this brand, if any (only admins view this key)",
           "required": false,
-          "wrapName": "brand"
+          "custom": {
+            "wrapName": "brand"
+          }
         },
         {
           "name": "signatureTemplate",
           "type": "String",
           "info": "The signature template for a brand",
           "required": false,
-          "wrapName": "brand"
+          "custom": {
+            "wrapName": "brand"
+          }
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateBrandImage",
+      "description": "A brand image can be updated by uploading a local file using the update brand endpoint.",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/brands/{brand_id}.json",
+        "type": "multipart"
+      },
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "brandId",
+          "type": "Number",
+          "info": "Brand ID",
+          "required": true
+        },
+        {
+          "name": "logo",
+          "type": "File",
+          "info": "File/url to upload",
+          "required": true,
+          "custom": {
+            "wrapName": "brand.photo",
+            "vendorName": "uploaded_data"
+          }
         }
       ],
       "callbacks": [
@@ -10829,8 +11007,10 @@
     {
       "name": "deleteBrand",
       "description": "Deletes a brand.",
-      "method": "DELETE",
-      "url": "/api/v2/brands/{brand_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/brands/{brand_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10865,8 +11045,10 @@
     {
       "name": "checkHostMappingValidity",
       "description": "Returns a JSON object determining whether a host mapping is valid for a given subdomain.",
-      "method": "GET",
-      "url": "/api/v2/brands/check_host_mapping.json?host_mapping={host_mapping}&subdomain={subdomain}",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/brands/check_host_mapping.json?host_mapping={host_mapping}&subdomain={subdomain}"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10905,54 +11087,12 @@
       ]
     },
     {
-      "name": "updateBrandImage",
-      "description": "A brand image can be updated by uploading a local file using the update brand endpoint.",
-      "method": "PUT",
-      "url": "/api/v2/brands/{brand_id}.json",
-      "type": "binary",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "String",
-          "info": "Access Token",
-          "required": true
-        },
-        {
-          "name": "domain",
-          "type": "String",
-          "info": "Your domain in Zendesk system.",
-          "required": true
-        },
-        {
-          "name": "brandId",
-          "type": "Number",
-          "info": "Brand ID",
-          "required": true
-        },
-        {
-          "name": "logo",
-          "type": "File",
-          "info": "File to upload",
-          "required": true,
-          "wrapName": "brand.photo.uploaded_data"
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
       "name": "updateDefaultBrand",
       "description": "The default brand is the one that tickets get assigned to if the ticket is generated from a non-branded channel. You can update the default brand using the updateAccountSettings endpoint.",
-      "method": "PUT",
-      "url": "/api/v2/brands.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/brands.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -10971,8 +11111,10 @@
           "type": "Number",
           "info": "Brand ID to set as default",
           "required": true,
-          "wrapName": "settings.brands",
-          "vendorName": "default_brand_id"
+          "custom": {
+            "wrapName": "settings.brands",
+            "vendorName": "default_brand_id"
+          }
         }
       ],
       "callbacks": [
@@ -10989,8 +11131,10 @@
     {
       "name": "getLocales",
       "description": "This lists the translation locales that are available for the account.",
-      "method": "GET",
-      "url": "/api/v2/locales.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/locales.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11019,8 +11163,10 @@
     {
       "name": "getSingleLocale",
       "description": "Get single locale by ID",
-      "method": "GET",
-      "url": "/api/v2/locales/{locale_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/locales/{locale_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11055,8 +11201,10 @@
     {
       "name": "showCurrentLocale",
       "description": "Show current locale",
-      "method": "GET",
-      "url": "/api/v2/locales/current.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/locales/current.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11085,8 +11233,10 @@
     {
       "name": "detectLocaleForUser",
       "description": "Detect best language for user",
-      "method": "GET",
-      "url": "/api/v2/locales/detect_best_locale.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/locales/detect_best_locale.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11115,8 +11265,10 @@
     {
       "name": "getOrganizationFields",
       "description": "Returns a list of all custom Organization Fields in your account. Fields are returned in the order that you specify in your Organization Fields configuration in Zendesk Support. Clients should cache this resource for the duration of their API usage and map the key for each Organization.",
-      "method": "GET",
-      "url": "/api/v2/organization_fields.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/organization_fields.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11145,8 +11297,10 @@
     {
       "name": "getSingleOrganizationField",
       "description": "Get single organization field by ID",
-      "method": "GET",
-      "url": "/api/v2/organization_fields/{organization_field_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/organization_fields/{organization_field_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11181,8 +11335,10 @@
     {
       "name": "createOrganizationField",
       "description": "Create new organization field",
-      "method": "POST",
-      "url": "/api/v2/organization_fields.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/organization_fields.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11201,84 +11357,129 @@
           "type": "String",
           "info": "A unique key that identifies this custom field. This is used for updating the field and referencing in placeholders.",
           "required": true,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "checkbox",
+            "date",
+            "decimal",
+            "dropdown",
+            "integer",
+            "regexp",
+            "text",
+            "textarea"
+          ],
           "info": "Type of the custom field: \"checkbox\", \"date\", \"decimal\", \"dropdown\", \"integer\", \"regexp\", \"text\", or \"textarea\"",
           "required": true,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "title",
           "type": "String",
           "info": "The title of the custom field",
           "required": true,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "rawTitle",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"title\" value, if not. See dynamic content at Zendesk Core API -> Dynamic Content",
           "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "description",
           "type": "String",
           "info": "User-defined description of this field's purpose",
           "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "rawDescription",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"description\" value, if not. See dynamic content at Zendesk Core API -> Dynamic Content",
           "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "position",
           "type": "Number",
           "info": "Ordering of the field relative to other fields",
           "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "active",
           "type": "Boolean",
           "info": "If true, this field is available for use",
           "required": false,
-          "wrapName": "organization_field"
-        },
-        {
-          "name": "system",
-          "type": "Boolean",
-          "info": "If true, only active and position values of this field can be changed",
-          "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "regexpForValidation",
           "type": "String",
           "info": "Regular expression field only. The validation pattern for a field value to be deemed valid.",
           "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "tag",
           "type": "String",
           "info": "Optional for custom field of type \"checkbox\"; not presented otherwise.",
           "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "customFieldOptions",
           "type": "Array",
           "info": "Required and presented for a custom field of type \"dropdown\"",
-          "required": true,
-          "wrapName": "organization_field"
+          "required": false,
+          "structure": [
+            {
+              "name": "id",
+              "type": "Number",
+              "info": "Option ID (to update use this ID)",
+              "required": true
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "info": "Option name",
+              "required": true
+            },
+            {
+              "name": "value",
+              "type": "String",
+              "info": "Option value",
+              "required": true
+            }
+          ],
+          "custom": {
+            "wrapName": "organization_field"
+          }
         }
       ],
       "callbacks": [
@@ -11295,8 +11496,10 @@
     {
       "name": "updateOrganizationField",
       "description": "Update new organization field",
-      "method": "PUT",
-      "url": "/api/v2/organization_fields/{organization_field_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/organization_fields/{organization_field_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11321,77 +11524,129 @@
           "type": "String",
           "info": "A unique key that identifies this custom field. This is used for updating the field and referencing in placeholders.",
           "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "type",
-          "type": "String",
-          "info": "Type of the custom field: \"checkbox\", \"date\", \"decimal\", \"dropdown\", \"integer\", \"regexp\", \"text\", or \"textarea\"",
+          "type": "Select",
+          "options": [
+            "checkbox",
+            "date",
+            "decimal",
+            "dropdown",
+            "integer",
+            "regexp",
+            "text",
+            "textarea"
+          ],
+          "info": "Type of the custom field: \"checkbox\", \"date\", \"decimal\", \"dropdown\", \"integer\", \"regexp\", \"text\" or \"textarea\"",
           "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "title",
           "type": "String",
           "info": "The title of the custom field",
           "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "rawTitle",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"title\" value, if not. See dynamic content at Zendesk Core API -> Dynamic Content",
           "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "description",
           "type": "String",
           "info": "User-defined description of this field's purpose",
           "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "rawDescription",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"description\" value, if not. See dynamic content at Zendesk Core API -> Dynamic Content",
           "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "position",
           "type": "Number",
           "info": "Ordering of the field relative to other fields",
           "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "active",
           "type": "Boolean",
           "info": "If true, this field is available for use",
           "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "regexpForValidation",
           "type": "String",
           "info": "Regular expression field only. The validation pattern for a field value to be deemed valid.",
           "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "tag",
           "type": "String",
           "info": "Optional for custom field of type \"checkbox\"; not presented otherwise.",
           "required": false,
-          "wrapName": "organization_field"
+          "custom": {
+            "wrapName": "organization_field"
+          }
         },
         {
           "name": "customFieldOptions",
           "type": "Array",
-          "info": "Required and presented for a custom field of type \"dropdown\"",
+          "info": "Required and presented for a custom field of type \"dropdown\". All options must be passed on update. Options that are not passed will be removed; as a result, these values will be removed from any organizations. To re-order an option, reposition it in the custom_field_options array relative to the other options. To remove an option, omit it from the list of options upon update",
           "required": false,
-          "wrapName": "organization_field"
+          "structure": [
+            {
+              "name": "id",
+              "type": "Number",
+              "info": "Option ID (to update use this ID). To create a new option, pass a null id. To update - use existed option ID",
+              "required": false
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "info": "Option name",
+              "required": true
+            },
+            {
+              "name": "value",
+              "type": "String",
+              "info": "Option value",
+              "required": true
+            }
+          ],
+          "custom": {
+            "wrapName": "organization_field"
+          }
         }
       ],
       "callbacks": [
@@ -11408,8 +11663,10 @@
     {
       "name": "deleteOrganizationField",
       "description": "Delete new organization field",
-      "method": "DELETE",
-      "url": "/api/v2/organization_fields/{organization_field_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/organization_fields/{organization_field_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11444,8 +11701,10 @@
     {
       "name": "reorderOrganizationField",
       "description": "Reorder organization fields",
-      "method": "PUT",
-      "url": "/api/v2/organization_fields/reorder.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/organization_fields/reorder.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11461,9 +11720,15 @@
         },
         {
           "name": "organizationFieldIds",
-          "type": "Array",
+          "type": "List",
           "info": "List of organization field IDs",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "organizationFieldId",
+            "type": "Number",
+            "info": "Organization field ID",
+            "required": true
+          }
         }
       ],
       "callbacks": [
@@ -11480,8 +11745,10 @@
     {
       "name": "getSchedules",
       "description": "List all schedules",
-      "method": "GET",
-      "url": "/api/v2/business_hours/schedules.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/business_hours/schedules.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11510,8 +11777,10 @@
     {
       "name": "getSingleSchedule",
       "description": "List all schedules",
-      "method": "GET",
-      "url": "/api/v2/business_hours/schedules/{schedule_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/business_hours/schedules/{schedule_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11546,8 +11815,10 @@
     {
       "name": "createSchedule",
       "description": "Create a schedule",
-      "method": "POST",
-      "url": "/api/v2/business_hours/schedules.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/business_hours/schedules.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11566,14 +11837,41 @@
           "type": "String",
           "info": "Name of the schedule",
           "required": true,
-          "wrapName": "schedule"
+          "custom": {
+            "wrapName": "schedule"
+          }
         },
         {
           "name": "timeZone",
           "type": "String",
           "info": "Timezone",
           "required": true,
-          "wrapName": "schedule"
+          "custom": {
+            "wrapName": "schedule"
+          }
+        },
+        {
+          "name": "intervals",
+          "type": "Array",
+          "info": "Array of intervals for the schedule",
+          "required": false,
+          "structure": [
+            {
+              "name": "startTime",
+              "type": "Number",
+              "info": "Integer representation of the interval start time. For instance, 720 is equivalent to Sunday at noon (12 * 60).",
+              "required": true
+            },
+            {
+              "name": "end_time",
+              "type": "Number",
+              "info": "Integer representation of the interval end time. For instance, 720 is equivalent to Sunday at noon (12 * 60).",
+              "required": true
+            }
+          ],
+          "custom": {
+            "wrapName": "schedule"
+          }
         }
       ],
       "callbacks": [
@@ -11590,8 +11888,10 @@
     {
       "name": "updateSchedule",
       "description": "Update a schedule",
-      "method": "PUT",
-      "url": "/api/v2/business_hours/schedules/{schedule_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/business_hours/schedules/{schedule_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11616,14 +11916,41 @@
           "type": "String",
           "info": "Name of the schedule",
           "required": false,
-          "wrapName": "schedule"
+          "custom": {
+            "wrapName": "schedule"
+          }
         },
         {
           "name": "timeZone",
           "type": "String",
           "info": "Timezone",
           "required": false,
-          "wrapName": "schedule"
+          "custom": {
+            "wrapName": "schedule"
+          }
+        },
+        {
+          "name": "intervals",
+          "type": "Array",
+          "info": "Array of intervals for the schedule",
+          "required": false,
+          "structure": [
+            {
+              "name": "startTime",
+              "type": "Number",
+              "info": "Integer representation of the interval start time. For instance, 720 is equivalent to Sunday at noon (12 * 60).",
+              "required": true
+            },
+            {
+              "name": "end_time",
+              "type": "Number",
+              "info": "Integer representation of the interval end time. For instance, 720 is equivalent to Sunday at noon (12 * 60).",
+              "required": true
+            }
+          ],
+          "custom": {
+            "wrapName": "schedule"
+          }
         }
       ],
       "callbacks": [
@@ -11640,8 +11967,10 @@
     {
       "name": "updateIntervalsForSchedule",
       "description": "Update intervals of schedule",
-      "method": "PUT",
-      "url": "/api/v2/business_hours/schedules/{schedule_id}/workweek.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/business_hours/schedules/{schedule_id}/workweek.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11663,10 +11992,26 @@
         },
         {
           "name": "intervals",
-          "type": "JSON",
-          "info": "List of obj intervals. Example: [{\"start_time\": 3420, \"end_time\": 3900}]",
+          "type": "Array",
+          "info": "Array of intervals for the schedule",
           "required": true,
-          "wrapName": "workweek"
+          "structure": [
+            {
+              "name": "startTime",
+              "type": "Number",
+              "info": "Integer representation of the interval start time. For instance, 720 is equivalent to Sunday at noon (12 * 60).",
+              "required": true
+            },
+            {
+              "name": "end_time",
+              "type": "Number",
+              "info": "Integer representation of the interval end time. For instance, 720 is equivalent to Sunday at noon (12 * 60).",
+              "required": true
+            }
+          ],
+          "custom": {
+            "wrapName": "workweek"
+          }
         }
       ],
       "callbacks": [
@@ -11683,8 +12028,10 @@
     {
       "name": "deleteSchedule",
       "description": "Delete a schedule",
-      "method": "DELETE",
-      "url": "/api/v2/business_hours/schedules/{schedule_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/business_hours/schedules/{schedule_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11719,8 +12066,10 @@
     {
       "name": "createHoliday",
       "description": "Create a schedule holiday",
-      "method": "POST",
-      "url": "/api/v2/business_hours/schedules/{schedule_id}/holidays.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/business_hours/schedules/{schedule_id}/holidays.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11745,22 +12094,42 @@
           "type": "String",
           "info": "Holiday name",
           "required": true,
-          "vendorName": "name",
-          "wrapName": "holiday"
+          "custom": {
+            "vendorName": "name",
+            "wrapName": "holiday"
+          }
         },
         {
           "name": "startDate",
-          "type": "String",
+          "type": "DatePicker",
           "info": "Must be in ISO 8601 date format (e.g. 2016-01-01).",
           "required": true,
-          "wrapName": "holiday"
+          "custom": {
+            "wrapName": "holiday",
+            "dateTime": {
+              "fromFormat": [
+                "Y-m-d H:i:s",
+                "Y-m-d"
+              ],
+              "toFormat": "Y-m-d"
+            }
+          }
         },
         {
           "name": "endDate",
-          "type": "String",
+          "type": "DatePicker",
           "info": "Must be in ISO 8601 date format (e.g. 2016-01-01).",
           "required": true,
-          "wrapName": "holiday"
+          "custom": {
+            "wrapName": "holiday",
+            "dateTime": {
+              "fromFormat": [
+                "Y-m-d H:i:s",
+                "Y-m-d"
+              ],
+              "toFormat": "Y-m-d"
+            }
+          }
         }
       ],
       "callbacks": [
@@ -11777,8 +12146,10 @@
     {
       "name": "getScheduleHolidays",
       "description": "List holidays for a schedule",
-      "method": "GET",
-      "url": "/api/v2/business_hours/schedules/{schedule_id}/holidays.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/business_hours/schedules/{schedule_id}/holidays.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11800,15 +12171,33 @@
         },
         {
           "name": "startDate",
-          "type": "String",
+          "type": "DatePicker",
           "info": "Must be in ISO 8601 date format (e.g. 2016-01-01).",
-          "required": false
+          "required": false,
+          "custom": {
+            "dateTime": {
+              "fromFormat": [
+                "Y-m-d H:i:s",
+                "Y-m-d"
+              ],
+              "toFormat": "Y-m-d"
+            }
+          }
         },
         {
           "name": "endDate",
-          "type": "String",
+          "type": "DatePicker",
           "info": "Must be in ISO 8601 date format (e.g. 2016-01-01).",
-          "required": false
+          "required": false,
+          "custom": {
+            "dateTime": {
+              "fromFormat": [
+                "Y-m-d H:i:s",
+                "Y-m-d"
+              ],
+              "toFormat": "Y-m-d"
+            }
+          }
         }
       ],
       "callbacks": [
@@ -11825,8 +12214,10 @@
     {
       "name": "getSingleHoliday",
       "description": "Get single holiday",
-      "method": "GET",
-      "url": "/api/v2/business_hours/schedules/{schedule_id}/holidays/{holiday_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/business_hours/schedules/{schedule_id}/holidays/{holiday_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11867,8 +12258,10 @@
     {
       "name": "updateHoliday",
       "description": "Update a holiday",
-      "method": "PUT",
-      "url": "/api/v2/business_hours/schedules/{schedule_id}/holidays/{holiday_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/business_hours/schedules/{schedule_id}/holidays/{holiday_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11899,22 +12292,42 @@
           "type": "String",
           "info": "Holiday name",
           "required": true,
-          "vendorName": "name",
-          "wrapName": "holiday"
+          "custom": {
+            "vendorName": "name",
+            "wrapName": "holiday"
+          }
         },
         {
           "name": "startDate",
-          "type": "String",
+          "type": "DatePicker",
           "info": "Must be in ISO 8601 date format (e.g. 2016-01-01).",
           "required": true,
-          "wrapName": "holiday"
+          "custom": {
+            "wrapName": "holiday",
+            "dateTime": {
+              "fromFormat": [
+                "Y-m-d H:i:s",
+                "Y-m-d"
+              ],
+              "toFormat": "Y-m-d"
+            }
+          }
         },
         {
           "name": "endDate",
-          "type": "String",
+          "type": "DatePicker",
           "info": "Must be in ISO 8601 date format (e.g. 2016-01-01).",
           "required": true,
-          "wrapName": "holiday"
+          "custom": {
+            "wrapName": "holiday",
+            "dateTime": {
+              "fromFormat": [
+                "Y-m-d H:i:s",
+                "Y-m-d"
+              ],
+              "toFormat": "Y-m-d"
+            }
+          }
         }
       ],
       "callbacks": [
@@ -11931,8 +12344,10 @@
     {
       "name": "deleteHoliday",
       "description": "Delete a holiday",
-      "method": "DELETE",
-      "url": "/api/v2/business_hours/schedules/{schedule_id}/holidays/{holiday_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/business_hours/schedules/{schedule_id}/holidays/{holiday_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11973,8 +12388,10 @@
     {
       "name": "createSharingAgreement",
       "description": "Create sharing agreement",
-      "method": "POST",
-      "url": "/api/v2/sharing_agreements.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/sharing_agreements.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -11993,35 +12410,55 @@
           "type": "String",
           "info": "Name of this sharing agreement",
           "required": false,
-          "wrapName": "sharing_agreement"
+          "custom": {
+            "wrapName": "sharing_agreement"
+          }
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "inbound",
+            "outbound"
+          ],
           "info": "Can be one of the following: 'inbound', 'outbound'",
           "required": false,
-          "wrapName": "sharing_agreement"
+          "custom": {
+            "wrapName": "sharing_agreement"
+          }
         },
         {
           "name": "status",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "accepted",
+            "declined",
+            "pending",
+            "inactive"
+          ],
           "info": "Can be one of the following: 'accepted', 'declined', 'pending', 'inactive'",
           "required": false,
-          "wrapName": "sharing_agreement"
+          "custom": {
+            "wrapName": "sharing_agreement"
+          }
         },
         {
           "name": "partnerName",
           "type": "String",
           "info": "Can be one of the following: 'jira', null",
           "required": false,
-          "wrapName": "sharing_agreement"
+          "custom": {
+            "wrapName": "sharing_agreement"
+          }
         },
         {
           "name": "remoteSubdomain",
           "type": "String",
           "info": "Subdomain of the remote account or null if not associated with an account",
           "required": true,
-          "wrapName": "sharing_agreement"
+          "custom": {
+            "wrapName": "sharing_agreement"
+          }
         }
       ],
       "callbacks": [
@@ -12038,8 +12475,10 @@
     {
       "name": "updateSharingAgreement",
       "description": "Update sharing agreement",
-      "method": "PUT",
-      "url": "/api/v2/sharing_agreements/{sharing_agreement_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/sharing_agreements/{sharing_agreement_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12064,35 +12503,55 @@
           "type": "String",
           "info": "Name of this sharing agreement",
           "required": false,
-          "wrapName": "sharing_agreement"
+          "custom": {
+            "wrapName": "sharing_agreement"
+          }
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "inbound",
+            "outbound"
+          ],
           "info": "Can be one of the following: 'inbound', 'outbound'",
           "required": false,
-          "wrapName": "sharing_agreement"
+          "custom": {
+            "wrapName": "sharing_agreement"
+          }
         },
         {
           "name": "status",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "accepted",
+            "declined",
+            "pending",
+            "inactive"
+          ],
           "info": "Can be one of the following: 'accepted', 'declined', 'pending', 'inactive'",
           "required": false,
-          "wrapName": "sharing_agreement"
+          "custom": {
+            "wrapName": "sharing_agreement"
+          }
         },
         {
           "name": "partnerName",
           "type": "String",
           "info": "Can be one of the following: 'jira', null",
           "required": false,
-          "wrapName": "sharing_agreement"
+          "custom": {
+            "wrapName": "sharing_agreement"
+          }
         },
         {
           "name": "remoteSubdomain",
           "type": "String",
           "info": "Subdomain of the remote account or null if not associated with an account",
           "required": false,
-          "wrapName": "sharing_agreement"
+          "custom": {
+            "wrapName": "sharing_agreement"
+          }
         }
       ],
       "callbacks": [
@@ -12109,8 +12568,10 @@
     {
       "name": "getSingleSharingAgreement",
       "description": "Get single sharing agreement by ID",
-      "method": "GET",
-      "url": "/api/v2/sharing_agreements/{sharing_agreement_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/sharing_agreements/{sharing_agreement_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12145,8 +12606,10 @@
     {
       "name": "getSharingAgreements",
       "description": "Get list of sharing agreements",
-      "method": "GET",
-      "url": "/api/v2/sharing_agreements.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/sharing_agreements.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12175,8 +12638,10 @@
     {
       "name": "deleteSharingAgreement",
       "description": "Delete sharing agreement by ID",
-      "method": "DELETE",
-      "url": "/api/v2/sharing_agreements/{sharing_agreement_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/sharing_agreements/{sharing_agreement_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12211,8 +12676,10 @@
     {
       "name": "createSupportAddress",
       "description": "Adds a Zendesk or external support address to your account.To add a Zendesk address, use the following syntax: {local-part}@{accountname}.zendesk.com. Example: 'sales-team@omniwear.zendesk.com'. The local-part can be anything you like. To add an external email address such as help@omniwearshop.com, the email must already exist and you must set up forwarding on your email server. The exact steps depend on your mail server. See Forwarding incoming email to Zendesk Support. After setting up forwarding, run the Verify Support Address Forwarding endpoint. The address won't work in Zendesk Support until it's been verified.",
-      "method": "POST",
-      "url": "/api/v2/recipient_addresses.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/recipient_addresses.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12231,42 +12698,65 @@
           "type": "String",
           "info": "The email address (not updateable)",
           "required": true,
-          "wrapName": "recipient_address"
+          "custom": {
+            "wrapName": "recipient_address"
+          }
         },
         {
           "name": "name",
           "type": "String",
           "info": "The name for the address",
           "required": false,
-          "wrapName": "recipient_address"
+          "custom": {
+            "wrapName": "recipient_address"
+          }
         },
         {
           "name": "default",
           "type": "Boolean",
           "info": "Whether the address is the account's default support address",
           "required": false,
-          "wrapName": "recipient_address"
+          "custom": {
+            "wrapName": "recipient_address"
+          }
         },
         {
           "name": "brandId",
           "type": "Number",
           "info": "Brand ID",
           "required": false,
-          "wrapName": "recipient_address"
+          "custom": {
+            "wrapName": "recipient_address"
+          }
         },
         {
           "name": "forwardingStatus",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "unknown",
+            "waiting",
+            "verified",
+            "failed"
+          ],
           "info": "Possible values: \"unknown\", \"waiting\", \"verified\", or \"failed\"",
           "required": false,
-          "wrapName": "recipient_address"
+          "custom": {
+            "wrapName": "recipient_address"
+          }
         },
         {
           "name": "spfStatus",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "unknown",
+            "verified",
+            "failed"
+          ],
           "info": "Possible values: \"unknown\", \"verified\", \"failed\"",
           "required": false,
-          "wrapName": "recipient_address"
+          "custom": {
+            "wrapName": "recipient_address"
+          }
         }
       ],
       "callbacks": [
@@ -12283,8 +12773,10 @@
     {
       "name": "getSupportAddresses",
       "description": "Lists all the support addresses for the account",
-      "method": "GET",
-      "url": "/api/v2/recipient_addresses.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/recipient_addresses.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12313,8 +12805,10 @@
     {
       "name": "getSingleSupportAddress",
       "description": "Get single support address by ID",
-      "method": "GET",
-      "url": "/api/v2/recipient_addresses/{support_address_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/recipient_addresses/{support_address_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12349,8 +12843,10 @@
     {
       "name": "updateSupportAddress",
       "description": "Update support address",
-      "method": "PUT",
-      "url": "/api/v2/recipient_addresses/{support_address_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/recipient_addresses/{support_address_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12375,21 +12871,27 @@
           "type": "String",
           "info": "The name for the address",
           "required": false,
-          "wrapName": "recipient_address"
+          "custom": {
+            "wrapName": "recipient_address"
+          }
         },
         {
           "name": "default",
           "type": "Boolean",
           "info": "Whether the address is the account's default support address",
           "required": false,
-          "wrapName": "recipient_address"
+          "custom": {
+            "wrapName": "recipient_address"
+          }
         },
         {
           "name": "brandId",
           "type": "Number",
           "info": "Brand ID",
           "required": false,
-          "wrapName": "recipient_address"
+          "custom": {
+            "wrapName": "recipient_address"
+          }
         }
       ],
       "callbacks": [
@@ -12406,8 +12908,10 @@
     {
       "name": "verifySupportAddressForwarding",
       "description": "Sends a test email to the specified support address to verify that email forwarding for the address works. An external support address won't work in Zendesk Support until it's verified. Note: You don't need to verify Zendesk support addresses.",
-      "method": "PUT",
-      "url": "/api/v2/recipient_addresses/{support_address_id}/verify.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/recipient_addresses/{support_address_id}/verify.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12431,7 +12935,7 @@
           "name": "type",
           "type": "String",
           "info": "The endpoint takes only this parametr: \"forwarding\"",
-          "required": false
+          "required": true
         }
       ],
       "callbacks": [
@@ -12448,8 +12952,10 @@
     {
       "name": "deleteRecipientAddress",
       "description": "Delete recipient adress",
-      "method": "DELETE",
-      "url": "/api/v2/recipient_addresses/{support_address_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/recipient_addresses/{support_address_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12484,8 +12990,10 @@
     {
       "name": "getTicketForms",
       "description": "Returns a list of all ticket forms for your account if accessed as an admin or agent. End users will only see the list of ticket forms that are marked 'end_user_visible'.",
-      "method": "GET",
-      "url": "/api/v2/ticket_forms.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/ticket_forms.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12538,8 +13046,10 @@
     {
       "name": "createTicketForms",
       "description": "Create tickets forms",
-      "method": "POST",
-      "url": "/api/v2/ticket_forms.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/ticket_forms.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12558,84 +13068,126 @@
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"name\" value, if not. See Dynamic Content",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "display_name",
           "type": "String",
           "info": "The name of the form that is displayed to an end user",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "rawDisplayName",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"display_name\" value, if not. See Dynamic Content",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "position",
           "type": "Number",
           "info": "The position of this form among other forms in the account, i.e. dropdown",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "active",
           "type": "Boolean",
           "info": "If the form is set as active",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "endUserVisible",
           "type": "Boolean",
           "info": "Is the form visible to the end user",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "default",
           "type": "Boolean",
           "info": "Is the form the default form for this account",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "ticketFieldIds",
-          "type": "Array",
+          "type": "List",
           "info": "List ids of all ticket fields which are in this ticket form",
           "required": false,
-          "wrapName": "ticket_form"
+          "structure": {
+            "name": "ticketFieldId",
+            "type": "Number",
+            "info": "Ticket Field ID",
+            "required": false
+          },
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "inAllBrands",
           "type": "Boolean",
           "info": "Is the form available for use in all brands on this account",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "restrictedBrandIds",
-          "type": "Array",
+          "type": "List",
           "info": "List ids of all brands that this ticket form is restricted to",
           "required": false,
-          "wrapName": "ticket_form"
+          "structure": {
+            "name": "restrictedBrandId",
+            "type": "Number",
+            "info": "Restricted Brand ID",
+            "required": false
+          },
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "inAllOrganizations",
           "type": "Boolean",
           "info": "Is the form available for use in all organizations on this account",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "restrictedOrganizationIds",
-          "type": "Array",
+          "type": "List",
           "info": "List ids of all organizations that this ticket form is restricted to",
           "required": false,
-          "wrapName": "ticket_form"
+          "structure": {
+            "name": "restrictedOrganizationId",
+            "type": "Number",
+            "info": "Restricted Organization ID",
+            "required": false
+          },
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         }
       ],
       "callbacks": [
@@ -12652,8 +13204,10 @@
     {
       "name": "getSingleTicketForm",
       "description": "Get single tickets form",
-      "method": "GET",
-      "url": "/api/v2/ticket_forms/{ticket_form_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/ticket_forms/{ticket_form_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12688,8 +13242,10 @@
     {
       "name": "updateTicketForms",
       "description": "Update tickets forms",
-      "method": "PUT",
-      "url": "/api/v2/ticket_forms/{ticket_form_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/ticket_forms/{ticket_form_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12714,70 +13270,96 @@
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"name\" value, if not. See Dynamic Content",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "display_name",
           "type": "String",
           "info": "The name of the form that is displayed to an end user",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "rawDisplayName",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"display_name\" value, if not. See Dynamic Content",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "position",
           "type": "Number",
           "info": "The position of this form among other forms in the account, i.e. dropdown",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "active",
           "type": "Boolean",
           "info": "If the form is set as active",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "endUserVisible",
           "type": "Boolean",
           "info": "Is the form visible to the end user",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "default",
           "type": "Boolean",
           "info": "Is the form the default form for this account",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "ticketFieldIds",
-          "type": "Array",
+          "type": "List",
           "info": "List ids of all ticket fields which are in this ticket form",
           "required": false,
-          "wrapName": "ticket_form"
+          "structure": {
+            "name": "ticketFieldId",
+            "type": "Number",
+            "info": "Ticket Field ID",
+            "required": false
+          },
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "inAllBrands",
           "type": "Boolean",
           "info": "Is the form available for use in all brands on this account",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         },
         {
           "name": "inAllOrganizations",
           "type": "Boolean",
           "info": "Is the form available for use in all organizations on this account",
           "required": false,
-          "wrapName": "ticket_form"
+          "custom": {
+            "wrapName": "ticket_form"
+          }
         }
       ],
       "callbacks": [
@@ -12794,8 +13376,10 @@
     {
       "name": "reorderTicketForms",
       "description": "Reorder tickets forms",
-      "method": "PUT",
-      "url": "/api/v2/ticket_forms/reorder.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/ticket_forms/reorder.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12811,9 +13395,15 @@
         },
         {
           "name": "ticketFormIds",
-          "type": "Array",
+          "type": "List",
           "info": "List of ticket form IDs",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "ticketFormId",
+            "type": "Number",
+            "info": "Ticket Form ID",
+            "required": true
+          }
         }
       ],
       "callbacks": [
@@ -12830,8 +13420,10 @@
     {
       "name": "cloneTicketForm",
       "description": "Clone ticket form",
-      "method": "POST",
-      "url": "/api/v2/ticket_forms/{ticket_form_id}/clone.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/ticket_forms/{ticket_form_id}/clone.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12866,8 +13458,10 @@
     {
       "name": "deleteTicketForm",
       "description": "Delete ticket form",
-      "method": "DELETE",
-      "url": "/api/v2/ticket_forms/{ticket_form_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/ticket_forms/{ticket_form_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12902,8 +13496,10 @@
     {
       "name": "createTicketField",
       "description": "Create ticket field",
-      "method": "POST",
-      "url": "/api/v2/ticket_fields.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/ticket_fields.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -12919,122 +13515,180 @@
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "checkbox",
+            "date",
+            "decimal",
+            "integer",
+            "regexp",
+            "tagger",
+            "text",
+            "textarea"
+          ],
           "info": "The type of the ticket field: \"checkbox\", \"date\", \"decimal\", \"integer\", \"regexp\", \"tagger\", \"text\", or \"textarea\".",
           "required": true,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "title",
           "type": "String",
           "info": "The title of the ticket field",
           "required": true,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "rawTitle",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"title\" value, if not. See Dynamic Content",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "description",
           "type": "String",
           "info": "The description of the purpose of this ticket field, shown to users",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "rawDescription",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"description\" value, if not. See Dynamic Content",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "position",
           "type": "Number",
           "info": "A relative position for the ticket fields that determines the order of ticket fields on a ticket. Note that positions 0 to 7 are reserved for system fields",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "active",
           "type": "Boolean",
           "info": "Whether this field is available",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "required",
           "type": "Boolean",
           "info": "If it's required for this field to have a value when updated by agents",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "collapsedForAgents",
           "type": "Boolean",
           "info": "If this field should be shown to agents by default or be hidden alongside infrequently used fields. Classic interface only",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "regexpForValidation",
           "type": "String",
           "info": "Regular expression field only. The validation pattern for a field value to be deemed valid.",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "titleInPortal",
           "type": "String",
           "info": "The title of the ticket field when shown to end users",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "rawTitleInPortal",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"title_in_portal\" value, if not. See Dynamic Content",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "visibleInPortal",
           "type": "Boolean",
           "info": "Whether this field is available to end users",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "editableInPortal",
           "type": "Boolean",
           "info": "Whether this field is editable by end users",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "requiredInPortal",
           "type": "Boolean",
           "info": "If it's required for this field to have a value when updated by end users",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "tag",
           "type": "String",
           "info": "A tag value to set for checkbox fields when checked",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "customFieldOptions",
-          "type": "JSON",
+          "type": "Array",
           "info": "Required and presented for a ticket field of type \"tagger\". Example: [\"name\": \"Pineapples\", \"value\": 3 }, {...}]",
           "required": false,
-          "wrapName": "ticket_field"
+          "structure": [
+            {
+              "name": "name",
+              "type": "String",
+              "info": "Property name",
+              "required": true
+            },
+            {
+              "name": "value",
+              "type": "String",
+              "info": "Property value",
+              "required": true
+            }
+          ],
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         }
       ],
       "callbacks": [
@@ -13051,8 +13705,10 @@
     {
       "name": "getTicketFields",
       "description": "Returns a list of all ticket fields in your account. Fields are returned in the order that you specify in your Ticket Fields configuration in Zendesk Support. Clients should cache this resource for the duration of their API usage and map the id for each ticket field to the values returned under the fields attributes on the Ticket resource.",
-      "method": "GET",
-      "url": "/api/v2/ticket_fields.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/ticket_fields.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -13081,8 +13737,10 @@
     {
       "name": "getSingleTicketField",
       "description": "Get single ticket filed by ID",
-      "method": "GET",
-      "url": "/api/v2/ticket_fields/{ticket_field_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/ticket_fields/{ticket_field_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -13117,8 +13775,10 @@
     {
       "name": "updateTicketField",
       "description": "Update ticket filed",
-      "method": "PUT",
-      "url": "/api/v2/ticket_fields/{ticket_field_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/ticket_fields/{ticket_field_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -13143,112 +13803,158 @@
           "type": "String",
           "info": "The title of the ticket field",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "rawTitle",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"title\" value, if not. See Dynamic Content",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "description",
           "type": "String",
           "info": "The description of the purpose of this ticket field, shown to users",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "rawDescription",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"description\" value, if not. See Dynamic Content",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "position",
           "type": "Number",
           "info": "A relative position for the ticket fields that determines the order of ticket fields on a ticket. Note that positions 0 to 7 are reserved for system fields",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "active",
           "type": "Boolean",
           "info": "Whether this field is available",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "required",
           "type": "Boolean",
           "info": "If it's required for this field to have a value when updated by agents",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "collapsedForAgents",
           "type": "Boolean",
           "info": "If this field should be shown to agents by default or be hidden alongside infrequently used fields. Classic interface only",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "regexpForValidation",
           "type": "String",
           "info": "Regular expression field only. The validation pattern for a field value to be deemed valid.",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "titleInPortal",
           "type": "String",
           "info": "The title of the ticket field when shown to end users",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "rawTitleInPortal",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"title_in_portal\" value, if not. See Dynamic Content",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "visibleInPortal",
           "type": "Boolean",
           "info": "Whether this field is available to end users",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "editableInPortal",
           "type": "Boolean",
           "info": "Whether this field is editable by end users",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "requiredInPortal",
           "type": "Boolean",
           "info": "If it's required for this field to have a value when updated by end users",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "tag",
           "type": "String",
           "info": "A tag value to set for checkbox fields when checked",
           "required": false,
-          "wrapName": "ticket_field"
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         },
         {
           "name": "customFieldOptions",
-          "type": "JSON",
+          "type": "Array",
           "info": "Required and presented for a ticket field of type \"tagger\". Example: {\"custom_field_option\": {\"id\": 10002, \"name\": \"Pineapples\", ... }",
           "required": false,
-          "wrapName": "ticket_field"
+          "structure": [
+            {
+              "name": "name",
+              "type": "String",
+              "info": "Property name",
+              "required": true
+            },
+            {
+              "name": "value",
+              "type": "String",
+              "info": "Property value",
+              "required": true
+            }
+          ],
+          "custom": {
+            "wrapName": "ticket_field"
+          }
         }
       ],
       "callbacks": [
@@ -13265,8 +13971,10 @@
     {
       "name": "deleteTicketField",
       "description": "Delete ticket filed",
-      "method": "DELETE",
-      "url": "/api/v2/ticket_fields/{ticket_field_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/ticket_fields/{ticket_field_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -13301,8 +14009,10 @@
     {
       "name": "createTicketFieldOption",
       "description": "Create ticket filed option (if ticket field type is tagger)",
-      "method": "POST",
-      "url": "/api/v2/ticket_fields/{ticket_field_id}/options.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/ticket_fields/{ticket_field_id}/options.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -13327,21 +14037,27 @@
           "type": "String",
           "info": "Name of option",
           "required": true,
-          "wrapName": "custom_field_option"
+          "custom": {
+            "wrapName": "custom_field_option"
+          }
         },
         {
           "name": "value",
           "type": "String",
           "info": "Value of option",
           "required": true,
-          "wrapName": "custom_field_option"
+          "custom": {
+            "wrapName": "custom_field_option"
+          }
         },
         {
           "name": "position",
           "type": "Number",
           "info": "Position of option",
           "required": false,
-          "wrapName": "custom_field_option"
+          "custom": {
+            "wrapName": "custom_field_option"
+          }
         }
       ],
       "callbacks": [
@@ -13358,8 +14074,10 @@
     {
       "name": "updateTicketFieldOption",
       "description": "Update ticket filed option (if ticket field type is tagger)",
-      "method": "POST",
-      "url": "/api/v2/ticket_fields/{ticket_field_id}/options.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/ticket_fields/{ticket_field_id}/options.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -13384,29 +14102,37 @@
           "type": "Number",
           "info": "Ticket field option ID",
           "required": true,
-          "vendorName": "id",
-          "wrapName": "custom_field_option"
+          "custom": {
+            "vendorName": "id",
+            "wrapName": "custom_field_option"
+          }
         },
         {
           "name": "name",
           "type": "String",
           "info": "Name of option",
           "required": false,
-          "wrapName": "custom_field_option"
+          "custom": {
+            "wrapName": "custom_field_option"
+          }
         },
         {
           "name": "value",
           "type": "String",
           "info": "Value of option",
           "required": false,
-          "wrapName": "custom_field_option"
+          "custom": {
+            "wrapName": "custom_field_option"
+          }
         },
         {
           "name": "position",
           "type": "Number",
           "info": "Position of option",
           "required": false,
-          "wrapName": "custom_field_option"
+          "custom": {
+            "wrapName": "custom_field_option"
+          }
         }
       ],
       "callbacks": [
@@ -13423,8 +14149,10 @@
     {
       "name": "getTicketFieldOptions",
       "description": "Returns a list of all custom Ticket Field Options for the given dropdown Ticket Field.",
-      "method": "GET",
-      "url": "/api/v2/ticket_fields/{ticket_field_id}/options.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/ticket_fields/{ticket_field_id}/options.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -13459,8 +14187,10 @@
     {
       "name": "getTicketFieldSingleOption",
       "description": "Get single option from ticket field (it type is tagget)",
-      "method": "GET",
-      "url": "/api/v2/ticket_fields/{ticket_field_id}/options/{ticket_field_option_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/ticket_fields/{ticket_field_id}/options/{ticket_field_option_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -13501,8 +14231,10 @@
     {
       "name": "deleteTicketFieldOption",
       "description": "Delete ticket filed option (if ticket field type is tagger)",
-      "method": "DELETE",
-      "url": "/api/v2/ticket_fields/{ticket_field_id}/options/{ticket_field_option_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/ticket_fields/{ticket_field_id}/options/{ticket_field_option_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -13543,8 +14275,10 @@
     {
       "name": "getUserFields",
       "description": "Returns a list of all custom User Fields in your account. Fields are returned in the order that you specify in your User Fields configuration in Zendesk Support. Clients should cache this resource for the duration of their API usage and map the key for each User Field to the values returned under the user_fields attribute on the User resource.",
-      "method": "GET",
-      "url": "/api/v2/user_fields.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/user_fields.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -13573,8 +14307,10 @@
     {
       "name": "createUserField",
       "description": "Create new user field",
-      "method": "POST",
-      "url": "/api/v2/user_fields.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/user_fields.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -13593,84 +14329,129 @@
           "type": "String",
           "info": "A unique key that identifies this custom field. This is used for updating the field and referencing in placeholders.",
           "required": true,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "checkbox",
+            "date",
+            "decimal",
+            "dropdown",
+            "integer",
+            "regexp",
+            "text",
+            "textarea"
+          ],
           "info": "Type of the custom field: \"checkbox\", \"date\", \"decimal\", \"dropdown\", \"integer\", \"regexp\", \"text\", or \"textarea\"",
           "required": true,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "title",
           "type": "String",
           "info": "The title of the custom field",
           "required": true,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "rawTitle",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"title\" value, if not. See Dynamic Content",
           "required": false,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "description",
           "type": "String",
           "info": "User-defined description of this field's purpose",
           "required": false,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "rawDescription",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"description\" value, if not. See Dynamic Content",
           "required": false,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "position",
           "type": "Number",
           "info": "Ordering of the field relative to other fields",
           "required": false,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "active",
           "type": "Boolean",
           "info": "If true, this field is available for use",
           "required": false,
-          "wrapName": "user_field"
-        },
-        {
-          "name": "system",
-          "type": "Boolean",
-          "info": "If true, only active and position values of this field can be changed",
-          "required": false,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "regexpForValidation",
           "type": "String",
           "info": "Regular expression field only. The validation pattern for a field value to be deemed valid.",
           "required": false,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "tag",
           "type": "String",
           "info": "Optional for custom field of type \"checkbox\"; not presented otherwise.",
           "required": false,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "customFieldOptions",
-          "type": "JSON",
+          "type": "Array",
           "info": "Required and presented for a custom field of type \"dropdown\".",
           "required": false,
-          "wrapName": "user_field"
+          "structure": [
+            {
+              "name": "id",
+              "type": "Number",
+              "info": "Property ID",
+              "required": true
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "info": "Property name",
+              "required": true
+            },
+            {
+              "name": "value",
+              "type": "String",
+              "info": "Property value",
+              "required": true
+            }
+          ],
+          "custom": {
+            "wrapName": "user_field"
+          }
         }
       ],
       "callbacks": [
@@ -13687,8 +14468,10 @@
     {
       "name": "updateUserField",
       "description": "Update user field",
-      "method": "PUT",
-      "url": "/api/v2/user_fields/{user_field_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/user_fields/{user_field_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -13710,73 +14493,123 @@
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "checkbox",
+            "date",
+            "decimal",
+            "dropdown",
+            "integer",
+            "regexp",
+            "text",
+            "textarea"
+          ],
           "info": "Type of the custom field: \"checkbox\", \"date\", \"decimal\", \"dropdown\", \"integer\", \"regexp\", \"text\", or \"textarea\"",
           "required": false,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "title",
           "type": "String",
           "info": "The title of the custom field",
           "required": false,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "rawTitle",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"title\" value, if not. See Dynamic Content",
           "required": false,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "description",
           "type": "String",
           "info": "User-defined description of this field's purpose",
           "required": false,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "rawDescription",
           "type": "String",
           "info": "The dynamic content placeholder, if present, or the \"description\" value, if not. See Dynamic Content",
           "required": false,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "position",
           "type": "Number",
           "info": "Ordering of the field relative to other fields",
           "required": false,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "active",
           "type": "Boolean",
           "info": "If true, this field is available for use",
           "required": false,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "regexpForValidation",
           "type": "String",
           "info": "Regular expression field only. The validation pattern for a field value to be deemed valid.",
           "required": false,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "tag",
           "type": "String",
           "info": "Optional for custom field of type \"checkbox\"; not presented otherwise.",
           "required": false,
-          "wrapName": "user_field"
+          "custom": {
+            "wrapName": "user_field"
+          }
         },
         {
           "name": "customFieldOptions",
-          "type": "JSON",
+          "type": "Array",
           "info": "Required and presented for a custom field of type \"dropdown\".",
           "required": false,
-          "wrapName": "user_field"
+          "structure": [
+            {
+              "name": "id",
+              "type": "Number",
+              "info": "Property ID",
+              "required": false
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "info": "Property name",
+              "required": true
+            },
+            {
+              "name": "value",
+              "type": "String",
+              "info": "Property value",
+              "required": true
+            }
+          ],
+          "custom": {
+            "wrapName": "user_field"
+          }
         }
       ],
       "callbacks": [
@@ -13793,8 +14626,10 @@
     {
       "name": "getSingleUserField",
       "description": "Get single user field",
-      "method": "GET",
-      "url": "/api/v2/user_fields/{user_field_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/user_fields/{user_field_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -13829,8 +14664,10 @@
     {
       "name": "reorderUserField",
       "description": "Reorder user fields",
-      "method": "PUT",
-      "url": "/api/v2/user_fields/reorder.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/user_fields/reorder.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -13846,9 +14683,15 @@
         },
         {
           "name": "userFieldIds",
-          "type": "Array",
+          "type": "List",
           "info": "List of user field IDs",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "userFieldId",
+            "type": "Number",
+            "info": "User Field ID",
+            "required": true
+          }
         }
       ],
       "callbacks": [
@@ -13865,8 +14708,10 @@
     {
       "name": "createUserFieldOption",
       "description": "Create user field option",
-      "method": "POST",
-      "url": "/api/v2/user_fields/{user_field_id}/options.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/user_fields/{user_field_id}/options.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -13891,21 +14736,27 @@
           "type": "String",
           "info": "Option name",
           "required": true,
-          "wrapName": "custom_field_option"
+          "custom": {
+            "wrapName": "custom_field_option"
+          }
         },
         {
           "name": "value",
           "type": "String",
           "info": "Option value",
           "required": true,
-          "wrapName": "custom_field_option"
+          "custom": {
+            "wrapName": "custom_field_option"
+          }
         },
         {
           "name": "position",
           "type": "Number",
           "info": "Option position",
           "required": false,
-          "wrapName": "custom_field_option"
+          "custom": {
+            "wrapName": "custom_field_option"
+          }
         }
       ],
       "callbacks": [
@@ -13922,8 +14773,10 @@
     {
       "name": "updateUserFieldOption",
       "description": "Update user field option",
-      "method": "POST",
-      "url": "/api/v2/user_fields/{user_field_id}/options.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/user_fields/{user_field_id}/options.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -13948,29 +14801,37 @@
           "type": "Number",
           "info": "User field option ID",
           "required": true,
-          "vendorName": "id",
-          "wrapName": "custom_field_option"
+          "custom": {
+            "vendorName": "id",
+            "wrapName": "custom_field_option"
+          }
         },
         {
           "name": "name",
           "type": "String",
           "info": "Option name",
           "required": false,
-          "wrapName": "custom_field_option"
+          "custom": {
+            "wrapName": "custom_field_option"
+          }
         },
         {
           "name": "value",
           "type": "String",
           "info": "Option value",
           "required": false,
-          "wrapName": "custom_field_option"
+          "custom": {
+            "wrapName": "custom_field_option"
+          }
         },
         {
           "name": "position",
           "type": "Number",
           "info": "Option position",
           "required": false,
-          "wrapName": "custom_field_option"
+          "custom": {
+            "wrapName": "custom_field_option"
+          }
         }
       ],
       "callbacks": [
@@ -13987,8 +14848,10 @@
     {
       "name": "getUserFieldOptions",
       "description": "Get list of user field options",
-      "method": "GET",
-      "url": "/api/v2/user_fields/{user_field_id}/options.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/user_fields/{user_field_id}/options.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14023,8 +14886,10 @@
     {
       "name": "getUserFieldOption",
       "description": "Get single user field option",
-      "method": "GET",
-      "url": "/api/v2/user_fields/{user_field_id}/options/{user_field_option_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/user_fields/{user_field_id}/options/{user_field_option_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14065,8 +14930,10 @@
     {
       "name": "deleteUserFieldOption",
       "description": "Delete user field option",
-      "method": "DELETE",
-      "url": "/api/v2/user_fields/{user_field_id}/options/{user_field_option_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/user_fields/{user_field_id}/options/{user_field_option_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14107,8 +14974,10 @@
     {
       "name": "deleteUserField",
       "description": "Delete user field",
-      "method": "DELETE",
-      "url": "/api/v2/user_fields/{user_field_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/user_fields/{user_field_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14143,8 +15012,10 @@
     {
       "name": "uploadAppPackage",
       "description": "Uploads a new app package to Zendesk Support.",
-      "method": "POST",
-      "url": "/api/v2/apps/uploads.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/apps/uploads.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14179,8 +15050,10 @@
     {
       "name": "getJobStatus",
       "description": "Gets the application build job status. You must provide the job id returned when the job was created.",
-      "method": "GET",
-      "url": "/api/v2/apps/job_statuses/{job_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/apps/job_statuses/{job_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14215,8 +15088,10 @@
     {
       "name": "createApp",
       "description": "Adds a build of a new app to the job queue.",
-      "method": "POST",
-      "url": "/api/v2/apps.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/apps.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14263,8 +15138,10 @@
     {
       "name": "updateApp",
       "description": "Adds a build of a new app to the job queue.",
-      "method": "PUT",
-      "url": "/api/v2/apps/{app_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/apps/{app_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14317,8 +15194,10 @@
     {
       "name": "getAppInfo",
       "description": "Retrieves information about the specified app accessible to the current user and account.",
-      "method": "GET",
-      "url": "/api/v2/apps/{app_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/apps/{app_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14353,8 +15232,10 @@
     {
       "name": "getAppPublicKey",
       "description": "Reveals the app's public key in PEM format. You can use it to verify that certain requests from the app are legitimate.",
-      "method": "GET",
-      "url": "/api/v2/apps/{app_id}/public_key.pem",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/apps/{app_id}/public_key.pem"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14389,8 +15270,10 @@
     {
       "name": "getOwnedApps",
       "description": "Lists apps owned by the current account.",
-      "method": "GET",
-      "url": "/api/v2/apps/owned.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/apps/owned.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14419,8 +15302,10 @@
     {
       "name": "getAllApps",
       "description": "Lists all private and public apps, including Marketplace apps.",
-      "method": "GET",
-      "url": "/api/v2/apps.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/apps.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14449,8 +15334,10 @@
     {
       "name": "sendNotificationToApp",
       "description": "Sends messages to currently open instances of an app. The messages cause a notification event to fire in the app. See Notification events in the ZAF v1 docs. For example, you could send a message to all signed-in agents telling them to take the day off. Note: When developing with the Zendesk App Tools, you can send messages to your unpublished app by setting the app_id parameter to 0.",
-      "method": "POST",
-      "url": "/api/v2/apps/notify.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/apps/notify.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14503,8 +15390,10 @@
     {
       "name": "deleteApp",
       "description": "Deletes the specified app and removes it from the Manage pages in Zendesk Support.",
-      "method": "DELETE",
-      "url": "/api/v2/apps/{app_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/apps/{app_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14539,8 +15428,10 @@
     {
       "name": "getAppInstallations",
       "description": "Lists all app installations in the account. The enabled property indicates whether or not the installed app is active in the product.",
-      "method": "GET",
-      "url": "/api/v2/apps/installations.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/apps/installations.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14575,8 +15466,10 @@
     {
       "name": "installApp",
       "description": "Installs an app in the account.",
-      "method": "POST",
-      "url": "/api/v2/apps/installations.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/apps/installations.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14629,8 +15522,10 @@
     {
       "name": "showAppInstallation",
       "description": "Retrieves information about the specified app installation, including the installation settings.",
-      "method": "GET",
-      "url": "/api/v2/apps/installations/{app_installation_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/apps/installations/{app_installation_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14665,8 +15560,10 @@
     {
       "name": "updateAppInstallation",
       "description": "Updates the specified installation.",
-      "method": "PUT",
-      "url": "/api/v2/apps/installations/{app_installation_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/apps/installations/{app_installation_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14719,8 +15616,10 @@
     {
       "name": "removeAppInstallation",
       "description": "Removes an installed app.",
-      "method": "DELETE",
-      "url": "/api/v2/apps/installations/{app_installation_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/apps/installations/{app_installation_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14755,8 +15654,10 @@
     {
       "name": "getRequirementsInstallStatus",
       "description": "If a job has kicked off to install an app and the app has requirements, this endpoint returns the status of the requirements installation. The job id is supplied in the response to the app installation request.",
-      "method": "GET",
-      "url": "/api/v2/apps/installations/job_statuses/{job_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/apps/installations/job_statuses/{job_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14791,8 +15692,10 @@
     {
       "name": "getRequirements",
       "description": "Lists all app requirements for an installation.",
-      "method": "GET",
-      "url": "/api/v2/apps/installations/{id}/requirements.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/apps/installations/{id}/requirements.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14827,8 +15730,10 @@
     {
       "name": "getLocationInstallations",
       "description": "List Location Installations",
-      "method": "GET",
-      "url": "/api/v2/apps/location_installations.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/apps/location_installations.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14857,8 +15762,10 @@
     {
       "name": "reorderAppInstallations",
       "description": "Creates or updates the relevant location installation with a specified installation order. When implementing this API in response to a user reordering installations, ensure you throttle your API calls to a reasonable limit.",
-      "method": "POST",
-      "url": "/api/v2/apps/location_installations/reorder.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/apps/location_installations/reorder.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14874,9 +15781,15 @@
         },
         {
           "name": "installations",
-          "type": "Array",
+          "type": "List",
           "info": "List of app installation ids",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "installId",
+            "type": "String",
+            "info": "Installation ID",
+            "required": true
+          }
         }
       ],
       "callbacks": [
@@ -14893,8 +15806,10 @@
     {
       "name": "getLocations",
       "description": "Returns a list of available locations for Zendesk apps.",
-      "method": "GET",
-      "url": "/api/v2/apps/locations.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/apps/locations.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14923,8 +15838,10 @@
     {
       "name": "getSingleLocation",
       "description": "Get single location",
-      "method": "GET",
-      "url": "/api/v2/apps/locations/{location_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/apps/locations/{location_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14959,8 +15876,10 @@
     {
       "name": "getOauthClients",
       "description": "List clients",
-      "method": "GET",
-      "url": "/api/v2/oauth/clients.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/oauth/clients.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -14989,8 +15908,10 @@
     {
       "name": "getSingleOauthClient",
       "description": "Get single OAuth client",
-      "method": "GET",
-      "url": "/api/v2/oauth/clients/{oauth_client_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/oauth/clients/{oauth_client_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15025,8 +15946,10 @@
     {
       "name": "createOauthClient",
       "description": "Create oauth client",
-      "method": "POST",
-      "url": "/api/v2/oauth/clients.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/oauth/clients.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15045,42 +15968,60 @@
           "type": "String",
           "info": "The name of this client",
           "required": true,
-          "wrapName": "client"
+          "custom": {
+            "wrapName": "client"
+          }
         },
         {
           "name": "identifier",
           "type": "String",
           "info": "The unique identifier for this client",
           "required": true,
-          "wrapName": "client"
+          "custom": {
+            "wrapName": "client"
+          }
         },
         {
           "name": "userId",
           "type": "Number",
           "info": "The id of the admin who created the client",
           "required": false,
-          "wrapName": "client"
+          "custom": {
+            "wrapName": "client"
+          }
         },
         {
           "name": "company",
           "type": "String",
           "info": "Choose a company name to display when users are asked to approve access to your application. The name will help users understand who they are granting access to.",
           "required": false,
-          "wrapName": "client"
+          "custom": {
+            "wrapName": "client"
+          }
         },
         {
           "name": "description",
           "type": "String",
           "info": "A short description of your client that is displayed to users when they are considering approving access to your application.",
           "required": false,
-          "wrapName": "client"
+          "custom": {
+            "wrapName": "client"
+          }
         },
         {
           "name": "redirectUri",
-          "type": "Array",
+          "type": "List",
           "info": "An array of the valid redirect URIs for this client",
           "required": false,
-          "wrapName": "client"
+          "structure": {
+            "name": "url",
+            "type": "String",
+            "info": "Redirect url",
+            "required": false
+          },
+          "custom": {
+            "wrapName": "client"
+          }
         }
       ],
       "callbacks": [
@@ -15097,8 +16038,10 @@
     {
       "name": "updateOauthClient",
       "description": "Update oauth client",
-      "method": "PUT",
-      "url": "/api/v2/oauth/clients/{oauth_client_id}.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/oauth/clients/{oauth_client_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15123,42 +16066,60 @@
           "type": "String",
           "info": "The name of this client",
           "required": false,
-          "wrapName": "client"
+          "custom": {
+            "wrapName": "client"
+          }
         },
         {
           "name": "identifier",
           "type": "String",
           "info": "The unique identifier for this client",
           "required": false,
-          "wrapName": "client"
+          "custom": {
+            "wrapName": "client"
+          }
         },
         {
           "name": "userId",
           "type": "Number",
           "info": "The id of the admin who created the client",
           "required": false,
-          "wrapName": "client"
+          "custom": {
+            "wrapName": "client"
+          }
         },
         {
           "name": "company",
           "type": "String",
           "info": "Choose a company name to display when users are asked to approve access to your application. The name will help users understand who they are granting access to.",
           "required": false,
-          "wrapName": "client"
+          "custom": {
+            "wrapName": "client"
+          }
         },
         {
           "name": "description",
           "type": "String",
           "info": "A short description of your client that is displayed to users when they are considering approving access to your application.",
           "required": false,
-          "wrapName": "client"
+          "custom": {
+            "wrapName": "client"
+          }
         },
         {
           "name": "redirectUri",
-          "type": "Array",
+          "type": "List",
           "info": "An array of the valid redirect URIs for this client",
           "required": false,
-          "wrapName": "client"
+          "structure": {
+            "name": "url",
+            "type": "String",
+            "info": "Redirect url",
+            "required": false
+          },
+          "custom": {
+            "wrapName": "client"
+          }
         }
       ],
       "callbacks": [
@@ -15175,8 +16136,10 @@
     {
       "name": "generateOauthClientSecret",
       "description": "Generate OAuth client secret",
-      "method": "PUT",
-      "url": "/api/v2/oauth/clients/{oauth_client_id}/generate_secret.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/oauth/clients/{oauth_client_id}/generate_secret.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15211,8 +16174,10 @@
     {
       "name": "deleteOauthClient",
       "description": "Delete OAuth client",
-      "method": "DELETE",
-      "url": "/api/v2/oauth/clients/{oauth_client_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/oauth/clients/{oauth_client_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15247,8 +16212,10 @@
     {
       "name": "getOAuthTokens",
       "description": "Get list of OAuth tokens",
-      "method": "GET",
-      "url": "/api/v2/oauth/tokens.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/oauth/tokens.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15277,8 +16244,10 @@
     {
       "name": "showOauthToken",
       "description": "Show single OAuth token",
-      "method": "GET",
-      "url": "/api/v2/oauth/tokens/{oauth_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/oauth/tokens/{oauth_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15313,8 +16282,10 @@
     {
       "name": "createOauthToken",
       "description": "Create OAuth token",
-      "method": "POST",
-      "url": "/api/v2/oauth/tokens.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/oauth/tokens.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15333,14 +16304,24 @@
           "type": "Number",
           "info": "The numeric ID of the client this token belongs to",
           "required": true,
-          "wrapName": "token"
+          "custom": {
+            "wrapName": "token"
+          }
         },
         {
           "name": "scopes",
-          "type": "Array",
+          "type": "List",
           "info": "List of scopes. users, auditlogs (read only), organizations, hc, apps, triggers, automations, targets, macros, requests, satisfaction_ratings, dynamic_content, any_channel (write only), web_widget (write only). Example: read, write, users:write, tickets:read etc.",
           "required": true,
-          "wrapName": "token"
+          "structure": {
+            "name": "scope",
+            "type": "String",
+            "info": "Scope",
+            "required": true
+          },
+          "custom": {
+            "wrapName": "token"
+          }
         }
       ],
       "callbacks": [
@@ -15357,8 +16338,10 @@
     {
       "name": "revokeOauthToken",
       "description": "Revoke OAuth token",
-      "method": "POST",
-      "url": "/api/v2/oauth/tokens/{token_id}.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/oauth/tokens/{token_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15393,8 +16376,10 @@
     {
       "name": "getAuthorizedGlobalClients",
       "description": "This returns all the global clients that users on your account have authorized.",
-      "method": "GET",
-      "url": "/api/v2/oauth/global_clients.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/oauth/global_clients.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15423,8 +16408,10 @@
     {
       "name": "getStreamActivities",
       "description": "Lists activities pertaining to the user performing the request.",
-      "method": "GET",
-      "url": "/api/v2/activities.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/activities.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15440,7 +16427,7 @@
         },
         {
           "name": "since",
-          "type": "String",
+          "type": "DatePicker",
           "info": "ISO 8601 datetime param. Example: 2013-04-30T16:02:46Z",
           "required": false
         }
@@ -15459,8 +16446,10 @@
     {
       "name": "getSingleStreamActivity",
       "description": "Get single stream activity",
-      "method": "GET",
-      "url": "/api/v2/activities/{stream_activity_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/activities/{stream_activity_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15495,8 +16484,10 @@
     {
       "name": "getBookmarks",
       "description": "Get list of bookmarks",
-      "method": "GET",
-      "url": "/api/v2/bookmarks.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/bookmarks.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15525,8 +16516,10 @@
     {
       "name": "createBookmark",
       "description": "Create a new bookmark",
-      "method": "POST",
-      "url": "/api/v2/bookmarks.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/bookmarks.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15545,7 +16538,9 @@
           "type": "Number",
           "info": "Ticket ID",
           "required": false,
-          "wrapName": "bookmark"
+          "custom": {
+            "wrapName": "bookmark"
+          }
         }
       ],
       "callbacks": [
@@ -15562,8 +16557,10 @@
     {
       "name": "deleteBookmark",
       "description": "Delete bookmark",
-      "method": "DELETE",
-      "url": "/api/v2/bookmarks/{bookmark_id}.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/bookmarks/{bookmark_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15598,8 +16595,10 @@
     {
       "name": "unregisterPushNotificationDevices",
       "description": "Unregisters the mobile devices that are receiving push notifications. Specify the devices as an array of mobile device tokens.",
-      "method": "POST",
-      "url": "/api/v2/push_notification_devices/destroy_many.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/push_notification_devices/destroy_many.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15615,9 +16614,15 @@
         },
         {
           "name": "pushNotificationDevices",
-          "type": "Array",
+          "type": "List",
           "info": "List of tokens",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "token",
+            "type": "String",
+            "info": "Token",
+            "required": true
+          }
         }
       ],
       "callbacks": [
@@ -15634,8 +16639,10 @@
     {
       "name": "getResourceCollections",
       "description": "Lists all resource collections that have been created.",
-      "method": "GET",
-      "url": "/api/v2/resource_collections.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/resource_collections.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15651,9 +16658,15 @@
         },
         {
           "name": "pushNotificationDevices",
-          "type": "Array",
+          "type": "List",
           "info": "List of tokens",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "token",
+            "type": "String",
+            "info": "Token",
+            "required": true
+          }
         }
       ],
       "callbacks": [
@@ -15670,8 +16683,10 @@
     {
       "name": "getSingleResourceCollection",
       "description": "Retrieves details of a specified resource collection.",
-      "method": "GET",
-      "url": "/api/v2/resource_collections/{resource_collection_id}.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/resource_collections/{resource_collection_id}.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15706,8 +16721,10 @@
     {
       "name": "getPopularTags",
       "description": "Lists the most popular recent tags in decreasing popularity",
-      "method": "GET",
-      "url": "/api/v2/tags.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15736,8 +16753,10 @@
     {
       "name": "getTicketTags",
       "description": "Get ticket's tags",
-      "method": "GET",
-      "url": "/api/v2/tickets/{ticket_id}/tags.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/tickets/{ticket_id}/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15772,8 +16791,10 @@
     {
       "name": "getTopicTags",
       "description": "Get topic's tags",
-      "method": "GET",
-      "url": "/api/v2/topics/{topic_id}/tags.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/topics/{topic_id}/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15808,8 +16829,10 @@
     {
       "name": "getOrganizationTags",
       "description": "Get organization's tags",
-      "method": "GET",
-      "url": "/api/v2/organizations/{organization_id}/tags.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/organizations/{organization_id}/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15844,8 +16867,10 @@
     {
       "name": "getUserTags",
       "description": "Get user's tags",
-      "method": "GET",
-      "url": "/api/v2/users/{user_id}/tags.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/users/{user_id}/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15880,8 +16905,10 @@
     {
       "name": "autocompleteTags",
       "description": "Returns an array of registered and recent tag names that start with the specified name. The name must be at least 2 characters in length.",
-      "method": "GET",
-      "url": "/api/v2/autocomplete/tags.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/autocomplete/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15900,7 +16927,9 @@
           "type": "String",
           "info": "Query to find",
           "required": true,
-          "vendorName": "name"
+          "custom": {
+            "vendorName": "name"
+          }
         }
       ],
       "callbacks": [
@@ -15917,8 +16946,10 @@
     {
       "name": "setTicketTags",
       "description": "Set ticket's tags",
-      "method": "POST",
-      "url": "/api/v2/tickets/{ticket_id}/tags.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/tickets/{ticket_id}/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15940,9 +16971,15 @@
         },
         {
           "name": "tags",
-          "type": "Array",
+          "type": "List",
           "info": "List of tags",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "tag",
+            "type": "String",
+            "info": "Tag",
+            "required": true
+          }
         }
       ],
       "callbacks": [
@@ -15959,8 +16996,10 @@
     {
       "name": "setTopicTags",
       "description": "Set topic's tags",
-      "method": "POST",
-      "url": "/api/v2/topics/{topic_id}/tags.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/topics/{topic_id}/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -15982,9 +17021,15 @@
         },
         {
           "name": "tags",
-          "type": "Array",
+          "type": "List",
           "info": "List of tags",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "tag",
+            "type": "String",
+            "info": "Tag",
+            "required": true
+          }
         }
       ],
       "callbacks": [
@@ -16001,8 +17046,10 @@
     {
       "name": "setOrganizationTags",
       "description": "Set organization's tags",
-      "method": "POST",
-      "url": "/api/v2/organizations/{organization_id}/tags.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/organizations/{organization_id}/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -16024,9 +17071,15 @@
         },
         {
           "name": "tags",
-          "type": "Array",
+          "type": "List",
           "info": "List of tags",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "tag",
+            "type": "String",
+            "info": "Tag",
+            "required": true
+          }
         }
       ],
       "callbacks": [
@@ -16043,8 +17096,10 @@
     {
       "name": "setUserTags",
       "description": "Set user's tags",
-      "method": "POST",
-      "url": "/api/v2/users/{user_id}/tags.json",
+      "custom": {
+        "method": "POST",
+        "url": "/api/v2/users/{user_id}/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -16066,9 +17121,15 @@
         },
         {
           "name": "tags",
-          "type": "Array",
+          "type": "List",
           "info": "List of tags",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "tag",
+            "type": "String",
+            "info": "Tag",
+            "required": true
+          }
         }
       ],
       "callbacks": [
@@ -16085,8 +17146,10 @@
     {
       "name": "addTicketTags",
       "description": "Add ticket's tags",
-      "method": "PUT",
-      "url": "/api/v2/tickets/{ticket_id}/tags.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/tickets/{ticket_id}/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -16108,9 +17171,15 @@
         },
         {
           "name": "tags",
-          "type": "Array",
+          "type": "List",
           "info": "List of tags",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "tag",
+            "type": "String",
+            "info": "Tag",
+            "required": true
+          }
         }
       ],
       "callbacks": [
@@ -16127,8 +17196,10 @@
     {
       "name": "addTopicTags",
       "description": "Add topic's tags",
-      "method": "PUT",
-      "url": "/api/v2/topics/{topic_id}/tags.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/topics/{topic_id}/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -16150,9 +17221,15 @@
         },
         {
           "name": "tags",
-          "type": "Array",
+          "type": "List",
           "info": "List of tags",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "tag",
+            "type": "String",
+            "info": "Tag",
+            "required": true
+          }
         }
       ],
       "callbacks": [
@@ -16169,8 +17246,10 @@
     {
       "name": "addOrganizationTags",
       "description": "Add organization's tags",
-      "method": "PUT",
-      "url": "/api/v2/organizations/{organization_id}/tags.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/organizations/{organization_id}/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -16192,9 +17271,15 @@
         },
         {
           "name": "tags",
-          "type": "Array",
+          "type": "List",
           "info": "List of tags",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "tag",
+            "type": "String",
+            "info": "Tag",
+            "required": true
+          }
         }
       ],
       "callbacks": [
@@ -16211,8 +17296,10 @@
     {
       "name": "addUserTags",
       "description": "Add user's tags",
-      "method": "PUT",
-      "url": "/api/v2/users/{user_id}/tags.json",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/users/{user_id}/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -16234,9 +17321,15 @@
         },
         {
           "name": "tags",
-          "type": "Array",
+          "type": "List",
           "info": "List of tags",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "tag",
+            "type": "String",
+            "info": "Tag",
+            "required": true
+          }
         }
       ],
       "callbacks": [
@@ -16253,8 +17346,10 @@
     {
       "name": "deleteTicketTags",
       "description": "Delete ticket's tags",
-      "method": "DELETE",
-      "url": "/api/v2/tickets/{ticket_id}/tags.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/tickets/{ticket_id}/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -16289,8 +17384,10 @@
     {
       "name": "deleteTopicTags",
       "description": "Delete topic's tags",
-      "method": "DELETE",
-      "url": "/api/v2/topics/{topic_id}/tags.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/topics/{topic_id}/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -16325,8 +17422,10 @@
     {
       "name": "deleteOrganizationTags",
       "description": "Delete organization's tags",
-      "method": "DELETE",
-      "url": "/api/v2/organizations/{organization_id}/tags.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/organizations/{organization_id}/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -16361,8 +17460,10 @@
     {
       "name": "deleteUserTags",
       "description": "Delete user's tags",
-      "method": "DELETE",
-      "url": "/api/v2/users/{user_id}/tags.json",
+      "custom": {
+        "method": "DELETE",
+        "url": "/api/v2/users/{user_id}/tags.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -16397,8 +17498,10 @@
     {
       "name": "getMonitoredTwitterHandles",
       "description": "Listing Monitored Twitter Handles",
-      "method": "GET",
-      "url": "/api/v2/channels/twitter/monitored_twitter_handles.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/channels/twitter/monitored_twitter_handles.json"
+      },
       "args": [
         {
           "name": "accessToken",
@@ -16427,8 +17530,10 @@
     {
       "name": "getTwicketStatus",
       "description": "Get single Monitored Twitter Handle",
-      "method": "GET",
-      "url": "/api/v2/channels/twitter/tickets/{id}/statuses.json",
+      "custom": {
+        "method": "GET",
+        "url": "/api/v2/channels/twitter/tickets/{id}/statuses.json"
+      },
       "args": [
         {
           "name": "accessToken",
