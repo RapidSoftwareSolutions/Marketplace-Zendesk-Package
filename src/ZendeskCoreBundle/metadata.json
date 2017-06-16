@@ -588,9 +588,15 @@
         },
         {
           "name": "collaboratorIds",
-          "type": "Array",
+          "type": "List",
           "info": "An array of the numeric IDs of agents or end-users to CC on the ticket. An email notification is sent to them when the ticket is created",
           "required": false,
+          "structure": {
+            "name": "collaboratorId",
+            "type": "number",
+            "info": "Collaborator ID",
+            "required": false
+          },
           "custom": {
             "wrapName": "ticket"
           }
@@ -656,6 +662,12 @@
           "type": "List",
           "info": "List of tags to add to the ticket",
           "required": false,
+          "structure": [{
+            "name": "tag",
+            "type": "String",
+            "info": "Tag",
+            "required": false
+          }],
           "custom": {
             "wrapName": "ticket"
           }
@@ -4533,12 +4545,12 @@
           "type": "List",
           "info": "The user's tags. Only present if your account has user tagging enabled",
           "required": false,
-          "structure": {
+          "structure": [{
             "name": "tag",
             "type": "String",
             "info": "Tag",
             "required": false
-          },
+          }],
           "custom": {
             "wrapName": "user"
           }
@@ -4548,21 +4560,27 @@
           "type": "String",
           "info": "Specifies which tickets the user has access to. Possible values are: \"organization\", \"groups\", \"assigned\", \"requested\", null",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "timeZone",
           "type": "String",
           "info": "The user's time zone. See Time Zone below",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         },
         {
           "name": "userFields",
-          "type": "Array",
+          "type": "JSON",
           "info": "Custom fields for the user",
           "required": false,
-          "wrapName": "user"
+          "custom": {
+            "wrapName": "user"
+          }
         }
       ],
       "callbacks": [
@@ -6452,7 +6470,9 @@
           "type": "JSON",
           "info": "Custom fields for this organization. Example: [\"org_dropdown\": \"option_1\", \"org_decimal\": 5.2]",
           "required": false,
-          "wrapName": "organization"
+          "custom": {
+            "wrapName": "organization"
+          }
         }
       ],
       "callbacks": [
@@ -7611,6 +7631,7 @@
               "open",
               "solved"
             ],
+            "info": "Status: open or/and solved",
             "required": false
           },
           "custom": {
@@ -7711,7 +7732,9 @@
           ],
           "info": "The type of the request, \"question\", \"incident\", \"problem\", \"task\"",
           "required": false,
-          "wrapName": "request"
+          "custom": {
+            "wrapName": "request"
+          }
         },
         {
           "name": "customFields",
@@ -9011,7 +9034,7 @@
         },
         {
           "name": "sortOrder",
-          "type": "select",
+          "type": "Select",
           "options": [
             "asc",
             "desc"
@@ -9202,7 +9225,9 @@
           "type": "JSON",
           "info": "SLA Policy params",
           "required": true,
-          "vendorName": "sla_policy"
+          "custom": {
+            "vendorName": "sla_policy"
+          }
         }
       ],
       "callbacks": [
@@ -9247,7 +9272,9 @@
           "type": "JSON",
           "info": "SLA Policy params",
           "required": true,
-          "vendorName": "sla_policy"
+          "custom": {
+            "vendorName": "sla_policy"
+          }
         }
       ],
       "callbacks": [
@@ -9321,9 +9348,14 @@
         },
         {
           "name": "slaPolicyIds",
-          "type": "Array",
+          "type": "List",
           "info": "List of SLA Policy IDs",
-          "required": true
+          "required": true,
+          "structure": [
+            {
+              "name": "asd"
+            }
+          ]
         }
       ],
       "callbacks": [
