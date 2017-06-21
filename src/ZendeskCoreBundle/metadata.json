@@ -701,7 +701,7 @@
         },
         {
           "name": "dueAt",
-          "type": "String",
+          "type": "DatePicker",
           "info": "For tickets of type 'task', the due date of the task. Accepts the ISO 8601 date format (yyyy-mm-dd)",
           "required": false,
           "custom": {
@@ -1033,7 +1033,7 @@
               "fromFormat": [
                 "Y-m-d H:i:s"
               ],
-              "toFormat": "DATE_ISO8601"
+              "toFormat": "ISO8601"
             }
           }
         },
@@ -1378,7 +1378,7 @@
                 "Y-m-d",
                 "Y-m-d H:i:s"
               ],
-              "toFormat": "DATE_ISO8601"
+              "toFormat": "ISO8601"
             }
           }
         },
@@ -2791,7 +2791,7 @@
         {
           "name": "startTime",
           "type": "DatePicker",
-          "info": "Unix time",
+          "info": "Date",
           "required": true,
           "custom": {
             "dateTime": {
@@ -4098,7 +4098,8 @@
           "required": false,
           "structure": {
             "name": "role",
-            "type": "String",
+            "type": "Select",
+            "options": ["end-user", "admin"],
             "info": "Example end-user, admin",
             "required": false
           }
@@ -5343,7 +5344,13 @@
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": [
+            "email",
+            "twitter",
+            "facebook",
+            "google"
+          ],
           "info": "type of identity",
           "required": false,
           "custom": {
@@ -5912,9 +5919,15 @@
         },
         {
           "name": "userFields",
-          "type": "JSON",
+          "type": "List",
           "info": "Custom fields for the user",
           "required": false,
+          "structure": {
+            "name": "userField",
+            "type": "JSON",
+            "info": "User field",
+            "required": false
+          },
           "custom": {
             "wrapName": "user"
           }
@@ -10973,55 +10986,6 @@
           "required": false,
           "custom": {
             "wrapName": "brand"
-          }
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "updateBrandImage",
-      "description": "A brand image can be updated by uploading a local file using the update brand endpoint.",
-      "custom": {
-        "method": "PUT",
-        "url": "/api/v2/brands/{brand_id}.json",
-        "type": "multipart"
-      },
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "String",
-          "info": "Access Token",
-          "required": true
-        },
-        {
-          "name": "domain",
-          "type": "String",
-          "info": "Your domain in Zendesk system.",
-          "required": true
-        },
-        {
-          "name": "brandId",
-          "type": "Number",
-          "info": "Brand ID",
-          "required": true
-        },
-        {
-          "name": "logo",
-          "type": "File",
-          "info": "File/url to upload",
-          "required": true,
-          "custom": {
-            "wrapName": "brand.photo",
-            "vendorName": "uploaded_data"
           }
         }
       ],
@@ -16461,7 +16425,16 @@
           "name": "since",
           "type": "DatePicker",
           "info": "ISO 8601 datetime param. Example: 2013-04-30T16:02:46Z",
-          "required": false
+          "required": false,
+          "custom": {
+            "dateTime": {
+              "formatFrom": [
+                "ISO8601",
+                "Y-m-d H:i:s"
+              ],
+              "formatTo": "ISO8601"
+            }
+          }
         }
       ],
       "callbacks": [
@@ -17584,6 +17557,55 @@
           "type": "Number",
           "info": "Zendesk Support comment id",
           "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "updateBrandImage",
+      "description": "A brand image can be updated by uploading a local file using the update brand endpoint.",
+      "custom": {
+        "method": "PUT",
+        "url": "/api/v2/brands/{brand_id}.json",
+        "type": "multipart"
+      },
+      "args": [
+        {
+          "name": "accessToken",
+          "type": "String",
+          "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "domain",
+          "type": "String",
+          "info": "Your domain in Zendesk system.",
+          "required": true
+        },
+        {
+          "name": "brandId",
+          "type": "Number",
+          "info": "Brand ID",
+          "required": true
+        },
+        {
+          "name": "logo",
+          "type": "File",
+          "info": "File/url to upload",
+          "required": true,
+          "custom": {
+            "wrapName": "brand.photo",
+            "vendorName": "uploaded_data"
+          }
         }
       ],
       "callbacks": [
