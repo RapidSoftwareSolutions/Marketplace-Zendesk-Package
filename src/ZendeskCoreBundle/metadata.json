@@ -136,10 +136,10 @@
           "custom": {
             "dateTime": {
               "fromFormat": [
-                "unixtime",
+                "timestamp",
                 "Y-m-d H:i:s"
               ],
-              "toFormat": "unixtime"
+              "toFormat": "timestamp"
             }
           }
         }
@@ -183,10 +183,10 @@
           "custom": {
             "dateTime": {
               "fromFormat": [
-                "unixtime",
+                "timestamp",
                 "Y-m-d H:i:s"
               ],
-              "toFormat": "unixtime"
+              "toFormat": "timestamp"
             }
           }
         }
@@ -230,10 +230,10 @@
           "custom": {
             "dateTime": {
               "fromFormat": [
-                "unixtime",
+                "timestamp",
                 "Y-m-d H:i:s"
               ],
-              "toFormat": "unixtime"
+              "toFormat": "timestamp"
             }
           }
         }
@@ -2796,10 +2796,10 @@
           "custom": {
             "dateTime": {
               "fromFormat": [
-                "unixtime",
+                "timestamp",
                 "Y-m-d H:i:s"
               ],
-              "toFormat": "unixtime"
+              "toFormat": "timestamp"
             }
           }
         }
