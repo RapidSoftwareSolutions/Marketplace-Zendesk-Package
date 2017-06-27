@@ -1,6 +1,14 @@
 services:
+  type_validator:
+    class: RapidAPI\Service\TypeValidators\TypeValidator
+    arguments: []
+
   data_validator:
     class: RapidAPI\Service\DataValidator
+    arguments: ["@type_validator"]
+
+  generator:
+    class: RapidAPI\Service\Generator
     arguments: []
 
   sender:
@@ -13,7 +21,7 @@ services:
 
   manager:
     class: RapidAPI\Service\Manager
-    arguments: ["@data_validator", "@metadata","@request_stack"]
+    arguments: ["@data_validator", "@metadata","@sender", "@generator"]
 
   request_parser:
     class: RapidAPI\Service\RequestParser
