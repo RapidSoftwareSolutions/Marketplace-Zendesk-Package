@@ -25,7 +25,7 @@
       "description": "Get AccessToken",
       "custom": {
         "method": "POST",
-        "url": "/oauth/tokens"
+        "url": "https://{domain}.zendesk.com/oauth/tokens"
       },
       "args": [
         {
@@ -75,7 +75,7 @@
       "description": "Returns the tickets that changed since the start time. The results include tickets that were updated by the system. The endpoint can return records where the updated_at time is earlier than the start_date time. The reason is that the updated_at value is updated only if the ticket update generates a ticket event. Otherwise, the timestamp of the previous update carries over.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/incremental/tickets.json"
+        "url": "https://{domain}.zendesk.com/api/v2/incremental/tickets.json"
       },
       "args": [
         {
@@ -113,7 +113,7 @@
       "description": "Returns a stream of changes that occurred on tickets. Each event is tied to an update on a ticket and contains all the fields that were updated in that change. You can include comments in the event stream by using the comment_events sideload. See Sideloading below. If you don't specify the sideload, any comment present in the ticket update is described only by Boolean comment_present and comment_public object properties in the event's child_events array. The comment itself is not included.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/incremental/ticket_events.json"
+        "url": "https://{domain}.zendesk.com/api/v2/incremental/ticket_events.json"
       },
       "args": [
         {
@@ -160,7 +160,7 @@
       "description": "Returns the organizations that changed since the start time.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/incremental/organizations.json"
+        "url": "https://{domain}.zendesk.com/api/v2/incremental/organizations.json"
       },
       "args": [
         {
@@ -207,7 +207,7 @@
       "description": "Returns the users that changed since the start time.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/incremental/users.json"
+        "url": "https://{domain}.zendesk.com/api/v2/incremental/users.json"
       },
       "args": [
         {
@@ -254,7 +254,7 @@
       "description": "This shows the current statuses for background jobs running.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/job_statuses.json"
+        "url": "https://{domain}.zendesk.com/api/v2/job_statuses.json"
       },
       "args": [
         {
@@ -286,7 +286,7 @@
       "description": "Get Job bi ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/job_statuses/{job_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/job_statuses/{job_id}.json"
       },
       "args": [
         {
@@ -324,7 +324,7 @@
       "description": "Get many Job by IDs",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/job_statuses/show_many.json?ids={job_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/job_statuses/show_many.json?ids={job_ids}"
       },
       "args": [
         {
@@ -371,7 +371,7 @@
       "description": "Tickets are ordered chronologically by created date, from oldest to newest. The first ticket listed may not be the absolute oldest ticket in your account due to ticket archiving. To get a list of all tickets in your account, use the Incremental Ticket Export endpoint.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/tickets.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets.json"
       },
       "args": [
         {
@@ -432,7 +432,7 @@
       "description": "Returns a number of ticket properties, but not the ticket comments. To get the comments, use List Comments.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/tickets/{ticket_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}.json"
       },
       "args": [
         {
@@ -470,7 +470,7 @@
       "description": "Accepts a list of ticket ids to return. This endpoint will return up to 100 tickets records.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/tickets/show_many.json?ids={ticket_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/show_many.json?ids={ticket_ids}"
       },
       "args": [
         {
@@ -517,7 +517,7 @@
       "description": "Create ticket",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/tickets.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets.json"
       },
       "args": [
         {
@@ -759,7 +759,7 @@
       "description": "Create many tickets from JSON file",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/tickets/create_many.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/create_many.json"
       },
       "args": [
         {
@@ -806,7 +806,7 @@
       "description": "Update single ticket",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/tickets/{ticket_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}.json"
       },
       "args": [
         {
@@ -1096,7 +1096,7 @@
       "description": "Update tickets by its id (in each obj in list)",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/tickets/update_many.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/update_many.json"
       },
       "args": [
         {
@@ -1143,7 +1143,7 @@
       "description": "Update many tickets with the same information",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/tickets/update_many.json?ids={ticket_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/update_many.json?ids={ticket_ids}"
       },
       "args": [
         {
@@ -1441,7 +1441,7 @@
       "description": "Mark Ticket as Spam and Suspend Requester",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/tickets/{ticket_id}/mark_as_spam.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/mark_as_spam.json"
       },
       "args": [
         {
@@ -1479,7 +1479,7 @@
       "description": "Mark Tickets as Spam and Suspend Requester",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/tickets/mark_many_as_spam.json?ids={ticket_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/mark_many_as_spam.json?ids={ticket_ids}"
       },
       "args": [
         {
@@ -1526,7 +1526,7 @@
       "description": "Merges one or more tickets into the {id} target ticket.",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/tickets/{ticket_id}/merge.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/merge.json"
       },
       "args": [
         {
@@ -1588,7 +1588,7 @@
       "description": "Get ticket related info",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/tickets/{ticket_id}/related.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/related.json"
       },
       "args": [
         {
@@ -1626,7 +1626,7 @@
       "description": "Delete ticket",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/tickets/{ticket_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}.json"
       },
       "args": [
         {
@@ -1664,7 +1664,7 @@
       "description": "Delete tickets",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/tickets/destroy_many.json?ids={ticket_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/destroy_many.json?ids={ticket_ids}"
       },
       "args": [
         {
@@ -1711,7 +1711,7 @@
       "description": "Get collaborators from ticket",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/tickets/{ticket_id}/collaborators.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/collaborators.json"
       },
       "args": [
         {
@@ -1749,7 +1749,7 @@
       "description": "Get ticket incidents",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/tickets/{ticket_id}/incidents.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/incidents.json"
       },
       "args": [
         {
@@ -1787,7 +1787,7 @@
       "description": "Get probles tickets",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/problems.json"
+        "url": "https://{domain}.zendesk.com/api/v2/problems.json"
       },
       "args": [
         {
@@ -1819,7 +1819,7 @@
       "description": "Returns tickets whose type is 'Problem' and whose subject contains the string specified in the text parameter.",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/problems/autocomplete.json?text={text}"
+        "url": "https://{domain}.zendesk.com/api/v2/problems/autocomplete.json?text={text}"
       },
       "args": [
         {
@@ -1857,7 +1857,7 @@
       "description": "Get attachment data by ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/attachments/{attachment_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/attachments/{attachment_id}.json"
       },
       "args": [
         {
@@ -1895,7 +1895,7 @@
       "description": "Get all comments from ticket",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/tickets/{ticket_id}/comments.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/comments.json"
       },
       "args": [
         {
@@ -1943,7 +1943,7 @@
       "description": "Redaction allows you to permanently remove attachments from an existing comment on a ticket. Once removed from a comment, the attachment is replaced with a placeholder 'redacted.txt' file. Note that redaction is permanent. It is not possible to undo redaction or see what was removed. Once a ticket is closed, redacting its attachments is no longer possible.",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/tickets/{ticket_id}/comments/{comment_id}/attachments/{attachment_id}/redact.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/comments/{comment_id}/attachments/{attachment_id}/redact.json"
       },
       "args": [
         {
@@ -1993,7 +1993,7 @@
       "description": "Remove attachment",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/attachments/{attachment_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/attachments/{attachment_id}.json"
       },
       "args": [
         {
@@ -2031,7 +2031,7 @@
       "description": "Adding multiple attachments to the same upload is handled by splitting requests and passing the API token received from the first request to each subsequent request. The token is valid for 3 days. Note: Even if private attachments are enabled in the Zendesk Support instance, uploaded files are visible to any authenticated user at the content_URL specified in the JSON response until the upload token is consumed. Once an attachment is associated with a ticket or post, visibility is restricted to users with access to the ticket or post with the attachment.",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/uploads.json?filename={file_name}",
+        "url": "https://{domain}.zendesk.com/api/v2/uploads.json?filename={file_name}",
         "type": "binary"
       },
       "args": [
@@ -2082,7 +2082,7 @@
       "description": "Delete upload with all attachments",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/uploads/{upload_token}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/uploads/{upload_token}.json"
       },
       "args": [
         {
@@ -2120,7 +2120,7 @@
       "description": "List all received satisfaction rating requests ever issued for your account.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/satisfaction_ratings.json"
+        "url": "https://{domain}.zendesk.com/api/v2/satisfaction_ratings.json"
       },
       "args": [
         {
@@ -2152,7 +2152,7 @@
       "description": "Get single ticket satisfaction rating",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/satisfaction_ratings/{satisfaction_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/satisfaction_ratings/{satisfaction_id}.json"
       },
       "args": [
         {
@@ -2190,7 +2190,7 @@
       "description": "Return list all reasons for an account",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/satisfaction_reasons.json"
+        "url": "https://{domain}.zendesk.com/api/v2/satisfaction_reasons.json"
       },
       "args": [
         {
@@ -2222,7 +2222,7 @@
       "description": "Return list all reasons for an account",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/satisfaction_reasons/{reason_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/satisfaction_reasons/{reason_id}.json"
       },
       "args": [
         {
@@ -2260,7 +2260,7 @@
       "description": "Create a rating for solved tickets, or for tickets that were previously solved and then reopened.",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/tickets/{ticket_id}/satisfaction_rating.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/satisfaction_rating.json"
       },
       "args": [
         {
@@ -2331,7 +2331,7 @@
       "description": "Get all suspended tickets",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/suspended_tickets.json"
+        "url": "https://{domain}.zendesk.com/api/v2/suspended_tickets.json"
       },
       "args": [
         {
@@ -2363,7 +2363,7 @@
       "description": "Lists the audits for a specified ticket.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/tickets/{ticket_id}/audits.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/audits.json"
       },
       "args": [
         {
@@ -2401,7 +2401,7 @@
       "description": "Get audit for a specified ticket by audit ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/tickets/{ticket_id}/audits/{audit_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/audits/{audit_id}.json"
       },
       "args": [
         {
@@ -2445,7 +2445,7 @@
       "description": "Hide audit by ID",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/tickets/{ticket_id}/audits/{audit_id}/make_private.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/audits/{audit_id}/make_private.json"
       },
       "args": [
         {
@@ -2489,7 +2489,7 @@
       "description": "Permanently removes words or strings from a ticket comment. Specify the string to redact in an object with a text property. Example: {\"text\": \"credit-card-number\"}. The characters of the word or string are replaced by the ▇ symbol. Redaction is permanent. You can't undo the redaction or see what was removed. Once a ticket is closed, you can no longer redact strings from its comments.",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/tickets/{ticket_id}/comments/{comment_id}/redact.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/comments/{comment_id}/redact.json"
       },
       "args": [
         {
@@ -2539,7 +2539,7 @@
       "description": "Make comment private",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/tickets/{ticket_id}/comments/{comment_id}/make_private.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/comments/{comment_id}/make_private.json"
       },
       "args": [
         {
@@ -2583,7 +2583,7 @@
       "description": "Get all skipped tickets",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/skips.json"
+        "url": "https://{domain}.zendesk.com/api/v2/skips.json"
       },
       "args": [
         {
@@ -2615,7 +2615,7 @@
       "description": "Record a new skip for the current user",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/skips.json"
+        "url": "https://{domain}.zendesk.com/api/v2/skips.json"
       },
       "args": [
         {
@@ -2665,7 +2665,7 @@
       "description": "Listing Ticket Metrics",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/ticket_metrics.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_metrics.json"
       },
       "args": [
         {
@@ -2697,7 +2697,7 @@
       "description": "Get ticket metric by metric ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/ticket_metrics/{ticket_metric_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_metrics/{ticket_metric_id}.json"
       },
       "args": [
         {
@@ -2735,7 +2735,7 @@
       "description": "Get ticket metric by ticket ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/tickets/{ticket_id}/metrics.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/metrics.json"
       },
       "args": [
         {
@@ -2773,7 +2773,7 @@
       "description": "List ticket metric events",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/incremental/ticket_metric_events.json"
+        "url": "https://{domain}.zendesk.com/api/v2/incremental/ticket_metric_events.json"
       },
       "args": [
         {
@@ -2820,7 +2820,7 @@
       "description": "Get list of requests",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/requests.json"
+        "url": "https://{domain}.zendesk.com/api/v2/requests.json"
       },
       "args": [
         {
@@ -2872,7 +2872,7 @@
       "description": "Get list of requests by status",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/requests.json"
+        "url": "https://{domain}.zendesk.com/api/v2/requests.json"
       },
       "args": [
         {
@@ -2939,7 +2939,7 @@
       "description": "Get list of opened request",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/requests/open.json"
+        "url": "https://{domain}.zendesk.com/api/v2/requests/open.json"
       },
       "args": [
         {
@@ -2991,7 +2991,7 @@
       "description": "Get list of solved request",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/requests/solved.json"
+        "url": "https://{domain}.zendesk.com/api/v2/requests/solved.json"
       },
       "args": [
         {
@@ -3043,7 +3043,7 @@
       "description": "Get request list",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/requests/ccd.json"
+        "url": "https://{domain}.zendesk.com/api/v2/requests/ccd.json"
       },
       "args": [
         {
@@ -3095,7 +3095,7 @@
       "description": "Get request by user ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/{user_id}/requests.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/requests.json"
       },
       "args": [
         {
@@ -3153,7 +3153,7 @@
       "description": "Get request by organization ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/organizations/{organization_id}/requests.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations/{organization_id}/requests.json"
       },
       "args": [
         {
@@ -3211,7 +3211,7 @@
       "description": "Get request by ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/requests/{request_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/requests/{request_id}.json"
       },
       "args": [
         {
@@ -3249,7 +3249,7 @@
       "description": "Get comments from request",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/requests/{request_id}/comments.json"
+        "url": "https://{domain}.zendesk.com/api/v2/requests/{request_id}/comments.json"
       },
       "args": [
         {
@@ -3307,7 +3307,7 @@
       "description": "Get single comment from request",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/requests/{request_id}/comments/{comment_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/requests/{request_id}/comments/{comment_id}.json"
       },
       "args": [
         {
@@ -3371,7 +3371,7 @@
       "description": "Create group",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/groups.json"
+        "url": "https://{domain}.zendesk.com/api/v2/groups.json"
       },
       "args": [
         {
@@ -3412,7 +3412,7 @@
       "description": "Get list of groups",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/groups.json"
+        "url": "https://{domain}.zendesk.com/api/v2/groups.json"
       },
       "args": [
         {
@@ -3444,7 +3444,7 @@
       "description": "Get User's list groups",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/{user_id}/groups.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/groups.json"
       },
       "args": [
         {
@@ -3482,7 +3482,7 @@
       "description": "Get single group by ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/groups/{group_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/groups/{group_id}.json"
       },
       "args": [
         {
@@ -3520,7 +3520,7 @@
       "description": "Get assignable groups",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/groups/assignable.json"
+        "url": "https://{domain}.zendesk.com/api/v2/groups/assignable.json"
       },
       "args": [
         {
@@ -3552,7 +3552,7 @@
       "description": "Update group",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/groups/{group_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/groups/{group_id}.json"
       },
       "args": [
         {
@@ -3599,7 +3599,7 @@
       "description": "Delete group",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/groups/{group_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/groups/{group_id}.json"
       },
       "args": [
         {
@@ -3637,7 +3637,7 @@
       "description": "Get list of memberships",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/group_memberships.json"
+        "url": "https://{domain}.zendesk.com/api/v2/group_memberships.json"
       },
       "args": [
         {
@@ -3669,7 +3669,7 @@
       "description": "Get list of user memberships",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/{user_id}/group_memberships.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/group_memberships.json"
       },
       "args": [
         {
@@ -3707,7 +3707,7 @@
       "description": "Get group list of memberships",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/groups/{group_id}/memberships.json"
+        "url": "https://{domain}.zendesk.com/api/v2/groups/{group_id}/memberships.json"
       },
       "args": [
         {
@@ -3745,7 +3745,7 @@
       "description": "List Assignable Memberships",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/group_memberships/assignable.json"
+        "url": "https://{domain}.zendesk.com/api/v2/group_memberships/assignable.json"
       },
       "args": [
         {
@@ -3777,7 +3777,7 @@
       "description": "List Assignable Memberships",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/groups/{group_id}/memberships/assignable.json"
+        "url": "https://{domain}.zendesk.com/api/v2/groups/{group_id}/memberships/assignable.json"
       },
       "args": [
         {
@@ -3815,7 +3815,7 @@
       "description": "Get user single membership",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/{user_id}/group_memberships/{group_membership_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/group_memberships/{group_membership_id}.json"
       },
       "args": [
         {
@@ -3859,7 +3859,7 @@
       "description": "Get single group membership",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/group_memberships/{group_membership_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/group_memberships/{group_membership_id}.json"
       },
       "args": [
         {
@@ -3897,7 +3897,7 @@
       "description": "Create group membership",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/group_memberships.json"
+        "url": "https://{domain}.zendesk.com/api/v2/group_memberships.json"
       },
       "args": [
         {
@@ -3947,7 +3947,7 @@
       "description": "Immediately removes a user from a group and schedules a job to unassign all working tickets that are assigned to the given user and group combination.",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/group_memberships/{group_membership_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/group_memberships/{group_membership_id}.json"
       },
       "args": [
         {
@@ -3985,7 +3985,7 @@
       "description": "Immediately removes users from groups and schedules a job to unassign all working tickets that are assigned to the given user and group combinations.",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/group_memberships/destroy_many.json?ids={group_membership_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/group_memberships/destroy_many.json?ids={group_membership_ids}"
       },
       "args": [
         {
@@ -4032,7 +4032,7 @@
       "description": "Set group membership as Default",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/users/{user_id}/group_memberships/{group_membership_id}/make_default.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/group_memberships/{group_membership_id}/make_default.json"
       },
       "args": [
         {
@@ -4076,7 +4076,7 @@
       "description": "Get list Users",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users.json"
       },
       "args": [
         {
@@ -4127,7 +4127,7 @@
       "description": "Get list Users of group",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/groups/{group_id}/users.json"
+        "url": "https://{domain}.zendesk.com/api/v2/groups/{group_id}/users.json"
       },
       "args": [
         {
@@ -4165,7 +4165,7 @@
       "description": "Get list Users of group",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/organizations/{organization_id}/users.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations/{organization_id}/users.json"
       },
       "args": [
         {
@@ -4203,7 +4203,7 @@
       "description": "Get Users by Id list",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/show_many.json?ids={user_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/users/show_many.json?ids={user_ids}"
       },
       "args": [
         {
@@ -4250,7 +4250,7 @@
       "description": "Get Users by External Id list",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/show_many.json?external_ids={external_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/users/show_many.json?external_ids={external_ids}"
       },
       "args": [
         {
@@ -4297,7 +4297,7 @@
       "description": "Get user related info",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/{user_id}/related.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/related.json"
       },
       "args": [
         {
@@ -4335,7 +4335,7 @@
       "description": "Create a new user",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/users.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users.json"
       },
       "args": [
         {
@@ -4600,7 +4600,7 @@
       "description": "Update user's avatar",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/users/{user_id}.json",
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}.json",
         "type": "multipart"
       },
       "args": [
@@ -4649,7 +4649,7 @@
       "description": "Update user's avatar",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/users/{user_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}.json"
       },
       "args": [
         {
@@ -4697,7 +4697,7 @@
       "description": "Merge two users",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/users/{user_id}/merge.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/merge.json"
       },
       "args": [
         {
@@ -4745,7 +4745,7 @@
       "description": "Delete users",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/users/destroy_many.json?ids={user_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/users/destroy_many.json?ids={user_ids}"
       },
       "args": [
         {
@@ -4792,7 +4792,7 @@
       "description": "Returns an array of users whose name starts with the value specified in the name paramater. It only returns users with no foreign identities.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/autocomplete.json?name={name}"
+        "url": "https://{domain}.zendesk.com/api/v2/users/autocomplete.json?name={name}"
       },
       "args": [
         {
@@ -4830,7 +4830,7 @@
       "description": "Sends the owner a reminder email to update their subscription so more agents can be created.",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/users/request_create.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/request_create.json"
       },
       "args": [
         {
@@ -4880,7 +4880,7 @@
       "description": "Show the Currently Authenticated User",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/me.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/me.json"
       },
       "args": [
         {
@@ -4912,7 +4912,7 @@
       "description": "An admin can set a user's password only if the setting is enabled under Settings > Security > Global. The setting is off by default. Only the account owner can access and change this setting in Zendesk Support.",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/users/{user_id}/password.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/password.json"
       },
       "args": [
         {
@@ -4956,7 +4956,7 @@
       "description": "You can only change your own password. Nobody can change the password of another user because it requires knowing the user's existing password. However, an admin can set a new password for another user without knowing the existing password. See \"Set a User's Password\" above.",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/users/{user_id}/password.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/password.json"
       },
       "args": [
         {
@@ -5000,7 +5000,7 @@
       "description": "Get a list of password requirements",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/{user_id}/password/requirements.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/password/requirements.json"
       },
       "args": [
         {
@@ -5038,7 +5038,7 @@
       "description": "Returns all user identities for a given user id.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/{user_id}/identities.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/identities.json"
       },
       "args": [
         {
@@ -5076,7 +5076,7 @@
       "description": "Shows the identity with the given id.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/{user_id}/identities/{identity_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/identities/{identity_id}.json"
       },
       "args": [
         {
@@ -5120,7 +5120,7 @@
       "description": "Adds a new identity to a user's profile. An agent can add an identity to any user profile.",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/users/{user_id}/identities.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{userId}/identities.json"
       },
       "args": [
         {
@@ -5151,13 +5151,19 @@
             "google"
           ],
           "info": "New identity: email, twitter, facebook or google",
-          "required": false
+          "required": false,
+          "custom": {
+            "wrapName": "identity"
+          }
         },
         {
           "name": "value",
           "type": "String",
           "info": "Value of new identity",
-          "required": false
+          "required": false,
+          "custom": {
+            "wrapName": "identity"
+          }
         },
         {
           "name": "primary",
@@ -5204,7 +5210,7 @@
       "description": "Add an identity to their own user profile",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/end_users/{user_id}/identities.json"
+        "url": "https://{domain}.zendesk.com/api/v2/end_users/{user_id}/identities.json"
       },
       "args": [
         {
@@ -5288,7 +5294,7 @@
       "description": "This endpoint allows you to set the specified identity as verified (but you cannot unverify a verified identity and update the value of the specified identity",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/users/{user_id}/identities/{identity_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/identities/{identity_id}.json"
       },
       "args": [
         {
@@ -5390,7 +5396,7 @@
       "description": "Sets the specified identity as primary. Only fort Agents",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/users/{user_id}/identities/{identity_id}/make_primary"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/identities/{identity_id}/make_primary"
       },
       "args": [
         {
@@ -5434,7 +5440,7 @@
       "description": "Sets the own identity as primary. For verified end users",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/end_users/{user_id}/identities/{identity_id}/make_primary"
+        "url": "https://{domain}.zendesk.com/api/v2/end_users/{user_id}/identities/{identity_id}/make_primary"
       },
       "args": [
         {
@@ -5478,7 +5484,7 @@
       "description": "Sets the specified identity as verified.",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/users/{user_id}/identities/{identity_id}/verify"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/identities/{identity_id}/verify"
       },
       "args": [
         {
@@ -5522,7 +5528,7 @@
       "description": "Sends the user a verification email with a link to verify ownership of the email address.",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/users/{user_id}/identities/{identity_id}/request_verification.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/identities/{identity_id}/request_verification.json"
       },
       "args": [
         {
@@ -5566,7 +5572,7 @@
       "description": "Deletes the identity for a given user.",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/users/{user_id}/identities/{identity_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/identities/{identity_id}.json"
       },
       "args": [
         {
@@ -5610,7 +5616,7 @@
       "description": "Get custom roles. Available only in Enterprise plan and Professional plan with the Light Agents add-on",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/custom_roles.json"
+        "url": "https://{domain}.zendesk.com/api/v2/custom_roles.json"
       },
       "args": [
         {
@@ -5642,7 +5648,7 @@
       "description": "Get end-user by ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/end_users/{user_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/end_users/{user_id}.json"
       },
       "args": [
         {
@@ -5680,7 +5686,7 @@
       "description": "Update end-users",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/end_users/{user_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/end_users/{user_id}.json"
       },
       "args": [
         {
@@ -5949,7 +5955,7 @@
       "description": "Get list of sessions",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/sessions.json"
+        "url": "https://{domain}.zendesk.com/api/v2/sessions.json"
       },
       "args": [
         {
@@ -5981,7 +5987,7 @@
       "description": "Get user's list of sessions",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/{user_id}/sessions.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/sessions.json"
       },
       "args": [
         {
@@ -6019,7 +6025,7 @@
       "description": "Get session by ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/{user_id}/sessions/{session_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/sessions/{session_id}.json"
       },
       "args": [
         {
@@ -6063,7 +6069,7 @@
       "description": "Delete single session",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/users/{user_id}/sessions/{session_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/sessions/{session_id}.json"
       },
       "args": [
         {
@@ -6107,7 +6113,7 @@
       "description": "Delete all session for current user",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/users/{user_id}/sessions.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/sessions.json"
       },
       "args": [
         {
@@ -6145,7 +6151,7 @@
       "description": "Deletes the current session. In practice, this only works when using session auth for requests, such as client-side requests made from a Zendesk app. When using OAuth or basic authentication, you don't have a current session so this endpoint has no effect.",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/users/me/logout.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/me/logout.json"
       },
       "args": [
         {
@@ -6177,7 +6183,7 @@
       "description": "Return list of organization",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/organizations.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations.json"
       },
       "args": [
         {
@@ -6209,7 +6215,7 @@
       "description": "Return list of users's organization",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/{user_id}/organizations.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/organizations.json"
       },
       "args": [
         {
@@ -6247,7 +6253,7 @@
       "description": "Returns an array of organizations whose name starts with the value specified in the name parameter.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/organizations/autocomplete.json?name={organization_name}"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations/autocomplete.json?name={organization_name}"
       },
       "args": [
         {
@@ -6285,7 +6291,7 @@
       "description": "Get organization info by ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/organizations/{organization_id}/related.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations/{organization_id}/related.json"
       },
       "args": [
         {
@@ -6323,7 +6329,7 @@
       "description": "Get organizations by IDs",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/organizations/show_many.json?ids={organization_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations/show_many.json?ids={organization_ids}"
       },
       "args": [
         {
@@ -6370,7 +6376,7 @@
       "description": "Create new organization",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/organizations.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations.json"
       },
       "args": [
         {
@@ -6504,7 +6510,7 @@
       "description": "Search organization by external_id",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/organizations/search.json?external_id={external_id}"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations/search.json?external_id={external_id}"
       },
       "args": [
         {
@@ -6542,7 +6548,7 @@
       "description": "Create organization subscription. End users can only subscribe to shared organizations in which they're members.",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/organization_subscriptions.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organization_subscriptions.json"
       },
       "args": [
         {
@@ -6586,7 +6592,7 @@
       "description": "Get list of all organizations and subscriptions",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/organization_subscriptions.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organization_subscriptions.json"
       },
       "args": [
         {
@@ -6618,7 +6624,7 @@
       "description": "Get list of all single organization subscriptions",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/organizations/{organization_id}/subscriptions.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations/{organization_id}/subscriptions.json"
       },
       "args": [
         {
@@ -6656,7 +6662,7 @@
       "description": "Get list of all user organization subscriptions",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/{user_id}/organization_subscriptions.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/organization_subscriptions.json"
       },
       "args": [
         {
@@ -6694,7 +6700,7 @@
       "description": "Get organization subscription",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/organization_subscriptions/{organization_subscription_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organization_subscriptions/{organization_subscription_id}.json"
       },
       "args": [
         {
@@ -6732,7 +6738,7 @@
       "description": "Get list of all organization memberships",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/organization_memberships.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organization_memberships.json"
       },
       "args": [
         {
@@ -6764,7 +6770,7 @@
       "description": "Get list of single user memberships",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/{user_id}/organization_memberships.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/organization_memberships.json"
       },
       "args": [
         {
@@ -6802,7 +6808,7 @@
       "description": "Get list of single organization memberships",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/organizations/{organization_id}/organization_memberships.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations/{organization_id}/organization_memberships.json"
       },
       "args": [
         {
@@ -6840,7 +6846,7 @@
       "description": "Get single organization membership",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/{user_id}/organization_memberships/{organization_membership_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/organization_memberships/{organization_membership_id}.json"
       },
       "args": [
         {
@@ -6884,7 +6890,7 @@
       "description": "Create new organization membership",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/users/{user_id}/organization_memberships.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/organization_memberships.json"
       },
       "args": [
         {
@@ -6931,7 +6937,7 @@
       "description": "Set organization membership as default",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/users/{user_id}/organization_memberships/{organization_membership_id}/make_default.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/organization_memberships/{organization_membership_id}/make_default.json"
       },
       "args": [
         {
@@ -6975,7 +6981,7 @@
       "description": "Immediately removes a user from a organization and schedules a job to unassign all working tickets that are assigned to the given user and organization combination",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/organization_memberships/destroy_many.json?ids={organization_membership_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/organization_memberships/destroy_many.json?ids={organization_membership_ids}"
       },
       "args": [
         {
@@ -7022,7 +7028,7 @@
       "description": "Specify a partial or full name or email address as the value of the query attribute. Example: query=\"Gerry\". Specify an id number as the value of the external_id attribute. For more advanced searches of users, use the Search API.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/search.json?query={query}"
+        "url": "https://{domain}.zendesk.com/api/v2/users/search.json?query={query}"
       },
       "args": [
         {
@@ -7060,7 +7066,7 @@
       "description": "Search users by IDs",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/search.json?external_id={external_id}"
+        "url": "https://{domain}.zendesk.com/api/v2/users/search.json?external_id={external_id}"
       },
       "args": [
         {
@@ -7098,7 +7104,7 @@
       "description": "Update users with the same data",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/users/update_many.json?ids={user_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/users/update_many.json?ids={user_ids}"
       },
       "args": [
         {
@@ -7154,7 +7160,7 @@
       "description": "Update users with the same data",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/users/update_many.json?external_ids={external_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/users/update_many.json?external_ids={external_ids}"
       },
       "args": [
         {
@@ -7210,7 +7216,7 @@
       "description": "Update users with the different data by id or externalId",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/users/update_many.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/update_many.json"
       },
       "args": [
         {
@@ -7251,7 +7257,7 @@
       "description": "Update organization with the same data by id",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/organizations/update_many.json?ids={organization_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations/update_many.json?ids={organization_ids}"
       },
       "args": [
         {
@@ -7307,7 +7313,7 @@
       "description": "Update organization with the same data by external id",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/organizations/update_many.json?ids={organization_external_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations/update_many.json?ids={organization_external_ids}"
       },
       "args": [
         {
@@ -7363,7 +7369,7 @@
       "description": "Update organization with the different data by id or external id",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/organizations/update_many.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations/update_many.json"
       },
       "args": [
         {
@@ -7404,7 +7410,7 @@
       "description": "Delete organization subscription",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/organization_subscriptions/{organization_subscription_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organization_subscriptions/{organization_subscription_id}.json"
       },
       "args": [
         {
@@ -7442,7 +7448,7 @@
       "description": "Delete organizations by ids",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/organizations/destroy_many.json?ids={organization_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations/destroy_many.json?ids={organization_ids}"
       },
       "args": [
         {
@@ -7489,7 +7495,7 @@
       "description": "The search API is a unified search API that returns tickets, users, and organizations. You can define filters to narrow your search results according to resource type, dates, and object properties, such as ticket requester or tag.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/search.json?query={query}"
+        "url": "https://{domain}.zendesk.com/api/v2/search.json?query={query}"
       },
       "args": [
         {
@@ -7527,7 +7533,7 @@
       "description": "Create ticket comment",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/tickets/{ticket_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}.json"
       },
       "args": [
         {
@@ -7605,7 +7611,7 @@
       "description": "Search requests by params",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/requests/search.json"
+        "url": "https://{domain}.zendesk.com/api/v2/requests/search.json"
       },
       "args": [
         {
@@ -7668,7 +7674,7 @@
       "description": "Create single request",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/requests.json"
+        "url": "https://{domain}.zendesk.com/api/v2/requests.json"
       },
       "args": [
         {
@@ -7880,7 +7886,7 @@
       "description": "Update single request",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/requests/{request_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/requests/{request_id}.json"
       },
       "args": [
         {
@@ -8020,7 +8026,7 @@
       "description": "Lists all automations for the current account",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/automations.json"
+        "url": "https://{domain}.zendesk.com/api/v2/automations.json"
       },
       "args": [
         {
@@ -8082,7 +8088,7 @@
       "description": "Get single automation by ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/automations/{automation_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/automations/{automation_id}.json"
       },
       "args": [
         {
@@ -8120,7 +8126,7 @@
       "description": "Lists all active automations",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/automations/active.json"
+        "url": "https://{domain}.zendesk.com/api/v2/automations/active.json"
       },
       "args": [
         {
@@ -8176,7 +8182,7 @@
       "description": "Create automation",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/automations.json"
+        "url": "https://{domain}.zendesk.com/api/v2/automations.json"
       },
       "args": [
         {
@@ -8217,7 +8223,7 @@
       "description": "Update automation",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/automations/{automation_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/automations/{automation_id}.json"
       },
       "args": [
         {
@@ -8264,7 +8270,7 @@
       "description": "Delete automation",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/automations/{automation_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/automations/{automation_id}.json"
       },
       "args": [
         {
@@ -8302,7 +8308,7 @@
       "description": "Search automation with params",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/automations/search.json"
+        "url": "https://{domain}.zendesk.com/api/v2/automations/search.json"
       },
       "args": [
         {
@@ -8368,7 +8374,7 @@
       "description": "Lists all shared and personal macros available to the current user.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/macros.json"
+        "url": "https://{domain}.zendesk.com/api/v2/macros.json"
       },
       "args": [
         {
@@ -8459,7 +8465,7 @@
       "description": "Get single Macro by ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/macros/{macro_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/macros/{macro_id}.json"
       },
       "args": [
         {
@@ -8497,7 +8503,7 @@
       "description": "Lists all active shared and personal macros available to the current user.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/macros/active.json"
+        "url": "https://{domain}.zendesk.com/api/v2/macros/active.json"
       },
       "args": [
         {
@@ -8576,7 +8582,7 @@
       "description": "Create macro",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/macros.json"
+        "url": "https://{domain}.zendesk.com/api/v2/macros.json"
       },
       "args": [
         {
@@ -8700,7 +8706,7 @@
       "description": "Update macro",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/macros/{macro_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/macros/{macro_id}.json"
       },
       "args": [
         {
@@ -8830,7 +8836,7 @@
       "description": "Delete macro",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/macros/{macro_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/macros/{macro_id}.json"
       },
       "args": [
         {
@@ -8868,7 +8874,7 @@
       "description": "Returns the changes the macro would make to a ticket. It doesn't actually change a ticket. You can use the response data in a subsequent API call to the Tickets endpoint to update the ticket. The response includes only the ticket fields that would be changed by the macro. To get the full ticket object after the macro is applied, see Show Ticket After Changes below.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/macros/{macro_id}/apply.json"
+        "url": "https://{domain}.zendesk.com/api/v2/macros/{macro_id}/apply.json"
       },
       "args": [
         {
@@ -8906,7 +8912,7 @@
       "description": "Returns the full ticket object as it would be after applying the macro to the ticket. It doesn't actually change the ticket. You can use the response data in a subsequent API call to the Tickets endpoint to update the ticket. To get only the ticket fields that would be changed by the macro, see Show Changes to Ticket.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/tickets/{ticket_id}/macros/{macro_id}/apply.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/macros/{macro_id}/apply.json"
       },
       "args": [
         {
@@ -8950,7 +8956,7 @@
       "description": "Lists all macro categories available to the current user.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/macros/categories.json"
+        "url": "https://{domain}.zendesk.com/api/v2/macros/categories.json"
       },
       "args": [
         {
@@ -8982,7 +8988,7 @@
       "description": "Search macros by title",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/macros/search.json"
+        "url": "https://{domain}.zendesk.com/api/v2/macros/search.json"
       },
       "args": [
         {
@@ -9072,7 +9078,7 @@
       "description": "List supported actions for macros",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/macros/actions.json"
+        "url": "https://{domain}.zendesk.com/api/v2/macros/actions.json"
       },
       "args": [
         {
@@ -9104,7 +9110,7 @@
       "description": "Returns an unpersisted macro representation derived from a ticket or macro.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/macros/new.json"
+        "url": "https://{domain}.zendesk.com/api/v2/macros/new.json"
       },
       "args": [
         {
@@ -9148,7 +9154,7 @@
       "description": "Get Service Level Agreements. Accounts on the Professional and Enterprise plans",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/slas/policies"
+        "url": "https://{domain}.zendesk.com/api/v2/slas/policies"
       },
       "args": [
         {
@@ -9180,7 +9186,7 @@
       "description": "Get single SLA Policy",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/slas/policies/{sla_policy_id}"
+        "url": "https://{domain}.zendesk.com/api/v2/slas/policies/{sla_policy_id}"
       },
       "args": [
         {
@@ -9218,7 +9224,7 @@
       "description": "Create SLA Policy",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/slas/policies"
+        "url": "https://{domain}.zendesk.com/api/v2/slas/policies"
       },
       "args": [
         {
@@ -9259,7 +9265,7 @@
       "description": "Create SLA Policy",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/slas/policies/{sla_policy_id}"
+        "url": "https://{domain}.zendesk.com/api/v2/slas/policies/{sla_policy_id}"
       },
       "args": [
         {
@@ -9306,7 +9312,7 @@
       "description": "Delete SLA Policy",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/slas/policies/{sla_policy_id}"
+        "url": "https://{domain}.zendesk.com/api/v2/slas/policies/{sla_policy_id}"
       },
       "args": [
         {
@@ -9344,7 +9350,7 @@
       "description": "Reorder SLA Policies",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/slas/policies/reorder.json"
+        "url": "https://{domain}.zendesk.com/api/v2/slas/policies/reorder.json"
       },
       "args": [
         {
@@ -9387,7 +9393,7 @@
       "description": "Retrieve supported filter definition items. Accounts on the Professional and Enterprise plans only",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/slas/policies/definitions.json"
+        "url": "https://{domain}.zendesk.com/api/v2/slas/policies/definitions.json"
       },
       "args": [
         {
@@ -9419,7 +9425,7 @@
       "description": "Targets are pointers to cloud-based applications and services such as Twitter and Twilio, as well as to HTTP and email addresses. You can use targets with triggers and automations to send a notification to the target when a ticket is created or updated.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/targets.json"
+        "url": "https://{domain}.zendesk.com/api/v2/targets.json"
       },
       "args": [
         {
@@ -9451,7 +9457,7 @@
       "description": "Get single target",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/targets/{target_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/targets/{target_id}.json"
       },
       "args": [
         {
@@ -9489,7 +9495,7 @@
       "description": "Create target",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/targets.json"
+        "url": "https://{domain}.zendesk.com/api/v2/targets.json"
       },
       "args": [
         {
@@ -9530,7 +9536,7 @@
       "description": "Update target",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/targets/{target_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/targets/{target_id}.json"
       },
       "args": [
         {
@@ -9577,7 +9583,7 @@
       "description": "Delete target",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/targets/{target_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/targets/{target_id}.json"
       },
       "args": [
         {
@@ -9615,7 +9621,7 @@
       "description": "Lists all triggers for the current account",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/triggers.json"
+        "url": "https://{domain}.zendesk.com/api/v2/triggers.json"
       },
       "args": [
         {
@@ -9677,7 +9683,7 @@
       "description": "Get single trigger by ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/triggers/{trigger_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/triggers/{trigger_id}.json"
       },
       "args": [
         {
@@ -9715,7 +9721,7 @@
       "description": "Lists all active triggers",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/triggers/active.json"
+        "url": "https://{domain}.zendesk.com/api/v2/triggers/active.json"
       },
       "args": [
         {
@@ -9771,7 +9777,7 @@
       "description": "Create trigger",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/triggers.json"
+        "url": "https://{domain}.zendesk.com/api/v2/triggers.json"
       },
       "args": [
         {
@@ -9812,7 +9818,7 @@
       "description": "Create trigger",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/triggers/{trigger_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/triggers/{trigger_id}.json"
       },
       "args": [
         {
@@ -9856,7 +9862,7 @@
       "description": "Delete trigger",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/triggers/{trigger_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/triggers/{trigger_id}.json"
       },
       "args": [
         {
@@ -9894,7 +9900,7 @@
       "description": "Reorder triggers",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/triggers/reorder.json"
+        "url": "https://{domain}.zendesk.com/api/v2/triggers/reorder.json"
       },
       "args": [
         {
@@ -9938,7 +9944,7 @@
       "description": "Search triggers by query in title",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/triggers/search.json"
+        "url": "https://{domain}.zendesk.com/api/v2/triggers/search.json"
       },
       "args": [
         {
@@ -10004,7 +10010,7 @@
       "description": "Lists shared and personal Views available to the current user",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/views.json"
+        "url": "https://{domain}.zendesk.com/api/v2/views.json"
       },
       "args": [
         {
@@ -10075,7 +10081,7 @@
       "description": "Lists active shared and personal Views available to the current user",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/views/active.json"
+        "url": "https://{domain}.zendesk.com/api/v2/views/active.json"
       },
       "args": [
         {
@@ -10140,7 +10146,7 @@
       "description": "Get single view by ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/views/{view_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/views/{view_id}.json"
       },
       "args": [
         {
@@ -10178,7 +10184,7 @@
       "description": "Create view",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/views.json"
+        "url": "https://{domain}.zendesk.com/api/v2/views.json"
       },
       "args": [
         {
@@ -10219,7 +10225,7 @@
       "description": "Update view",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/views/{view_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/views/{view_id}.json"
       },
       "args": [
         {
@@ -10266,7 +10272,7 @@
       "description": "Delete view",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/views/{view_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/views/{view_id}.json"
       },
       "args": [
         {
@@ -10304,7 +10310,7 @@
       "description": "You execute a view in order to get the tickets that fulfill the conditions of the view.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/views/{view_id}/execute.json"
+        "url": "https://{domain}.zendesk.com/api/v2/views/{view_id}/execute.json"
       },
       "args": [
         {
@@ -10342,7 +10348,7 @@
       "description": "Get tickets from a view",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/views/{view_id}/tickets.json"
+        "url": "https://{domain}.zendesk.com/api/v2/views/{view_id}/tickets.json"
       },
       "args": [
         {
@@ -10380,7 +10386,7 @@
       "description": "Calculates the size of the view in terms of number of tickets the view will return. Only returns values for personal and shared views accessible to the user performing the request.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/views/count_many.json?ids={view_ids}"
+        "url": "https://{domain}.zendesk.com/api/v2/views/count_many.json?ids={view_ids}"
       },
       "args": [
         {
@@ -10427,7 +10433,7 @@
       "description": "Returns the ticket count for a single view.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/views/{view_id}/count.json"
+        "url": "https://{domain}.zendesk.com/api/v2/views/{view_id}/count.json"
       },
       "args": [
         {
@@ -10465,7 +10471,7 @@
       "description": "Returns the csv attachment of the current view if possible. Enqueues job to produce the csv if necessary",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/views/{view_id}/export.json"
+        "url": "https://{domain}.zendesk.com/api/v2/views/{view_id}/export.json"
       },
       "args": [
         {
@@ -10503,7 +10509,7 @@
       "description": "Search views",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/views/search.json"
+        "url": "https://{domain}.zendesk.com/api/v2/views/search.json"
       },
       "args": [
         {
@@ -10581,7 +10587,7 @@
       "description": "Shows the settings that are available for the account.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/account/settings.json"
+        "url": "https://{domain}.zendesk.com/api/v2/account/settings.json"
       },
       "args": [
         {
@@ -10613,7 +10619,7 @@
       "description": "Updates settings for the account. See JSON Format from getAccountSettings for the settings you can update.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/account/settings.json"
+        "url": "https://{domain}.zendesk.com/api/v2/account/settings.json"
       },
       "args": [
         {
@@ -10651,7 +10657,7 @@
       "description": "Listing Audit Logs",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/audit_logs.json"
+        "url": "https://{domain}.zendesk.com/api/v2/audit_logs.json"
       },
       "args": [
         {
@@ -10683,7 +10689,7 @@
       "description": "Get single audit log",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/audit_logs/{audit_log_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/audit_logs/{audit_log_id}.json"
       },
       "args": [
         {
@@ -10721,7 +10727,7 @@
       "description": "Returns a list of all brands for your account sorted by name.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/brands.json"
+        "url": "https://{domain}.zendesk.com/api/v2/brands.json"
       },
       "args": [
         {
@@ -10753,7 +10759,7 @@
       "description": "Get single brand",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/brands/{brand_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/brands/{brand_id}.json"
       },
       "args": [
         {
@@ -10791,7 +10797,7 @@
       "description": "Create a brand",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/brands.json"
+        "url": "https://{domain}.zendesk.com/api/v2/brands.json"
       },
       "args": [
         {
@@ -10895,7 +10901,7 @@
       "description": "Returns an updated brand.",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/brands/{brand_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/brands/{brand_id}.json"
       },
       "args": [
         {
@@ -11005,7 +11011,7 @@
       "description": "Deletes a brand.",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/brands/{brand_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/brands/{brand_id}.json"
       },
       "args": [
         {
@@ -11043,7 +11049,7 @@
       "description": "Returns a JSON object determining whether a host mapping is valid for a given subdomain.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/brands/check_host_mapping.json?host_mapping={host_mapping}&subdomain={subdomain}"
+        "url": "https://{domain}.zendesk.com/api/v2/brands/check_host_mapping.json?host_mapping={host_mapping}&subdomain={subdomain}"
       },
       "args": [
         {
@@ -11087,7 +11093,7 @@
       "description": "The default brand is the one that tickets get assigned to if the ticket is generated from a non-branded channel. You can update the default brand using the updateAccountSettings endpoint.",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/brands.json"
+        "url": "https://{domain}.zendesk.com/api/v2/brands.json"
       },
       "args": [
         {
@@ -11129,7 +11135,7 @@
       "description": "This lists the translation locales that are available for the account.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/locales.json"
+        "url": "https://{domain}.zendesk.com/api/v2/locales.json"
       },
       "args": [
         {
@@ -11161,7 +11167,7 @@
       "description": "Get single locale by ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/locales/{locale_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/locales/{locale_id}.json"
       },
       "args": [
         {
@@ -11199,7 +11205,7 @@
       "description": "Show current locale",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/locales/current.json"
+        "url": "https://{domain}.zendesk.com/api/v2/locales/current.json"
       },
       "args": [
         {
@@ -11231,7 +11237,7 @@
       "description": "Detect best language for user",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/locales/detect_best_locale.json"
+        "url": "https://{domain}.zendesk.com/api/v2/locales/detect_best_locale.json"
       },
       "args": [
         {
@@ -11263,7 +11269,7 @@
       "description": "Returns a list of all custom Organization Fields in your account. Fields are returned in the order that you specify in your Organization Fields configuration in Zendesk Support. Clients should cache this resource for the duration of their API usage and map the key for each Organization.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/organization_fields.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organization_fields.json"
       },
       "args": [
         {
@@ -11295,7 +11301,7 @@
       "description": "Get single organization field by ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/organization_fields/{organization_field_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organization_fields/{organization_field_id}.json"
       },
       "args": [
         {
@@ -11333,7 +11339,7 @@
       "description": "Create new organization field",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/organization_fields.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organization_fields.json"
       },
       "args": [
         {
@@ -11494,7 +11500,7 @@
       "description": "Update new organization field",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/organization_fields/{organization_field_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organization_fields/{organization_field_id}.json"
       },
       "args": [
         {
@@ -11661,7 +11667,7 @@
       "description": "Delete new organization field",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/organization_fields/{organization_field_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organization_fields/{organization_field_id}.json"
       },
       "args": [
         {
@@ -11699,7 +11705,7 @@
       "description": "Reorder organization fields",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/organization_fields/reorder.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organization_fields/reorder.json"
       },
       "args": [
         {
@@ -11743,7 +11749,7 @@
       "description": "List all schedules",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/business_hours/schedules.json"
+        "url": "https://{domain}.zendesk.com/api/v2/business_hours/schedules.json"
       },
       "args": [
         {
@@ -11775,7 +11781,7 @@
       "description": "List all schedules",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/business_hours/schedules/{schedule_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/business_hours/schedules/{schedule_id}.json"
       },
       "args": [
         {
@@ -11813,7 +11819,7 @@
       "description": "Create a schedule",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/business_hours/schedules.json"
+        "url": "https://{domain}.zendesk.com/api/v2/business_hours/schedules.json"
       },
       "args": [
         {
@@ -11886,7 +11892,7 @@
       "description": "Update a schedule",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/business_hours/schedules/{schedule_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/business_hours/schedules/{schedule_id}.json"
       },
       "args": [
         {
@@ -11965,7 +11971,7 @@
       "description": "Update intervals of schedule",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/business_hours/schedules/{schedule_id}/workweek.json"
+        "url": "https://{domain}.zendesk.com/api/v2/business_hours/schedules/{schedule_id}/workweek.json"
       },
       "args": [
         {
@@ -12026,7 +12032,7 @@
       "description": "Delete a schedule",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/business_hours/schedules/{schedule_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/business_hours/schedules/{schedule_id}.json"
       },
       "args": [
         {
@@ -12064,7 +12070,7 @@
       "description": "Create a schedule holiday",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/business_hours/schedules/{schedule_id}/holidays.json"
+        "url": "https://{domain}.zendesk.com/api/v2/business_hours/schedules/{schedule_id}/holidays.json"
       },
       "args": [
         {
@@ -12144,7 +12150,7 @@
       "description": "List holidays for a schedule",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/business_hours/schedules/{schedule_id}/holidays.json"
+        "url": "https://{domain}.zendesk.com/api/v2/business_hours/schedules/{schedule_id}/holidays.json"
       },
       "args": [
         {
@@ -12212,7 +12218,7 @@
       "description": "Get single holiday",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/business_hours/schedules/{schedule_id}/holidays/{holiday_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/business_hours/schedules/{schedule_id}/holidays/{holiday_id}.json"
       },
       "args": [
         {
@@ -12256,7 +12262,7 @@
       "description": "Update a holiday",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/business_hours/schedules/{schedule_id}/holidays/{holiday_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/business_hours/schedules/{schedule_id}/holidays/{holiday_id}.json"
       },
       "args": [
         {
@@ -12342,7 +12348,7 @@
       "description": "Delete a holiday",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/business_hours/schedules/{schedule_id}/holidays/{holiday_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/business_hours/schedules/{schedule_id}/holidays/{holiday_id}.json"
       },
       "args": [
         {
@@ -12386,7 +12392,7 @@
       "description": "Create sharing agreement",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/sharing_agreements.json"
+        "url": "https://{domain}.zendesk.com/api/v2/sharing_agreements.json"
       },
       "args": [
         {
@@ -12473,7 +12479,7 @@
       "description": "Update sharing agreement",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/sharing_agreements/{sharing_agreement_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/sharing_agreements/{sharing_agreement_id}.json"
       },
       "args": [
         {
@@ -12566,7 +12572,7 @@
       "description": "Get single sharing agreement by ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/sharing_agreements/{sharing_agreement_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/sharing_agreements/{sharing_agreement_id}.json"
       },
       "args": [
         {
@@ -12604,7 +12610,7 @@
       "description": "Get list of sharing agreements",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/sharing_agreements.json"
+        "url": "https://{domain}.zendesk.com/api/v2/sharing_agreements.json"
       },
       "args": [
         {
@@ -12636,7 +12642,7 @@
       "description": "Delete sharing agreement by ID",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/sharing_agreements/{sharing_agreement_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/sharing_agreements/{sharing_agreement_id}.json"
       },
       "args": [
         {
@@ -12674,7 +12680,7 @@
       "description": "Adds a Zendesk or external support address to your account.To add a Zendesk address, use the following syntax: {local-part}@{accountname}.zendesk.com. Example: 'sales-team@omniwear.zendesk.com'. The local-part can be anything you like. To add an external email address such as help@omniwearshop.com, the email must already exist and you must set up forwarding on your email server. The exact steps depend on your mail server. See Forwarding incoming email to Zendesk Support. After setting up forwarding, run the Verify Support Address Forwarding endpoint. The address won't work in Zendesk Support until it's been verified.",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/recipient_addresses.json"
+        "url": "https://{domain}.zendesk.com/api/v2/recipient_addresses.json"
       },
       "args": [
         {
@@ -12771,7 +12777,7 @@
       "description": "Lists all the support addresses for the account",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/recipient_addresses.json"
+        "url": "https://{domain}.zendesk.com/api/v2/recipient_addresses.json"
       },
       "args": [
         {
@@ -12803,7 +12809,7 @@
       "description": "Get single support address by ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/recipient_addresses/{support_address_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/recipient_addresses/{support_address_id}.json"
       },
       "args": [
         {
@@ -12841,7 +12847,7 @@
       "description": "Update support address",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/recipient_addresses/{support_address_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/recipient_addresses/{support_address_id}.json"
       },
       "args": [
         {
@@ -12906,7 +12912,7 @@
       "description": "Sends a test email to the specified support address to verify that email forwarding for the address works. An external support address won't work in Zendesk Support until it's verified. Note: You don't need to verify Zendesk support addresses.",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/recipient_addresses/{support_address_id}/verify.json"
+        "url": "https://{domain}.zendesk.com/api/v2/recipient_addresses/{support_address_id}/verify.json"
       },
       "args": [
         {
@@ -12950,7 +12956,7 @@
       "description": "Delete recipient adress",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/recipient_addresses/{support_address_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/recipient_addresses/{support_address_id}.json"
       },
       "args": [
         {
@@ -12988,7 +12994,7 @@
       "description": "Returns a list of all ticket forms for your account if accessed as an admin or agent. End users will only see the list of ticket forms that are marked 'end_user_visible'.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/ticket_forms.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_forms.json"
       },
       "args": [
         {
@@ -13044,7 +13050,7 @@
       "description": "Create tickets forms",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/ticket_forms.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_forms.json"
       },
       "args": [
         {
@@ -13202,7 +13208,7 @@
       "description": "Get single tickets form",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/ticket_forms/{ticket_form_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_forms/{ticket_form_id}.json"
       },
       "args": [
         {
@@ -13240,7 +13246,7 @@
       "description": "Update tickets forms",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/ticket_forms/{ticket_form_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_forms/{ticket_form_id}.json"
       },
       "args": [
         {
@@ -13374,7 +13380,7 @@
       "description": "Reorder tickets forms",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/ticket_forms/reorder.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_forms/reorder.json"
       },
       "args": [
         {
@@ -13418,7 +13424,7 @@
       "description": "Clone ticket form",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/ticket_forms/{ticket_form_id}/clone.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_forms/{ticket_form_id}/clone.json"
       },
       "args": [
         {
@@ -13456,7 +13462,7 @@
       "description": "Delete ticket form",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/ticket_forms/{ticket_form_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_forms/{ticket_form_id}.json"
       },
       "args": [
         {
@@ -13494,7 +13500,7 @@
       "description": "Create ticket field",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/ticket_fields.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_fields.json"
       },
       "args": [
         {
@@ -13703,7 +13709,7 @@
       "description": "Returns a list of all ticket fields in your account. Fields are returned in the order that you specify in your Ticket Fields configuration in Zendesk Support. Clients should cache this resource for the duration of their API usage and map the id for each ticket field to the values returned under the fields attributes on the Ticket resource.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/ticket_fields.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_fields.json"
       },
       "args": [
         {
@@ -13735,7 +13741,7 @@
       "description": "Get single ticket filed by ID",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/ticket_fields/{ticket_field_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_fields/{ticket_field_id}.json"
       },
       "args": [
         {
@@ -13773,7 +13779,7 @@
       "description": "Update ticket filed",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/ticket_fields/{ticket_field_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_fields/{ticket_field_id}.json"
       },
       "args": [
         {
@@ -13969,7 +13975,7 @@
       "description": "Delete ticket filed",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/ticket_fields/{ticket_field_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_fields/{ticket_field_id}.json"
       },
       "args": [
         {
@@ -14007,7 +14013,7 @@
       "description": "Create ticket filed option (if ticket field type is tagger)",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/ticket_fields/{ticket_field_id}/options.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_fields/{ticket_field_id}/options.json"
       },
       "args": [
         {
@@ -14072,7 +14078,7 @@
       "description": "Update ticket filed option (if ticket field type is tagger)",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/ticket_fields/{ticket_field_id}/options.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_fields/{ticket_field_id}/options.json"
       },
       "args": [
         {
@@ -14147,7 +14153,7 @@
       "description": "Returns a list of all custom Ticket Field Options for the given dropdown Ticket Field.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/ticket_fields/{ticket_field_id}/options.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_fields/{ticket_field_id}/options.json"
       },
       "args": [
         {
@@ -14185,7 +14191,7 @@
       "description": "Get single option from ticket field (it type is tagget)",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/ticket_fields/{ticket_field_id}/options/{ticket_field_option_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_fields/{ticket_field_id}/options/{ticket_field_option_id}.json"
       },
       "args": [
         {
@@ -14229,7 +14235,7 @@
       "description": "Delete ticket filed option (if ticket field type is tagger)",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/ticket_fields/{ticket_field_id}/options/{ticket_field_option_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/ticket_fields/{ticket_field_id}/options/{ticket_field_option_id}.json"
       },
       "args": [
         {
@@ -14273,7 +14279,7 @@
       "description": "Returns a list of all custom User Fields in your account. Fields are returned in the order that you specify in your User Fields configuration in Zendesk Support. Clients should cache this resource for the duration of their API usage and map the key for each User Field to the values returned under the user_fields attribute on the User resource.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/user_fields.json"
+        "url": "https://{domain}.zendesk.com/api/v2/user_fields.json"
       },
       "args": [
         {
@@ -14305,7 +14311,7 @@
       "description": "Create new user field",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/user_fields.json"
+        "url": "https://{domain}.zendesk.com/api/v2/user_fields.json"
       },
       "args": [
         {
@@ -14466,7 +14472,7 @@
       "description": "Update user field",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/user_fields/{user_field_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/user_fields/{user_field_id}.json"
       },
       "args": [
         {
@@ -14624,7 +14630,7 @@
       "description": "Get single user field",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/user_fields/{user_field_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/user_fields/{user_field_id}.json"
       },
       "args": [
         {
@@ -14662,7 +14668,7 @@
       "description": "Reorder user fields",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/user_fields/reorder.json"
+        "url": "https://{domain}.zendesk.com/api/v2/user_fields/reorder.json"
       },
       "args": [
         {
@@ -14706,7 +14712,7 @@
       "description": "Create user field option",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/user_fields/{user_field_id}/options.json"
+        "url": "https://{domain}.zendesk.com/api/v2/user_fields/{user_field_id}/options.json"
       },
       "args": [
         {
@@ -14771,7 +14777,7 @@
       "description": "Update user field option",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/user_fields/{user_field_id}/options.json"
+        "url": "https://{domain}.zendesk.com/api/v2/user_fields/{user_field_id}/options.json"
       },
       "args": [
         {
@@ -14846,7 +14852,7 @@
       "description": "Get list of user field options",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/user_fields/{user_field_id}/options.json"
+        "url": "https://{domain}.zendesk.com/api/v2/user_fields/{user_field_id}/options.json"
       },
       "args": [
         {
@@ -14884,7 +14890,7 @@
       "description": "Get single user field option",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/user_fields/{user_field_id}/options/{user_field_option_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/user_fields/{user_field_id}/options/{user_field_option_id}.json"
       },
       "args": [
         {
@@ -14928,7 +14934,7 @@
       "description": "Delete user field option",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/user_fields/{user_field_id}/options/{user_field_option_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/user_fields/{user_field_id}/options/{user_field_option_id}.json"
       },
       "args": [
         {
@@ -14972,7 +14978,7 @@
       "description": "Delete user field",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/user_fields/{user_field_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/user_fields/{user_field_id}.json"
       },
       "args": [
         {
@@ -15010,7 +15016,7 @@
       "description": "Uploads a new app package to Zendesk Support.",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/apps/uploads.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/uploads.json"
       },
       "args": [
         {
@@ -15048,7 +15054,7 @@
       "description": "Gets the application build job status. You must provide the job id returned when the job was created.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/apps/job_statuses/{job_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/job_statuses/{job_id}.json"
       },
       "args": [
         {
@@ -15086,7 +15092,7 @@
       "description": "Adds a build of a new app to the job queue.",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/apps.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps.json"
       },
       "args": [
         {
@@ -15136,7 +15142,7 @@
       "description": "Adds a build of a new app to the job queue.",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/apps/{app_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/{app_id}.json"
       },
       "args": [
         {
@@ -15192,7 +15198,7 @@
       "description": "Retrieves information about the specified app accessible to the current user and account.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/apps/{app_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/{app_id}.json"
       },
       "args": [
         {
@@ -15230,7 +15236,7 @@
       "description": "Reveals the app's public key in PEM format. You can use it to verify that certain requests from the app are legitimate.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/apps/{app_id}/public_key.pem"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/{app_id}/public_key.pem"
       },
       "args": [
         {
@@ -15268,7 +15274,7 @@
       "description": "Lists apps owned by the current account.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/apps/owned.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/owned.json"
       },
       "args": [
         {
@@ -15300,7 +15306,7 @@
       "description": "Lists all private and public apps, including Marketplace apps.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/apps.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps.json"
       },
       "args": [
         {
@@ -15332,7 +15338,7 @@
       "description": "Sends messages to currently open instances of an app. The messages cause a notification event to fire in the app. See Notification events in the ZAF v1 docs. For example, you could send a message to all signed-in agents telling them to take the day off. Note: When developing with the Zendesk App Tools, you can send messages to your unpublished app by setting the app_id parameter to 0.",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/apps/notify.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/notify.json"
       },
       "args": [
         {
@@ -15388,7 +15394,7 @@
       "description": "Deletes the specified app and removes it from the Manage pages in Zendesk Support.",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/apps/{app_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/{app_id}.json"
       },
       "args": [
         {
@@ -15426,7 +15432,7 @@
       "description": "Lists all app installations in the account. The enabled property indicates whether or not the installed app is active in the product.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/apps/installations.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/installations.json"
       },
       "args": [
         {
@@ -15464,7 +15470,7 @@
       "description": "Installs an app in the account.",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/apps/installations.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/installations.json"
       },
       "args": [
         {
@@ -15520,7 +15526,7 @@
       "description": "Retrieves information about the specified app installation, including the installation settings.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/apps/installations/{app_installation_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/installations/{app_installation_id}.json"
       },
       "args": [
         {
@@ -15558,7 +15564,7 @@
       "description": "Updates the specified installation.",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/apps/installations/{app_installation_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/installations/{app_installation_id}.json"
       },
       "args": [
         {
@@ -15614,7 +15620,7 @@
       "description": "Removes an installed app.",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/apps/installations/{app_installation_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/installations/{app_installation_id}.json"
       },
       "args": [
         {
@@ -15652,7 +15658,7 @@
       "description": "If a job has kicked off to install an app and the app has requirements, this endpoint returns the status of the requirements installation. The job id is supplied in the response to the app installation request.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/apps/installations/job_statuses/{job_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/installations/job_statuses/{job_id}.json"
       },
       "args": [
         {
@@ -15690,7 +15696,7 @@
       "description": "Lists all app requirements for an installation.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/apps/installations/{id}/requirements.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/installations/{id}/requirements.json"
       },
       "args": [
         {
@@ -15728,7 +15734,7 @@
       "description": "List Location Installations",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/apps/location_installations.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/location_installations.json"
       },
       "args": [
         {
@@ -15760,7 +15766,7 @@
       "description": "Creates or updates the relevant location installation with a specified installation order. When implementing this API in response to a user reordering installations, ensure you throttle your API calls to a reasonable limit.",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/apps/location_installations/reorder.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/location_installations/reorder.json"
       },
       "args": [
         {
@@ -15804,7 +15810,7 @@
       "description": "Returns a list of available locations for Zendesk apps.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/apps/locations.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/locations.json"
       },
       "args": [
         {
@@ -15836,7 +15842,7 @@
       "description": "Get single location",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/apps/locations/{location_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/apps/locations/{location_id}.json"
       },
       "args": [
         {
@@ -15874,7 +15880,7 @@
       "description": "List clients",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/oauth/clients.json"
+        "url": "https://{domain}.zendesk.com/api/v2/oauth/clients.json"
       },
       "args": [
         {
@@ -15906,7 +15912,7 @@
       "description": "Get single OAuth client",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/oauth/clients/{oauth_client_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/oauth/clients/{oauth_client_id}.json"
       },
       "args": [
         {
@@ -15944,7 +15950,7 @@
       "description": "Create oauth client",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/oauth/clients.json"
+        "url": "https://{domain}.zendesk.com/api/v2/oauth/clients.json"
       },
       "args": [
         {
@@ -16036,7 +16042,7 @@
       "description": "Update oauth client",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/oauth/clients/{oauth_client_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/oauth/clients/{oauth_client_id}.json"
       },
       "args": [
         {
@@ -16134,7 +16140,7 @@
       "description": "Generate OAuth client secret",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/oauth/clients/{oauth_client_id}/generate_secret.json"
+        "url": "https://{domain}.zendesk.com/api/v2/oauth/clients/{oauth_client_id}/generate_secret.json"
       },
       "args": [
         {
@@ -16172,7 +16178,7 @@
       "description": "Delete OAuth client",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/oauth/clients/{oauth_client_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/oauth/clients/{oauth_client_id}.json"
       },
       "args": [
         {
@@ -16210,7 +16216,7 @@
       "description": "Get list of OAuth tokens",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/oauth/tokens.json"
+        "url": "https://{domain}.zendesk.com/api/v2/oauth/tokens.json"
       },
       "args": [
         {
@@ -16242,7 +16248,7 @@
       "description": "Show single OAuth token",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/oauth/tokens/{oauth_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/oauth/tokens/{oauth_id}.json"
       },
       "args": [
         {
@@ -16280,7 +16286,7 @@
       "description": "Create OAuth token",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/oauth/tokens.json"
+        "url": "https://{domain}.zendesk.com/api/v2/oauth/tokens.json"
       },
       "args": [
         {
@@ -16336,7 +16342,7 @@
       "description": "Revoke OAuth token",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/oauth/tokens/{token_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/oauth/tokens/{token_id}.json"
       },
       "args": [
         {
@@ -16374,7 +16380,7 @@
       "description": "This returns all the global clients that users on your account have authorized.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/oauth/global_clients.json"
+        "url": "https://{domain}.zendesk.com/api/v2/oauth/global_clients.json"
       },
       "args": [
         {
@@ -16406,7 +16412,7 @@
       "description": "Lists activities pertaining to the user performing the request.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/activities.json"
+        "url": "https://{domain}.zendesk.com/api/v2/activities.json"
       },
       "args": [
         {
@@ -16453,7 +16459,7 @@
       "description": "Get single stream activity",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/activities/{stream_activity_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/activities/{stream_activity_id}.json"
       },
       "args": [
         {
@@ -16491,7 +16497,7 @@
       "description": "Get list of bookmarks",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/bookmarks.json"
+        "url": "https://{domain}.zendesk.com/api/v2/bookmarks.json"
       },
       "args": [
         {
@@ -16523,7 +16529,7 @@
       "description": "Create a new bookmark",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/bookmarks.json"
+        "url": "https://{domain}.zendesk.com/api/v2/bookmarks.json"
       },
       "args": [
         {
@@ -16564,7 +16570,7 @@
       "description": "Delete bookmark",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/bookmarks/{bookmark_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/bookmarks/{bookmark_id}.json"
       },
       "args": [
         {
@@ -16602,7 +16608,7 @@
       "description": "Unregisters the mobile devices that are receiving push notifications. Specify the devices as an array of mobile device tokens.",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/push_notification_devices/destroy_many.json"
+        "url": "https://{domain}.zendesk.com/api/v2/push_notification_devices/destroy_many.json"
       },
       "args": [
         {
@@ -16646,7 +16652,7 @@
       "description": "Lists all resource collections that have been created.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/resource_collections.json"
+        "url": "https://{domain}.zendesk.com/api/v2/resource_collections.json"
       },
       "args": [
         {
@@ -16690,7 +16696,7 @@
       "description": "Retrieves details of a specified resource collection.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/resource_collections/{resource_collection_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/resource_collections/{resource_collection_id}.json"
       },
       "args": [
         {
@@ -16728,7 +16734,7 @@
       "description": "Lists the most popular recent tags in decreasing popularity",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tags.json"
       },
       "args": [
         {
@@ -16760,7 +16766,7 @@
       "description": "Get ticket's tags",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/tickets/{ticket_id}/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/tags.json"
       },
       "args": [
         {
@@ -16798,7 +16804,7 @@
       "description": "Get topic's tags",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/topics/{topic_id}/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/topics/{topic_id}/tags.json"
       },
       "args": [
         {
@@ -16836,7 +16842,7 @@
       "description": "Get organization's tags",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/organizations/{organization_id}/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations/{organization_id}/tags.json"
       },
       "args": [
         {
@@ -16874,7 +16880,7 @@
       "description": "Get user's tags",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/users/{user_id}/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/tags.json"
       },
       "args": [
         {
@@ -16912,7 +16918,7 @@
       "description": "Returns an array of registered and recent tag names that start with the specified name. The name must be at least 2 characters in length.",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/autocomplete/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/autocomplete/tags.json"
       },
       "args": [
         {
@@ -16953,7 +16959,7 @@
       "description": "Set ticket's tags",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/tickets/{ticket_id}/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/tags.json"
       },
       "args": [
         {
@@ -17003,7 +17009,7 @@
       "description": "Set topic's tags",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/topics/{topic_id}/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/topics/{topic_id}/tags.json"
       },
       "args": [
         {
@@ -17053,7 +17059,7 @@
       "description": "Set organization's tags",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/organizations/{organization_id}/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations/{organization_id}/tags.json"
       },
       "args": [
         {
@@ -17103,7 +17109,7 @@
       "description": "Set user's tags",
       "custom": {
         "method": "POST",
-        "url": "/api/v2/users/{user_id}/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/tags.json"
       },
       "args": [
         {
@@ -17153,7 +17159,7 @@
       "description": "Add ticket's tags",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/tickets/{ticket_id}/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/tags.json"
       },
       "args": [
         {
@@ -17203,7 +17209,7 @@
       "description": "Add topic's tags",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/topics/{topic_id}/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/topics/{topic_id}/tags.json"
       },
       "args": [
         {
@@ -17253,7 +17259,7 @@
       "description": "Add organization's tags",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/organizations/{organization_id}/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations/{organization_id}/tags.json"
       },
       "args": [
         {
@@ -17303,7 +17309,7 @@
       "description": "Add user's tags",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/users/{user_id}/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/tags.json"
       },
       "args": [
         {
@@ -17353,7 +17359,7 @@
       "description": "Delete ticket's tags",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/tickets/{ticket_id}/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/tickets/{ticket_id}/tags.json"
       },
       "args": [
         {
@@ -17391,7 +17397,7 @@
       "description": "Delete topic's tags",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/topics/{topic_id}/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/topics/{topic_id}/tags.json"
       },
       "args": [
         {
@@ -17429,7 +17435,7 @@
       "description": "Delete organization's tags",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/organizations/{organization_id}/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/organizations/{organization_id}/tags.json"
       },
       "args": [
         {
@@ -17467,7 +17473,7 @@
       "description": "Delete user's tags",
       "custom": {
         "method": "DELETE",
-        "url": "/api/v2/users/{user_id}/tags.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/tags.json"
       },
       "args": [
         {
@@ -17505,7 +17511,7 @@
       "description": "Listing Monitored Twitter Handles",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/channels/twitter/monitored_twitter_handles.json"
+        "url": "https://{domain}.zendesk.com/api/v2/channels/twitter/monitored_twitter_handles.json"
       },
       "args": [
         {
@@ -17537,7 +17543,7 @@
       "description": "Get single Monitored Twitter Handle",
       "custom": {
         "method": "GET",
-        "url": "/api/v2/channels/twitter/tickets/{id}/statuses.json"
+        "url": "https://{domain}.zendesk.com/api/v2/channels/twitter/tickets/{id}/statuses.json"
       },
       "args": [
         {
@@ -17575,7 +17581,7 @@
       "description": "A brand image can be updated by uploading a local file using the update brand endpoint.",
       "custom": {
         "method": "PUT",
-        "url": "/api/v2/brands/{brand_id}.json",
+        "url": "https://{domain}.zendesk.com/api/v2/brands/{brand_id}.json",
         "type": "multipart"
       },
       "args": [

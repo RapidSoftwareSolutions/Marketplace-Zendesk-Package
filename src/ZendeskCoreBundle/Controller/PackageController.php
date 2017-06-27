@@ -10,7 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use RapidAPI\Exception\PackageException;
 use RapidAPI\Exception\RequiredFieldException;
-use Symfony\Component\HttpFoundation\Request;
 
 class PackageController extends Controller
 {
@@ -23,13 +22,14 @@ class PackageController extends Controller
     public function getMetadataAction()
     {
         try {
+            $file = realpath(__DIR__.'/..').DIRECTORY_SEPARATOR.'metadata.json';
             $metadataService = $this->get('metadata');
-            $file = realpath(__DIR__ . '/..') . DIRECTORY_SEPARATOR . 'metadata.json';
             $metadataService->set($file);
             $result = $metadataService->getClearMetadata();
         } catch (PackageException $exception) {
             $result = $this->createPackageExceptionResponse($exception);
         }
+
         return new JsonResponse($result);
     }
 
@@ -39,17 +39,29 @@ class PackageController extends Controller
      *
      * @return JsonResponse
      */
-    public function getAccessToken(Request $request)
+    public function getAccessToken()
     {
+        $file = realpath(__DIR__.'/..').DIRECTORY_SEPARATOR.'metadata.json';
         try {
             $manager = $this->get('manager');
+            $sender = $this->get('sender');
+            $requestParser = $this->get('request_parser');
+
+            $data = $requestParser->getParams();
+
+            $manager->setMetadata($file);
+            $manager->setDataFromRequest($data);
             $manager->setBlockName(__FUNCTION__);
+            $manager->start();
 
-            $validData = $manager->getValidData();
-            $validData['grant_type'] = 'authorization_code';
+            $urlParams = $manager->getUrlParams();
+            $bodyParams = $manager->getBodyParams();
+            $bodyParams['grant_type'] = 'authorization_code';
 
-            $url = $manager->createFullUrl($validData);
-            $result = $manager->send($url, $validData);
+            $url = $manager->createFullUrl($bodyParams);
+            $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $bodyParams);
+
+            $result = $sender->send($guzzleData);
         } catch (PackageException $exception) {
             $result = $this->createPackageExceptionResponse($exception);
         } catch (RequiredFieldException $exception) {
@@ -69,20 +81,28 @@ class PackageController extends Controller
      */
     public function createIdentity(string $blockName)
     {
+        $file = realpath(__DIR__.'/..').DIRECTORY_SEPARATOR.'metadata.json';
         try {
             $manager = $this->get('manager');
+            $sender = $this->get('sender');
+            $requestParser = $this->get('request_parser');
+
+            $data = $requestParser->getParams();
+
+            $manager->setMetadata($file);
+            $manager->setDataFromRequest($data);
             $manager->setBlockName($blockName);
+            $manager->start();
 
-            $validData = $manager->getValidData();
-            $url = $manager->createFullUrl($validData);
-            $headers = $manager->createHeaders($validData);
+            $urlParams = $manager->getUrlParams();
+            $bodyParams = $manager->getBodyParams();
 
-            $data['identity'] = [
-                "type" => $validData["type"],
-                "value" => $validData["value"]
-            ];
+            $headers = $this->createHeaders($bodyParams);
+            $url = $manager->createFullUrl($bodyParams);
 
-            $result = $manager->send($url, $data, $headers);
+            $guzzleData = $manager->createGuzzleData($url, $headers, $urlParams, $bodyParams);
+
+            $result = $sender->send($guzzleData);
         } catch (PackageException $exception) {
             $result = $this->createPackageExceptionResponse($exception);
         } catch (RequiredFieldException $exception) {
@@ -100,23 +120,37 @@ class PackageController extends Controller
      */
     public function getUsers()
     {
+        $file = realpath(__DIR__.'/..').DIRECTORY_SEPARATOR.'metadata.json';
         try {
             $manager = $this->get('manager');
+            $sender = $this->get('sender');
+            $requestParser = $this->get('request_parser');
+
+            $data = $requestParser->getParams();
+
+            $manager->setMetadata($file);
+            $manager->setDataFromRequest($data);
             $manager->setBlockName(__FUNCTION__);
+            $manager->start();
 
-            $validData = $manager->getValidData();
-            $url = $manager->createFullUrl($validData);
-            if (!empty($validData['role'])) {
+            $urlParams = $manager->getUrlParams();
+            $bodyParams = $manager->getBodyParams();
+
+            $headers = $this->createHeaders($bodyParams);
+            $url = $manager->createFullUrl($bodyParams);
+
+            if (!empty($bodyParams['role'])) {
                 $roleArray = [];
-                foreach (explode(',', $validData['role']) as $role) {
-                    $roleArray[] = "role[]=" . $role;
+                foreach (explode(',', $bodyParams['role']) as $role) {
+                    $roleArray[] = "role[]=".$role;
                 }
-                unset($validData['role']);
-                $url .= "?" . implode('&', $roleArray);
+                unset($bodyParams['role']);
+                $url .= "?".implode('&', $roleArray);
             }
-            $headers = $manager->createHeaders($validData);
 
-            $result = $manager->send($url, $validData, $headers);
+            $guzzleData = $manager->createGuzzleData($url, $headers, $urlParams, $bodyParams);
+
+            $result = $sender->send($guzzleData);
         } catch (PackageException $exception) {
             $result = $this->createPackageExceptionResponse($exception);
         } catch (RequiredFieldException $exception) {
@@ -134,19 +168,33 @@ class PackageController extends Controller
      */
     public function uploadFiles()
     {
+        $file = realpath(__DIR__.'/..').DIRECTORY_SEPARATOR.'metadata.json';
         try {
             $manager = $this->get('manager');
+            $sender = $this->get('sender');
+            $requestParser = $this->get('request_parser');
+
+            $data = $requestParser->getParams();
+
+            $manager->setMetadata($file);
+            $manager->setDataFromRequest($data);
             $manager->setBlockName(__FUNCTION__);
+            $manager->start();
 
-            $validData = $manager->getValidData();
-            $url = $manager->createFullUrl($validData);
-            if (!empty($validData['upload_token'])) {
-                $url .= "&token=" . $validData['upload_token'];
-                unset($validData['upload_token']);
+            $urlParams = $manager->getUrlParams();
+            $bodyParams = $manager->getBodyParams();
+
+            $headers = $this->createHeaders($bodyParams);
+            $url = $manager->createFullUrl($bodyParams);
+
+            if (!empty($bodyParams['uploadToken'])) {
+                $url .= "&token=".$bodyParams['uploadToken'];
+                unset($bodyParams['uploadToken']);
             }
-            $headers = $manager->createHeaders($validData);
 
-            $result = $manager->send($url, $validData, $headers);
+            $guzzleData = $manager->createGuzzleData($url, $headers, $urlParams, $bodyParams);
+
+            $result = $sender->send($guzzleData);
         } catch (PackageException $exception) {
             $result = $this->createPackageExceptionResponse($exception);
         } catch (RequiredFieldException $exception) {
@@ -178,15 +226,28 @@ class PackageController extends Controller
      */
     public function test($blockName = null)
     {
+        $file = realpath(__DIR__.'/..').DIRECTORY_SEPARATOR.'metadata.json';
         try {
             $manager = $this->get('manager');
+            $sender = $this->get('sender');
+            $requestParser = $this->get('request_parser');
+
+            $data = $requestParser->getParams();
+
+            $manager->setMetadata($file);
+            $manager->setDataFromRequest($data);
             $manager->setBlockName($blockName);
+            $manager->start();
 
-            $validData = $manager->getValidData();
-            $url = $manager->createFullUrl($validData);
-            $headers = $manager->createHeaders($validData);
+            $urlParams = $manager->getUrlParams();
+            $bodyParams = $manager->getBodyParams();
 
-            $result = $manager->send($url, $validData, $headers);
+            $headers = $this->createHeaders($bodyParams);
+            $url = $manager->createFullUrl($bodyParams);
+
+            $guzzleData = $manager->createGuzzleData($url, $headers, $urlParams, $bodyParams);
+
+            $result = $sender->send($guzzleData);
         } catch (PackageException $exception) {
             $result = $this->createPackageExceptionResponse($exception);
         } catch (RequiredFieldException $exception) {
@@ -208,9 +269,18 @@ class PackageController extends Controller
         return new JsonResponse($result);
     }
 
+    private function createHeaders(&$data)
+    {
+        $result = [
+            'Authorization' => 'Bearer '.$data['accessToken'],
+        ];
+        unset($data['accessToken']);
+
+        return $result;
+    }
+
     private function createPackageExceptionResponse(PackageException $exception)
     {
-        // todo add params, to find in header needed to response
         $result['callback'] = 'error';
         $result['contextWrites']['to']['status_code'] = 'INTERNAL_PACKAGE_ERROR';
         $result['contextWrites']['to']['status_msg'] = $exception->getMessage();
