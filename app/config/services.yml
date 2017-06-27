@@ -21,7 +21,7 @@ services:
 
   manager:
     class: RapidAPI\Service\Manager
-    arguments: ["@data_validator", "@metadata","@sender", "@generator"]
+    arguments: ["@data_validator", "@metadata", "@generator"]
 
   request_parser:
     class: RapidAPI\Service\RequestParser
