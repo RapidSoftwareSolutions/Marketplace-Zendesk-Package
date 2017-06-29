@@ -1639,11 +1639,16 @@ Lists all active shared and personal macros available to the current user.
 ## ZendeskCore.createMacro
 Create macro
 
-| Field      | Type  | Description
-|------------|-------|----------
-| accessToken| String| Access Token
-| domain     | String| Your domain in Zendesk system.
-| macroParams| JSON  | Macro params
+| Field      | Type   | Description
+|------------|--------|----------
+| accessToken| String | Access Token
+| domain     | String | Your domain in Zendesk system.
+| title      | String |The title of the macro
+| description| String | The description of the macro
+| position   | Number | The position of the macro
+| active     | Boolean| Useful for determining if the macro should be displayed
+| actions    | Array  | An object describing what the macro will do. Example: { "field": "status", "value": "solved" } 
+| restriction| Array  | Who may access this macro. Will be null when everyone in the account can access it
 
 ## ZendeskCore.updateMacro
 Update macro
@@ -1653,7 +1658,12 @@ Update macro
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
 | macroId    | Number| Macro ID
-| macroParams| JSON  | Macro params
+| title      | String |The title of the macro
+| description| String | The description of the macro
+| position   | Number | The position of the macro
+| active     | Boolean| Useful for determining if the macro should be displayed
+| actions    | Array  | An object describing what the macro will do. Example: { "field": "status", "value": "solved" } 
+| restriction| Array  | Who may access this macro. Will be null when everyone in the account can access it
 
 ## ZendeskCore.deleteMacro
 Delete macro
@@ -2288,6 +2298,7 @@ Create a schedule
 | domain     | String| Your domain in Zendesk system.
 | name       | String| Name of the schedule
 | timeZone   | String| Timezone
+| intervals  | Array | Array of intervals for the schedule
 
 ## ZendeskCore.updateSchedule
 Update a schedule
@@ -2299,6 +2310,7 @@ Update a schedule
 | scheduleId | Number| Schedule ID
 | name       | String| Name of the schedule
 | timeZone   | String| Timezone
+| intervals  | Array | Array of intervals for the schedule
 
 ## ZendeskCore.updateIntervalsForSchedule
 Update intervals of schedule
@@ -3066,8 +3078,8 @@ Create oauth client
 | description| String| A short description of your client that is displayed to users when they are considering approving access to your application.
 | redirectUri| Array | An array of the valid redirect URIs for this client
 
-## ZendeskCore.createOauthClient
-Create oauth client
+## ZendeskCore.updateOauthClient
+Update oauth client
 
 | Field        | Type  | Description
 |--------------|-------|----------
@@ -3408,3 +3420,24 @@ Get single Monitored Twitter Handle
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
 | commentId  | Number| Zendesk Support comment id
+
+## ZendeskCore.updateUserProfileImage
+Update user's avatar
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access Token
+| domain     | String| Your domain in Zendesk system.
+| userId     | Number| This user will be merged into the existing user provided in the target user id param. Any two arbitrary users can be merged.
+| image      | File  | File to upload and set as avatar
+
+## ZendeskCore.updateUserProfileImageByUrl
+Update user's avatar
+
+| Field      | Type  | Description
+|------------|-------|----------
+| accessToken| String| Access Token
+| domain     | String| Your domain in Zendesk system.
+| userId     | Number| This user will be merged into the existing user provided in the target user id param. Any two arbitrary users can be merged.
+| url        | String| URL to File
+

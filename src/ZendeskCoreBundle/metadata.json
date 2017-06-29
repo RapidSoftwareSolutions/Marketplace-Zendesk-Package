@@ -4673,7 +4673,7 @@
         {
           "name": "url",
           "type": "String",
-          "info": "URL to File ",
+          "info": "URL to File",
           "required": true,
           "custom": {
             "wrapName": "user",
