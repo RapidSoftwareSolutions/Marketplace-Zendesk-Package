@@ -36,7 +36,7 @@ Returns a stream of changes that occurred on tickets. Each event is tied to an u
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| startTime  | Number| Unix time. Example: 1491782400
+| startTime  | DatePicker| DatePicker
 
 ## ZendeskCore.getIncrementalOrganizations
 Returns the organizations that changed since the start time.
@@ -45,7 +45,7 @@ Returns the organizations that changed since the start time.
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| startTime  | Number| Unix time. Example: 1491782400
+| startTime  | DatePicker| DatePicker
 
 ## ZendeskCore.getIncrementalUsers
 Returns the users that changed since the start time.
@@ -54,7 +54,7 @@ Returns the users that changed since the start time.
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| startTime  | Number| Unix time. Example: 1491782400
+| startTime  | DatePicker| DatePicker
 
 ## ZendeskCore.getJobStatuses
 This shows the current statuses for background jobs running.
@@ -80,7 +80,7 @@ Get many Job by IDs
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| jobIds     | Array | List of job status ids.
+| jobIds     | List  | List of job status ids.
 
 ## ZendeskCore.getTickets
 Tickets are ordered chronologically by created date, from oldest to newest. The first ticket listed may not be the absolute oldest ticket in your account due to ticket archiving. To get a list of all tickets in your account, use the Incremental Ticket Export endpoint.
@@ -89,8 +89,8 @@ Tickets are ordered chronologically by created date, from oldest to newest. The 
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| sortBy     | String| Possible values are assignee, assignee.name, created_at, group, id, locale, requester, requester.name, status, subject, updated_at
-| sortOrder  | String| One of asc, desc. Defaults to asc
+| sortBy     | Select| Possible values are assignee, assignee.name, created_at, group, id, locale, requester, requester.name, status, subject, updated_at
+| sortOrder  | Select| One of asc, desc. Defaults to asc
 
 ## ZendeskCore.getSingleTicket
 Returns a number of ticket properties, but not the ticket comments. To get the comments, use List Comments.
@@ -108,7 +108,7 @@ Accepts a list of ticket ids to return. This endpoint will return up to 100 tick
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| ticketIds  | Array | Comma-separated list of ticket ID
+| ticketIds  | List  | List of ticket ID
 
 ## ZendeskCore.createSingleTicket
 Create ticket
@@ -123,18 +123,18 @@ Create ticket
 | submitterId        | Number| The numeric ID of the user submitting the ticket
 | assigneeId         | Number| The numeric ID of the agent to assign the ticket to
 | groupId            | Number| The numeric ID of the group to assign the ticket to
-| collaboratorIds    | Array | An array of the numeric IDs of agents or end-users to CC on the ticket. An email notification is sent to them when the ticket is created
-| collaborators      | Array | An array of numeric IDs, emails, or objects containing name and email properties. An email notification is sent to them when the ticket is created. Example: collaborators: [ 562, someone@example.com, { name: Someone Else, email: else@example.com } ]
-| type               | String| Allowed values are problem, incident, question, or task
-| priority           | String| Allowed values are urgent, high, normal, or low
-| status             | String| Allowed values are new, open, pending, hold, solved or closed. Is set to new if status is not specified
-| tags               | Array | Comma-separated of tags to add to the ticket
+| collaboratorIds    | List  | List of the numeric IDs of agents or end-users to CC on the ticket. An email notification is sent to them when the ticket is created
+| collaborators      | List  | List of numeric IDs, emails, or objects containing name and email properties. An email notification is sent to them when the ticket is created. Example: collaborators: [ 562, someone@example.com, { name: Someone Else, email: else@example.com } ]
+| type               | Select| Allowed values are problem, incident, question, or task
+| priority           | Select| Allowed values are urgent, high, normal, or low
+| status             | Select| Allowed values are new, open, pending, hold, solved or closed. Is set to new if status is not specified
+| tags               | List  | List of tags to add to the ticket
 | externalId         | Number| An ID to link Zendesk Support tickets to local records
 | forumTopicId       | Number| The numeric ID of the topic the ticket originated from, if any
 | problemId          | Number| For tickets of type 'incident', the numeric ID of the problem the incident is linked to, if any
-| dueAt              | String| For tickets of type 'task', the due date of the task. Accepts the ISO 8601 date format (yyyy-mm-dd)
+| dueAt              | DatePicker| For tickets of type 'task', the due date of the task. Accepts the ISO 8601 date format (yyyy-mm-dd)
 | ticketFormId       | Number| (Enterprise only) The id of the ticket form to render for the ticket
-| customFields       | Array | An array of the custom fields of the ticket. See below for details
+| customFields       | JSON | An array of the custom fields of the ticket. See below for details
 | viaFollowupSourceId| String| The id of a closed ticket for a follow-up ticket.
 
 ## ZendeskCore.createTickets
@@ -144,7 +144,7 @@ Create many tickets from JSON file
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| tickets    | File  | JSON file contents array of tickets data. Example [{ticketData1}, {ticketData2}]. TicketData the same as when creating one ticket.
+| tickets    | List  | List of JSON file contents array of tickets data. Example [{ticketData1}, {ticketData2}]. TicketData the same as when creating one ticket.
 
 ## ZendeskCore.updateSingleTicket
 Update single ticket
@@ -159,23 +159,23 @@ Update single ticket
 | commentAuthorId| Number | Author ID of comment
 | commentShow    | Boolean| False - make comment private
 | externalId     | String | An id you can use to link Zendesk Support tickets to local records
-| type           | String | The type of this ticket, i.e. "problem", "incident", "question" or "task"
+| type           | Select | The type of this ticket, i.e. "problem", "incident", "question" or "task"
 | subject        | String | The value of the subject field for this ticket
 | rawSubject     | String | The dynamic content placeholder, if present, or the "subject" value, if not. See Dynamic Content
-| priority       | String | Priority, defines the urgency with which the ticket should be addressed: "urgent", "high", "normal", "low"
-| status         | String | The state of the ticket, "new", "open", "pending", "hold", "solved", "closed"
+| priority       | Select | Priority, defines the urgency with which the ticket should be addressed: "urgent", "high", "normal", "low"
+| status         | Select | The state of the ticket, "new", "open", "pending", "hold", "solved", "closed"
 | recipient      | String | The original recipient e-mail address of the ticket
 | requesterId    | Number | The user who requested this ticket
 | submitterId    | Number | The user who submitted the ticket; The submitter always becomes the author of the first comment on the ticket.
 | assigneeId     | Number | What agent is currently assigned to the ticket
 | organizationId | Number | The organization of the requester. You can only specify the ID of an organization associated with the requester. See Organization Memberships
 | groupId        | Number | The group this ticket is assigned to
-| collaboratorIds| Array  | Who are currently CC'ed on the ticket
+| collaboratorIds| JSON   | Who are currently CC'ed on the ticket
 | forumTopicId   | Number | The topic this ticket originated from, if any
 | problemId      | Number | The problem this incident is linked to, if any
-| dueAt          | String | If this is a ticket of type "task" it has a due date. Due date format uses ISO 8601 format.
-| tags           | Array  | The array of tags applied to this ticket
-| customFields   | Array  | The custom fields of the ticket
+| dueAt          | DatePicker | If this is a ticket of type "task" it has a due date. Due date format uses ISO 8601 format.
+| tags           | List   | List of tags applied to this ticket
+| customFields   | JSON  | The custom fields of the ticket
 | ticketFormId   | Number | The id of the ticket form to render for this ticket - only applicable for enterprise accounts
 | brandId        | Number | The id of the brand this ticket is associated with - only applicable for enterprise accounts
 
@@ -187,7 +187,7 @@ Update tickets by its id (in each obj in list)
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
 | ticketId   | Number| Ticket ID
-| params     | JSON  | Json file with params to update. Example [param1, param2]. Each param is object like params in updateSingleTicket
+| params     | List  | Json file with params to update. Example [param1, param2]. Each param is object like params in updateSingleTicket
 
 ## ZendeskCore.updateTicketsByIds
 Update many tickets with the same information
@@ -196,29 +196,29 @@ Update many tickets with the same information
 |----------------|--------|----------
 | accessToken    | String | Access Token
 | domain         | String | Your domain in Zendesk system.
-| ticketIds      | Array  | List of ticket ids
+| ticketIds      | List   | List of ticket ids
 | commentBody    | String | Comment
 | commentHtmlBody| String | HTML code of comment
 | commentAuthorId| Number | Author ID of comment
 | commentShow    | Boolean| False - make comment private
 | externalId     | String | An id you can use to link Zendesk Support tickets to local records
-| type           | String | The type of this ticket, i.e. "problem", "incident", "question" or "task"
+| type           | Select | The type of this ticket, i.e. "problem", "incident", "question" or "task"
 | subject        | String | The value of the subject field for this ticket
 | rawSubject     | String | The dynamic content placeholder, if present, or the "subject" value, if not. See Dynamic Content
-| priority       | String | Priority, defines the urgency with which the ticket should be addressed: "urgent", "high", "normal", "low"
-| status         | String | The state of the ticket, "new", "open", "pending", "hold", "solved", "closed"
+| priority       | Select | Priority, defines the urgency with which the ticket should be addressed: "urgent", "high", "normal", "low"
+| status         | Select | The state of the ticket, "new", "open", "pending", "hold", "solved", "closed"
 | recipient      | String | The original recipient e-mail address of the ticket
 | requesterId    | Number | The user who requested this ticket
 | submitterId    | Number | The user who submitted the ticket; The submitter always becomes the author of the first comment on the ticket.
 | assigneeId     | Number | What agent is currently assigned to the ticket
 | organizationId | Number | The organization of the requester. You can only specify the ID of an organization associated with the requester. See Organization Memberships
 | groupId        | Number | The group this ticket is assigned to
-| collaboratorIds| Array  | Who are currently CC'ed on the ticket
+| collaboratorIds| JSON   | Who are currently CC'ed on the ticket
 | forumTopicId   | Number | The topic this ticket originated from, if any
 | problemId      | Number | The problem this incident is linked to, if any
-| dueAt          | String | If this is a ticket of type "task" it has a due date. Due date format uses ISO 8601 format.
-| tags           | Array  | The array of tags applied to this ticket
-| customFields   | Array  | The custom fields of the ticket
+| dueAt          | DatePicker | If this is a ticket of type "task" it has a due date. Due date format uses ISO 8601 format.
+| tags           | List   | The array of tags applied to this ticket
+| customFields   | JSON   | The custom fields of the ticket
 | ticketFormId   | Number | The id of the ticket form to render for this ticket - only applicable for enterprise accounts
 | brandId        | Number | The id of the brand this ticket is associated with - only applicable for enterprise accounts
 
@@ -238,7 +238,7 @@ Mark Tickets as Spam and Suspend Requester
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| ticketIds  | Array | List of Ticket IDs
+| ticketIds  | List  | List of Ticket IDs
 
 ## ZendeskCore.mergeTickets
 Merges one or more tickets into the {id} target ticket.
@@ -248,7 +248,7 @@ Merges one or more tickets into the {id} target ticket.
 | accessToken  | String| Access Token
 | domain       | String| Your domain in Zendesk system.
 | ticketId     | Number| Ticket ID
-| ids          | Array | List of Ticket IDs
+| ids          | List  | List of Ticket IDs
 | targetComment| String| Private comment to add to the target ticket
 | sourceComment| String| Private comment to add to the source ticket
 
@@ -277,7 +277,7 @@ Delete tickets
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| ticketIds  | Array | List of ticket ids
+| ticketIds  | List  | List of ticket ids
 
 ## ZendeskCore.getTicketCollaborators
 Get collaborators from ticket
@@ -331,7 +331,7 @@ Get all comments from ticket
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
 | ticketId   | Number| Ticket ID
-| sortOrder  | String| One of asc, desc. Defaults to asc
+| sortOrder  | Select| One of asc, desc. Defaults to asc
 
 ## ZendeskCore.removeCommentAttachment
 Redaction allows you to permanently remove attachments from an existing comment on a ticket. Once removed from a comment, the attachment is replaced with a placeholder 'redacted.txt' file. Note that redaction is permanent. It is not possible to undo redaction or see what was removed. Once a ticket is closed, redacting its attachments is no longer possible.
@@ -415,7 +415,7 @@ Create a rating for solved tickets, or for tickets that were previously solved a
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
 | ticketId   | Number| Ticket ID
-| score      | String| The rating: "offered", "unoffered", "good" or "bad"
+| score      | Select| The rating: "offered", "unoffered", "good" or "bad"
 | comment    | String| Text to satisfaction rating message
 | requesterId| Number| The id of ticket requester submitting the rating. Default owner of accessToken
 
@@ -528,7 +528,7 @@ List ticket metric events
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| startTime  | String| Unix time
+| startTime  | DatePicker| Time
 
 ## ZendeskCore.getAllRequests
 Get list of requests
@@ -537,8 +537,8 @@ Get list of requests
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| sortBy     | String| Possible values are updated_at, created_at
-| sortOrder  | String| One of asc, desc. Defaults to asc
+| sortBy     | Select| Possible values are updated_at, created_at
+| sortOrder  | Select| One of asc, desc. Defaults to asc
 
 ## ZendeskCore.getRequestListByStatus
 Get list of requests by status
@@ -547,9 +547,9 @@ Get list of requests by status
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| status     | Array | Comma-separated list of request's statuses
-| sortBy     | String| Possible values are updated_at, created_at
-| sortOrder  | String| One of asc, desc. Defaults to asc
+| status     | List  | List of request's statuses
+| sortBy     | Select| Possible values are updated_at, created_at
+| sortOrder  | Select| One of asc, desc. Defaults to asc
 
 ## ZendeskCore.getOpenedRequestList
 Get list of opened request
@@ -558,8 +558,8 @@ Get list of opened request
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| sortBy     | String| Possible values are updated_at, created_at
-| sortOrder  | String| One of asc, desc. Defaults to asc
+| sortBy     | Select| Possible values are updated_at, created_at
+| sortOrder  | Select| One of asc, desc. Defaults to asc
 
 ## ZendeskCore.getSolvedRequestList
 Get list of solved request
@@ -568,8 +568,8 @@ Get list of solved request
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| sortBy     | String| Possible values are updated_at, created_at
-| sortOrder  | String| One of asc, desc. Defaults to asc
+| sortBy     | Select| Possible values are updated_at, created_at
+| sortOrder  | Select| One of asc, desc. Defaults to asc
 
 ## ZendeskCore.getCcdRequestList
 Get request list
@@ -578,8 +578,8 @@ Get request list
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| sortBy     | String| Possible values are updated_at, created_at
-| sortOrder  | String| One of asc, desc. Defaults to asc
+| sortBy     | Select| Possible values are updated_at, created_at
+| sortOrder  | Select| One of asc, desc. Defaults to asc
 
 ## ZendeskCore.getRequestListByUser
 Get request by user ID
@@ -589,8 +589,8 @@ Get request by user ID
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
 | userId     | Number| User ID
-| sortBy     | String| Possible values are updated_at, created_at
-| sortOrder  | String| One of asc, desc. Defaults to asc
+| sortBy     | Select| Possible values are updated_at, created_at
+| sortOrder  | Select| One of asc, desc. Defaults to asc
 
 ## ZendeskCore.getRequestListByOrganization
 Get request by organization ID
@@ -600,8 +600,8 @@ Get request by organization ID
 | accessToken   | String| Access Token
 | domain        | String| Your domain in Zendesk system.
 | organizationId| Number| Organization ID
-| sortBy        | String| Possible values are updated_at, created_at
-| sortOrder     | String| One of asc, desc. Defaults to asc
+| sortBy        | Select| Possible values are updated_at, created_at
+| sortOrder     | Select| One of asc, desc. Defaults to asc
 
 ## ZendeskCore.getSingleRequest
 Get request by ID
@@ -620,8 +620,8 @@ Get comments from request
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
 | requestId  | Number| Request ID
-| sortBy     | String| Possible values are updated_at, created_at
-| sortOrder  | String| One of asc, desc. Defaults to asc
+| sortBy     | Select| Possible values are updated_at, created_at
+| sortOrder  | Select| One of asc, desc. Defaults to asc
 
 ## ZendeskCore.getRequestSingleComment
 Get single comment from request
@@ -632,8 +632,8 @@ Get single comment from request
 | domain     | String| Your domain in Zendesk system.
 | requestId  | Number| Request ID
 | commentId  | Number| Comment ID
-| sortBy     | String| Possible values are updated_at, created_at
-| sortOrder  | String| One of asc, desc. Defaults to asc
+| sortBy     | Select| Possible values are updated_at, created_at
+| sortOrder  | Select| One of asc, desc. Defaults to asc
 
 ## ZendeskCore.createGroup
 Create group
@@ -785,7 +785,7 @@ Immediately removes users from groups and schedules a job to unassign all workin
 |-------------------|-------|----------
 | accessToken       | String| Access Token
 | domain            | String| Your domain in Zendesk system.
-| groupMembershipIds| Array | Comma-separated list of group membership ids
+| groupMembershipIds| List  | List of group membership ids
 
 ## ZendeskCore.setGroupMembershipAsDefault
 Set group membership as Default
@@ -804,7 +804,7 @@ Get list Users
 |--------------|-------|----------
 | accessToken  | String| Access Token
 | domain       | String| Your domain in Zendesk system.
-| role         | Array | Users role. Example: ["end-user", "admin"]
+| role         | List  | Users role. Example: ["end-user", "admin"]
 | permissionSet| Number| For custom roles in the Enterprise plan. You can only filter by one role id per request
 
 ## ZendeskCore.getGroupUsers
@@ -832,7 +832,7 @@ Get Users by Id list
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| userIds    | Array | Comma-separated list of user ids
+| userIds    | List  | List of user ids
 
 ## ZendeskCore.getUsersByExternalIds
 Get Users by External Id list
@@ -841,7 +841,7 @@ Get Users by External Id list
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| externalIds| Array | Comma-separated list of user's external ids
+| externalIds| List  | List of user's external ids
 
 ## ZendeskCore.getUserRelatedInfo
 Get user related info
@@ -862,7 +862,7 @@ Create a new user
 | name               | String | User name
 | email              | String | User email
 | verified           | Boolean| True - if you need to create users without sending out a verification email.
-| role               | String | If you need to create agents with a specific role, the role parameter only accepts three possible values: "end-user", "agent", "admin".
+| role               | Select | If you need to create agents with a specific role, the role parameter only accepts three possible values: "end-user", "agent", "admin".
 | customRoleId       | Number | Therefore you will need to set role to "agent" as well as add a new parameter called "custom_role_id" and give it the actual desired role ID from your Zendesk Support account.
 | twitter            | String | User's twitter
 | facebook           | String | User's facebook
@@ -876,14 +876,13 @@ Create a new user
 | organizationId     | Number | The id of the organization the user is associated with
 | defaultGroupId     | Number | The id of the user's default group. *Can only be set on create, not on update
 | phone              | String | The user's primary phone number. See Phone Number below
-| photo              | Array  | The user's profile picture represented as an Attachment object
 | restrictedAgent    | Boolean| If the agent has any restrictions; false for admins and unrestricted agents, true for other agents
 | signature          | String | The user's signature. Only agents and admins can have signatures
 | suspended          | Boolean| If the agent is suspended. Tickets from suspended users are also suspended, and these users cannot sign in to the end user portal
-| tags               | Array  | The user's tags. Only present if your account has user tagging enabled
+| tags               | List   | The user's tags. Only present if your account has user tagging enabled
 | ticketRestriction  | String | Specifies which tickets the user has access to. Possible values are: "organization", "groups", "assigned", "requested", null
 | timeZone           | String | The user's time zone. See Time Zone below
-| userFields         | Array  | Custom fields for the user
+| userFields         | JSON   | Custom fields for the user
 
 ## ZendeskCore.mergeUsers
 Merge two users
@@ -902,7 +901,7 @@ Delete users
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| userIds    | Array | User id list
+| userIds    | List  | User id list
 
 ## ZendeskCore.autocompleteUsers
 Returns an array of users whose name starts with the value specified in the name paramater. It only returns users with no foreign identities.
@@ -987,12 +986,12 @@ Adds a new identity to a user's profile. An agent can add an identity to any use
 | accessToken       | String | Access Token
 | domain            | String | Your domain in Zendesk system.
 | userId            | Number | User ID
-| type              | String | New identity: email, twitter, facebook or google
+| type              | Select | New identity: email, twitter, facebook or google
 | value             | String | Value of new identity
 | primary           | Boolean| Set identity primary or not
 | verified          | Boolean| If the identity has been verified
 | undeliverableCount| Number | The number of times a non-delivery response was received at that address (maximum 50)
-| deliverableState  | String | One of "deliverable" or "ticket_sharing_partner"
+| deliverableState  | Select | One of "deliverable" or "ticket_sharing_partner"
 
 ## ZendeskCore.createSelfIdentity
 Add an identity to their own user profile
@@ -1002,12 +1001,12 @@ Add an identity to their own user profile
 | accessToken       | String | Access Token
 | domain            | String | Your domain in Zendesk system.
 | userId            | Number | User ID
-| type              | String | New identity: email, twitter, facebook or google
+| type              | Select | New identity: email, twitter, facebook or google
 | value             | String | Value of new identity
 | primary           | Boolean| If the identity is the primary identity. *Writable only when creating, not when updating. Use the makeIdentifyPrimary endpoint instead
 | verified          | Boolean| If the identity has been verified
 | undeliverableCount| Number | The number of times a non-delivery response was received at that address (maximum 50)
-| deliverableState  | String | One of "deliverable" or "ticket_sharing_partner"
+| deliverableState  | Select | One of "deliverable" or "ticket_sharing_partner"
 
 ## ZendeskCore.updateIdentity
 This endpoint allows you to set the specified identity as verified (but you cannot unverify a verified identity and update the value of the specified identity
@@ -1021,9 +1020,9 @@ This endpoint allows you to set the specified identity as verified (but you cann
 | name              | String | Identity name. Example: email, twitter, verified etc. You cant change primary identity value. For more details look at getIdentities
 | value             | String | Value of identity
 | verified          | Boolean| Change verified status
-| type              | String | type of identity
+| type              | Select | type of identity
 | undeliverableCount| Number | The number of times a non-delivery response was received at that address (maximum 50)
-| deliverableState  | String | One of "deliverable" or "ticket_sharing_partner"
+| deliverableState  | Select | One of "deliverable" or "ticket_sharing_partner"
 
 ## ZendeskCore.makeIdentityPrimary
 Sets the specified identity as primary. Only fort Agents
@@ -1120,10 +1119,10 @@ Update end-users
 | restrictedAgent    | Boolean| If the agent has any restrictions; false for admins and unrestricted agents, true for other agents
 | signature          | String | The user's signature. Only agents and admins can have signatures
 | suspended          | Boolean| If the agent is suspended. Tickets from suspended users are also suspended, and these users cannot sign in to the end user portal
-| tags               | Array  | The user's tags. Only present if your account has user tagging enabled
-| ticketRestriction  | String | Specifies which tickets the user has access to. Possible values are: "organization", "groups", "assigned", "requested", null
+| tags               | List   | The user's tags. Only present if your account has user tagging enabled
+| ticketRestriction  | Select | Specifies which tickets the user has access to. Possible values are: "organization", "groups", "assigned", "requested", null
 | timeZone           | String | The user's time zone. See Time Zone below
-| userFields         | Array  | Custom fields for the user
+| userFields         | List   | Custom fields for the user
 
 ## ZendeskCore.getSessions
 Get list of sessions
@@ -1221,7 +1220,7 @@ Get organizations by IDs
 |----------------|-------|----------
 | accessToken    | String| Access Token
 | domain         | String| Your domain in Zendesk system.
-| organizationIds| Array | Comma-separated list of organization ID
+| organizationIds| List  | List of organization ID
 
 ## ZendeskCore.createOrganization
 Create new organization
@@ -1232,13 +1231,13 @@ Create new organization
 | domain            | String | Your domain in Zendesk system.
 | name              | String | New organization name
 | externalId        | String | A unique external id to associate organizations to an external record
-| domainNames       | Array  | An array of domain names associated with this organization
+| domainNames       | List   | List of domain names associated with this organization
 | details           | String | Any details obout the organization, such as the address
 | notes             | String | Any notes you have about the organization
 | groupId           | Number | New tickets from users in this organization are automatically put in this group
 | sharedTickets     | Boolean| End users in this organization are able to see each other's tickets
 | sharedComments    | Boolean| End users in this organization are able to see each other's comments on tickets
-| tags              | Array  | The tags of the organization
+| tags              | List   | The tags of the organization
 | organizationFields| JSON   | Custom fields for this organization. Example: ["org_dropdown": "option_1", "org_decimal": 5.2]
 
 ## ZendeskCore.searchOrganizations
@@ -1358,7 +1357,7 @@ Immediately removes a user from a organization and schedules a job to unassign a
 |--------------------------|-------|----------
 | accessToken              | String| Access Token
 | domain                   | String| Your domain in Zendesk system.
-| organizationMembershipIds| Array | Comma-separated list of organization membership IDs
+| organizationMembershipIds| List  | List of organization membership IDs
 
 ## ZendeskCore.searchUsersByQuery
 Specify a partial or full name or email address as the value of the query attribute. Example: query="Gerry". Specify an id number as the value of the external_id attribute. For more advanced searches of users, use the Search API.
@@ -1385,7 +1384,7 @@ Update users with the same data
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| userIds    | Array | List of user IDs to update same data
+| userIds    | List  | List of user IDs to update same data
 | params     | JSON  | Param to be updated to all users, which ids send. Example: {"organization_id": 1}
 
 ## ZendeskCore.updateUsersByExternalIds
@@ -1395,7 +1394,7 @@ Update users with the same data
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| externalIds| Array | List of user external IDs to update same data
+| externalIds| List  | List of user external IDs to update same data
 | params     | JSON  | Param to be updated to all users, which ids send. Example: {"organization_id": 1}
 
 ## ZendeskCore.updateUsers
@@ -1414,7 +1413,7 @@ Update organization with the same data by id
 |---------------|-------|----------
 | accessToken   | String| Access Token
 | domain        | String| Your domain in Zendesk system.
-| organizationId| Array | List of organization ID
+| organizationId| List  | List of organization ID
 | params        | JSON  | Param to be updated to all users, which ids send. Example: {"notes": "Something interesting"}. In each element in array required id or externalId.
 
 ## ZendeskCore.updateOrganizationsByExternalIds
@@ -1424,7 +1423,7 @@ Update organization with the same data by external id
 |-----------------------|-------|----------
 | accessToken           | String| Access Token
 | domain                | String| Your domain in Zendesk system.
-| organizationExternalId| Array | List of organization external ID
+| organizationExternalId| List  | List of organization external ID
 | params                | JSON  | Param to be updated to all users, which ids send. Example: {"notes": "Something interesting"}. In each element in array required id or externalId.
 
 ## ZendeskCore.updateOrganizations
@@ -1452,7 +1451,7 @@ Delete organizations by ids
 |----------------|-------|----------
 | accessToken    | String| Access Token
 | domain         | String| Your domain in Zendesk system.
-| organizationIds| Array | List of organization ID
+| organizationIds| List  | List of organization ID
 
 ## ZendeskCore.createSearchQuery
 The search API is a unified search API that returns tickets, users, and organizations. You can define filters to narrow your search results according to resource type, dates, and object properties, such as ticket requester or tag.
@@ -1485,7 +1484,7 @@ Search requests by params
 | domain        | String| Your domain in Zendesk system.
 | query         | String| Expression to find
 | organizationId| Number| Organization ID
-| status        | Array | Ticket status: open, solved
+| status        | List  | Ticket status: open, solved
 
 ## ZendeskCore.createRequest
 Create single request
@@ -1496,15 +1495,15 @@ Create single request
 | domain          | String | Your domain in Zendesk system.
 | subject         | String | Ticket title
 | description     | String | Ticket body
-| status          | String | The state of the request, "new", "open", "pending", "hold", "solved", "closed"
-| priority        | String | The priority of the request, "low", "normal", "high", "urgent"
-| type            | String | The type of the request, "question", "incident", "problem", "task"
+| status          | Select | The state of the request, "new", "open", "pending", "hold", "solved", "closed"
+| priority        | Select | The priority of the request, "low", "normal", "high", "urgent"
+| type            | Select | The type of the request, "question", "incident", "problem", "task"
 | customFields    | JSON   | The fields and entries for this request
 | organizationId  | Number | The organization of the requester
 | requesterId     | Number | The id of the requester
 | assigneeId      | Number | The id of the assignee if the field is visible to end users
 | groupId         | Number | The id of the assigned group if the field is visible to end users
-| collaboratorIds | Array  | Who are currently CC'ed on the ticket
+| collaboratorIds | List   | Who are currently CC'ed on the ticket
 | isPublic        | Boolean| Is true if any comments are public, false otherwise
 | canBeSolvedByMe | Boolean| If true, end user can mark request as solved.
 | solved          | Boolean| Whether or not request is solved (an end user can set this if "can_be_solved_by_me", above, is true for that user)
@@ -1522,9 +1521,9 @@ Update single request
 | requestId   | Number | Request ID
 | subject     | String | Ticket title
 | comment     | String | Comment body
-| status      | String | The state of the request, "new", "open", "pending", "hold", "solved", "closed"
-| priority    | String | The priority of the request, "low", "normal", "high", "urgent"
-| type        | String | The type of the request, "question", "incident", "problem", "task"
+| status      | Select | The state of the request, "new", "open", "pending", "hold", "solved", "closed"
+| priority    | Select | The priority of the request, "low", "normal", "high", "urgent"
+| type        | Select | The type of the request, "question", "incident", "problem", "task"
 | customFields| JSON   | The fields and entries for this request
 | solved      | Boolean| Whether or not request is solved (an end user can set this if "can_be_solved_by_me", above, is true for that user)
 | ticketFormId| Number | The numeric id of the ticket form associated with this request if the form is visible to end users - only applicable for enterprise accounts
@@ -1538,8 +1537,8 @@ Lists all automations for the current account
 | accessToken| String | Access Token
 | domain     | String | Your domain in Zendesk system.
 | active     | Boolean| Only active automations if true, inactive automations if false
-| sortBy     | String | Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to position
-| sortOrder  | String | One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
+| sortBy     | Select | Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to position
+| sortOrder  | Select | One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
 
 ## ZendeskCore.getSingleAutomation
 Get single automation by ID
@@ -1557,8 +1556,8 @@ Lists all active automations
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| sortBy     | String| Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to position
-| sortOrder  | String| One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
+| sortBy     | Select| Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to position
+| sortOrder  | Select| One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
 
 ## ZendeskCore.createAutomation
 Create automation
@@ -1597,8 +1596,8 @@ Search automation with params
 | domain     | String | Your domain in Zendesk system.
 | query      | String | Query string used to find all automations with matching title
 | active     | Boolean| Only active automations if true, inactive automations if false
-| sortBy     | String | Possible values are alphabetical, created_at, updated_at, and position. If unspecified, the automations are sorted by relevance
-| sortOrder  | String | One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
+| sortBy     | Select | Possible values are alphabetical, created_at, updated_at, and position. If unspecified, the automations are sorted by relevance
+| sortOrder  | Select | One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
 
 ## ZendeskCore.getMacrosList
 Lists all shared and personal macros available to the current user.
@@ -1607,13 +1606,13 @@ Lists all shared and personal macros available to the current user.
 |-------------|--------|----------
 | accessToken | String | Access Token
 | domain      | String | Your domain in Zendesk system.
-| access      | String | Only macros with given access. Possible values are personal, shared, or account
+| access      | Select | Only macros with given access. Possible values are personal, shared, or account
 | active      | Boolean| Only active macros if true, inactive macros if false
 | category    | String | Only macros within given category
 | groupId     | Number | Only macros belonging to given group
 | onlyViewable| Boolean| Only macros that can be applied to tickets if true, All macros the current user can manage if false. Defaults to false
-| sortBy      | String | Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to alphabetical
-| sortOrder   | String | One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
+| sortBy      | Select | Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to alphabetical
+| sortOrder   | Select | One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
 
 ## ZendeskCore.getSingleMacro
 Get single Macro by ID
@@ -1631,11 +1630,11 @@ Lists all active shared and personal macros available to the current user.
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| access     | String| Only macros with given access. Possible values are personal, shared, or account
+| access     | Select| Only macros with given access. Possible values are personal, shared, or account
 | category   | String| Only macros within given category
 | groupId    | Number| Only macros belonging to given group
-| sortBy     | String| Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to alphabetical
-| sortOrder  | String| One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
+| sortBy     | Select| Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to alphabetical
+| sortOrder  | Select| One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
 
 ## ZendeskCore.createMacro
 Create macro
@@ -1705,8 +1704,8 @@ Search macros by title
 | category    | String | List macros in the given category
 | groupId     | Number | List macros belonging to given group
 | onlyViewable| Boolean| List macros that can be applied to tickets if true; list all macros the current user can manage if false. Default is false
-| sortBy      | String | Possible values are alphabetical, created_at, updated_at, and position. If unspecified, the macros are sorted by relevance
-| sortOrder   | String | One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
+| sortBy      | Select | Possible values are alphabetical, created_at, updated_at, and position. If unspecified, the macros are sorted by relevance
+| sortOrder   | Select | One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
 
 ## ZendeskCore.getSupportedActionsForMacros
 List supported actions for macros
@@ -1778,7 +1777,7 @@ Reorder SLA Policies
 |-------------|-------|----------
 | accessToken | String| Access Token
 | domain      | String| Your domain in Zendesk system.
-| slaPolicyIds| Array | List of SLA Policy IDs
+| slaPolicyIds| List  | List of SLA Policy IDs
 
 ## ZendeskCore.getSupportedFilterDefinitionItems
 Retrieve supported filter definition items. Accounts on the Professional and Enterprise plans only
@@ -1841,8 +1840,8 @@ Lists all triggers for the current account
 | accessToken| String | Access Token
 | domain     | String | Your domain in Zendesk system.
 | active     | Boolean| Only active triggers if true, inactive triggers if false
-| sortBy     | String | Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to position
-| sortOrder  | String | One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
+| sortBy     | Select | Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to position
+| sortOrder  | Select | One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
 
 ## ZendeskCore.getSingleTrigger
 Get single trigger by ID
@@ -1860,8 +1859,8 @@ Lists all active triggers
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| sortBy     | String| Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to position
-| sortOrder  | String| One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
+| sortBy     | Select| Possible values are alphabetical, created_at, updated_at, usage_1h, usage_24h, or usage_7d. Defaults to position
+| sortOrder  | Select| One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
 
 ## ZendeskCore.createTrigger
 Create trigger
@@ -1898,7 +1897,7 @@ Reorder triggers
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| triggerIds | Array | List of trigger IDs
+| triggerIds | List  | List of trigger IDs
 
 ## ZendeskCore.searchTriggers
 Search triggers by query in title
@@ -1909,8 +1908,8 @@ Search triggers by query in title
 | domain     | String | Your domain in Zendesk system.
 | query      | String | Query string used to find all triggers with matching title
 | active     | Boolean| Only active triggers if true, inactive triggers if false
-| sortBy     | String | Possible values are alphabetical, created_at, updated_at, and position. If unspecified, the triggers are sorted by relevance
-| sortOrder  | String | One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
+| sortBy     | Select | Possible values are alphabetical, created_at, updated_at, and position. If unspecified, the triggers are sorted by relevance
+| sortOrder  | Select | One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
 
 ## ZendeskCore.getViews
 Lists shared and personal Views available to the current user
@@ -1922,8 +1921,8 @@ Lists shared and personal Views available to the current user
 | access     | String | Only views with given access. May be personal, shared, or account
 | active     | Boolean| Only active views if true, inactive views if false
 | groupId    | Number | Only views belonging to given group
-| sortBy     | String | Possible values are alphabetical, created_at, or updated_at. Defaults to position
-| sortOrder  | String | One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
+| sortBy     | Select | Possible values are alphabetical, created_at, or updated_at. Defaults to position
+| sortOrder  | Select | One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
 
 ## ZendeskCore.getActiveViews
 Lists active shared and personal Views available to the current user
@@ -1934,8 +1933,8 @@ Lists active shared and personal Views available to the current user
 | domain     | String| Your domain in Zendesk system.
 | access     | String| Only views with given access. May be personal, shared, or account
 | groupId    | Number| Only views belonging to given group
-| sortBy     | String| Possible values are alphabetical, created_at, or updated_at. Defaults to position
-| sortOrder  | String| One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
+| sortBy     | Select| Possible values are alphabetical, created_at, or updated_at. Defaults to position
+| sortOrder  | Select| One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all others
 
 ## ZendeskCore.getSingleView
 Get single view by ID
@@ -1999,7 +1998,7 @@ Calculates the size of the view in terms of number of tickets the view will retu
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| viewIds    | Array | List of view IDs
+| viewIds    | List  | List of view IDs
 
 ## ZendeskCore.getSingleViewCount
 Returns the ticket count for a single view.
@@ -2030,8 +2029,8 @@ Search views
 | access     | String | Only views with given access. May be personal, shared, or account
 | active     | Boolean| Only active views if true, inactive views if false
 | groupId    | Number | Only views belonging to given group
-| sortBy     | String | Possible values are alphabetical, created_at, updated_at, and position. If unspecified, the views are sorted by relevance
-| sortOrder  | String | One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all other
+| sortBy     | Select | Possible values are alphabetical, created_at, updated_at, and position. If unspecified, the views are sorted by relevance
+| sortOrder  | Select | One of asc or desc. Defaults to asc for alphabetical and position sort, desc for all other
 
 ## ZendeskCore.getAccountSettings
 Shows the settings that are available for the account.
@@ -2094,11 +2093,8 @@ Create a brand
 | name             | String | The name of the brand
 | brandUrl         | String | The url of the brand
 | hasHelpCenter    | Boolean| If the brand has a Help Center
-| helpCenterState  | String | The state of the Help Center: enabled, disabled, or restricted
 | active           | Boolean| If the brand is set as active
 | default          | Boolean| Is the brand the default brand for this account
-| logo             | String | ?
-| ticketFormIds    | Array  | List of ticket IDs forms that are available for use by a brand
 | subdomain        | String | The subdomain of the brand (only admins view this key)
 | hostMapping      | String | The hostmapping to this brand, if any (only admins view this key)
 | signatureTemplate| String | The signature template for a brand
@@ -2116,7 +2112,6 @@ Returns an updated brand.
 | hasHelpCenter    | Boolean| If the brand has a Help Center
 | active           | Boolean| If the brand is set as active
 | default          | Boolean| Is the brand the default brand for this account
-| logo             | String | ?
 | subdomain        | String | The subdomain of the brand (only admins view this key)
 | hostMapping      | String | The hostmapping to this brand, if any (only admins view this key)
 | signatureTemplate| String | The signature template for a brand
@@ -2217,7 +2212,7 @@ Create new organization field
 | accessToken        | String | Access Token
 | domain             | String | Your domain in Zendesk system.
 | key                | String | A unique key that identifies this custom field. This is used for updating the field and referencing in placeholders.
-| type               | String | Type of the custom field: "checkbox", "date", "decimal", "dropdown", "integer", "regexp", "text", or "textarea"
+| type               | Select | Type of the custom field: "checkbox", "date", "decimal", "dropdown", "integer", "regexp", "text", or "textarea"
 | title              | String | The title of the custom field
 | rawTitle           | String | The dynamic content placeholder, if present, or the "title" value, if not. See dynamic content at Zendesk Core API -> Dynamic Content
 | description        | String | User-defined description of this field's purpose
@@ -2238,7 +2233,7 @@ Update new organization field
 | domain             | String | Your domain in Zendesk system.
 | organizationFieldId| Number | Organization field ID
 | key                | String | A unique key that identifies this custom field. This is used for updating the field and referencing in placeholders.
-| type               | String | Type of the custom field: "checkbox", "date", "decimal", "dropdown", "integer", "regexp", "text", or "textarea"
+| type               | Select | Type of the custom field: "checkbox", "date", "decimal", "dropdown", "integer", "regexp", "text", or "textarea"
 | title              | String | The title of the custom field
 | rawTitle           | String | The dynamic content placeholder, if present, or the "title" value, if not. See dynamic content at Zendesk Core API -> Dynamic Content
 | description        | String | User-defined description of this field's purpose
@@ -2265,7 +2260,7 @@ Reorder organization fields
 |---------------------|-------|----------
 | accessToken         | String| Access Token
 | domain              | String| Your domain in Zendesk system.
-| organizationFieldIds| Array | List of organization field IDs
+| organizationFieldIds| List  | List of organization field IDs
 
 ## ZendeskCore.getSchedules
 List all schedules
@@ -2313,7 +2308,7 @@ Update intervals of schedule
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
 | scheduleId | Number| Schedule ID
-| intervals  | JSON  | List of obj intervals. Example: [{"start_time": 3420, "end_time": 3900}]
+| intervals  | Array | List of obj intervals. Example: [{"start_time": 3420, "end_time": 3900}]
 
 ## ZendeskCore.deleteSchedule
 Delete a schedule
@@ -2333,8 +2328,8 @@ Create a schedule holiday
 | domain     | String| Your domain in Zendesk system.
 | scheduleId | Number| Schedule ID
 | holidayName| String| Holiday name
-| startDate  | String| Must be in ISO 8601 date format (e.g. 2016-01-01).
-| endDate    | String| Must be in ISO 8601 date format (e.g. 2016-01-01).
+| startDate  | DatePicker| Must be in ISO 8601 date format (e.g. 2016-01-01).
+| endDate    | DatePicker| Must be in ISO 8601 date format (e.g. 2016-01-01).
 
 ## ZendeskCore.getScheduleHolidays
 List holidays for a schedule
@@ -2344,8 +2339,8 @@ List holidays for a schedule
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
 | scheduleId | Number| Schedule ID
-| startDate  | String| Must be in ISO 8601 date format (e.g. 2016-01-01).
-| endDate    | String| Must be in ISO 8601 date format (e.g. 2016-01-01).
+| startDate  | DatePicker| Must be in ISO 8601 date format (e.g. 2016-01-01).
+| endDate    | DatePicker| Must be in ISO 8601 date format (e.g. 2016-01-01).
 
 ## ZendeskCore.getSingleHoliday
 Get single holiday
@@ -2367,8 +2362,8 @@ Update a holiday
 | scheduleId | Number| Schedule ID
 | holidayId  | Number| Holiday ID
 | holidayName| String| Holiday name
-| startDate  | String| Must be in ISO 8601 date format (e.g. 2016-01-01).
-| endDate    | String| Must be in ISO 8601 date format (e.g. 2016-01-01).
+| startDate  | DatePicker| Must be in ISO 8601 date format (e.g. 2016-01-01).
+| endDate    | DatePicker| Must be in ISO 8601 date format (e.g. 2016-01-01).
 
 ## ZendeskCore.deleteHoliday
 Delete a holiday
@@ -2388,8 +2383,8 @@ Create sharing agreement
 | accessToken    | String| Access Token
 | domain         | String| Your domain in Zendesk system.
 | name           | String| Name of this sharing agreement
-| type           | String| Can be one of the following: 'inbound', 'outbound'
-| status         | String| Can be one of the following: 'accepted', 'declined', 'pending', 'inactive'
+| type           | Select| Can be one of the following: 'inbound', 'outbound'
+| status         | Select| Can be one of the following: 'accepted', 'declined', 'pending', 'inactive'
 | partnerName    | String| Can be one of the following: 'jira', null
 | remoteSubdomain| String| Subdomain of the remote account or null if not associated with an account
 
@@ -2402,8 +2397,8 @@ Update sharing agreement
 | domain            | String| Your domain in Zendesk system.
 | sharingAgreementId| Number| Scharing agreement ID
 | name              | String| Name of this sharing agreement
-| type              | String| Can be one of the following: 'inbound', 'outbound'
-| status            | String| Can be one of the following: 'accepted', 'declined', 'pending', 'inactive'
+| type              | Select| Can be one of the following: 'inbound', 'outbound'
+| status            | Select| Can be one of the following: 'accepted', 'declined', 'pending', 'inactive'
 | partnerName       | String| Can be one of the following: 'jira', null
 | remoteSubdomain   | String| Subdomain of the remote account or null if not associated with an account
 
@@ -2444,8 +2439,8 @@ Adds a Zendesk or external support address to your account.To add a Zendesk addr
 | name            | String | The name for the address
 | default         | Boolean| Whether the address is the account's default support address
 | brandId         | Number | Brand ID
-| forwardingStatus| String | Possible values: "unknown", "waiting", "verified", or "failed"
-| spfStatus       | String | Possible values: "unknown", "verified", "failed"
+| forwardingStatus| Select | Possible values: "unknown", "waiting", "verified", or "failed"
+| spfStatus       | Select | Possible values: "unknown", "verified", "failed"
 
 ## ZendeskCore.getSupportAddresses
 Lists all the support addresses for the account
@@ -2484,7 +2479,7 @@ Sends a test email to the specified support address to verify that email forward
 | accessToken     | String| Access Token
 | domain          | String| Your domain in Zendesk system.
 | supportAddressId| Number| Support adress ID
-| type            | String| The endpoint takes only this parametr: "forwarding"
+| type            | Select| The endpoint takes only this parametr: "forwarding"
 
 ## ZendeskCore.deleteRecipientAddress
 Delete recipient adress
@@ -2522,11 +2517,11 @@ Create tickets forms
 | active                   | Boolean| If the form is set as active
 | endUserVisible           | Boolean| Is the form visible to the end user
 | default                  | Boolean| Is the form the default form for this account
-| ticketFieldIds           | Array  | List ids of all ticket fields which are in this ticket form
+| ticketFieldIds           | List   | List ids of all ticket fields which are in this ticket form
 | inAllBrands              | Boolean| Is the form available for use in all brands on this account
-| restrictedBrandIds       | Array  | List ids of all brands that this ticket form is restricted to
+| restrictedBrandIds       | List   | List ids of all brands that this ticket form is restricted to
 | inAllOrganizations       | Boolean| Is the form available for use in all organizations on this account
-| restrictedOrganizationIds| Array  | List ids of all organizations that this ticket form is restricted to
+| restrictedOrganizationIds| List   | List ids of all organizations that this ticket form is restricted to
 
 ## ZendeskCore.getSingleTicketForm
 Get single tickets form
@@ -2552,7 +2547,7 @@ Update tickets forms
 | active            | Boolean| If the form is set as active
 | endUserVisible    | Boolean| Is the form visible to the end user
 | default           | Boolean| Is the form the default form for this account
-| ticketFieldIds    | Array  | List ids of all ticket fields which are in this ticket form
+| ticketFieldIds    | List   | List ids of all ticket fields which are in this ticket form
 | inAllBrands       | Boolean| Is the form available for use in all brands on this account
 | inAllOrganizations| Boolean| Is the form available for use in all organizations on this account
 
@@ -2563,7 +2558,7 @@ Reorder tickets forms
 |--------------|-------|----------
 | accessToken  | String| Access Token
 | domain       | String| Your domain in Zendesk system.
-| ticketFormIds| Array | List of ticket form IDs
+| ticketFormIds| List  | List of ticket form IDs
 
 ## ZendeskCore.cloneTicketForm
 Clone ticket form
@@ -2590,7 +2585,7 @@ Create ticket field
 |--------------------|--------|----------
 | accessToken        | String | Access Token
 | domain             | String | Your domain in Zendesk system.
-| type               | String | The type of the ticket field: "checkbox", "date", "decimal", "integer", "regexp", "tagger", "text", or "textarea".
+| type               | Select | The type of the ticket field: "checkbox", "date", "decimal", "integer", "regexp", "tagger", "text", or "textarea".
 | title              | String | The title of the ticket field
 | rawTitle           | String | The dynamic content placeholder, if present, or the "title" value, if not. See Dynamic Content
 | description        | String | The description of the purpose of this ticket field, shown to users
@@ -2648,7 +2643,7 @@ Update ticket filed
 | editableInPortal   | Boolean| Whether this field is editable by end users
 | requiredInPortal   | Boolean| If it's required for this field to have a value when updated by end users
 | tag                | String | A tag value to set for checkbox fields when checked
-| customFieldOptions | JSON   | Required and presented for a ticket field of type "tagger". Example: {"custom_field_option": {"id": 10002, "name": "Pineapples", ... }
+| customFieldOptions | Array  | Required and presented for a ticket field of type "tagger". Example: {"custom_field_option": {"id": 10002, "name": "Pineapples", ... }
 
 ## ZendeskCore.deleteTicketField
 Delete ticket filed
@@ -2729,7 +2724,7 @@ Create new user field
 | accessToken        | String | Access Token
 | domain             | String | Your domain in Zendesk system.
 | key                | String | A unique key that identifies this custom field. This is used for updating the field and referencing in placeholders.
-| type               | String | Type of the custom field: "checkbox", "date", "decimal", "dropdown", "integer", "regexp", "text", or "textarea"
+| type               | Select | Type of the custom field: "checkbox", "date", "decimal", "dropdown", "integer", "regexp", "text", or "textarea"
 | title              | String | The title of the custom field
 | rawTitle           | String | The dynamic content placeholder, if present, or the "title" value, if not. See Dynamic Content
 | description        | String | User-defined description of this field's purpose
@@ -2739,7 +2734,7 @@ Create new user field
 | system             | Boolean| If true, only active and position values of this field can be changed
 | regexpForValidation| String | Regular expression field only. The validation pattern for a field value to be deemed valid.
 | tag                | String | Optional for custom field of type "checkbox"; not presented otherwise.
-| customFieldOptions | JSON   | Required and presented for a custom field of type "dropdown".
+| customFieldOptions | Array  | Required and presented for a custom field of type "dropdown".
 
 ## ZendeskCore.updateUserField
 Update user field
@@ -2749,7 +2744,7 @@ Update user field
 | accessToken        | String | Access Token
 | domain             | String | Your domain in Zendesk system.
 | userFieldId        | Number | User field ID
-| type               | String | Type of the custom field: "checkbox", "date", "decimal", "dropdown", "integer", "regexp", "text", or "textarea"
+| type               | Select | Type of the custom field: "checkbox", "date", "decimal", "dropdown", "integer", "regexp", "text", or "textarea"
 | title              | String | The title of the custom field
 | rawTitle           | String | The dynamic content placeholder, if present, or the "title" value, if not. See Dynamic Content
 | description        | String | User-defined description of this field's purpose
@@ -2758,7 +2753,7 @@ Update user field
 | active             | Boolean| If true, this field is available for use
 | regexpForValidation| String | Regular expression field only. The validation pattern for a field value to be deemed valid.
 | tag                | String | Optional for custom field of type "checkbox"; not presented otherwise.
-| customFieldOptions | JSON   | Required and presented for a custom field of type "dropdown".
+| customFieldOptions | Array  | Required and presented for a custom field of type "dropdown".
 
 ## ZendeskCore.getSingleUserField
 Get single user field
@@ -2776,7 +2771,7 @@ Reorder user fields
 |-------------|-------|----------
 | accessToken | String| Access Token
 | domain      | String| Your domain in Zendesk system.
-| userFieldIds| Array | List of user field IDs
+| userFieldIds| List  | List of user field IDs
 
 ## ZendeskCore.createUserFieldOption
 Create user field option
@@ -3021,7 +3016,7 @@ Creates or updates the relevant location installation with a specified installat
 |--------------|-------|----------
 | accessToken  | String| Access Token
 | domain       | String| Your domain in Zendesk system.
-| installations| Array | List of app installation ids
+| installations| List  | List of app installation ids
 
 ## ZendeskCore.getLocations
 Returns a list of available locations for Zendesk apps.
@@ -3084,7 +3079,7 @@ Create oauth client
 | userId       | Number| The id of the admin who created the client
 | company      | String| Choose a company name to display when users are asked to approve access to your application. The name will help users understand who they are granting access to.
 | description  | String| A short description of your client that is displayed to users when they are considering approving access to your application.
-| redirectUri  | Array | An array of the valid redirect URIs for this client
+| redirectUri  | List  | An array of the valid redirect URIs for this client
 
 ## ZendeskCore.generateOauthClientSecret
 Generate OAuth client secret
@@ -3138,7 +3133,7 @@ Create OAuth token
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
 | clientId   | Number| The numeric ID of the client this token belongs to
-| scopes     | Array | List of scopes. users, auditlogs (read only), organizations, hc, apps, triggers, automations, targets, macros, requests, satisfaction_ratings, dynamic_content, any_channel (write only), web_widget (write only). Example: read, write, users:write, tickets:read etc.
+| scopes     | List  | List of scopes. users, auditlogs (read only), organizations, hc, apps, triggers, automations, targets, macros, requests, satisfaction_ratings, dynamic_content, any_channel (write only), web_widget (write only). Example: read, write, users:write, tickets:read etc.
 
 ## ZendeskCore.revokeOauthToken
 Revoke OAuth token
@@ -3164,7 +3159,7 @@ Lists activities pertaining to the user performing the request.
 |------------|-------|----------
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
-| since      | String| ISO 8601 datetime param. Example: 2013-04-30T16:02:46Z
+| since      | DatePicker| ISO 8601 datetime param. Example: 2013-04-30T16:02:46Z
 
 ## ZendeskCore.getSingleStreamActivity
 Get single stream activity
@@ -3208,7 +3203,7 @@ Unregisters the mobile devices that are receiving push notifications. Specify th
 |------------------------|-------|----------
 | accessToken            | String| Access Token
 | domain                 | String| Your domain in Zendesk system.
-| pushNotificationDevices| Array | List of tokens
+| pushNotificationDevices| List  | List of tokens
 
 ## ZendeskCore.getResourceCollections
 Lists all resource collections that have been created.
@@ -3217,7 +3212,7 @@ Lists all resource collections that have been created.
 |------------------------|-------|----------
 | accessToken            | String| Access Token
 | domain                 | String| Your domain in Zendesk system.
-| pushNotificationDevices| Array | List of tokens
+| pushNotificationDevices| List  | List of tokens
 
 ## ZendeskCore.getSingleResourceCollection
 Retrieves details of a specified resource collection.
@@ -3289,7 +3284,7 @@ Set ticket's tags
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
 | ticketId   | Number| Ticket ID
-| tags       | Array | List of tags
+| tags       | List  | List of tags
 
 ## ZendeskCore.setTopicTags
 Set topic's tags
@@ -3299,7 +3294,7 @@ Set topic's tags
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
 | topicId    | Number| Topic ID
-| tags       | Array | List of tags
+| tags       | List  | List of tags
 
 ## ZendeskCore.setOrganizationTags
 Set organization's tags
@@ -3309,7 +3304,7 @@ Set organization's tags
 | accessToken   | String| Access Token
 | domain        | String| Your domain in Zendesk system.
 | organizationId| Number| Organization ID
-| tags          | Array | List of tags
+| tags          | List  | List of tags
 
 ## ZendeskCore.setUserTags
 Set user's tags
@@ -3319,7 +3314,7 @@ Set user's tags
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
 | userId     | Number| User ID
-| tags       | Array | List of tags
+| tags       | List  | List of tags
 
 ## ZendeskCore.addTicketTags
 Add ticket's tags
@@ -3329,7 +3324,7 @@ Add ticket's tags
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
 | ticketId   | Number| Ticket ID
-| tags       | Array | List of tags
+| tags       | List  | List of tags
 
 ## ZendeskCore.addTopicTags
 Add topic's tags
@@ -3339,7 +3334,7 @@ Add topic's tags
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
 | topicId    | Number| Topic ID
-| tags       | Array | List of tags
+| tags       | List  | List of tags
 
 ## ZendeskCore.addOrganizationTags
 Add organization's tags
@@ -3349,7 +3344,7 @@ Add organization's tags
 | accessToken   | String| Access Token
 | domain        | String| Your domain in Zendesk system.
 | organizationId| Number| Organization ID
-| tags          | Array | List of tags
+| tags          | List  | List of tags
 
 ## ZendeskCore.addUserTags
 Add user's tags
@@ -3359,7 +3354,7 @@ Add user's tags
 | accessToken| String| Access Token
 | domain     | String| Your domain in Zendesk system.
 | userId     | Number| User ID
-| tags       | Array | List of tags
+| tags       | List  | List of tags
 
 ## ZendeskCore.deleteTicketTags
 Delete ticket's tags
