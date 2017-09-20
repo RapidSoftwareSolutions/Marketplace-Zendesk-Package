@@ -19,6 +19,10 @@
       "clientSecret"
     ]
   },
+  "steps": [
+    "Your clienId can be found in Admin->Channels->API->OAuth Clients",
+    "Your clienSecret value was given to you when you registered your application with Zendesk"
+  ],
   "blocks": [
     {
       "name": "getAccessToken",
