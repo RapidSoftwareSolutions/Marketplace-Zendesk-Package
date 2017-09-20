@@ -6,8 +6,8 @@ Capture, curate and manage asynchronous videos/playbacks.
 * Credentials: clientId, clientSecret
 
 ## How to get credentials: 
-1. clienId you can find it at Admin->Channels->API->OAuth Clients
-2. clienSecret value you received when you registered your application with Zendesk
+1. Your clienId can be found in Admin->Channels->API->OAuth Clients
+2. Your clienSecret value was given to you when you registered your application with Zendesk
  
 ## ZendeskCore.getAccessToken
 Get AccessToken
