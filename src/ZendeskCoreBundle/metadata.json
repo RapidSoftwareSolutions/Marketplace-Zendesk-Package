@@ -15,65 +15,14 @@
   "accounts": {
     "domain": "zendesk.com",
     "credentials": [
-      "clientId",
-      "clientSecret"
+      "apiToken"
     ]
   },
   "steps": [
-    "Your clienId can be found in Admin->Channels->API->OAuth Clients",
-    "Your clienSecret value was given to you when you registered your application with Zendesk"
+    "Navigate to Zendesk Support Admin interface at Admin > Channels > API.",
+    "The page lets you view, add, or delete tokens."
   ],
   "blocks": [
-    {
-      "name": "getAccessToken",
-      "description": "Get AccessToken",
-      "custom": {
-        "method": "POST",
-        "url": "https://{domain}.zendesk.com/oauth/tokens"
-      },
-      "args": [
-        {
-          "name": "clientId",
-          "type": "credentials",
-          "info": "Unique Identifier. You can find it at Admin->Channels->API->OAuth Clients",
-          "required": true
-        },
-        {
-          "name": "clientSecret",
-          "type": "credentials",
-          "info": "Secret value you received when you registered your application with Zendesk",
-          "required": true
-        },
-        {
-          "name": "domain",
-          "type": "String",
-          "info": "Your domain in Zendesk system.",
-          "required": true
-        },
-        {
-          "name": "code",
-          "type": "String",
-          "info": "Code you received from Zendesk after the user granted access",
-          "required": true
-        },
-        {
-          "name": "redirectUri",
-          "type": "String",
-          "info": "The same redirect URL as in received Code step.",
-          "required": true
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
     {
       "name": "getIncrementalTickets",
       "description": "Returns the tickets that changed since the start time. The results include tickets that were updated by the system. The endpoint can return records where the updated_at time is earlier than the start_date time. The reason is that the updated_at value is updated only if the ticket update generates a ticket event. Otherwise, the timestamp of the previous update carries over.",
@@ -83,9 +32,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -121,9 +76,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -168,9 +129,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -215,9 +182,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -262,9 +235,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -294,9 +273,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -332,9 +317,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -379,9 +370,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -440,9 +437,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -478,9 +481,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -525,9 +534,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -666,12 +681,14 @@
           "type": "List",
           "info": "List of tags to add to the ticket",
           "required": false,
-          "structure": [{
-            "name": "tag",
-            "type": "String",
-            "info": "Tag",
-            "required": false
-          }],
+          "structure": [
+            {
+              "name": "tag",
+              "type": "String",
+              "info": "Tag",
+              "required": false
+            }
+          ],
           "custom": {
             "wrapName": "ticket"
           }
@@ -767,9 +784,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -814,9 +837,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -1104,9 +1133,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -1151,9 +1186,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -1449,9 +1490,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -1487,9 +1534,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -1534,9 +1587,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -1596,9 +1655,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -1634,9 +1699,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -1672,9 +1743,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -1719,9 +1796,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -1757,9 +1840,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -1795,9 +1884,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -1827,9 +1922,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -1865,9 +1966,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -1903,9 +2010,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -1951,9 +2064,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2001,9 +2120,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2040,9 +2165,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2090,9 +2221,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2128,9 +2265,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2160,9 +2303,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2198,9 +2347,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2230,9 +2385,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2268,9 +2429,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2312,7 +2479,7 @@
         {
           "name": "requesterId",
           "type": "Number",
-          "info": "The id of ticket requester submitting the rating. Default owner of accessToken",
+          "info": "The id of ticket requester submitting the rating. Default owner of apiToken",
           "required": false,
           "custom": {
             "wrapName": "satisfaction_rating"
@@ -2339,9 +2506,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2371,9 +2544,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2409,9 +2588,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2453,9 +2638,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2497,9 +2688,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2547,9 +2744,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2591,9 +2794,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2623,9 +2832,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2673,9 +2888,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2705,9 +2926,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2743,9 +2970,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2781,9 +3014,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2828,9 +3067,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2880,9 +3125,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2947,9 +3198,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -2999,9 +3256,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3051,9 +3314,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3103,9 +3372,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3161,9 +3436,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3219,9 +3500,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3257,9 +3544,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3315,9 +3608,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3379,9 +3678,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3420,9 +3725,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3452,9 +3763,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3490,9 +3807,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3528,9 +3851,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3560,9 +3889,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3607,9 +3942,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3645,9 +3986,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3677,9 +4024,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3715,9 +4068,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3753,9 +4112,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3785,9 +4150,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3823,9 +4194,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3867,9 +4244,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3905,9 +4288,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3955,9 +4344,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -3993,9 +4388,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4040,9 +4441,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4084,9 +4491,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4103,7 +4516,10 @@
           "structure": {
             "name": "role",
             "type": "Select",
-            "options": ["end-user", "admin"],
+            "options": [
+              "end-user",
+              "admin"
+            ],
             "info": "Example end-user, admin",
             "required": false
           }
@@ -4135,9 +4551,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4173,9 +4595,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4211,9 +4639,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4258,9 +4692,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4305,9 +4745,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4343,9 +4789,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4550,12 +5002,14 @@
           "type": "List",
           "info": "The user's tags. Only present if your account has user tagging enabled",
           "required": false,
-          "structure": [{
-            "name": "tag",
-            "type": "String",
-            "info": "Tag",
-            "required": false
-          }],
+          "structure": [
+            {
+              "name": "tag",
+              "type": "String",
+              "info": "Tag",
+              "required": false
+            }
+          ],
           "custom": {
             "wrapName": "user"
           }
@@ -4609,9 +5063,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4657,9 +5117,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4705,9 +5171,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4753,9 +5225,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4800,9 +5278,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4838,9 +5322,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4888,9 +5378,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4920,9 +5416,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -4964,9 +5466,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -5008,9 +5516,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -5046,9 +5560,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -5084,9 +5604,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -5128,9 +5654,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -5218,9 +5750,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -5302,9 +5840,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -5404,9 +5948,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -5448,9 +5998,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -5492,9 +6048,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -5536,9 +6098,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -5580,9 +6148,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -5624,9 +6198,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -5656,9 +6236,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -5694,9 +6280,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -5963,9 +6555,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -5995,9 +6593,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6033,9 +6637,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6077,9 +6687,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6121,9 +6737,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6159,9 +6781,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6191,9 +6819,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6223,9 +6857,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6261,9 +6901,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6299,9 +6945,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6337,9 +6989,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6384,9 +7042,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6518,9 +7182,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6556,9 +7226,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6600,9 +7276,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6632,9 +7314,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6670,9 +7358,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6708,9 +7402,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6746,9 +7446,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6778,9 +7484,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6816,9 +7528,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6854,9 +7572,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6898,9 +7622,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6945,9 +7675,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -6989,9 +7725,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -7036,9 +7778,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -7074,9 +7822,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -7112,9 +7866,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -7168,9 +7928,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -7224,9 +7990,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -7265,9 +8037,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -7321,9 +8099,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -7377,9 +8161,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -7418,9 +8208,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -7456,9 +8252,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -7503,9 +8305,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -7541,9 +8349,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -7581,7 +8395,7 @@
         {
           "name": "commentAuthorId",
           "type": "Number",
-          "info": "Author ID of comment. If not set, system use owner of accessToken",
+          "info": "Author ID of comment. If not set, system use owner of apiToken",
           "required": false,
           "custom": {
             "vendorName": "author_id",
@@ -7619,9 +8433,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -7682,9 +8502,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -7894,9 +8720,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8034,9 +8866,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8096,9 +8934,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8134,9 +8978,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8190,9 +9040,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8231,9 +9087,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8278,9 +9140,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8316,9 +9184,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8382,9 +9256,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8473,9 +9353,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8511,9 +9397,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8590,9 +9482,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8714,9 +9612,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8844,9 +9748,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8882,9 +9792,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8920,9 +9836,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8964,9 +9886,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -8996,9 +9924,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9086,9 +10020,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9118,9 +10058,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9162,9 +10108,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9194,9 +10146,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9232,9 +10190,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9273,9 +10237,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9320,9 +10290,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9358,9 +10334,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9401,9 +10383,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9433,9 +10421,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9465,9 +10459,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9503,9 +10503,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9544,9 +10550,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9591,9 +10603,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9629,9 +10647,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9691,9 +10715,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9729,9 +10759,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9785,9 +10821,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9826,9 +10868,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9870,9 +10918,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9908,9 +10962,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -9952,9 +11012,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10018,9 +11084,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10089,9 +11161,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10154,9 +11232,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10192,9 +11276,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10233,9 +11323,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10280,9 +11376,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10318,9 +11420,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10356,9 +11464,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10394,9 +11508,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10441,9 +11561,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10479,9 +11605,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10517,9 +11649,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10595,9 +11733,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10627,9 +11771,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10665,9 +11815,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10697,9 +11853,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10735,9 +11897,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10767,9 +11935,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10805,9 +11979,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -10909,9 +12089,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11019,9 +12205,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11057,9 +12249,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11101,9 +12299,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11143,9 +12347,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11175,9 +12385,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11213,9 +12429,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11245,9 +12467,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11277,9 +12505,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11309,9 +12543,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11347,9 +12587,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11508,9 +12754,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11675,9 +12927,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11713,9 +12971,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11757,9 +13021,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11789,9 +13059,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11827,9 +13103,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11900,9 +13182,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -11979,9 +13267,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12040,9 +13334,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12078,9 +13378,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12158,9 +13464,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12226,9 +13538,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12270,9 +13588,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12356,9 +13680,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12400,9 +13730,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12487,9 +13823,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12580,9 +13922,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12618,9 +13966,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12650,9 +14004,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12688,9 +14048,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12785,9 +14151,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12817,9 +14189,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12855,9 +14233,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12920,9 +14304,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -12964,9 +14354,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -13002,9 +14398,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -13058,9 +14460,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -13216,9 +14624,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -13254,9 +14668,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -13388,9 +14808,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -13432,9 +14858,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -13470,9 +14902,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -13508,9 +14946,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -13717,9 +15161,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -13749,9 +15199,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -13787,9 +15243,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -13983,9 +15445,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -14021,9 +15489,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -14086,9 +15560,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -14161,9 +15641,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -14199,9 +15685,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -14243,9 +15735,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -14287,9 +15785,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -14319,9 +15823,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -14480,9 +15990,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -14638,9 +16154,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -14676,9 +16198,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -14720,9 +16248,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -14785,9 +16319,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -14860,9 +16400,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -14898,9 +16444,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -14942,9 +16494,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -14986,9 +16544,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15024,9 +16588,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15062,9 +16632,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15100,9 +16676,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15150,9 +16732,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15206,9 +16794,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15244,9 +16838,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15282,9 +16882,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15314,9 +16920,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15346,9 +16958,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15402,9 +17020,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15440,9 +17064,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15478,9 +17108,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15534,9 +17170,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15572,9 +17214,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15628,9 +17276,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15666,9 +17320,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15704,9 +17364,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15742,9 +17408,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15774,9 +17446,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15818,9 +17496,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15850,9 +17534,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15888,9 +17578,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15920,9 +17616,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -15958,9 +17660,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16050,9 +17758,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16148,9 +17862,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16186,9 +17906,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16224,9 +17950,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16256,9 +17988,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16294,9 +18032,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16350,9 +18094,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16388,9 +18138,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16420,9 +18176,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16467,9 +18229,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16505,9 +18273,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16537,9 +18311,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16578,9 +18358,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16616,9 +18402,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16660,9 +18452,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16704,9 +18502,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16742,9 +18546,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16774,9 +18584,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16812,9 +18628,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16850,9 +18672,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16888,9 +18716,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16926,9 +18760,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -16967,9 +18807,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -17017,9 +18863,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -17067,9 +18919,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -17117,9 +18975,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -17167,9 +19031,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -17217,9 +19087,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -17267,9 +19143,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -17317,9 +19199,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -17367,9 +19255,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -17405,9 +19299,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -17443,9 +19343,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -17481,9 +19387,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -17519,9 +19431,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -17551,9 +19469,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {
@@ -17590,9 +19514,15 @@
       },
       "args": [
         {
-          "name": "accessToken",
+          "name": "apiToken",
           "type": "String",
           "info": "Access Token",
+          "required": true
+        },
+        {
+          "name": "email",
+          "type": "String",
+          "info": "Your e-mail in Zendesk system.",
           "required": true
         },
         {

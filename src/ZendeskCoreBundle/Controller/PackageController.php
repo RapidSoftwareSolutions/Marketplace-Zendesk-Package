@@ -97,10 +97,11 @@ class PackageController extends Controller
             $urlParams = $manager->getUrlParams();
             $bodyParams = $manager->getBodyParams();
 
-            $headers = $this->createHeaders($bodyParams);
             $url = $manager->createFullUrl($bodyParams);
 
-            $guzzleData = $manager->createGuzzleData($url, $headers, $urlParams, $bodyParams);
+            $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $bodyParams);
+            $auth = $this->createAuth($bodyParams);
+            $guzzleData["auth"] = $auth;
 
             $result = $sender->send($guzzleData);
         } catch (PackageException $exception) {
@@ -119,7 +120,7 @@ class PackageController extends Controller
      * @return JsonResponse
      */
     public function getUsers()
-    {
+        {
         $file = realpath(__DIR__.'/..').DIRECTORY_SEPARATOR.'metadata.json';
         try {
             $manager = $this->get('manager');
@@ -136,7 +137,6 @@ class PackageController extends Controller
             $urlParams = $manager->getUrlParams();
             $bodyParams = $manager->getBodyParams();
 
-            $headers = $this->createHeaders($bodyParams);
             $url = $manager->createFullUrl($bodyParams);
 
             if (!empty($bodyParams['role'])) {
@@ -148,7 +148,9 @@ class PackageController extends Controller
                 $url .= "?".implode('&', $roleArray);
             }
 
-            $guzzleData = $manager->createGuzzleData($url, $headers, $urlParams, $bodyParams);
+            $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $bodyParams);
+            $auth = $this->createAuth($bodyParams);
+            $guzzleData["auth"] = $auth;
 
             $result = $sender->send($guzzleData);
         } catch (PackageException $exception) {
@@ -184,7 +186,6 @@ class PackageController extends Controller
             $urlParams = $manager->getUrlParams();
             $bodyParams = $manager->getBodyParams();
 
-            $headers = $this->createHeaders($bodyParams);
             $url = $manager->createFullUrl($bodyParams);
 
             if (!empty($bodyParams['uploadToken'])) {
@@ -192,7 +193,10 @@ class PackageController extends Controller
                 unset($bodyParams['uploadToken']);
             }
 
-            $guzzleData = $manager->createGuzzleData($url, $headers, $urlParams, $bodyParams);
+            $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $bodyParams);
+            $auth = $this->createAuth($bodyParams);
+            $guzzleData["auth"] = $auth;
+
 
             $result = $sender->send($guzzleData);
         } catch (PackageException $exception) {
@@ -242,10 +246,11 @@ class PackageController extends Controller
             $urlParams = $manager->getUrlParams();
             $bodyParams = $manager->getBodyParams();
 
-            $headers = $this->createHeaders($bodyParams);
             $url = $manager->createFullUrl($bodyParams);
+            $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $bodyParams);
 
-            $guzzleData = $manager->createGuzzleData($url, $headers, $urlParams, $bodyParams);
+            $auth = $this->createAuth($bodyParams);
+            $guzzleData["auth"] = $auth;
 
             $result = $sender->send($guzzleData);
         } catch (PackageException $exception) {
@@ -277,6 +282,16 @@ class PackageController extends Controller
         unset($data['accessToken']);
 
         return $result;
+    }
+
+    private function createAuth(&$data)
+    {
+        $auth = [
+            $data["email"] . "/token",
+            $data["apiToken"]
+        ];
+
+        return $auth;
     }
 
     private function createPackageExceptionResponse(PackageException $exception)
