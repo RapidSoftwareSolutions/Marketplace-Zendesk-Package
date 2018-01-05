@@ -53,7 +53,14 @@
           "name": "startTime",
           "type": "Number",
           "info": "Unix time. Example: 1491782400",
-          "required": true
+          "required": true,
+          "custom": {
+            "dateTime": {
+              "formatFrom": [
+                "Y-m-d H:i:s"
+              ]
+            }
+          }
         }
       ],
       "callbacks": [
