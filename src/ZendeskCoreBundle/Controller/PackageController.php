@@ -105,9 +105,17 @@ class PackageController extends Controller
 
             $url = $manager->createFullUrl($vendorBody);
 
+            $queryArr = [];
+            if(explode("?", $url)) {
+                $params = explode("?", $url)[1];
+                $url = explode("?", $url)[0];
+                $queryArr = $this->createQueryArr($params);
+            }
+
             $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $vendorBody);
             $auth = $this->createAuth($bodyParams);
             $guzzleData["auth"] = $auth;
+            $guzzleData["query"] = $queryArr;
 
             $result = $sender->send($guzzleData);
         } catch (PackageException $exception) {
@@ -161,9 +169,17 @@ class PackageController extends Controller
                 $url .= "?".implode('&', $roleArray);
             }
 
+            $queryArr = [];
+            if(explode("?", $url)) {
+                $params = explode("?", $url)[1];
+                $url = explode("?", $url)[0];
+                $queryArr = $this->createQueryArr($params);
+            }
+
             $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $vendorBody);
             $auth = $this->createAuth($bodyParams);
             $guzzleData["auth"] = $auth;
+            $guzzleData["query"] = $queryArr;
 
             $result = $sender->send($guzzleData);
         } catch (PackageException $exception) {
@@ -214,9 +230,17 @@ class PackageController extends Controller
                 unset($bodyParams['uploadToken']);
             }
 
+            $queryArr = [];
+            if(explode("?", $url)) {
+                $params = explode("?", $url)[1];
+                $url = explode("?", $url)[0];
+                $queryArr = $this->createQueryArr($params);
+            }
+
             $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $vendorBody);
             $auth = $this->createAuth($bodyParams);
             $guzzleData["auth"] = $auth;
+            $guzzleData["query"] = $queryArr;
 
 
             $result = $sender->send($guzzleData);
@@ -275,9 +299,17 @@ class PackageController extends Controller
 
             $url = $manager->createFullUrl($vendorBody);
 
+            $queryArr = [];
+            if(explode("?", $url)) {
+                $params = explode("?", $url)[1];
+                $url = explode("?", $url)[0];
+                $queryArr = $this->createQueryArr($params);
+            }
+
             $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $vendorBody);
             $auth = $this->createAuth($bodyParams);
             $guzzleData["auth"] = $auth;
+            $guzzleData["query"] = $queryArr;
 
             $result = $sender->send($guzzleData);
         } catch (PackageException $exception) {
@@ -347,5 +379,17 @@ class PackageController extends Controller
             $match = $match == strtoupper($match) ? strtolower($match) : lcfirst($match);
         }
         return implode('_', $ret);
+    }
+
+    private function createQueryArr($params) {
+        $queryArr = [];
+        $fields = explode("&", $params);
+        foreach ($fields as $field) {
+            $key = explode("=", $field)[0];
+            $val = explode("=", $field)[1];
+            $queryArr[$key] = $val;
+        }
+
+        return $queryArr;
     }
 }
