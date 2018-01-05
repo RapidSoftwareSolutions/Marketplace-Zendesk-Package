@@ -237,6 +237,12 @@ class PackageController extends Controller
                 $queryArr = $this->createQueryArr($params);
             }
 
+            foreach ($vendorBody as $key => $value) {
+                if ($key == "startTime") {
+                    $vendorBody["startTime"] = strtotime($value);
+                }
+            }
+
             $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $vendorBody);
             $auth = $this->createAuth($bodyParams);
             $guzzleData["auth"] = $auth;
@@ -327,6 +333,10 @@ class PackageController extends Controller
             $result['contextWrites']['to']['status_code'] = "INTERNAL_PACKAGE_ERROR3";
             $result['contextWrites']['to']['status_msg'] = $exception->getMessage();
         }
+
+        if ($result["contextWrites"]["to"] == "No Content") {
+            $result["contextWrites"]["to"] = ["message" => "Success!"];
+        };
 
         return new JsonResponse($result);
     }

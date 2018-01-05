@@ -59,7 +59,7 @@ This shows the current statuses for background jobs running.
 | domain  | String| Your domain in Zendesk system.
 
 ## ZendeskCore.getSingleJobStatus
-Get Job bi ID
+Get Single Job Status
 
 | Field   | Type  | Description
 |---------|-------|----------
@@ -127,7 +127,7 @@ Create ticket
 | collaborators      | JSON      | An array of numeric IDs, emails, or objects containing name and email properties. An email notification is sent to them when the ticket is created. Example: collaborators: [ 562, someone@example.com, { name: Someone Else, email: else@example.com } ]
 | type               | Select    | Allowed values are problem, incident, question, or task
 | priority           | Select    | Allowed values are urgent, high, normal, or low
-| status             | Select    | Allowed values are new, open, pending, hold, solved or closed. Is set to new if status is not specified
+| status             | Select    | Allowed values are new, open, pending, solved or closed. Is set to new if status is not specified
 | tags               | List      | List of tags to add to the ticket
 | externalId         | Number    | An ID to link Zendesk Support tickets to local records
 | forumTopicId       | Number    | The numeric ID of the topic the ticket originated from, if any
@@ -209,7 +209,7 @@ Update many tickets with the same information
 | subject        | String    | The value of the subject field for this ticket
 | rawSubject     | String    | The dynamic content placeholder, if present, or the "subject" value, if not. See Dynamic Content
 | priority       | Select    | Priority, defines the urgency with which the ticket should be addressed: "urgent", "high", "normal", "low"
-| status         | Select    | The state of the ticket, c
+| status         | String    | The state of the ticket.
 | recipient      | String    | The original recipient e-mail address of the ticket
 | requesterId    | Number    | The user who requested this ticket
 | submitterId    | Number    | The user who submitted the ticket; The submitter always becomes the author of the first comment on the ticket.
@@ -789,7 +789,7 @@ List Assignable Memberships
 | domain  | String| Your domain in Zendesk system.
 
 ## ZendeskCore.getGroupAssignableMemberships
-List Assignable Memberships
+Get Group Assignable Memberships
 
 | Field   | Type  | Description
 |---------|-------|----------
@@ -869,7 +869,7 @@ Get list Users
 | apiToken     | String| Access Token
 | email        | String| Your e-mail in Zendesk system.
 | domain       | String| Your domain in Zendesk system.
-| role         | List  | Users role. Example: ["end-user", "admin"]
+| role         | Select  Users role. Example: end-user, admin
 | permissionSet| Number| For custom roles in the Enterprise plan. You can only filter by one role id per request
 
 ## ZendeskCore.getGroupUsers
@@ -1008,16 +1008,6 @@ Returns an array of users whose name starts with the value specified in the name
 | domain  | String| Your domain in Zendesk system.
 | name    | String| The text from which the name begins
 
-## ZendeskCore.requestUserCreate
-Sends the owner a reminder email to update their subscription so more agents can be created.
-
-| Field   | Type  | Description
-|---------|-------|----------
-| apiToken| String| Access Token
-| email   | String| Your e-mail in Zendesk system.
-| domain  | String| Your domain in Zendesk system.
-| name    | String| User name
-| email   | String| User email
 
 ## ZendeskCore.getMe
 Show the Currently Authenticated User
@@ -1355,13 +1345,8 @@ Create new organization
 | email             | String | Your e-mail in Zendesk system.
 | domain            | String | Your domain in Zendesk system.
 | name              | String | New organization name
-| externalId        | String | A unique external id to associate organizations to an external record
-| domainNames       | List   | List of domain names associated with this organization
 | details           | String | Any details obout the organization, such as the address
 | notes             | String | Any notes you have about the organization
-| groupId           | Number | New tickets from users in this organization are automatically put in this group
-| sharedTickets     | Boolean| End users in this organization are able to see each other's tickets
-| sharedComments    | Boolean| End users in this organization are able to see each other's comments on tickets
 | tags              | List   | The tags of the organization
 | organizationFields| JSON   | Custom fields for this organization. Example: ["org_dropdown": "option_1", "org_decimal": 5.2]
 
@@ -2496,7 +2481,7 @@ List all schedules
 | domain  | String| Your domain in Zendesk system.
 
 ## ZendeskCore.getSingleSchedule
-List all schedules
+Get single schedule
 
 | Field     | Type  | Description
 |-----------|-------|----------
@@ -2670,20 +2655,6 @@ Delete sharing agreement by ID
 | domain            | String| Your domain in Zendesk system.
 | sharingAgreementId| Number| Scharing agreement ID
 
-## ZendeskCore.createSupportAddress
-Adds a Zendesk or external support address to your account.To add a Zendesk address, use the following syntax: {local-part}@{accountname}.zendesk.com. Example: 'sales-team@omniwear.zendesk.com'. The local-part can be anything you like. To add an external email address such as help@omniwearshop.com, the email must already exist and you must set up forwarding on your email server. The exact steps depend on your mail server. See Forwarding incoming email to Zendesk Support. After setting up forwarding, run the Verify Support Address Forwarding endpoint. The address won't work in Zendesk Support until it's been verified.
-
-| Field           | Type   | Description
-|-----------------|--------|----------
-| apiToken        | String | Access Token
-| email           | String | Your e-mail in Zendesk system.
-| domain          | String | Your domain in Zendesk system.
-| email           | String | The email address (not updateable)
-| name            | String | The name for the address
-| default         | Boolean| Whether the address is the account's default support address
-| brandId         | Number | Brand ID
-| forwardingStatus| Select | Possible values: "unknown", "waiting", "verified", or "failed"
-| spfStatus       | Select | Possible values: "unknown", "verified", "failed"
 
 ## ZendeskCore.getSupportAddresses
 Lists all the support addresses for the account
@@ -3031,15 +3002,6 @@ Get single user field
 | domain     | String| Your domain in Zendesk system.
 | userFieldId| Number| User field ID
 
-## ZendeskCore.reorderUserField
-Reorder user fields
-
-| Field       | Type  | Description
-|-------------|-------|----------
-| apiToken    | String| Access Token
-| email       | String| Your e-mail in Zendesk system.
-| domain      | String| Your domain in Zendesk system.
-| userFieldIds| List  | List of user field IDs
 
 ## ZendeskCore.createUserFieldOption
 Create user field option
@@ -3157,16 +3119,6 @@ Adds a build of a new app to the job queue.
 
 ## ZendeskCore.getAppInfo
 Retrieves information about the specified app accessible to the current user and account.
-
-| Field   | Type  | Description
-|---------|-------|----------
-| apiToken| String| Access Token
-| email   | String| Your e-mail in Zendesk system.
-| domain  | String| Your domain in Zendesk system.
-| appId   | Number| App ID
-
-## ZendeskCore.getAppPublicKey
-Reveals the app's public key in PEM format. You can use it to verify that certain requests from the app are legitimate.
 
 | Field   | Type  | Description
 |---------|-------|----------

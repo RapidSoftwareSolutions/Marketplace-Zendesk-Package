@@ -266,7 +266,7 @@
     },
     {
       "name": "getSingleJobStatus",
-      "description": "Get Job bi ID",
+      "description": "Get Single Job Status",
       "custom": {
         "method": "GET",
         "url": "https://{domain}.zendesk.com/api/v2/job_statuses/{job_id}.json"
@@ -623,7 +623,7 @@
         {
           "name": "collaborators",
           "type": "JSON",
-          "info": "An array of numeric IDs, emails, or objects containing name and email properties. An email notification is sent to them when the ticket is created. Example: collaborators: [ 562, someone@example.com, { name: Someone Else, email: else@example.com } ]",
+          "info": "An array of numeric IDs, emails, or objects containing name and email properties. An email notification is sent to them when the ticket is created. Example: '[562,'someone@example.com',{'name':'Someone Else','email':'else@example.com'}]'",
           "required": false,
           "custom": {
             "wrapName": "ticket"
@@ -666,7 +666,6 @@
             "new",
             "open",
             "pending",
-            "hold",
             "solved",
             "closed"
           ],
@@ -681,14 +680,12 @@
           "type": "List",
           "info": "List of tags to add to the ticket",
           "required": false,
-          "structure": [
-            {
+          "structure": {
               "name": "tag",
               "type": "String",
               "info": "Tag",
               "required": false
-            }
-          ],
+          },
           "custom": {
             "wrapName": "ticket"
           }
@@ -1317,14 +1314,8 @@
         },
         {
           "name": "status",
-          "type": "Select",
-          "options": [
-            "urgent",
-            "high",
-            "normal",
-            "low"
-          ],
-          "info": "The state of the ticket, c",
+          "type": "String",
+          "info": "The state of the ticket",
           "required": false,
           "custom": {
             "wrapName": "ticket"
@@ -2862,7 +2853,7 @@
           "name": "reason",
           "type": "String",
           "info": "Reason to skip",
-          "required": false,
+          "required": true,
           "custom": {
             "wrapName": "skip"
           }
@@ -3121,7 +3112,7 @@
       "description": "Get list of requests by status",
       "custom": {
         "method": "GET",
-        "url": "https://{domain}.zendesk.com/api/v2/requests.json"
+        "url": "https://{domain}.zendesk.com/api/v2/requests.json?status={status}"
       },
       "args": [
         {
@@ -4143,7 +4134,7 @@
     },
     {
       "name": "getGroupAssignableMemberships",
-      "description": "List Assignable Memberships",
+      "description": "Get Group Assignable Memberships",
       "custom": {
         "method": "GET",
         "url": "https://{domain}.zendesk.com/api/v2/groups/{group_id}/memberships/assignable.json"
@@ -4510,19 +4501,10 @@
         },
         {
           "name": "role",
-          "type": "List",
-          "info": "Users role. Example: [\"end-user\", \"admin\"]",
-          "required": false,
-          "structure": {
-            "name": "role",
-            "type": "Select",
-            "options": [
-              "end-user",
-              "admin"
-            ],
-            "info": "Example end-user, admin",
-            "required": false
-          }
+          "type": "Select",
+          "options": ["end-user","admin"],
+          "info": "Users role. Example: end-user, admin",
+          "required": false
         },
         {
           "name": "permissionSet",
@@ -4816,17 +4798,9 @@
           }
         },
         {
-          "name": "email",
-          "type": "String",
-          "info": "User email",
-          "required": false,
-          "custom": {
-            "wrapName": "user"
-          }
-        },
-        {
           "name": "verified",
-          "type": "Boolean",
+          "type": "Select",
+          "options": ["true", "false"],
           "info": "True - if you need to create users without sending out a verification email.",
           "required": false,
           "custom": {
@@ -5314,62 +5288,6 @@
       ]
     },
     {
-      "name": "requestUserCreate",
-      "description": "Sends the owner a reminder email to update their subscription so more agents can be created.",
-      "custom": {
-        "method": "POST",
-        "url": "https://{domain}.zendesk.com/api/v2/users/request_create.json"
-      },
-      "args": [
-        {
-          "name": "apiToken",
-          "type": "String",
-          "info": "Access Token",
-          "required": true
-        },
-        {
-          "name": "email",
-          "type": "String",
-          "info": "Your e-mail in Zendesk system.",
-          "required": true
-        },
-        {
-          "name": "domain",
-          "type": "String",
-          "info": "Your domain in Zendesk system.",
-          "required": true
-        },
-        {
-          "name": "name",
-          "type": "String",
-          "info": "User name",
-          "required": true,
-          "custom": {
-            "wrapName": "user"
-          }
-        },
-        {
-          "name": "email",
-          "type": "String",
-          "info": "User email",
-          "required": true,
-          "custom": {
-            "wrapName": "user"
-          }
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
       "name": "getMe",
       "description": "Show the Currently Authenticated User",
       "custom": {
@@ -5783,13 +5701,19 @@
             "google"
           ],
           "info": "New identity: email, twitter, facebook or google",
-          "required": false
+          "required": false,
+          "custom": {
+            "wrapName": "identity"
+          }
         },
         {
           "name": "value",
           "type": "String",
           "info": "Value of new identity",
-          "required": false
+          "required": false,
+          "custom": {
+            "wrapName": "identity"
+          }
         },
         {
           "name": "primary",
@@ -7069,30 +6993,6 @@
           }
         },
         {
-          "name": "externalId",
-          "type": "String",
-          "info": "A unique external id to associate organizations to an external record",
-          "required": false,
-          "custom": {
-            "wrapName": "organization"
-          }
-        },
-        {
-          "name": "domainNames",
-          "type": "List",
-          "info": "List of domain names associated with this organization",
-          "required": false,
-          "structure": {
-            "name": "domain",
-            "type": "String",
-            "info": "Domain",
-            "required": false
-          },
-          "custom": {
-            "wrapName": "organization"
-          }
-        },
-        {
           "name": "details",
           "type": "String",
           "info": "Any details obout the organization, such as the address",
@@ -7105,33 +7005,6 @@
           "name": "notes",
           "type": "String",
           "info": "Any notes you have about the organization",
-          "required": false,
-          "custom": {
-            "wrapName": "organization"
-          }
-        },
-        {
-          "name": "groupId",
-          "type": "Number",
-          "info": "New tickets from users in this organization are automatically put in this group",
-          "required": false,
-          "custom": {
-            "wrapName": "organization"
-          }
-        },
-        {
-          "name": "sharedTickets",
-          "type": "Boolean",
-          "info": "End users in this organization are able to see each other's tickets",
-          "required": false,
-          "custom": {
-            "wrapName": "organization"
-          }
-        },
-        {
-          "name": "sharedComments",
-          "type": "Boolean",
-          "info": "End users in this organization are able to see each other's comments on tickets",
           "required": false,
           "custom": {
             "wrapName": "organization"
@@ -13052,7 +12925,7 @@
     },
     {
       "name": "getSingleSchedule",
-      "description": "List all schedules",
+      "description": "Get single schedule",
       "custom": {
         "method": "GET",
         "url": "https://{domain}.zendesk.com/api/v2/business_hours/schedules/{schedule_id}.json"
@@ -14026,109 +13899,6 @@
           "type": "Number",
           "info": "Scharing agreement ID",
           "required": true
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "createSupportAddress",
-      "description": "Adds a Zendesk or external support address to your account.To add a Zendesk address, use the following syntax: {local-part}@{accountname}.zendesk.com. Example: 'sales-team@omniwear.zendesk.com'. The local-part can be anything you like. To add an external email address such as help@omniwearshop.com, the email must already exist and you must set up forwarding on your email server. The exact steps depend on your mail server. See Forwarding incoming email to Zendesk Support. After setting up forwarding, run the Verify Support Address Forwarding endpoint. The address won't work in Zendesk Support until it's been verified.",
-      "custom": {
-        "method": "POST",
-        "url": "https://{domain}.zendesk.com/api/v2/recipient_addresses.json"
-      },
-      "args": [
-        {
-          "name": "apiToken",
-          "type": "String",
-          "info": "Access Token",
-          "required": true
-        },
-        {
-          "name": "email",
-          "type": "String",
-          "info": "Your e-mail in Zendesk system.",
-          "required": true
-        },
-        {
-          "name": "domain",
-          "type": "String",
-          "info": "Your domain in Zendesk system.",
-          "required": true
-        },
-        {
-          "name": "email",
-          "type": "String",
-          "info": "The email address (not updateable)",
-          "required": true,
-          "custom": {
-            "wrapName": "recipient_address"
-          }
-        },
-        {
-          "name": "name",
-          "type": "String",
-          "info": "The name for the address",
-          "required": false,
-          "custom": {
-            "wrapName": "recipient_address"
-          }
-        },
-        {
-          "name": "default",
-          "type": "Boolean",
-          "info": "Whether the address is the account's default support address",
-          "required": false,
-          "custom": {
-            "wrapName": "recipient_address"
-          }
-        },
-        {
-          "name": "brandId",
-          "type": "Number",
-          "info": "Brand ID",
-          "required": false,
-          "custom": {
-            "wrapName": "recipient_address"
-          }
-        },
-        {
-          "name": "forwardingStatus",
-          "type": "Select",
-          "options": [
-            "unknown",
-            "waiting",
-            "verified",
-            "failed"
-          ],
-          "info": "Possible values: \"unknown\", \"waiting\", \"verified\", or \"failed\"",
-          "required": false,
-          "custom": {
-            "wrapName": "recipient_address"
-          }
-        },
-        {
-          "name": "spfStatus",
-          "type": "Select",
-          "options": [
-            "unknown",
-            "verified",
-            "failed"
-          ],
-          "info": "Possible values: \"unknown\", \"verified\", \"failed\"",
-          "required": false,
-          "custom": {
-            "wrapName": "recipient_address"
-          }
         }
       ],
       "callbacks": [
@@ -16190,56 +15960,6 @@
       ]
     },
     {
-      "name": "reorderUserField",
-      "description": "Reorder user fields",
-      "custom": {
-        "method": "PUT",
-        "url": "https://{domain}.zendesk.com/api/v2/user_fields/reorder.json"
-      },
-      "args": [
-        {
-          "name": "apiToken",
-          "type": "String",
-          "info": "Access Token",
-          "required": true
-        },
-        {
-          "name": "email",
-          "type": "String",
-          "info": "Your e-mail in Zendesk system.",
-          "required": true
-        },
-        {
-          "name": "domain",
-          "type": "String",
-          "info": "Your domain in Zendesk system.",
-          "required": true
-        },
-        {
-          "name": "userFieldIds",
-          "type": "List",
-          "info": "List of user field IDs",
-          "required": true,
-          "structure": {
-            "name": "userFieldId",
-            "type": "Number",
-            "info": "User Field ID",
-            "required": true
-          }
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
       "name": "createUserFieldOption",
       "description": "Create user field option",
       "custom": {
@@ -16791,50 +16511,6 @@
       "custom": {
         "method": "GET",
         "url": "https://{domain}.zendesk.com/api/v2/apps/{app_id}.json"
-      },
-      "args": [
-        {
-          "name": "apiToken",
-          "type": "String",
-          "info": "Access Token",
-          "required": true
-        },
-        {
-          "name": "email",
-          "type": "String",
-          "info": "Your e-mail in Zendesk system.",
-          "required": true
-        },
-        {
-          "name": "domain",
-          "type": "String",
-          "info": "Your domain in Zendesk system.",
-          "required": true
-        },
-        {
-          "name": "appId",
-          "type": "Number",
-          "info": "App ID",
-          "required": true
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "getAppPublicKey",
-      "description": "Reveals the app's public key in PEM format. You can use it to verify that certain requests from the app are legitimate.",
-      "custom": {
-        "method": "GET",
-        "url": "https://{domain}.zendesk.com/api/v2/apps/{app_id}/public_key.pem"
       },
       "args": [
         {
