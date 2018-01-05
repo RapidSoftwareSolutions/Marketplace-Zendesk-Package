@@ -5650,7 +5650,7 @@
       "description": "Adds a new identity to a user's profile. An agent can add an identity to any user profile.",
       "custom": {
         "method": "POST",
-        "url": "https://{domain}.zendesk.com/api/v2/users/{userId}/identities.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}/identities.json"
       },
       "args": [
         {
