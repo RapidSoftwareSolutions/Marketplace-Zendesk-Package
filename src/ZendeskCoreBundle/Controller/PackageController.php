@@ -106,7 +106,7 @@ class PackageController extends Controller
             $url = $manager->createFullUrl($vendorBody);
 
             $queryArr = [];
-            if(explode("?", $url)) {
+            if(count(explode("?", $url)) > 1) {
                 $params = explode("?", $url)[1];
                 $url = explode("?", $url)[0];
                 $queryArr = $this->createQueryArr($params);
@@ -170,7 +170,7 @@ class PackageController extends Controller
             }
 
             $queryArr = [];
-            if(explode("?", $url)) {
+            if(count(explode("?", $url)) > 1) {
                 $params = explode("?", $url)[1];
                 $url = explode("?", $url)[0];
                 $queryArr = $this->createQueryArr($params);
@@ -231,7 +231,7 @@ class PackageController extends Controller
             }
 
             $queryArr = [];
-            if(explode("?", $url)) {
+            if(count(explode("?", $url)) > 1) {
                 $params = explode("?", $url)[1];
                 $url = explode("?", $url)[0];
                 $queryArr = $this->createQueryArr($params);
@@ -296,11 +296,9 @@ class PackageController extends Controller
                 $param = $this->fromCamelCase($key);
                 $vendorBody[$param] = $value;
             }
-
             $url = $manager->createFullUrl($vendorBody);
-
             $queryArr = [];
-            if(explode("?", $url)) {
+            if(count(explode("?", $url)) > 1) {
                 $params = explode("?", $url)[1];
                 $url = explode("?", $url)[0];
                 $queryArr = $this->createQueryArr($params);
