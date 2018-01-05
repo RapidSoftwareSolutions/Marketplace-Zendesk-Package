@@ -245,10 +245,16 @@ class PackageController extends Controller
 
             $urlParams = $manager->getUrlParams();
             $bodyParams = $manager->getBodyParams();
+            $vendorBody = [];
 
             $url = $manager->createFullUrl($bodyParams);
-            $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $bodyParams);
 
+            foreach ($bodyParams as $key=>$value) {
+                $param = $this->fromCamelCase($key);
+                $vendorBody[$param] = $value;
+            }
+
+            $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $vendorBody);
             $auth = $this->createAuth($bodyParams);
             $guzzleData["auth"] = $auth;
 
@@ -311,5 +317,14 @@ class PackageController extends Controller
         $result['contextWrites']['to']['fields'] = explode(',', $exception->getMessage());
 
         return $result;
+    }
+
+    private function fromCamelCase($input) {
+        preg_match_all('!([A-Z][A-Z0-9]*(?=$|[A-Z][a-z0-9])|[A-Za-z][a-z0-9]+)!', $input, $matches);
+        $ret = $matches[0];
+        foreach ($ret as &$match) {
+            $match = $match == strtoupper($match) ? strtolower($match) : lcfirst($match);
+        }
+        return implode('_', $ret);
     }
 }
