@@ -9376,7 +9376,7 @@
           "name": "title",
           "type": "String",
           "info": "The title of the macro",
-          "required": false,
+          "required": true,
           "custom": {
             "wrapName": "macro"
           }
@@ -9412,7 +9412,7 @@
           "name": "actions",
           "type": "Array",
           "info": "An object describing what the macro will do. Example: { \"field\": \"status\", \"value\": \"solved\" }",
-          "required": false,
+          "required": true,
           "structure": [
             {
               "name": "field",

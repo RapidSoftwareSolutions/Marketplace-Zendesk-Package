@@ -300,14 +300,25 @@ class PackageController extends Controller
 
             foreach ($bodyParams as $key=>$value) {
                 $param = $this->fromCamelCase($key);
-                $vendorBody[$param] = $value;
+                if(is_array($value)) {
+                    $vendorBody[$param] = $this->createRequestObject($value);
+                } else {
+                    $vendorBody[$param] = $value;
+                }
             }
+
             $url = $manager->createFullUrl($vendorBody);
             $queryArr = [];
             if(count(explode("?", $url)) > 1) {
                 $params = explode("?", $url)[1];
                 $url = explode("?", $url)[0];
                 $queryArr = $this->createQueryArr($params);
+            }
+
+            foreach ($vendorBody as $key => $value) {
+                if ($key == "startTime") {
+                    $vendorBody["startTime"] = strtotime($value);
+                }
             }
 
             $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $vendorBody);
@@ -399,5 +410,14 @@ class PackageController extends Controller
         }
 
         return $queryArr;
+    }
+
+    public function createRequestObject ($bodyParams) {
+        $vendorBody = [];
+        foreach ($bodyParams as $key=>$value) {
+            $param = $this->fromCamelCase($key);
+            $vendorBody[$param] = $value;
+        }
+        return $vendorBody;
     }
 }
