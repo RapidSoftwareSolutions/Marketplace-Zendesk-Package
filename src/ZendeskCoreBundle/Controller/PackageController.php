@@ -97,13 +97,13 @@ class PackageController extends Controller
             $urlParams = $manager->getUrlParams();
             $bodyParams = $manager->getBodyParams();
 
-            $url = $manager->createFullUrl($bodyParams);
-
             $vendorBody = [];
             foreach ($bodyParams as $key=>$value) {
                 $param = $this->fromCamelCase($key);
                 $vendorBody[$param] = $value;
             }
+
+            $url = $manager->createFullUrl($vendorBody);
 
             $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $vendorBody);
             $auth = $this->createAuth($bodyParams);
@@ -143,7 +143,14 @@ class PackageController extends Controller
             $urlParams = $manager->getUrlParams();
             $bodyParams = $manager->getBodyParams();
 
-            $url = $manager->createFullUrl($bodyParams);
+
+            $vendorBody = [];
+            foreach ($bodyParams as $key=>$value) {
+                $param = $this->fromCamelCase($key);
+                $vendorBody[$param] = $value;
+            }
+
+            $url = $manager->createFullUrl($vendorBody);
 
             if (!empty($bodyParams['role'])) {
                 $roleArray = [];
@@ -152,12 +159,6 @@ class PackageController extends Controller
                 }
                 unset($bodyParams['role']);
                 $url .= "?".implode('&', $roleArray);
-            }
-
-            $vendorBody = [];
-            foreach ($bodyParams as $key=>$value) {
-                $param = $this->fromCamelCase($key);
-                $vendorBody[$param] = $value;
             }
 
             $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $vendorBody);
@@ -199,14 +200,13 @@ class PackageController extends Controller
             $bodyParams = $manager->getBodyParams();
 
 
-
-            $url = $manager->createFullUrl($bodyParams);
-
             $vendorBody = [];
             foreach ($bodyParams as $key=>$value) {
                 $param = $this->fromCamelCase($key);
                 $vendorBody[$param] = $value;
             }
+
+            $url = $manager->createFullUrl($vendorBody);
 
 
             if (!empty($bodyParams['uploadToken'])) {
@@ -268,11 +268,12 @@ class PackageController extends Controller
             $bodyParams = $manager->getBodyParams();
             $vendorBody = [];
 
-            $url = $manager->createFullUrl($bodyParams);
             foreach ($bodyParams as $key=>$value) {
                 $param = $this->fromCamelCase($key);
                 $vendorBody[$param] = $value;
             }
+
+            $url = $manager->createFullUrl($vendorBody);
 
             $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $vendorBody);
             $auth = $this->createAuth($bodyParams);
