@@ -955,27 +955,6 @@ Create a new user
 | timeZone           | String | The user's time zone. See Time Zone below
 | userFields         | JSON   | Custom fields for the user
 
-## ZendeskCore.updateUserProfileImage
-Update user's avatar
-
-| Field   | Type  | Description
-|---------|-------|----------
-| apiToken| String| Access Token
-| email   | String| Your e-mail in Zendesk system.
-| domain  | String| Your domain in Zendesk system.
-| userId  | Number| This user will be merged into the existing user provided in the target user id param. Any two arbitrary users can be merged.
-| image   | File  | File to upload and set as avatar
-
-## ZendeskCore.updateUserProfileImageByUrl
-Update user's avatar
-
-| Field   | Type  | Description
-|---------|-------|----------
-| apiToken| String| Access Token
-| email   | String| Your e-mail in Zendesk system.
-| domain  | String| Your domain in Zendesk system.
-| userId  | Number| This user will be merged into the existing user provided in the target user id param. Any two arbitrary users can be merged.
-| url     | String| URL to File
 
 ## ZendeskCore.mergeUsers
 Merge two users
@@ -3200,19 +3179,6 @@ Retrieves information about the specified app installation, including the instal
 | email            | String| Your e-mail in Zendesk system.
 | domain           | String| Your domain in Zendesk system.
 | appInstallationId| Number| App installation ID
-
-## ZendeskCore.updateAppInstallation
-Updates the specified installation.
-
-| Field            | Type   | Description
-|------------------|--------|----------
-| apiToken         | String | Access Token
-| email            | String | Your e-mail in Zendesk system.
-| domain           | String | Your domain in Zendesk system.
-| appInstallationId| Number | App installation ID
-| name             | String | App name
-| apiToken         | String | Api token
-| useSsl           | Boolean| Use SSL
 
 ## ZendeskCore.removeAppInstallation
 Removes an installed app.
