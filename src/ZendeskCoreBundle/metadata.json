@@ -1046,7 +1046,7 @@
               "fromFormat": [
                 "Y-m-d H:i:s"
               ],
-              "toFormat": "ISO8601"
+              "toFormat": "Y-m-d"
             }
           }
         },
@@ -1393,7 +1393,7 @@
                 "Y-m-d",
                 "Y-m-d H:i:s"
               ],
-              "toFormat": "ISO8601"
+              "toFormat": "Y-m-d"
             }
           }
         },

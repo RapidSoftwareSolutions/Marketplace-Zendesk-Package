@@ -322,7 +322,7 @@ class PackageController extends Controller
 
                 if ($key == "dueAt") {
                     $datetime = new DateTime($value);
-                    $vendorBody["dueAt"] = strtotime($datetime);
+                    $vendorBody["dueAt"] = $datetime->format(DateTime::ATOM); ;
                 }
             }
 
