@@ -300,7 +300,7 @@ class PackageController extends Controller
 
             foreach ($bodyParams as $key=>$value) {
                 $param = $this->fromCamelCase($key);
-                if(is_array($value)) {
+                if($this->is_assoc($value)) {
                     $vendorBody[$param] = $this->createRequestObject($value);
                 } else {
                     $vendorBody[$param] = $value;
@@ -324,6 +324,11 @@ class PackageController extends Controller
                     $datetime = new DateTime($value);
                     $vendorBody["dueAt"] = strtotime($datetime);
                 }
+            }
+
+            // updateUser
+            if(isset($vendorBody["user"]["user_email"])) {
+                $vendorBody["user"]["email"] = $vendorBody["user"]["user_email"];
             }
 
             $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $vendorBody);
@@ -424,5 +429,10 @@ class PackageController extends Controller
             $vendorBody[$param] = $value;
         }
         return $vendorBody;
+    }
+
+    public function is_assoc($var)
+    {
+        return is_array($var) && array_diff_key($var,array_keys(array_keys($var)));
     }
 }

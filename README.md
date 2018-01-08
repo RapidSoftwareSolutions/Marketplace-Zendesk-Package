@@ -124,7 +124,7 @@ Create ticket
 | assigneeId         | Number    | The numeric ID of the agent to assign the ticket to
 | groupId            | Number    | The numeric ID of the group to assign the ticket to
 | collaboratorIds    | List      | An array of the numeric IDs of agents or end-users to CC on the ticket. An email notification is sent to them when the ticket is created
-| collaborators      | JSON      | An array of numeric IDs, emails, or objects containing name and email properties. An email notification is sent to them when the ticket is created. Example: collaborators: [ 562, someone@example.com, { name: Someone Else, email: else@example.com } ]
+| collaborators      | JSON      | An array of numeric IDs, emails, or objects containing name and email properties. An email notification is sent to them when the ticket is created. Example: collaborators: Example: [562,\"someone@example.com\",{\"name\":\"Someone Else\",\"email\":\"else@example.com\"}]
 | type               | Select    | Allowed values are problem, incident, question, or task
 | priority           | Select    | Allowed values are urgent, high, normal, or low
 | status             | Select    | Allowed values are new, open, pending, solved or closed. Is set to new if status is not specified
@@ -1183,7 +1183,7 @@ Update end-users
 | domain             | String | Your domain in Zendesk system.
 | userId             | Number | User ID
 | name               | String | New user name
-| email              | String | User email
+| userEmail              | String | User email
 | verified           | Boolean| True - if you need to create users without sending out a verification email.
 | role               | String | If you need to create agents with a specific role, the role parameter only accepts three possible values: "end-user", "agent", "admin".
 | customRoleId       | Number | Therefore you will need to set role to "agent" as well as add a new parameter called "custom_role_id" and give it the actual desired role ID from your Zendesk Support account.
@@ -3650,16 +3650,6 @@ Get single Monitored Twitter Handle
 | apiToken | String| Access Token
 | email    | String| Your e-mail in Zendesk system.
 | domain   | String| Your domain in Zendesk system.
-| commentId| Number| Zendesk Support comment id
+| id| Number| Zendesk Tweet id
 
-## ZendeskCore.updateBrandImage
-A brand image can be updated by uploading a local file using the update brand endpoint.
-
-| Field   | Type  | Description
-|---------|-------|----------
-| apiToken| String| Access Token
-| email   | String| Your e-mail in Zendesk system.
-| domain  | String| Your domain in Zendesk system.
-| brandId | Number| Brand ID
-| logo    | File  | File/url to upload
 

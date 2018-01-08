@@ -610,7 +610,7 @@
         {
           "name": "collaborators",
           "type": "JSON",
-          "info": "An array of numeric IDs, emails, or objects containing name and email properties. An email notification is sent to them when the ticket is created. Example: '[562,'someone@example.com',{'name':'Someone Else','email':'else@example.com'}]'",
+          "info": "An array of numeric IDs, emails, or objects containing name and email properties. An email notification is sent to them when the ticket is created. Example: [562,\"someone@example.com\",{\"name\":\"Someone Else\",\"email\":\"else@example.com\"}]",
           "required": false,
           "custom": {
             "wrapName": "ticket"
@@ -5893,7 +5893,7 @@
       "description": "Update end-users",
       "custom": {
         "method": "PUT",
-        "url": "https://{domain}.zendesk.com/api/v2/end_users/{user_id}.json"
+        "url": "https://{domain}.zendesk.com/api/v2/users/{user_id}.json"
       },
       "args": [{
         "name": "apiToken",
@@ -5929,7 +5929,7 @@
           }
         },
         {
-          "name": "email",
+          "name": "userEmail",
           "type": "String",
           "info": "User email",
           "required": false,
@@ -18342,63 +18342,10 @@
           "required": true
         },
         {
-          "name": "commentId",
+          "name": "id",
           "type": "Number",
-          "info": "Zendesk Support comment id",
+          "info": "Ticket id",
           "required": true
-        }
-      ],
-      "callbacks": [{
-        "name": "error",
-        "info": "Error"
-      },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "updateBrandImage",
-      "description": "A brand image can be updated by uploading a local file using the update brand endpoint.",
-      "custom": {
-        "method": "PUT",
-        "url": "https://{domain}.zendesk.com/api/v2/brands/{brand_id}.json",
-        "type": "multipart"
-      },
-      "args": [{
-        "name": "apiToken",
-        "type": "String",
-        "info": "Access Token",
-        "required": true
-      },
-        {
-          "name": "email",
-          "type": "String",
-          "info": "Your e-mail in Zendesk system.",
-          "required": true
-        },
-        {
-          "name": "domain",
-          "type": "String",
-          "info": "Your domain in Zendesk system.",
-          "required": true
-        },
-        {
-          "name": "brandId",
-          "type": "Number",
-          "info": "Brand ID",
-          "required": true
-        },
-        {
-          "name": "logo",
-          "type": "File",
-          "info": "File/url to upload",
-          "required": true,
-          "custom": {
-            "wrapName": "brand.photo",
-            "vendorName": "uploaded_data"
-          }
         }
       ],
       "callbacks": [{
