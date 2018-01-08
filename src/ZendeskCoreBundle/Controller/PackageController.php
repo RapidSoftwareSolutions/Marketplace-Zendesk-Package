@@ -319,6 +319,11 @@ class PackageController extends Controller
                 if ($key == "startTime") {
                     $vendorBody["startTime"] = strtotime($value);
                 }
+
+                if ($key == "dueAt") {
+                    $datetime = new DateTime($value);
+                    $vendorBody["dueAt"] = strtotime($datetime);
+                }
             }
 
             $guzzleData = $manager->createGuzzleData($url, [], $urlParams, $vendorBody);
